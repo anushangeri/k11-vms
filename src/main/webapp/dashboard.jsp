@@ -48,6 +48,16 @@
 						</div>
 					</a>
 				</div>	
+				<div class="card">
+					<a href="managedatabase.jsp">
+						<div class="eachCard crop">
+							<img class="center-block" src="elearning.png" alt="elearning.png">
+							<h4 class="fontheader">
+								<b>MANAGE DATABASE</b>
+							</h4>
+						</div>
+					</a>
+				</div>
 			<%} %>
 <%} %>
 </center>
