@@ -102,7 +102,7 @@ body {
 	%>
 			<%if (usertype.equals("K11ADMIN")) {%>
 				<nav class="nav">
-				  <a class="nav-link" href="index.jsp">HOME</a>
+				  <a class="nav-link" href="dashboard.jsp">HOME</a>
 				  <a class="nav-link" href="/logout">Logout</a>
 				</nav>
 			<%} %>
