@@ -20,21 +20,6 @@
 			String usertype = (String) session.getAttribute("usertype");
 			
 		%>
-				<!-- access control for K11 Security -->
-				<%if (usertype.equals("K11SECURITY")) {%>
-				<br>
-				<div class="card">
-					<a href="todhodsearch.jsp">
-						<div class="eachCard crop">
-							<img class="center-block" src="todhod.png" alt="todhodday.jpg">
-							<h4 class="fontheader">
-								<b>VIEW TOD/HOD DETAILS</b>
-							</h4>
-						</div>
-					</a>
-				</div>
-				<br>
-				<%} %>
 				<!-- access control for K11 Admin -->
 				<%if (usertype.equals("K11ADMIN")) {%>
 				<div class="card">
@@ -48,6 +33,7 @@
 						</div>
 					</a>
 				</div>	
+				<br>
 				<div class="card">
 					<a href="managedatabase.jsp">
 						<div class="eachCard crop">

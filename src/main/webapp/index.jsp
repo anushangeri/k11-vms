@@ -41,7 +41,7 @@
 	%>
 	<center>
 	<form action="loginVerify" method="post">
-	<h2><center>K11 Attendance Record</center></h2>
+	<h2><center>K11 Visitor Management System </center></h2>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="idNo"> FULL NRIC/FIN: </label> <input type="text"
