@@ -28,8 +28,6 @@ import com.google.gdata.data.spreadsheet.CustomElementCollection;
 import com.google.gdata.data.spreadsheet.ListEntry;
 import com.google.gdata.data.spreadsheet.ListFeed;
 
-import net.javatutorial.DAO.EmployeesManagerDAO;
-import net.javatutorial.DAO.EmployeesTblDAO;
 
 import java.util.Calendar;
 import java.util.Locale;

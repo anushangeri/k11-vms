@@ -99,28 +99,13 @@ body {
 	<div class="container-fluid">
 	<%if ( !(session.getAttribute("usertype") == null)) {
 			String usertype = (String) session.getAttribute("usertype");
-			if (usertype.equals("K11SECURITY")) {
 	%>
-				<nav class="nav">
-				  <a class="nav-link active" href="todhodsearch.jsp">TOD/HOD Details</a>
-				  <a class="nav-link" href="/logout">Logout</a>
-				</nav>
-			<%} %>
 			<%if (usertype.equals("K11ADMIN")) {%>
 				<nav class="nav">
-				  <a class="nav-link" href="todhodsearch.jsp">TOD/HOD Details</a>
+				  <a class="nav-link" href="dashboard.jsp">HOME</a>
 				  <a class="nav-link" href="/logout">Logout</a>
 				</nav>
 			<%} %>
-	<%} %>
-	
-	<%if ( !(session.getAttribute("siteUser") == null)) {
-		String usertype = (String) session.getAttribute("siteUser");
-	%>
-		<nav class="nav">
-		  <a class="nav-link" href="viewVehRegRec.jsp">Vehicle Registration Records</a>
-		  <a class="nav-link" href="/logout">Logout</a>
-		</nav>
 	<%} %>
 	</div>
 	<!-- /.container-fluid -->

@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import net.javatutorial.entity.Employee;
 import net.javatutorial.entity.Visitor;
 import net.javatutorial.tutorials.Main;
 
