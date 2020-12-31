@@ -26,7 +26,7 @@ public class VMSTblDAO {
 	        		"   HOST_NAME  VARCHAR (100) NOT NULL, \r\n" +  
 	        		"   HOST_CONTACT  VARCHAR (100) NOT NULL,\r\n" + 
 	        		"   VISTOR_CARD_ID  VARCHAR (100) NOT NULL,\r\n" + 
-	        		"   TIME_IN_DT TIMESTAMP     NOT NULL,\r\n" + 
+	        		"   TIME_IN_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
 	        		"   TIME_OUT_DT TIMESTAMP   NULL \r\n" + 
 	        		");");
 //	        stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
@@ -80,11 +80,7 @@ public class VMSTblDAO {
 			Statement stmt = connection.createStatement();
 //	        stmt.executeUpdate("DROP TABLE IF EXISTS ticks");
 	        stmt.executeUpdate("ALTER TABLE VMS\r\n" + 
-	        		"ADD COLUMN PASSWORD VARCHAR(100) NOT NULL,\r\n" + 
-	        		"ADD COLUMN CREATED_BY VARCHAR(100) NOT NULL,\r\n" + 
-	        		"ADD COLUMN CREATED_DT DATE NOT NULL,\r\n" + 
-	        		"ADD COLUMN LAST_MODIFIED_BY VARCHAR(100) NOT NULL,\r\n" + 
-	        		"ADD COLUMN LAST_MODIFIED_DT DATE NOT NULL;");
+	        		"ADD COLUMN TIMEIN DATETIME NOT NULL DEFAULT (GETDATE());");
 //	        stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
 //	        ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
 //	        while (rs.next()) {

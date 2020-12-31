@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.joda.time.format.DateTimeFormatter;
 
+import net.javatutorial.DAO.EmployeesManagerDAO;
+import net.javatutorial.DAO.EmployeesTblDAO;
 import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.entity.Visitor;
 
@@ -28,19 +30,17 @@ import static java.util.Calendar.*;
 import java.util.Date;
 
 /**
- * Servlet implementation class AddVisitorServlet
+ * Servlet implementation class AddEmployeeServlet
  */
 public class DeleteAllVisitorRecordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String message = VMSManagerDAO.deleteAll();
 		
-		ArrayList<String> responseObj = new ArrayList<String>();
-		responseObj.add(message);
-		request.setAttribute("responseObj", responseObj);
+		request.setAttribute("message", message);
         RequestDispatcher rd = request.getRequestDispatcher("vms.jsp");
         rd.forward(request, response);
 	}

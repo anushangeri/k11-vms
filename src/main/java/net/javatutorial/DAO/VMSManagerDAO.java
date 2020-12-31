@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import net.javatutorial.entity.Employee;
 import net.javatutorial.entity.Visitor;
 import net.javatutorial.tutorials.Main;
 
@@ -120,7 +121,7 @@ public class VMSManagerDAO {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
-        String message = "success";
+        String message = "All records deleted - No visitor records available";
         try {
         	connection = Main.getConnection();
             String sql = "DELETE FROM VMS;";

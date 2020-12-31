@@ -20,10 +20,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.format.DateTimeFormatter;
+
+import com.google.api.client.auth.oauth2.Credential;
 import com.google.gdata.client.spreadsheet.SpreadsheetService;
 import com.google.gdata.data.spreadsheet.CustomElementCollection;
 import com.google.gdata.data.spreadsheet.ListEntry;
 import com.google.gdata.data.spreadsheet.ListFeed;
+
+import net.javatutorial.DAO.EmployeesManagerDAO;
+import net.javatutorial.DAO.EmployeesTblDAO;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -36,8 +42,6 @@ import java.util.Date;
 public class LoginVerifyServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-	private static final String nricNantha = "S7856188B";
-	private static final String dobStrNantha = "11/02/1978";
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
@@ -58,9 +62,6 @@ public class LoginVerifyServlet extends HttpServlet {
         	}
         	if(dtOfBirthStr.length() != 0 && !StringUtils.isEmpty(dtOfBirthStr)){
         		dtOfBirthLogin = dateFormat.parse(dtOfBirthStr);
-        		
-        		//convert dobStrNantha to Date format
-        		dtOfBirthNantha = dateFormat.parse(dobStrNantha);
         	}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

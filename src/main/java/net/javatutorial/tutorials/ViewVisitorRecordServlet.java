@@ -20,6 +20,8 @@ import javax.servlet.http.HttpSession;
 
 import org.joda.time.format.DateTimeFormatter;
 
+import net.javatutorial.DAO.EmployeesManagerDAO;
+import net.javatutorial.DAO.EmployeesTblDAO;
 import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.entity.Visitor;
 
@@ -29,24 +31,21 @@ import static java.util.Calendar.*;
 import java.util.Date;
 
 /**
- * Servlet implementation class AddVisitorServlet
+ * Servlet implementation class AddEmployeeServlet
  */
 public class ViewVisitorRecordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(true);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Visitor> vList = VMSManagerDAO.retrieveAll();
-		ArrayList<String> responseObj = new ArrayList<String>();
-		String message = "Success";
-		session.setAttribute("vList", vList);
-		if(vList == null) {
-			message = "No visitor records.";
+		String message = "List of visitor records";
+		request.setAttribute("vList", vList);
+		if(vList == null || vList.size() == 0) {
+			message = "No visitor records available";
 		}
-		responseObj.add(message);
-		request.setAttribute("responseObj", responseObj);
-        RequestDispatcher rd = request.getRequestDispatcher("viewVisitor.jsp");
+		request.setAttribute("message", message);
+        RequestDispatcher rd = request.getRequestDispatcher("vms.jsp");
         rd.forward(request, response);
 	}
 	@Override

@@ -17,8 +17,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.joda.time.format.DateTimeFormatter;
 
+import net.javatutorial.DAO.EmployeesManagerDAO;
+import net.javatutorial.DAO.EmployeesTblDAO;
 import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.entity.Visitor;
 
@@ -28,16 +31,13 @@ import static java.util.Calendar.*;
 import java.util.Date;
 
 /**
- * Servlet implementation class AddVisitorServlet
+ * Servlet implementation class AddEmployeeServlet
  */
 public class AddVisitorRecordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
-		
-		
 		int nextVal = VMSManagerDAO.getNextVal();
 		
 		String vmsId = "" + nextVal;
@@ -49,8 +49,13 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		String hostName = request.getParameter("hostName");
 		String hostNo = request.getParameter("hostNo");
 		String visitorCardId = request.getParameter("visitorCardId");
-		Timestamp timeInDt = new Timestamp(System.currentTimeMillis());
-		
+		String timeIn = request.getParameter("timeInDt");
+		// make sure the seconds are set before parsing because Chrome won't send the seconds part
+		// https://stackoverflow.com/questions/27827614/conversion-from-datetime-local-to-java-sql-timestamp
+		if (StringUtils.countMatches(timeIn, ":") == 1) {
+			timeIn += ":00";
+		}
+		Timestamp timeInDt = Timestamp.valueOf(timeIn.replace("T"," "));
 		Visitor v = new Visitor( vmsId,  firstName,  lastName,  idNo,  mobileNo,  vehicleNo,
 			 hostName,  hostNo,  visitorCardId,  timeInDt);
 		
@@ -59,8 +64,8 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		ArrayList<String> responseObj = new ArrayList<String>();
 		responseObj.add(message + " " + firstName);
 		request.setAttribute("responseObj", responseObj);
-        RequestDispatcher rd = request.getRequestDispatcher("vms.jsp");
-        rd.forward(request, response);
+		// Redirect to view visitor servlet to query all the visitors again.
+		response.sendRedirect("/vms");
 	}
 	@Override
 	public void init() throws ServletException {

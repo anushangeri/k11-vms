@@ -163,7 +163,7 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ViewVisitorRecordServlet</servlet-name>
-		<url-pattern>/viewVisitor</url-pattern>
+		<url-pattern>/vms</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DeleteAllVisitorRecordServlet</servlet-name>
