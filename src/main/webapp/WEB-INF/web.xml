@@ -94,6 +94,13 @@
 	<servlet>
 		<description />
 
+		<display-name>VMSCheckNRICServlet</display-name>
+		<servlet-name>VMSCheckNRICServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.VMSCheckNRICServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+
 		<display-name>ViewVisitorRecordServlet</display-name>
 		<servlet-name>ViewVisitorRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.ViewVisitorRecordServlet</servlet-class>
@@ -104,6 +111,13 @@
 		<display-name>DeleteAllVisitorRecordServlet</display-name>
 		<servlet-name>DeleteAllVisitorRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.DeleteAllVisitorRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+
+		<display-name>UpdateVisitorRecordServlet</display-name>
+		<servlet-name>UpdateVisitorRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateVisitorRecordServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<description />
@@ -162,8 +176,16 @@
 		<url-pattern>/addVisitor</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>VMSCheckNRICServlet</servlet-name>
+		<url-pattern>/vmsCheckNRIC</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>ViewVisitorRecordServlet</servlet-name>
 		<url-pattern>/vms</url-pattern>
+	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>UpdateVisitorRecordServlet</servlet-name>
+		<url-pattern>/updateVisitor</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DeleteAllVisitorRecordServlet</servlet-name>

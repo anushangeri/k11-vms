@@ -97,16 +97,7 @@ body {
 </style>
 <nav class="navbar list" role="navigation">
 	<div class="container-fluid">
-	<%if ( !(session.getAttribute("usertype") == null)) {
-			String usertype = (String) session.getAttribute("usertype");
-	%>
-			<%if (usertype.equals("K11ADMIN")) {%>
-				<nav class="nav">
-				  <a class="nav-link" href="dashboard.jsp">HOME</a>
-				  <a class="nav-link" href="/logout">Logout</a>
-				</nav>
-			<%} %>
-	<%} %>
+	<!-- add links in nav bar if request by client -->
 	</div>
 	<!-- /.container-fluid -->
 </nav>
@@ -116,10 +107,10 @@ body {
 	type="text/javascript"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
-<title>K11 eSERVICE</title>
+<title>K11 VMS</title>
 </head>
 <body>
-	<h1 id="k11title">K11 SECURITY ENGINEERING eSERVICE PLATFORM</h1>
+	<h1 id="k11title">K11 SECURITY ENGINEERING VMS PLATFORM</h1>
 </body>
 
 

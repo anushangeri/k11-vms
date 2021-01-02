@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="loginCSS.jsp"%>
+<%@include file="loginVMSCSS.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
@@ -61,6 +61,7 @@
 	<%
 		ArrayList<Visitor> vList = (ArrayList<Visitor>) request.getAttribute("vList");
 		String message = (String) request.getAttribute("message");
+		
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
 		<label class="heading"><%=message%></label>
@@ -111,8 +112,9 @@
 										}
 										else{
 									%>
-										<td><a href="addVisitor.jsp" class="btn btn-warning btn-lg active"
-											role="button" aria-pressed="true">Update</a></td>
+										<td><form method="POST" action ="/updateVisitor">
+											<input type="hidden" id="vmsId" name="vmsId" value="<%=v.getVmsId()%>">
+											<input type="submit" name="Submit" value="Update"></form></td>
 									<%
 										}
 									%>
@@ -135,18 +137,31 @@
 	</div>
 		<div class="container body-content">
 			<center>
-				<a href="dashboard.jsp" class="btn btn-warning btn-lg active"
+				<a href="index.jsp" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Back</a>
 		
 				<a href="addVisitor.jsp" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Add Visitor Record</a>
 				
-				<a href="deleteAllVisitor" class="btn btn-warning btn-lg active"
-				role="button" aria-pressed="true">Delete Visitor Record</a>
+				<!-- Delete all record function is for K11 Admin only -->
+				<%if (request.getSession(false).getAttribute("usertype") != null) {
+					String userInput = (String) request.getSession(false).getAttribute("usertype");
+					if (userInput == "K11ADMIN"){ %>
+						<a href="deleteAllVisitor" class="btn btn-warning btn-lg active"
+						role="button" aria-pressed="true">Delete Visitor Record</a>
+						
+						<a href="managedatabase.jsp" class="btn btn-warning btn-lg active"
+						role="button" aria-pressed="true">Manage Visitor Database</a>
+					<%	
+					}
+					
+				%>
+				<% 
+				}
+				%>
 				
-				<!--  <form action="deleteAllVisitor" method="post">
-					<button type="submit" class="btn btn-warning btn-lg active">Delete All</button>
-				</form>-->
+				
+				
 			</center>
 		</div>
 	<br>

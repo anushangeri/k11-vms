@@ -1,61 +1,34 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="loginCSS.jsp"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
+<%@include file="loginVMSCSS.jsp"%>
+<%@page import="java.util.*"%>
+<%@page import="java.io.IOException"%>
+<%@page import="java.net.URL"%>
+<%@page import="com.google.gdata.client.spreadsheet.SpreadsheetService"%>
+<%@page import="com.google.gdata.data.spreadsheet.CustomElementCollection"%>
+<%@page import="com.google.gdata.data.spreadsheet.ListEntry"%>
+<%@page import="com.google.gdata.data.spreadsheet.ListFeed"%>
+<%@page import="com.google.gdata.util.ServiceException"%>
+<%@page import="net.javatutorial.entity.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet"
-	href="https://formden.com/static/cdn/bootstrap-iso.css" />
-<!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
-<script type="text/javascript">
-	$(document).ready(
-			function() {
-				var date_input = $('input[name="dob"]'); //our date input has the name "date"
-				var container = $('.bootstrap-iso form').length > 0 ? $(
-						'.bootstrap-iso form').parent() : "body";
-				var options = {
-					format : 'mm/dd/yyyy',
-					container : container,
-					todayHighlight : true,
-					autoclose : true,
-				};
-				date_input.datepicker(options);
-			})
-</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+<script src="https://drvic10k.github.io/bootstrap-sortable/Scripts/bootstrap-sortable.js" type="text/javascript"></script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
-	<%
-		ArrayList<String> responseObj = (ArrayList<String>) request.getAttribute("responseObj");
-		if (responseObj != null) {
-	%>
-			<label class="heading"><%=responseObj.toString() %></label>
-	<%
-		}
-	%>
 	<center>
-	<form action="loginVerify" method="post">
-	<h2><center>K11 Visitor Management System </center></h2>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="idNo"> FULL NRIC/FIN: </label> <input type="text"
-					class="form-control" name="idNo" placeholder="Enter FULL NRIC/FIN">
+		<form action="vmsCheckNRIC" method="post">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="idNo">IC Number: </label> <input type="text"
+						class="form-control" name="idNo" id="idNo"
+						placeholder="SxxxxxxxJ" minlength="8" maxlength="9" required>
+				</div>
+				<button type="submit" class="btn btn-primary">Check NRIC</button>
 			</div>
-			<div class="form-group col-md-6">
-				<label for="dob">Date of Birth: </label> <input class="form-control"
-					id="dob" name="dob" placeholder="MM/DD/YYYY" type="text" required />
-			</div>
-			<button type="submit" class="btn btn-primary">Login</button>
-		</div>
-	</form>
+		</form>
 	</center>
-	<br>
-	
 </body>
 </html>
