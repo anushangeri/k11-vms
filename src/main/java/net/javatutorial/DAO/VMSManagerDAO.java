@@ -27,7 +27,38 @@ public class VMSManagerDAO {
 	        		"   VALUES ('" +v.getVmsId()+ "','" +v.getFirstName()+ "','" +v.getLastName()+ "','" +v.getIdNo()+ "','" +v.getMobileNo()+ "','"
 	        		+v.getVehicleNo()+ "','" +v.getHostName()+ "','" +v.getHostNo()+ "','" +v.getVisitorCardId()+ "','" +v.getTimeInDt()+ 
 	        		"')");
-	        rs = stmt.executeQuery("SELECT LAST(FIRST_NAME) FROM VMS");
+	        rs = stmt.executeQuery("SELECT LAST(FIRST_NAME) FROM VMS;");
+	        while (rs.next()) {
+	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        }
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			message = "" + e;
+			//e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			message = "" + e;
+		}
+		finally {
+        	Main.close(connection, stmt, rs);
+        }
+		message = "Successful";
+		return message;
+	}
+	public static String updateVisitorTimeOut(Visitor v){
+		Connection connection = null;
+		ResultSet rs = null;
+		Statement stmt = null;
+		String message = "";
+		try {
+			connection = Main.getConnection();
+			stmt = connection.createStatement();
+
+	        stmt.executeUpdate("UPDATE VMS "
+	        		+  "SET TIME_OUT_DT = NOW()" +
+	        		"   WHERE VMS_ID = '" + v.getVmsId() + "';");
+	        rs = stmt.executeQuery("SELECT LAST(FIRST_NAME) FROM VMS WHERE VMS_ID ='" + v.getVmsId() +"';");
 	        while (rs.next()) {
 	        	message = "Read from DB: " + rs.getTimestamp("tick");
 	        }
@@ -114,6 +145,80 @@ public class VMSManagerDAO {
         	Main.close(connection, pstmt, rs);
         }
         return vList;
+    }
+	
+	public static ArrayList<Visitor> retrieveByNRIC(String idNo) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        Visitor v = null;
+        ArrayList<Visitor> vList = new ArrayList<Visitor>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT VMS_ID, FIRST_NAME,\r\n" + 
+            		"              LAST_NAME, ID_NO, MOBILE_NO, \r\n" + 
+            		"              VEHICLE_NO, HOST_NAME,\r\n" + 
+            		"              HOST_CONTACT, VISTOR_CARD_ID,\r\n" + 
+            		"              TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE ID_NO ='" + idNo + "' ORDER BY TIME_IN_DT DESC;";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new Visitor(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getString(6),
+            			rs.getString(7),
+            			rs.getString(8),
+            			rs.getString(9),
+            			rs.getTimestamp(10),
+            			rs.getTimestamp(11));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	public static Visitor retrieveByVmsId(String vmsId) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        Visitor v = null;
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT VMS_ID, FIRST_NAME,\r\n" + 
+            		"              LAST_NAME, ID_NO, MOBILE_NO, \r\n" + 
+            		"              VEHICLE_NO, HOST_NAME,\r\n" + 
+            		"              HOST_CONTACT, VISTOR_CARD_ID,\r\n" + 
+            		"              TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE VMS_ID ='" + vmsId + "' ORDER BY TIME_IN_DT DESC;";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new Visitor(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getString(6),
+            			rs.getString(7),
+            			rs.getString(8),
+            			rs.getString(9),
+            			rs.getTimestamp(10),
+            			rs.getTimestamp(11));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return v;
     }
 	
 	public static String deleteAll() {
