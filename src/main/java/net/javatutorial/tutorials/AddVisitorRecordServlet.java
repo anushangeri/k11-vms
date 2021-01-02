@@ -20,8 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.format.DateTimeFormatter;
 
-import net.javatutorial.DAO.EmployeesManagerDAO;
-import net.javatutorial.DAO.EmployeesTblDAO;
 import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.entity.Visitor;
 
