@@ -31,15 +31,6 @@
 	src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
 <script type="text/javascript">
-	var userInput = "SxxxxxxxJ"
-	$(document).ready(function() {
-		$('#escalation').DataTable();
-	});
-	function othername() {
-		userInput = document.getElementById("userInput").value;
-		window.location.replace("addVisitor.jsp?userInput=" + userInput);
-	}
-
 	var dt = new Date();
 	document.getElementById("currTime").innerHTML = dt.toLocaleTimeString();
 </script>
@@ -52,54 +43,9 @@
 			<center>
 				<%
 					String userInput = "SxxxxxxxJ";
-
-					String icNumber = "";
-					String firstName = "";
-					String lastName = "";
-					String mobileNo = "";
-					String vehicleNo = "";
-					String hostName = "";
-					String hostNo = "";
-					String visitorCardId = "";
-
-					if (request.getSession(false).getAttribute("usertype") != null) {
-						userInput = (String) request.getSession(false).getAttribute("usertype");
-					}
-					SpreadsheetService k11VMS = new SpreadsheetService("K11 VMS");
-					try {
-						String sheetUrl = "https://spreadsheets.google.com/feeds/list/1vJBvGXxyOUCz5ZYZtQCIet5qmxamihTYLCjv51os070/1/public/values";
-
-						// Use this String as url
-						URL url = new URL(sheetUrl);
-
-						// Get Feed of Spreadsheet url
-						ListFeed lf = k11VMS.getFeed(url, ListFeed.class);
-
-						// Iterate over feed to get cell value
-						for (ListEntry le : lf.getEntries()) {
-							CustomElementCollection cec = le.getCustomElements();
-
-							if (cec != null) {
-								icNumber = cec.getValue("icnumber");
-								if (icNumber != null && !StringUtils.isEmpty(icNumber)) {
-									icNumber = icNumber.toUpperCase();
-									icNumber = icNumber.trim();
-									// Compare with user input - to populate the rest
-									if (icNumber.equals(userInput)) {
-										firstName = cec.getValue("firstname");
-										lastName = cec.getValue("lastname");
-										mobileNo = cec.getValue("mobile");
-										vehicleNo = cec.getValue("vehiclenumber");
-										hostName = cec.getValue("hostname");
-										hostNo = cec.getValue("hostnumber");
-										visitorCardId = cec.getValue("visitorcardid");
-									}
-								}
-
-							}
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
+					Visitor v = null;
+					if (request.getAttribute("visitorLatRec") != null) {
+						v = (Visitor) request.getAttribute("visitorLatRec");
 					}
 				%>
 				<br>
@@ -110,44 +56,44 @@
 								<label for="firstName">First Name: </label> <input type="text"
 									class="form-control" name="firstName"
 									oninput="this.value = this.value.toUpperCase()"
-									value=<%=firstName%> required>
+									value="<%=((v == null) ? "" : v.getFirstName())%>" required>
 							</div>
 							<div class="form-group col-md-6">
 								<label for="lastName">Last Name: </label> <input type="text"
 									class="form-control" name="lastName"
 									oninput="this.value = this.value.toUpperCase()"
-									value=<%=lastName%> required>
+									value="<%=((v == null) ? "" : v.getLastName())%>" required>
 							</div>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="idNo">IC Number: </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value=<%=userInput%> minlength="9" maxlength="9" required>
+								value="<%=((v == null) ? "" : v.getIdNo())%>" maxlength="9" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="mobileNo">Mobile: </label> <input type="text"
 								class="form-control" name="mobileNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value=<%=mobileNo%> required>
+								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="vehicleNo">Vehicle Number: </label> <input
 								type="text" class="form-control" name="vehicleNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value=<%=vehicleNo%> required>
+								value="<%=((v == null) ? "" : v.getVehicleNo())%>" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="hostName">Host Name: </label> <input type="text"
 								class="form-control" name="hostName"
 								oninput="this.value = this.value.toUpperCase()"
-								value=<%=hostName%> required>
+								value="<%=((v == null) ? "" : v.getHostName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="hostNo">Host Number: </label> <input type="text"
 								class="form-control" name="hostNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value=<%=hostNo%> required>
+								value="<%=((v == null) ? "" : v.getHostNo())%>" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="timein">Time In: </label> <input
@@ -158,7 +104,7 @@
 							<label for="visitorCardId">Visitor Card ID: </label> <input
 								type="text" class="form-control" name="visitorCardId"
 								oninput="this.value = this.value.toUpperCase()"
-								value=<%=visitorCardId%> required>
+								value="<%=((v == null) ? "" : v.getVisitorCardId())%>" required>
 						</div>
 						<button type="submit" class="btn btn-primary btn-lg active">Submit
 							Record</button>

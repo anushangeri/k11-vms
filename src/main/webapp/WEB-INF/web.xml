@@ -87,6 +87,13 @@
 	<servlet>
 		<description />
 
+		<display-name>RetrieveVisitorByNRICServlet</display-name>
+		<servlet-name>RetrieveVisitorByNRICServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.RetrieveVisitorByNRICServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+
 		<display-name>AddVisitorRecordServlet</display-name>
 		<servlet-name>AddVisitorRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.AddVisitorRecordServlet</servlet-class>
@@ -170,6 +177,10 @@
 	<servlet-mapping>
 		<servlet-name>RoasterGenerationServlet</servlet-name>
 		<url-pattern>/roastergeneration</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RetrieveVisitorByNRICServlet</servlet-name>
+		<url-pattern>/retrieveToPopulate</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>AddVisitorRecordServlet</servlet-name>
