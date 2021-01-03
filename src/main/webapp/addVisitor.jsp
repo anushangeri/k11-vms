@@ -47,6 +47,9 @@
 					if (request.getAttribute("visitorLatRec") != null) {
 						v = (Visitor) request.getAttribute("visitorLatRec");
 					}
+					if (request.getSession(false).getAttribute("usertype") != null) {
+						userInput = (String) request.getSession(false).getAttribute("usertype");
+					}
 				%>
 				<br>
 				<form action="addVisitor" method="post">
@@ -69,7 +72,7 @@
 							<label for="idNo">IC Number: </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getIdNo())%>" maxlength="9" required>
+								value="<%=((v == null) ? userInput : v.getIdNo())%>" maxlength="9" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="mobileNo">Mobile: </label> <input type="text"
