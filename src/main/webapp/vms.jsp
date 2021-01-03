@@ -137,7 +137,7 @@
 	</div>
 		<div class="container body-content">
 			<center>
-				<a href="vmsCheckNRIC.jsp" class="btn btn-warning btn-lg active"
+				<a href="index.jsp" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Back</a>
 		
 				<a href="retrieveToPopulate" class="btn btn-warning btn-lg active"
