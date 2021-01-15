@@ -8,6 +8,7 @@
 <%@page import="com.google.gdata.data.spreadsheet.ListEntry"%>
 <%@page import="com.google.gdata.data.spreadsheet.ListFeed"%>
 <%@page import="com.google.gdata.util.ServiceException"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.javatutorial.entity.*"%>
 <!DOCTYPE html>
 <html>
@@ -61,6 +62,7 @@
 	<%
 		ArrayList<Visitor> vList = (ArrayList<Visitor>) request.getAttribute("vList");
 		String message = (String) request.getAttribute("message");
+		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 		
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
