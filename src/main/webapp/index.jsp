@@ -19,6 +19,7 @@
 </head>
 <body>
 	<center>
+		<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b>
 		<form action="vmsCheckNRIC" method="post">
 			<div class="form-row">
 				<div class="form-group col-md-6">

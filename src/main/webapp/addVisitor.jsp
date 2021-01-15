@@ -54,20 +54,20 @@
 				<br>
 				<form action="addVisitor" method="post">
 					<div class="form-row">
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label for="firstName">First Name: </label> <input type="text"
-									class="form-control" name="firstName"
-									oninput="this.value = this.value.toUpperCase()"
-									value="<%=((v == null) ? "" : v.getFirstName())%>" required>
-							</div>
-							<div class="form-group col-md-6">
-								<label for="lastName">Last Name: </label> <input type="text"
-									class="form-control" name="lastName"
-									oninput="this.value = this.value.toUpperCase()"
-									value="<%=((v == null) ? "" : v.getLastName())%>" required>
-							</div>
+						<div class="form-group col-md-6">
+							<label for="firstName">First Name: </label> <input type="text"
+								class="form-control" name="firstName"
+								oninput="this.value = this.value.toUpperCase()"
+								value="<%=((v == null) ? "" : v.getFirstName())%>" required>
 						</div>
+						<div class="form-group col-md-6">
+							<label for="lastName">Last Name: </label> <input type="text"
+								class="form-control" name="lastName"
+								oninput="this.value = this.value.toUpperCase()"
+								value="<%=((v == null) ? "" : v.getLastName())%>" required>
+						</div>
+					</div>
+					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="idNo">IC Number: </label> <input type="text"
 								class="form-control" name="idNo"
@@ -80,6 +80,8 @@
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
 						</div>
+					</div>	
+					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="vehicleNo">Vehicle Number: </label> <input
 								type="text" class="form-control" name="vehicleNo"
@@ -99,22 +101,28 @@
 								value="<%=((v == null) ? "" : v.getHostNo())%>" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="timein">Time In: </label> <input
-								type="datetime-local" class="form-control" name="timeInDt"
-								required>
-						</div>
-						<div class="form-group col-md-6">
 							<label for="visitorCardId">Visitor Card ID: </label> <input
 								type="text" class="form-control" name="visitorCardId"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getVisitorCardId())%>" required>
 						</div>
-						<button type="submit" class="btn btn-primary btn-lg active">Submit
-							Record</button>
-						<br>	
-						<a href="/vms" class="btn btn-warning btn-lg active"
-							role="button" aria-pressed="true">Back</a>
 					</div>
+					<div class="form-row checkbox">
+						<input type="checkbox" id="coviddeclaration" 
+						name="coviddeclaration" value="Yes">
+  							<label for="coviddeclaration"> 
+  							I confirm that I am NOT experiencing any of the following symptoms: <br>
+							• fever (feeling hot to the touch, a temperature of 37.8 degrees Celsius or higher)<br>
+							• new onset of cough (continuous, more than usual)<br>
+							• difficulty breathing<br>
+							<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b></label>
+					</div>
+					<div class="form-row">
+						<button type="submit" class="btn btn-primary btn-lg active">Submit Record</button> 
+						<a href="/vms" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Back</a>
+					</div>
+					<br>
+					<br>
 				</form>
 			</center>
 		</div>

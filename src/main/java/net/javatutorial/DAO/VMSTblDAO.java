@@ -26,6 +26,7 @@ public class VMSTblDAO {
 	        		"   HOST_NAME  VARCHAR (100) NOT NULL, \r\n" +  
 	        		"   HOST_CONTACT  VARCHAR (100) NOT NULL,\r\n" + 
 	        		"   VISTOR_CARD_ID  VARCHAR (100) NOT NULL,\r\n" + 
+	        		"   COVID_DECLARE  VARCHAR (100) NOT NULL,\r\n" + 
 	        		"   TIME_IN_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
 	        		"   TIME_OUT_DT TIMESTAMP   NULL \r\n" + 
 	        		");");

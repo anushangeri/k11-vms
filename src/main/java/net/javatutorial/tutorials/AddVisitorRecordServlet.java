@@ -33,7 +33,7 @@ import java.util.Date;
  */
 public class AddVisitorRecordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
-
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int nextVal = VMSManagerDAO.getNextVal();
@@ -47,15 +47,16 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		String hostName = request.getParameter("hostName");
 		String hostNo = request.getParameter("hostNo");
 		String visitorCardId = request.getParameter("visitorCardId");
+		String covidDec = request.getParameter("coviddeclaration");
 		String timeIn = request.getParameter("timeInDt");
+		Timestamp timeInDt = new Timestamp(System.currentTimeMillis());
 		// make sure the seconds are set before parsing because Chrome won't send the seconds part
 		// https://stackoverflow.com/questions/27827614/conversion-from-datetime-local-to-java-sql-timestamp
-		if (StringUtils.countMatches(timeIn, ":") == 1) {
-			timeIn += ":00";
-		}
-		Timestamp timeInDt = Timestamp.valueOf(timeIn.replace("T"," "));
+//		if (StringUtils.countMatches(timeIn, ":") == 1) {
+//			timeIn += ":00";
+//		}
 		Visitor v = new Visitor( vmsId,  firstName,  lastName,  idNo,  mobileNo,  vehicleNo,
-			 hostName,  hostNo,  visitorCardId,  timeInDt);
+			 hostName,  hostNo,  visitorCardId, covidDec,  timeInDt);
 		
 		String message = VMSManagerDAO.addVisitor(v);
 		

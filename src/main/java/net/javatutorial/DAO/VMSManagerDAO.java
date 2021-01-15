@@ -23,10 +23,10 @@ public class VMSManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("INSERT INTO VMS "
-	        		+  "(VMS_ID, FIRST_NAME, LAST_NAME, ID_NO, MOBILE_NO, VEHICLE_NO, HOST_NAME, HOST_CONTACT, VISTOR_CARD_ID, TIME_IN_DT)" + 
+	        		+  "(VMS_ID, FIRST_NAME, LAST_NAME, ID_NO, MOBILE_NO, VEHICLE_NO, HOST_NAME, HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, TIME_IN_DT)" + 
 	        		"   VALUES ('" +v.getVmsId()+ "','" +v.getFirstName()+ "','" +v.getLastName()+ "','" +v.getIdNo()+ "','" +v.getMobileNo()+ "','"
-	        		+v.getVehicleNo()+ "','" +v.getHostName()+ "','" +v.getHostNo()+ "','" +v.getVisitorCardId()+ "','" +v.getTimeInDt()+ 
-	        		"')");
+	        		+v.getVehicleNo()+ "','" +v.getHostName()+ "','" +v.getHostNo()+ "','" +v.getVisitorCardId()+ "','" +v.getCovidDeclare()+ "','" 
+	        		+v.getTimeInDt()+ "')");
 	        rs = stmt.executeQuery("SELECT LAST(FIRST_NAME) FROM VMS;");
 	        while (rs.next()) {
 	        	message = "Read from DB: " + rs.getTimestamp("tick");
@@ -120,7 +120,7 @@ public class VMSManagerDAO {
             String sql = "SELECT VMS_ID, FIRST_NAME,\r\n" + 
             		"              LAST_NAME, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
-            		"              HOST_CONTACT, VISTOR_CARD_ID,\r\n" + 
+            		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, \r\n" + 
             		"              TIME_IN_DT, TIME_OUT_DT FROM VMS ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
 
@@ -135,8 +135,9 @@ public class VMSManagerDAO {
             			rs.getString(7),
             			rs.getString(8),
             			rs.getString(9),
-            			rs.getTimestamp(10),
-            			rs.getTimestamp(11));
+            			rs.getString(10),
+            			rs.getTimestamp(11),
+            			rs.getTimestamp(12));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -158,7 +159,7 @@ public class VMSManagerDAO {
             String sql = "SELECT VMS_ID, FIRST_NAME,\r\n" + 
             		"              LAST_NAME, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
-            		"              HOST_CONTACT, VISTOR_CARD_ID,\r\n" + 
+            		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, \r\n" + 
             		"              TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE ID_NO ='" + idNo + "' ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
 
@@ -173,8 +174,9 @@ public class VMSManagerDAO {
             			rs.getString(7),
             			rs.getString(8),
             			rs.getString(9),
-            			rs.getTimestamp(10),
-            			rs.getTimestamp(11));
+            			rs.getString(10),
+            			rs.getTimestamp(11),
+            			rs.getTimestamp(12));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -195,7 +197,7 @@ public class VMSManagerDAO {
             String sql = "SELECT VMS_ID, FIRST_NAME,\r\n" + 
             		"              LAST_NAME, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
-            		"              HOST_CONTACT, VISTOR_CARD_ID,\r\n" + 
+            		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, \r\n" + 
             		"              TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE VMS_ID ='" + vmsId + "' ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
 
@@ -210,8 +212,9 @@ public class VMSManagerDAO {
             			rs.getString(7),
             			rs.getString(8),
             			rs.getString(9),
-            			rs.getTimestamp(10),
-            			rs.getTimestamp(11));
+            			rs.getString(10),
+            			rs.getTimestamp(11),
+            			rs.getTimestamp(12));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -228,7 +231,7 @@ public class VMSManagerDAO {
         String message = "All records deleted - No visitor records available";
         try {
         	connection = Main.getConnection();
-            String sql = "DELETE FROM VMS;";
+            String sql = "DELETE FROM VMS WHERE TIME_IN_DT <= GETDATE() - 30;";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();

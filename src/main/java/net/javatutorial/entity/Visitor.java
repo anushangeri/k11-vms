@@ -13,11 +13,12 @@ public class Visitor {
     private String hostName;
     private String hostNo;
     private String visitorCardId;
+    private String covidDeclare;
     private Timestamp timeInDt;
     private Timestamp timeOutDt;
     
 	public Visitor(String vmsId, String firstName, String lastName, String idNo, String mobileNo, String vehicleNo,
-			String hostName, String hostNo, String visitorCardId, Timestamp timeInDt, Timestamp timeOutDt) {
+			String hostName, String hostNo, String visitorCardId, String covidDeclare, Timestamp timeInDt, Timestamp timeOutDt) {
 		super();
 		this.vmsId = vmsId;
 		this.firstName = firstName;
@@ -28,12 +29,13 @@ public class Visitor {
 		this.hostName = hostName;
 		this.hostNo = hostNo;
 		this.visitorCardId = visitorCardId;
+		this.covidDeclare = covidDeclare;
 		this.timeInDt = timeInDt;
 		this.timeOutDt = timeOutDt;
 	}
 
 	public Visitor(String vmsId, String firstName, String lastName, String idNo, String mobileNo, String vehicleNo,
-			String hostName, String hostNo, String visitorCardId, Timestamp timeInDt) {
+			String hostName, String hostNo, String visitorCardId, String covidDeclare, Timestamp timeInDt) {
 		super();
 		this.vmsId = vmsId;
 		this.firstName = firstName;
@@ -44,6 +46,7 @@ public class Visitor {
 		this.hostName = hostName;
 		this.hostNo = hostNo;
 		this.visitorCardId = visitorCardId;
+		this.covidDeclare = covidDeclare;
 		this.timeInDt = timeInDt;
 	}
 
@@ -135,6 +138,14 @@ public class Visitor {
 		this.timeOutDt = timeOutDt;
 	}
 
+	public String getCovidDeclare() {
+		return covidDeclare;
+	}
+
+	public void setCovidDeclare(String covidDeclare) {
+		this.covidDeclare = covidDeclare;
+	}
+	
 	@Override
 	public String toString() {
 		return "Visitor [vmsId=" + vmsId + ", firstName=" + firstName + ", lastName=" + lastName + ", idNo=" + idNo
@@ -142,5 +153,4 @@ public class Visitor {
 				+ hostNo + ", visitorCardId=" + visitorCardId + ", timeInDt=" + timeInDt + ", timeOutDt=" + timeOutDt
 				+ "]";
 	}
-    
 }
