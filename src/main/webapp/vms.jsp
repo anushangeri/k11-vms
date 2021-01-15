@@ -64,7 +64,7 @@
 		
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
-		<label class="heading"><%=message%></label>
+		<label class="heading"><%=message%></label><br>
 		<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b>
 		<% 
 			if (vList != null && vList.size() > 0) {
