@@ -107,10 +107,10 @@
 									<td><%=v.getHostNo()%></td>
 									<td><%=v.getVisitorCardId()%></td>
 									<td><%=((v.getCovidDeclare() == null || v.getCovidDeclare().equals("null")) ? "No" : v.getCovidDeclare())%></td>
-									<td><%=v.getTimeInDt()%></td>
+									<td><%=sdf.format(v.getTimeInDt())%></td>
 									<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
 									<% if (v.getTimeOutDt() != null) { %>
-										<td><%=v.getTimeOutDt()%></td>
+										<td><%=sdf.format(v.getTimeOutDt())%></td>
 									<%
 										}
 										else{
