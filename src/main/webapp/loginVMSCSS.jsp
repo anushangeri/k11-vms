@@ -110,7 +110,9 @@ body {
 <title>K11 VMS</title>
 </head>
 <body>
-	<h1 id="k11title">K11 SECURITY ENGINEERING VMS PLATFORM</h1>
+	<h1 id="k11title">VMS DEMO</h1>
+	<center><b>by K11 SECURITY ENGINEERING</b></center>
+	<br>
 </body>
 
 
