@@ -18,6 +18,7 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
+	<% session.removeAttribute("usertype"); %>
 	<center>
 		<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b>
 		<form action="vmsCheckNRIC" method="post">
