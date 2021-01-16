@@ -151,7 +151,7 @@
 				<!-- Delete all record function is for K11 Admin only -->
 				<%if (request.getSession(false).getAttribute("usertype") != null) {
 					String userInput = (String) request.getSession(false).getAttribute("usertype");
-					if (userInput == "K11ADMIN"){ %>
+					if (userInput.toUpperCase().equals("K11ADMIN")){ %>
 						<a href="deleteAllVisitor" class="btn btn-warning btn-lg active"
 						role="button" aria-pressed="true">Delete Visitor Record</a>
 						

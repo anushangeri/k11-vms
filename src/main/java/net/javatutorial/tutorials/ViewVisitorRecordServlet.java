@@ -1,25 +1,15 @@
 package net.javatutorial.tutorials;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.Locale;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.format.DateTimeFormatter;
 
 import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.entity.Visitor;
@@ -36,7 +26,7 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 		String message = "No visitor records available";
 		ArrayList<Visitor> vList = null;
 		if(!StringUtils.isEmpty(idNo)) {
-			if(idNo.toUpperCase().equals("K11ADMIN")) {
+			if(idNo.toUpperCase().equals("K11ADMIN") || idNo.toUpperCase().equals("K11STAFF")) {
 				vList = VMSManagerDAO.retrieveAll();
 				message = "List of visitor records";
 				request.setAttribute("vList", vList);
