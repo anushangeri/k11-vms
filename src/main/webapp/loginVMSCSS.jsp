@@ -89,7 +89,10 @@
 .list{
 	background-color: #FFA8A4 !important;
 }
-
+#tableview{
+	width: 80% !important;
+	margin-left: 2% !important;
+}
 
 body {
 	background-color: #F3F3F3;

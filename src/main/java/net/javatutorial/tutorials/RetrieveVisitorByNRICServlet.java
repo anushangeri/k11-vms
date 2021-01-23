@@ -90,7 +90,7 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 										visitorCardId = cec.getValue("visitorcardid");
 										
 										v = new Visitor( null,  firstName,  lastName,  idNo,  mobileNo,  vehicleNo,
-												 hostName,  hostNo,  visitorCardId, null,  null, null);
+												 hostName,  hostNo,  visitorCardId, null, null,  null, null);
 									}
 								}
 	

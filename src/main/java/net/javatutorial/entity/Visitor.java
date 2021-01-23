@@ -15,11 +15,13 @@ public class Visitor {
     private String visitorCardId;
     private String covidDeclare;
     private String visitPurpose;
+    private String temperature;
     private Timestamp timeInDt;
     private Timestamp timeOutDt;
     
 	public Visitor(String vmsId, String firstName, String lastName, String idNo, String mobileNo, String vehicleNo,
-			String hostName, String hostNo, String visitorCardId, String covidDeclare, String visitPurpose, Timestamp timeInDt, Timestamp timeOutDt) {
+			String hostName, String hostNo, String visitorCardId, String covidDeclare, String visitPurpose, String temperature,
+			Timestamp timeInDt, Timestamp timeOutDt) {
 		super();
 		this.vmsId = vmsId;
 		this.firstName = firstName;
@@ -32,12 +34,14 @@ public class Visitor {
 		this.visitorCardId = visitorCardId;
 		this.covidDeclare = covidDeclare;
 		this.visitPurpose= visitPurpose;
+		this.setTemperature(temperature);
 		this.timeInDt = timeInDt;
 		this.timeOutDt = timeOutDt;
 	}
 
 	public Visitor(String vmsId, String firstName, String lastName, String idNo, String mobileNo, String vehicleNo,
-			String hostName, String hostNo, String visitorCardId, String covidDeclare, String visitPurpose, Timestamp timeInDt) {
+			String hostName, String hostNo, String visitorCardId, String covidDeclare, String visitPurpose, String temperature,
+			Timestamp timeInDt) {
 		super();
 		this.vmsId = vmsId;
 		this.firstName = firstName;
@@ -50,6 +54,7 @@ public class Visitor {
 		this.visitorCardId = visitorCardId;
 		this.covidDeclare = covidDeclare;
 		this.visitPurpose= visitPurpose;
+		this.setTemperature(temperature);
 		this.timeInDt = timeInDt;
 	}
 
@@ -161,12 +166,28 @@ public class Visitor {
 	public void setVisitPurpose(String visitPurpose) {
 		this.visitPurpose = visitPurpose;
 	}
-	
+
+	/**
+	 * @return the temperature
+	 */
+	public String getTemperature() {
+		return temperature;
+	}
+
+	/**
+	 * @param temperature the temperature to set
+	 */
+	public void setTemperature(String temperature) {
+		this.temperature = temperature;
+	}
+
 	@Override
 	public String toString() {
 		return "Visitor [vmsId=" + vmsId + ", firstName=" + firstName + ", lastName=" + lastName + ", idNo=" + idNo
 				+ ", mobileNo=" + mobileNo + ", vehicleNo=" + vehicleNo + ", hostName=" + hostName + ", hostNo="
-				+ hostNo + ", visitorCardId=" + visitorCardId + ", timeInDt=" + timeInDt + ", timeOutDt=" + timeOutDt
+				+ hostNo + ", visitorCardId=" + visitorCardId + ", covidDeclare=" + covidDeclare + ", visitPurpose="
+				+ visitPurpose + ", temperature=" + temperature + ", timeInDt=" + timeInDt + ", timeOutDt=" + timeOutDt
 				+ "]";
 	}
+	
 }

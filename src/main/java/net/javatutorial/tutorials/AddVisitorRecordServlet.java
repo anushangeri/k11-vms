@@ -51,6 +51,7 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		String visitorCardId = request.getParameter("visitorCardId");
 		String covidDec = request.getParameter("coviddeclaration");
 		String visitPurpose = request.getParameter("visitPurpose");
+		String temperature = request.getParameter("temperature");
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 		//Timestamp timeInDt = new Timestamp(System.currentTimeMillis());
@@ -60,7 +61,7 @@ public class AddVisitorRecordServlet extends HttpServlet {
 //			timeIn += ":00";
 //		}
 		Visitor v = new Visitor( vmsId,  firstName,  lastName,  idNo,  mobileNo,  vehicleNo,
-			 hostName,  hostNo,  visitorCardId, covidDec, visitPurpose,  timestamp);
+			 hostName,  hostNo,  visitorCardId, covidDec, visitPurpose, temperature,  timestamp);
 		
 		String message = VMSManagerDAO.addVisitor(v);
 		

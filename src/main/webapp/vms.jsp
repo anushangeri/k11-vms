@@ -68,10 +68,11 @@
 	%>
 		<label class="heading"><%=message%> </label><br>
 		<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b>
+	</center>
 		<% 
 			if (vList != null && vList.size() > 0) {
 		%>
-			<div class="container body-content">
+			<div class="container body-content" id="tableview">
 				<table id="example"
 					class="table table-striped table-bordered table-sm sortable"
 					cellspacing="0" width="100%">
@@ -88,6 +89,7 @@
 							<th class="th-sm">Visitor Pass ID</th>
 							<th class="th-sm">Covid Declaration?</th>
 							<th class="th-sm">Purpose of Visit</th>
+							<th class="th-sm">Temperature</th>
 							<th class="th-sm">Time In</th>
 							<th class="th-sm">Time Out</th>
 						</tr>
@@ -111,6 +113,7 @@
 									<td><%=v.getVisitorCardId()%></td>
 									<td><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
 									<td><%=v.getVisitPurpose()%></td>
+									<td><%=v.getTemperature()%></td>
 									<td><%=sdf.format(v.getTimeInDt())%></td>
 									<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
 									<% if (v.getTimeOutDt() != null) { %>
@@ -166,12 +169,9 @@
 				<% 
 				}
 				%>
-				
-				
-				
 			</center>
 		</div>
 	<br>
-	</center>
+	
 </body>
 </html>

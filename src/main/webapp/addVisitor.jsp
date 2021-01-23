@@ -136,10 +136,15 @@
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getVisitorCardId())%>" required>
 						</div>
+						<div class="form-group col-md-6">
+							<label for="temperature">Temperature: </label> <input type="text"
+						class="form-control" name="temperature" id="temperature"
+						placeholder="36.6" minlength="4" maxlength="4" required>
+						</div>
 					</div>
 					<div class="form-row checkbox">
 						<input type="checkbox" id="coviddeclaration" 
-						name="coviddeclaration" value="Yes">
+						name="coviddeclaration" value="Yes" required>
   							<label for="coviddeclaration"> 
   							I confirm that I am NOT experiencing any of the following symptoms: <br>
 							• fever (feeling hot to the touch, a temperature of 37.8 degrees Celsius or higher)<br>

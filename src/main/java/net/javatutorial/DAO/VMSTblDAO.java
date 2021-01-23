@@ -28,6 +28,7 @@ public class VMSTblDAO {
 	        		"   VISTOR_CARD_ID  VARCHAR (100) NOT NULL,\r\n" + 
 	        		"   COVID_DECLARE  VARCHAR (100) NOT NULL,\r\n" + 
 	        		"   VISIT_PURPOSE  VARCHAR (100) NOT NULL,\r\n" + 
+	        		"   TEMPERATURE  VARCHAR (100) NOT NULL,\r\n" + 
 	        		"   TIME_IN_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
 	        		"   TIME_OUT_DT TIMESTAMP   NULL \r\n" + 
 	        		");");

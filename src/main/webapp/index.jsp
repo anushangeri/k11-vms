@@ -27,7 +27,7 @@ function validateForm() {
   var isDigitThird = (third >= '0' && third <= '9');
   var forth = x.charAt(3);
   var isDigitForth = (forth >= '0' && forth <= '9');
-  if (!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth && x != "K11ADMIN") {
+  if (x != "K11ADMIN" && !isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth) {
     alert("PDPA Compliance: Enter only last 3 digit and letter of NRIC/FIN. E.g. 409J");
     return false;
   }
@@ -43,7 +43,7 @@ function validateForm() {
 				<div class="form-group col-md-6">
 					<label for="idNo">IC Number: </label> <input type="text"
 						class="form-control" name="idNo" id="idNo"
-						placeholder="SxxxxxxxJ" minlength="4" maxlength="9" required>
+						placeholder="xxxJ" minlength="4" maxlength="9" required>
 				</div>
 				<button type="submit" class="btn btn-primary">Check NRIC</button>
 			</div>
