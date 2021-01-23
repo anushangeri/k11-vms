@@ -29,18 +29,37 @@
 <style type="text/css"></style>
 <script type="text/javascript"
 	src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-
-<script type="text/javascript">
-	var dt = new Date();
-	document.getElementById("currTime").innerHTML = dt.toLocaleTimeString();
-</script>
 </head>
 <body>
+<%
+	ArrayList<String> visitPurpose = new ArrayList<String>();
+	SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
+	try{
+        //Dropdown for visitPurpose START
+          String visitPurposeUrl
+                  = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/13/public/values";
+          // Use this String as url
+          URL visitPurposeurl = new URL(visitPurposeUrl);
+
+          // Get Feed of Spreadsheet url
+          ListFeed visitPurpoself = service.getFeed(visitPurposeurl, ListFeed.class);
+         
+          for (ListEntry le : visitPurpoself.getEntries()) {
+              CustomElementCollection cec = le.getCustomElements();
+              visitPurpose.add(cec.getValue("purpose").trim());
+          }
+        //Dropdown for visitPurpose END
+		
+	} catch (Exception e) {
+    %>
+		<h1><%=e %></h1>
+	<%
+    }
+%>
 	<div class="container body-content">
 		<div class="page-header">
-			<label class="heading">Visitor Management System</label> <br> <b>How
-				to use:</b> Please enter Visitor Details. <br> <br>
-			<center>
+			<label class="heading">Visitor Management System</label> <br> 
+			<b>How to use:</b> Please enter Visitor Details.
 				<%
 					String userInput = "SxxxxxxxJ";
 					Visitor v = null;
@@ -51,7 +70,7 @@
 						userInput = (String) request.getSession(false).getAttribute("usertype");
 					}
 				%>
-				<br>
+				<center>
 				<form action="addVisitor" method="post">
 					<div class="form-row">
 						<div class="form-group col-md-6">
@@ -72,7 +91,7 @@
 							<label for="idNo">IC Number: </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? userInput : v.getIdNo())%>" maxlength="9" required>
+								value="<%=((v == null) ? userInput : v.getIdNo())%>" maxlength="4" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="mobileNo">Mobile: </label> <input type="text"
@@ -80,6 +99,17 @@
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
 						</div>
+						<div class="form-group col-md-4">
+					      <label for="visitPurpose">Visit Purpose: </label>
+					      <select name="visitPurpose" class="form-control">
+					      	<%
+							for(int i=0; i < visitPurpose.size(); i++)
+							{
+							%>
+							<option value="<%=visitPurpose.get(i)%>"> <%=visitPurpose.get(i)%></option>
+							<% } %>
+					      </select>
+					    </div>
 					</div>	
 					<div class="form-row">
 						<div class="form-group col-md-6">
@@ -127,6 +157,5 @@
 			</center>
 		</div>
 	</div>
-
 </body>
 </html>

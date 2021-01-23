@@ -14,11 +14,12 @@ public class Visitor {
     private String hostNo;
     private String visitorCardId;
     private String covidDeclare;
+    private String visitPurpose;
     private Timestamp timeInDt;
     private Timestamp timeOutDt;
     
 	public Visitor(String vmsId, String firstName, String lastName, String idNo, String mobileNo, String vehicleNo,
-			String hostName, String hostNo, String visitorCardId, String covidDeclare, Timestamp timeInDt, Timestamp timeOutDt) {
+			String hostName, String hostNo, String visitorCardId, String covidDeclare, String visitPurpose, Timestamp timeInDt, Timestamp timeOutDt) {
 		super();
 		this.vmsId = vmsId;
 		this.firstName = firstName;
@@ -30,12 +31,13 @@ public class Visitor {
 		this.hostNo = hostNo;
 		this.visitorCardId = visitorCardId;
 		this.covidDeclare = covidDeclare;
+		this.visitPurpose= visitPurpose;
 		this.timeInDt = timeInDt;
 		this.timeOutDt = timeOutDt;
 	}
 
 	public Visitor(String vmsId, String firstName, String lastName, String idNo, String mobileNo, String vehicleNo,
-			String hostName, String hostNo, String visitorCardId, String covidDeclare, Timestamp timeInDt) {
+			String hostName, String hostNo, String visitorCardId, String covidDeclare, String visitPurpose, Timestamp timeInDt) {
 		super();
 		this.vmsId = vmsId;
 		this.firstName = firstName;
@@ -47,6 +49,7 @@ public class Visitor {
 		this.hostNo = hostNo;
 		this.visitorCardId = visitorCardId;
 		this.covidDeclare = covidDeclare;
+		this.visitPurpose= visitPurpose;
 		this.timeInDt = timeInDt;
 	}
 
@@ -144,6 +147,19 @@ public class Visitor {
 
 	public void setCovidDeclare(String covidDeclare) {
 		this.covidDeclare = covidDeclare;
+	}
+	/**
+	 * @return the visitPurpose
+	 */
+	public String getVisitPurpose() {
+		return visitPurpose;
+	}
+
+	/**
+	 * @param visitPurpose the visitPurpose to set
+	 */
+	public void setVisitPurpose(String visitPurpose) {
+		this.visitPurpose = visitPurpose;
 	}
 	
 	@Override

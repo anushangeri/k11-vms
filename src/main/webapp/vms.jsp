@@ -66,7 +66,7 @@
 		
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
-		<label class="heading"><%=message%></label><br>
+		<label class="heading"><%=message%> </label><br>
 		<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b>
 		<% 
 			if (vList != null && vList.size() > 0) {
@@ -87,6 +87,7 @@
 							<th class="th-sm">Host Contact Number</th>
 							<th class="th-sm">Visitor Pass ID</th>
 							<th class="th-sm">Covid Declaration?</th>
+							<th class="th-sm">Purpose of Visit</th>
 							<th class="th-sm">Time In</th>
 							<th class="th-sm">Time Out</th>
 						</tr>
@@ -108,7 +109,8 @@
 									<td><%=v.getHostName()%></td>
 									<td><%=v.getHostNo()%></td>
 									<td><%=v.getVisitorCardId()%></td>
-									<td><%=((v.getCovidDeclare() == null || v.getCovidDeclare().equals("null")) ? "No" : v.getCovidDeclare())%></td>
+									<td><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
+									<td><%=v.getVisitPurpose()%></td>
 									<td><%=sdf.format(v.getTimeInDt())%></td>
 									<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
 									<% if (v.getTimeOutDt() != null) { %>
@@ -142,7 +144,7 @@
 	</div>
 		<div class="container body-content">
 			<center>
-				<a href="index.jsp" class="btn btn-warning btn-lg active"
+				<a href="vmsCheckNRIC.jsp" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Back</a>
 		
 				<a href="retrieveToPopulate" class="btn btn-warning btn-lg active"

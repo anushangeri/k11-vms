@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="loginVMSCSS.jsp"%>
+<%@include file="loginCSS.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
@@ -57,11 +57,11 @@
                   <button class="btn" type="submit">Create</button>
               </form>
           </td>
-	      <td><form action="updateEmpTbl" method="post">
+	      <td><form action="updateVmsTbl" method="post">
                   <button class="btn" type="submit">Update</button>
               </form>
           </td>
-	      <td><form action="deleteEmpTbl" method="post">
+	      <td><form action="deleteVmsTbl" method="post">
                   <button class="btn" type="submit">Delete</button>
               </form>
           </td>

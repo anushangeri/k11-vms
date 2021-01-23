@@ -16,17 +16,34 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 <script src="https://drvic10k.github.io/bootstrap-sortable/Scripts/bootstrap-sortable.js" type="text/javascript"></script>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<script>
+function validateForm() {
+  var x = document.forms["checkNRIC"]["idNo"].value;
+  var first = x.charAt(0);
+  var isDigitFirst = (first >= '0' && first <= '9');
+  var second = x.charAt(1);
+  var isDigitSecond = (second >= '0' && second <= '9');
+  var third = x.charAt(2);
+  var isDigitThird = (third >= '0' && third <= '9');
+  var forth = x.charAt(3);
+  var isDigitForth = (forth >= '0' && forth <= '9');
+  if (!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth) {
+    alert("PDPA Compliance: Enter only last 3 digit and letter of NRIC/FIN. E.g. 409J");
+    return false;
+  }
+}
+</script>
 </head>
 <body>
 	<% session.removeAttribute("usertype"); %>
 	<center>
 		<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b>
-		<form action="vmsCheckNRIC" method="post">
+		<form name="checkNRIC" action="vmsCheckNRIC" method="post" onsubmit="return validateForm()">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="idNo">IC Number: </label> <input type="text"
 						class="form-control" name="idNo" id="idNo"
-						placeholder="SxxxxxxxJ" minlength="8" maxlength="9" required>
+						placeholder="SxxxxxxxJ" minlength="4" maxlength="4" required>
 				</div>
 				<button type="submit" class="btn btn-primary">Check NRIC</button>
 			</div>

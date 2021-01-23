@@ -50,6 +50,11 @@
 		<servlet-class>net.javatutorial.tutorials.UEmployeeTblServlet</servlet-class>
 	</servlet>
 	<servlet>
+		<display-name>UVMSTblServlet</display-name>
+		<servlet-name>UVMSTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UVMSTblServlet</servlet-class>
+	</servlet>
+	<servlet>
 		<description />
 
 		<display-name>TodHodSearchServlet</display-name>
@@ -157,6 +162,10 @@
 	<servlet-mapping>
 		<servlet-name>UEmployeeTblServlet</servlet-name>
 		<url-pattern>/updateEmpTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UVMSTblServlet</servlet-name>
+		<url-pattern>/updateVmsTbl</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>TodHodSearchServlet</servlet-name>
