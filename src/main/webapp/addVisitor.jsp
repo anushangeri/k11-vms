@@ -139,7 +139,7 @@
 						<div class="form-group col-md-6">
 							<label for="temperature">Temperature: </label> <input type="text"
 						class="form-control" name="temperature" id="temperature"
-						placeholder="36.6" minlength="4" maxlength="4" required>
+						placeholder="36.6" minlength="2" maxlength="4" required>
 						</div>
 					</div>
 					<div class="form-row checkbox">
