@@ -18,8 +18,8 @@ public class VMSTblDAO {
 //	        stmt.executeUpdate("DROP TABLE IF EXISTS ticks");
 	        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS VMS (\r\n" + 
 	        		"   VMS_ID VARCHAR (100)  NOT NULL,\r\n" + 
-	        		"   FIRST_NAME VARCHAR (100)  NOT NULL,\r\n" + 
-	        		"   LAST_NAME VARCHAR (100)  NULL,\r\n" +  
+	        		"   NAME VARCHAR (100)  NOT NULL,\r\n" + 
+	        		"   COMPANY_NAME VARCHAR (100)  NULL,\r\n" +  
 	        		"   ID_NO VARCHAR (100)   NULL, \r\n" + 
 	        		"   MOBILE_NO  VARCHAR (100) NOT NULL,   \r\n" + 
 	        		"   VEHICLE_NO  VARCHAR (100)  NULL,\r\n" + 
@@ -83,7 +83,7 @@ public class VMSTblDAO {
 			Statement stmt = connection.createStatement();
 //	        stmt.executeUpdate("DROP TABLE IF EXISTS ticks");
 	        stmt.executeUpdate("ALTER TABLE VMS\r\n" + 
-	        		"ADD COLUMN VISIT_PURPOSE VARCHAR (100) NULL;");
+	        		"RENAME COLUMN FIRST_NAME TO NAME;");
 //	        stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
 //	        ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
 //	        while (rs.next()) {

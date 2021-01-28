@@ -5,8 +5,8 @@ import java.sql.Timestamp;
 
 public class Visitor {
 	private String vmsId;
-    private String firstName;
-    private String lastName;
+    private String name;
+    private String companyName;
     private String idNo;
     private String mobileNo;
     private String vehicleNo;
@@ -19,13 +19,13 @@ public class Visitor {
     private Timestamp timeInDt;
     private Timestamp timeOutDt;
     
-	public Visitor(String vmsId, String firstName, String lastName, String idNo, String mobileNo, String vehicleNo,
+	public Visitor(String vmsId, String name, String companyName, String idNo, String mobileNo, String vehicleNo,
 			String hostName, String hostNo, String visitorCardId, String covidDeclare, String visitPurpose, String temperature,
 			Timestamp timeInDt, Timestamp timeOutDt) {
 		super();
 		this.vmsId = vmsId;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.name = name;
+		this.companyName = companyName;
 		this.idNo = idNo;
 		this.mobileNo = mobileNo;
 		this.vehicleNo = vehicleNo;
@@ -34,18 +34,18 @@ public class Visitor {
 		this.visitorCardId = visitorCardId;
 		this.covidDeclare = covidDeclare;
 		this.visitPurpose= visitPurpose;
-		this.setTemperature(temperature);
+		this.temperature = temperature;
 		this.timeInDt = timeInDt;
 		this.timeOutDt = timeOutDt;
 	}
 
-	public Visitor(String vmsId, String firstName, String lastName, String idNo, String mobileNo, String vehicleNo,
+	public Visitor(String vmsId, String name, String companyName, String idNo, String mobileNo, String vehicleNo,
 			String hostName, String hostNo, String visitorCardId, String covidDeclare, String visitPurpose, String temperature,
 			Timestamp timeInDt) {
 		super();
 		this.vmsId = vmsId;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.name = name;
+		this.companyName = companyName;
 		this.idNo = idNo;
 		this.mobileNo = mobileNo;
 		this.vehicleNo = vehicleNo;
@@ -54,7 +54,7 @@ public class Visitor {
 		this.visitorCardId = visitorCardId;
 		this.covidDeclare = covidDeclare;
 		this.visitPurpose= visitPurpose;
-		this.setTemperature(temperature);
+		this.temperature = temperature;
 		this.timeInDt = timeInDt;
 	}
 
@@ -66,20 +66,20 @@ public class Visitor {
 		this.vmsId = vmsId;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 	public String getIdNo() {
@@ -183,7 +183,7 @@ public class Visitor {
 
 	@Override
 	public String toString() {
-		return "Visitor [vmsId=" + vmsId + ", firstName=" + firstName + ", lastName=" + lastName + ", idNo=" + idNo
+		return "Visitor [vmsId=" + vmsId + ", name=" + name + ", companyName=" + companyName + ", idNo=" + idNo
 				+ ", mobileNo=" + mobileNo + ", vehicleNo=" + vehicleNo + ", hostName=" + hostName + ", hostNo="
 				+ hostNo + ", visitorCardId=" + visitorCardId + ", covidDeclare=" + covidDeclare + ", visitPurpose="
 				+ visitPurpose + ", temperature=" + temperature + ", timeInDt=" + timeInDt + ", timeOutDt=" + timeOutDt

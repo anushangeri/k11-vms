@@ -41,8 +41,8 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		int nextVal = VMSManagerDAO.getNextVal();
 		
 		String vmsId = "" + nextVal;
-		String firstName = request.getParameter("firstName").trim();
-		String lastName = request.getParameter("lastName").trim();
+		String name = request.getParameter("name").trim();
+		String companyName = request.getParameter("companyName").trim();
 		String idNo = request.getParameter("idNo");
 		String mobileNo = request.getParameter("mobileNo");
 		String vehicleNo = request.getParameter("vehicleNo");
@@ -60,13 +60,13 @@ public class AddVisitorRecordServlet extends HttpServlet {
 //		if (StringUtils.countMatches(timeIn, ":") == 1) {
 //			timeIn += ":00";
 //		}
-		Visitor v = new Visitor( vmsId,  firstName,  lastName,  idNo,  mobileNo,  vehicleNo,
+		Visitor v = new Visitor( vmsId,  name,  companyName,  idNo,  mobileNo,  vehicleNo,
 			 hostName,  hostNo,  visitorCardId, covidDec, visitPurpose, temperature,  timestamp);
 		
 		String message = VMSManagerDAO.addVisitor(v);
 		
 		ArrayList<String> responseObj = new ArrayList<String>();
-		responseObj.add(message + " " + firstName);
+		responseObj.add(message + " " + name);
 		request.setAttribute("responseObj", responseObj);
 		// Redirect to view visitor servlet to query all the visitors again.
 		response.sendRedirect("/vms");

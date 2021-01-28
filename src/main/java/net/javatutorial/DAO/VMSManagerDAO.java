@@ -23,9 +23,9 @@ public class VMSManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("INSERT INTO VMS "
-	        		+  "(VMS_ID, FIRST_NAME, LAST_NAME, ID_NO, MOBILE_NO, VEHICLE_NO, HOST_NAME, HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, "
+	        		+  "(VMS_ID, NAME, COMPANY_NAME, ID_NO, MOBILE_NO, VEHICLE_NO, HOST_NAME, HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, "
 	        		+ "VISIT_PURPOSE, TEMPERATURE, TIME_IN_DT)" + 
-	        		"   VALUES ('" +v.getVmsId()+ "','" +v.getFirstName()+ "','" +v.getLastName()+ "','" +v.getIdNo()+ "','" +v.getMobileNo()+ "','"
+	        		"   VALUES ('" +v.getVmsId()+ "','" +v.getName()+ "','" +v.getCompanyName()+ "','" +v.getIdNo()+ "','" +v.getMobileNo()+ "','"
 	        		+v.getVehicleNo()+ "','" +v.getHostName()+ "','" +v.getHostNo()+ "','" +v.getVisitorCardId()+ "','" +v.getCovidDeclare()+ "','" 
 	        		+v.getVisitPurpose()+ "','" +v.getTemperature()+ "','" +v.getTimeInDt()+ "')");
 	        rs = stmt.executeQuery("SELECT LAST(FIRST_NAME) FROM VMS;");
@@ -119,8 +119,8 @@ public class VMSManagerDAO {
         ArrayList<Visitor> vList = new ArrayList<Visitor>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT VMS_ID, FIRST_NAME,\r\n" + 
-            		"              LAST_NAME, ID_NO, MOBILE_NO, \r\n" + 
+            String sql = "SELECT VMS_ID, NAME,\r\n" + 
+            		"              COMPANY_NAME, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              TIME_IN_DT, TIME_OUT_DT FROM VMS ORDER BY TIME_IN_DT DESC;";
@@ -160,8 +160,8 @@ public class VMSManagerDAO {
         ArrayList<Visitor> vList = new ArrayList<Visitor>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT VMS_ID, FIRST_NAME,\r\n" + 
-            		"              LAST_NAME, ID_NO, MOBILE_NO, \r\n" + 
+            String sql = "SELECT VMS_ID, NAME,\r\n" + 
+            		"              COMPANY_NAME, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE ID_NO ='" + idNo + "' ORDER BY TIME_IN_DT DESC;";
@@ -200,8 +200,8 @@ public class VMSManagerDAO {
         Visitor v = null;
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT VMS_ID, FIRST_NAME,\r\n" + 
-            		"              LAST_NAME, ID_NO, MOBILE_NO, \r\n" + 
+            String sql = "SELECT VMS_ID, NAME,\r\n" + 
+            		"              COMPANY_NAME, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE VMS_ID ='" + vmsId + "' ORDER BY TIME_IN_DT DESC;";

@@ -74,16 +74,16 @@
 				<form action="addVisitor" method="post">
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="firstName">First Name: </label> <input type="text"
-								class="form-control" name="firstName"
+							<label for="name">Name: </label> <input type="text"
+								class="form-control" name="name"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getFirstName())%>" required>
+								value="<%=((v == null) ? "" : v.getName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="lastName">Last Name: </label> <input type="text"
-								class="form-control" name="lastName"
+							<label for="companyName">Company Name: </label> <input type="text"
+								class="form-control" name="companyName"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getLastName())%>" required>
+								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
 						</div>
 					</div>
 					<div class="form-row">
