@@ -40,66 +40,68 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String name = (String) request.getSession(false).getAttribute("name");
+		String idType = (String) request.getSession(false).getAttribute("idType");
 		String idNo = (String) request.getSession(false).getAttribute("usertype");
 		ArrayList<Visitor> vList = null;
 		Visitor v = null;
 		
 		if(!StringUtils.isEmpty(idNo)) {
 			if(!idNo.toUpperCase().equals("K11ADMIN")) {
-				vList = VMSManagerDAO.retrieveByNRIC(idNo);
+				vList = VMSManagerDAO.retrieveByNameIDandType(name, idType, idNo);
 				if(vList != null && vList.size() > 0) {
 					v = vList.get(0);
 				}
-				if(v == null) {
-					SpreadsheetService k11VMS = new SpreadsheetService("K11 VMS");
-					try {
-						String sheetUrl = "https://spreadsheets.google.com/feeds/list/1vJBvGXxyOUCz5ZYZtQCIet5qmxamihTYLCjv51os070/1/public/values";
-	
-						// Use this String as url
-						URL url = new URL(sheetUrl);
-	
-						// Get Feed of Spreadsheet url
-						ListFeed lf = k11VMS.getFeed(url, ListFeed.class);
-						
-						String icNumber = "";
-						String firstName = "";
-						String lastName = "";
-						String mobileNo = "";
-						String vehicleNo = "";
-						String hostName = "";
-						String hostNo = "";
-						String visitorCardId = "";
-	
-						// Iterate over feed to get cell value
-						for (ListEntry le : lf.getEntries()) {
-							CustomElementCollection cec = le.getCustomElements();
-	
-							if (cec != null) {
-								icNumber = cec.getValue("icnumber");
-								if (icNumber != null && !StringUtils.isEmpty(icNumber)) {
-									icNumber = icNumber.toUpperCase();
-									icNumber = icNumber.trim();
-									// Compare with user input - to populate the rest
-									if (icNumber.equals(idNo)) {
-										firstName = cec.getValue("firstname");
-										lastName = cec.getValue("lastname");
-										mobileNo = cec.getValue("mobile");
-										vehicleNo = cec.getValue("vehiclenumber");
-										hostName = cec.getValue("hostname");
-										hostNo = cec.getValue("hostnumber");
-										visitorCardId = cec.getValue("visitorcardid");
-										
-										v = new Visitor( null,  firstName,  lastName,  idNo,  mobileNo,  vehicleNo,
-												 hostName,  hostNo,  visitorCardId, null, null,  null, null);
-									}
-								}
-	
-							}
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
+//				if(v == null) {
+//					SpreadsheetService k11VMS = new SpreadsheetService("K11 VMS");
+//					try {
+//						String sheetUrl = "https://spreadsheets.google.com/feeds/list/1vJBvGXxyOUCz5ZYZtQCIet5qmxamihTYLCjv51os070/1/public/values";
+//	
+//						// Use this String as url
+//						URL url = new URL(sheetUrl);
+//	
+//						// Get Feed of Spreadsheet url
+//						ListFeed lf = k11VMS.getFeed(url, ListFeed.class);
+//						
+//						String icNumber = "";
+//						String firstName = "";
+//						String lastName = "";
+//						String mobileNo = "";
+//						String vehicleNo = "";
+//						String hostName = "";
+//						String hostNo = "";
+//						String visitorCardId = "";
+//	
+//						// Iterate over feed to get cell value
+//						for (ListEntry le : lf.getEntries()) {
+//							CustomElementCollection cec = le.getCustomElements();
+//	
+//							if (cec != null) {
+//								icNumber = cec.getValue("icnumber");
+//								if (icNumber != null && !StringUtils.isEmpty(icNumber)) {
+//									icNumber = icNumber.toUpperCase();
+//									icNumber = icNumber.trim();
+//									// Compare with user input - to populate the rest
+//									if (icNumber.equals(idNo)) {
+//										firstName = cec.getValue("firstname");
+//										lastName = cec.getValue("lastname");
+//										mobileNo = cec.getValue("mobile");
+//										vehicleNo = cec.getValue("vehiclenumber");
+//										hostName = cec.getValue("hostname");
+//										hostNo = cec.getValue("hostnumber");
+//										visitorCardId = cec.getValue("visitorcardid");
+//										
+//										v = new Visitor( null,  firstName,  lastName,  idNo,  mobileNo,  vehicleNo,
+//												 hostName,  hostNo,  visitorCardId, null, null,  null, null);
+//									}
+//								}
+//	
+//							}
+//						}
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//				}
 			}
 		}
 		request.setAttribute("visitorLatRec", v);

@@ -50,6 +50,11 @@
 		<servlet-class>net.javatutorial.tutorials.UEmployeeTblServlet</servlet-class>
 	</servlet>
 	<servlet>
+		<display-name>UVMSTblServlet</display-name>
+		<servlet-name>UVMSTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UVMSTblServlet</servlet-class>
+	</servlet>
+	<servlet>
 		<description />
 
 		<display-name>TodHodSearchServlet</display-name>
@@ -87,9 +92,23 @@
 	<servlet>
 		<description />
 
+		<display-name>RetrieveVisitorByNRICServlet</display-name>
+		<servlet-name>RetrieveVisitorByNRICServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.RetrieveVisitorByNRICServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+
 		<display-name>AddVisitorRecordServlet</display-name>
 		<servlet-name>AddVisitorRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.AddVisitorRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+
+		<display-name>VMSCheckNRICServlet</display-name>
+		<servlet-name>VMSCheckNRICServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.VMSCheckNRICServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<description />
@@ -104,6 +123,13 @@
 		<display-name>DeleteAllVisitorRecordServlet</display-name>
 		<servlet-name>DeleteAllVisitorRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.DeleteAllVisitorRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+
+		<display-name>UpdateVisitorRecordServlet</display-name>
+		<servlet-name>UpdateVisitorRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateVisitorRecordServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<description />
@@ -138,6 +164,10 @@
 		<url-pattern>/updateEmpTbl</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>UVMSTblServlet</servlet-name>
+		<url-pattern>/updateVmsTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>TodHodSearchServlet</servlet-name>
 		<url-pattern>/todHodSearch</url-pattern>
 	</servlet-mapping>
@@ -158,12 +188,24 @@
 		<url-pattern>/roastergeneration</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>RetrieveVisitorByNRICServlet</servlet-name>
+		<url-pattern>/retrieveToPopulate</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>AddVisitorRecordServlet</servlet-name>
 		<url-pattern>/addVisitor</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>VMSCheckNRICServlet</servlet-name>
+		<url-pattern>/vmsCheckNRIC</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>ViewVisitorRecordServlet</servlet-name>
 		<url-pattern>/vms</url-pattern>
+	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>UpdateVisitorRecordServlet</servlet-name>
+		<url-pattern>/updateVisitor</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DeleteAllVisitorRecordServlet</servlet-name>

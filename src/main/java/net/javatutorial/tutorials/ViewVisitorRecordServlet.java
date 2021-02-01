@@ -23,7 +23,7 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idNo = (String) request.getSession(false).getAttribute("usertype");
-		String message = "No visitor records available";
+		String message = "No visitor records available to: " + idNo;
 		ArrayList<Visitor> vList = null;
 		if(!StringUtils.isEmpty(idNo)) {
 			if(idNo.toUpperCase().equals("K11ADMIN") || idNo.toUpperCase().equals("K11STAFF")) {

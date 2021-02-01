@@ -19,7 +19,7 @@ import com.google.gdata.data.spreadsheet.ListEntry;
 import com.google.gdata.data.spreadsheet.ListFeed;
 
 /**
- * Servlet implementation class TodHodSearchServlet
+ * This servlet checks if idType and idNumber matches K11 Staff or K11 Admin
  */
 public class VMSCheckNRICServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
@@ -30,7 +30,10 @@ public class VMSCheckNRICServlet extends HttpServlet {
 		ArrayList<String> responseObj = new ArrayList<String>();
 		RequestDispatcher rd = null;
 		
+		String name = request.getParameter("name").trim();
+		String idType = request.getParameter("idType").trim();
 		String idNo = request.getParameter("idNo").trim();
+
 		try {
 			//make idNo uppercase
         	if(idNo != null && !idNo.isEmpty() ){
@@ -64,9 +67,10 @@ public class VMSCheckNRICServlet extends HttpServlet {
 		            for (ListEntry le : lf.getEntries()) {
 		                CustomElementCollection cec = le.getCustomElements();
 		                if (cec != null){
+		                	String idTypeExcel = cec.getValue("idtype").trim();
 		                    String nricfin = cec.getValue("nricfin").trim();
 		                    String usertype = cec.getValue("usertype").trim();
-		                	if(nricfin.equals(idNo)) {
+		                	if(nricfin.equals(idNo) && idTypeExcel.equals(idType)) {
 	                    		//if admin, don't set NRIC because admin can see everything
 	                    		session.setAttribute("usertype", usertype);
 	                    	}
@@ -74,6 +78,8 @@ public class VMSCheckNRICServlet extends HttpServlet {
 		            }
 		            //if loop through google sheets and cannot find match means it is a public user not K11 STAFF
 		            if(session.getAttribute("usertype") == null) {
+		            	session.setAttribute("name", name);
+		            	session.setAttribute("idType", idType);
 		            	session.setAttribute("usertype", idNo);
 		            }
 		            

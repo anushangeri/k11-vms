@@ -23,10 +23,11 @@ public class VMSManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("INSERT INTO VMS "
-	        		+  "(VMS_ID, NAME, COMPANY_NAME, ID_NO, MOBILE_NO, VEHICLE_NO, HOST_NAME, HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, "
+	        		+  "(VMS_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, VEHICLE_NO, HOST_NAME, HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, "
 	        		+ "VISIT_PURPOSE, TEMPERATURE, TIME_IN_DT)" + 
-	        		"   VALUES ('" +v.getVmsId()+ "','" +v.getName()+ "','" +v.getCompanyName()+ "','" +v.getIdNo()+ "','" +v.getMobileNo()+ "','"
-	        		+v.getVehicleNo()+ "','" +v.getHostName()+ "','" +v.getHostNo()+ "','" +v.getVisitorCardId()+ "','" +v.getCovidDeclare()+ "','" 
+	        		"   VALUES ('" +v.getVmsId()+ "','" +v.getName()+ "','" +v.getCompanyName()+ "','" +v.getIdType()+ "','" 
+	        		+v.getIdNo()+ "','" +v.getMobileNo()+ "','" +v.getVehicleNo()+ "','" +v.getHostName()+ "','" 
+	        		+v.getHostNo()+ "','" +v.getVisitorCardId()+ "','" +v.getCovidDeclare()+ "','" 
 	        		+v.getVisitPurpose()+ "','" +v.getTemperature()+ "','" +v.getTimeInDt()+ "')");
 	        rs = stmt.executeQuery("SELECT LAST(FIRST_NAME) FROM VMS;");
 	        while (rs.next()) {
@@ -120,10 +121,10 @@ public class VMSManagerDAO {
         try {
         	connection = Main.getConnection();
             String sql = "SELECT VMS_ID, NAME,\r\n" + 
-            		"              COMPANY_NAME, ID_NO, MOBILE_NO, \r\n" + 
+            		"              COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
-            		"              TIME_IN_DT, TIME_OUT_DT FROM VMS ORDER BY TIME_IN_DT DESC;";
+            		"              TIME_IN_DT, TIME_OUT_DT FROM VMS ORDER BY TIME_IN_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
@@ -140,8 +141,9 @@ public class VMSManagerDAO {
             			rs.getString(10),
             			rs.getString(11),
             			rs.getString(12),
-            			rs.getTimestamp(13),
-            			rs.getTimestamp(14));
+            			rs.getString(13),
+            			rs.getTimestamp(14),
+            			rs.getTimestamp(15));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -161,10 +163,10 @@ public class VMSManagerDAO {
         try {
         	connection = Main.getConnection();
             String sql = "SELECT VMS_ID, NAME,\r\n" + 
-            		"              COMPANY_NAME, ID_NO, MOBILE_NO, \r\n" + 
+            		"              COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
-            		"              TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE ID_NO ='" + idNo + "' ORDER BY TIME_IN_DT DESC;";
+            		"              TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE ID_NO ='" + idNo + "' ORDER BY TIME_IN_DT DESC LIMIT 1;";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
@@ -181,8 +183,54 @@ public class VMSManagerDAO {
             			rs.getString(10),
             			rs.getString(11),
             			rs.getString(12),
-            			rs.getTimestamp(13),
-            			rs.getTimestamp(14));
+            			rs.getString(13),
+            			rs.getTimestamp(14),
+            			rs.getTimestamp(15));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	public static ArrayList<Visitor> retrieveByNameIDandType(String name, String idType, String idNo) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        Visitor v = null;
+        ArrayList<Visitor> vList = new ArrayList<Visitor>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT VMS_ID, NAME,\r\n" + 
+            		"              COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
+            		"              VEHICLE_NO, HOST_NAME,\r\n" + 
+            		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
+            		"              TIME_IN_DT, TIME_OUT_DT "
+            		+ "FROM VMS "
+            		+ "WHERE NAME = '" + name + "' AND ID_NO ='" + idNo + "' AND ID_TYPE = '" + idType + "' "
+    				+ "ORDER BY TIME_IN_DT DESC LIMIT 1; ";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new Visitor(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getString(6),
+            			rs.getString(7),
+            			rs.getString(8),
+            			rs.getString(9),
+            			rs.getString(10),
+            			rs.getString(11),
+            			rs.getString(12),
+            			rs.getString(13),
+            			rs.getTimestamp(14),
+            			rs.getTimestamp(15));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -201,7 +249,7 @@ public class VMSManagerDAO {
         try {
         	connection = Main.getConnection();
             String sql = "SELECT VMS_ID, NAME,\r\n" + 
-            		"              COMPANY_NAME, ID_NO, MOBILE_NO, \r\n" + 
+            		"              COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE VMS_ID ='" + vmsId + "' ORDER BY TIME_IN_DT DESC;";
@@ -221,8 +269,9 @@ public class VMSManagerDAO {
             			rs.getString(10),
             			rs.getString(11),
             			rs.getString(12),
-            			rs.getTimestamp(13),
-            			rs.getTimestamp(14));
+            			rs.getString(13),
+            			rs.getTimestamp(14),
+            			rs.getTimestamp(15));
             }
         } catch (Exception e) {
             e.printStackTrace();

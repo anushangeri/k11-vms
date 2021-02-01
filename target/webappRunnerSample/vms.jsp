@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="loginCSS.jsp"%>
+<%@include file="loginVMSCSS.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
@@ -8,6 +8,7 @@
 <%@page import="com.google.gdata.data.spreadsheet.ListEntry"%>
 <%@page import="com.google.gdata.data.spreadsheet.ListFeed"%>
 <%@page import="com.google.gdata.util.ServiceException"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.javatutorial.entity.*"%>
 <!DOCTYPE html>
 <html>
@@ -61,27 +62,34 @@
 	<%
 		ArrayList<Visitor> vList = (ArrayList<Visitor>) request.getAttribute("vList");
 		String message = (String) request.getAttribute("message");
+		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
+		
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
-		<label class="heading"><%=message%></label>
+		<label class="heading"><%=message%> </label><br>
+		<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b>
+	</center>
 		<% 
 			if (vList != null && vList.size() > 0) {
 		%>
-			<div class="container body-content">
+			<div class="container body-content" id="tableview">
 				<table id="example"
-					class="table table-striped table-bordered table-sm sortable"
-					cellspacing="0" width="100%">
+					class="table table-striped table-bordered table-sm sortable">
 					<thead>
 						<tr>
 							<th class="th-sm">S/N</th>
-							<th class="th-sm">First Name</th>
-							<th class="th-sm">Last Name</th>
-							<th class="th-sm">NRIC/FIN</th>
+							<th class="th-sm">Name</th>
+							<th class="th-sm">Company Name</th>
+							<th class="th-sm">ID Type</th>
+							<th class="th-sm">ID Number</th>
 							<th class="th-sm">Visitor Contact Number</th>
 							<th class="th-sm">Vehicle Number</th>
 							<th class="th-sm">Host Name</th>
 							<th class="th-sm">Host Contact Number</th>
 							<th class="th-sm">Visitor Pass ID</th>
+							<th class="th-sm">Covid Declaration?</th>
+							<th class="th-sm">Purpose of Visit</th>
+							<th class="th-sm">Temperature</th>
 							<th class="th-sm">Time In</th>
 							<th class="th-sm">Time Out</th>
 						</tr>
@@ -95,24 +103,29 @@
 						%>
 								<tr>
 									<td><%=v.getVmsId()%></td>
-									<td><%=v.getFirstName()%></td>
-									<td><%=v.getLastName()%></td>
+									<td><%=v.getName()%></td>
+									<td><%=v.getCompanyName()%></td>
+									<td><%=v.getIdType()%></td>
 									<td><%=v.getIdNo()%></td>
 									<td><%=v.getMobileNo()%></td>
 									<td><%=v.getVehicleNo()%></td>
 									<td><%=v.getHostName()%></td>
 									<td><%=v.getHostNo()%></td>
 									<td><%=v.getVisitorCardId()%></td>
-									<td><%=v.getTimeInDt()%></td>
+									<td><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
+									<td><%=v.getVisitPurpose()%></td>
+									<td><%=v.getTemperature()%></td>
+									<td><%=sdf.format(v.getTimeInDt())%></td>
 									<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
 									<% if (v.getTimeOutDt() != null) { %>
-										<td><%=v.getTimeOutDt()%></td>
+										<td><%=sdf.format(v.getTimeOutDt())%></td>
 									<%
 										}
 										else{
 									%>
-										<td><a href="addVisitor.jsp" class="btn btn-warning btn-lg active"
-											role="button" aria-pressed="true">Update</a></td>
+										<td><form method="POST" action ="/updateVisitor">
+											<input type="hidden" id="vmsId" name="vmsId" value="<%=v.getVmsId()%>">
+											<input type="submit" name="Submit" value="Update"></form></td>
 									<%
 										}
 									%>
@@ -135,21 +148,31 @@
 	</div>
 		<div class="container body-content">
 			<center>
-				<a href="dashboard.jsp" class="btn btn-warning btn-lg active"
+				<a href="index.jsp" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Back</a>
 		
-				<a href="addVisitor.jsp" class="btn btn-warning btn-lg active"
+				<a href="retrieveToPopulate" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Add Visitor Record</a>
 				
-				<a href="deleteAllVisitor" class="btn btn-warning btn-lg active"
-				role="button" aria-pressed="true">Delete Visitor Record</a>
-				
-				<!--  <form action="deleteAllVisitor" method="post">
-					<button type="submit" class="btn btn-warning btn-lg active">Delete All</button>
-				</form>-->
+				<!-- Delete all record function is for K11 Admin only -->
+				<%if (request.getSession(false).getAttribute("usertype") != null) {
+					String userInput = (String) request.getSession(false).getAttribute("usertype");
+					if (userInput.toUpperCase().equals("K11ADMIN")){ %>
+						<a href="deleteAllVisitor" class="btn btn-warning btn-lg active"
+						role="button" aria-pressed="true">Delete Visitor Record</a>
+						
+						<a href="managedatabase.jsp" class="btn btn-warning btn-lg active"
+						role="button" aria-pressed="true">Manage Visitor Database</a>
+					<%	
+					}
+					
+				%>
+				<% 
+				}
+				%>
 			</center>
 		</div>
 	<br>
-	</center>
+	
 </body>
 </html>
