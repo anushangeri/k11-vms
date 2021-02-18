@@ -159,7 +159,6 @@
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getVisitPurpose())%>" required>
 							<%} %>
-
 						</div>
 					</div>
 					<div class="form-row">
