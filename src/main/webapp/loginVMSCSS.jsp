@@ -92,7 +92,6 @@
 #tableview{
 	width: 80% !important;
 	margin-left: 2% !important;
-	margin-right: 5% !important;
 }
 
 body {
@@ -114,7 +113,7 @@ body {
 <title>K11 VMS</title>
 </head>
 <body>
-	<h1 id="k11title">VMS DEMO</h1>
+	<h1 id="k11title">VMS MSOKO</h1>
 	<center><b>by K11 SECURITY ENGINEERING</b></center>
 	<br>
 </body>

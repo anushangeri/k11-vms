@@ -66,6 +66,22 @@
               </form>
           </td>
 	    </tr>
+	    <tr>
+	      <th scope="row">1</th>
+	      <td>Vehicle Movement System</td>
+	      <td><form action="createVehmsTbl" method="post">
+                  <button class="btn" type="submit">Create</button>
+              </form>
+          </td>
+	      <td><form action="updateVehmsTbl" method="post">
+                  <button class="btn" type="submit">Update</button>
+              </form>
+          </td>
+	      <td><form action="deleteVehmsTbl" method="post">
+                  <button class="btn" type="submit">Delete</button>
+              </form>
+          </td>
+	    </tr>
 	  </tbody>
 	</table>
 </body>

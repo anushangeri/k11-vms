@@ -77,10 +77,10 @@
 				to use:</b> Please enter Visitor Details.
 			<%
  	String userInput = "SxxxxxxxJ";
-	String name = "";
- 	Visitor v = null;
- 	if (request.getAttribute("visitorLatRec") != null) {
- 		v = (Visitor) request.getAttribute("visitorLatRec");
+    String name = "";			
+	Vehicle v = null;
+ 	if (request.getAttribute("vehicleLatRec") != null) {
+ 		v = (Vehicle) request.getAttribute("vehicleLatRec");
  	}
  	if (request.getSession(false).getAttribute("usertype") != null) {
  		userInput = (String) request.getSession(false).getAttribute("usertype");
@@ -88,8 +88,8 @@
  	}
  %>
 			<center>
-				<form action="addVisitor" method="post">
-					<div class="form-row">
+				<form action="addVehicle" method="post">
+					<div class="form-row"> 
 						<div class="form-group col-md-6">
 							<label for="name">Name: </label> <input type="text"
 								class="form-control" name="name"
@@ -103,25 +103,17 @@
 								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="idType">ID Type: </label> 
-							<% if(v == null){%>
-								<select name="idType" class="form-control" required>
-									<%
-										for (int i = 0; i < idType.size(); i++) {
-									%>
-									<option value="<%=idType.get(i)%>">
-										<%=idType.get(i)%></option>
-									<%
-										}
-									%>
-								</select>
-							<% } 
-							else {%>
-								<input
-								type="text" class="form-control" name="idType"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getIdType())%>" required>
-							<%} %>
+							<label for="idType">ID Type: </label> <select name="idType"
+								class="form-control" required>
+								<%
+									for (int i = 0; i < idType.size(); i++) {
+								%>
+								<option value="<%=idType.get(i)%>">
+									<%=idType.get(i)%></option>
+								<%
+									}
+								%>
+							</select>
 						</div>
 					</div>
 					<div class="form-row">
@@ -139,54 +131,54 @@
 								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="visitPurpose">Visit Purpose: </label> 
-							<% if(v == null){%>
-								<select
-									name="visitPurpose" class="form-control" required>
-									<%
-										for (int i = 0; i < visitPurpose.size(); i++) {
-									%>
-									<option value="<%=visitPurpose.get(i)%>">
-										<%=visitPurpose.get(i)%></option>
-									<%
-										}
-									%>
-								</select>
-							<% } 
-							else {%>
-								<input
-								type="text" class="form-control" name="visitPurpose"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getVisitPurpose())%>" required>
-							<%} %>
-
+							<label for="visitPurpose">Visit Purpose: </label> <select
+								name="visitPurpose" class="form-control" required>
+								<%
+									for (int i = 0; i < visitPurpose.size(); i++) {
+								%>
+								<option value="<%=visitPurpose.get(i)%>">
+									<%=visitPurpose.get(i)%></option>
+								<%
+									}
+								%>
+							</select>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="vehicleNo">Vehicle Number: </label> <input
-								type="text" class="form-control" name="vehicleNo"
+							<label for="primeMoverNo">Vehicle/Primemover Number: </label> <input
+								type="text" class="form-control" name="primeMoverNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getVehicleNo())%>" required>
+								value="<%=((v == null) ? "" : v.getPrimeMoverNo())%>">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="hostName">Host Name: </label> <input type="text"
-								class="form-control" name="hostName"
+							<label for="containerNo">Container Number: </label> <input type="text"
+								class="form-control" name="containerNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getHostName())%>" required>
+								value="<%=((v == null) ? "" : v.getContainerNo())%>">
+						</div>
+						<div class="form-group col-md-4">
+							<input type="checkbox" id="loadedNoLoaded"
+								name="loadedNoLoaded" value="Yes" > <label
+								for="loadedNoLoaded"> Select if container is loaded.
+						</label>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="lorryChetNumber">Lorry Chet Number: </label> <input
+								type="text" class="form-control" name="lorryChetNumber"
+								oninput="this.value = this.value.toUpperCase()"
+								value="<%=((v == null) ? "" : v.getLorryChetNumber())%>">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="hostNo">Host Number: </label> <input type="text"
-								class="form-control" name="hostNo"
+							<label for="deliveryNoticeNumber">Delivery Notice Number: </label> <input type="text"
+								class="form-control" name="deliveryNoticeNumber"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getHostNo())%>" required>
+								value="<%=((v == null) ? "" : v.getDeliveryNoticeNumber())%>">
 						</div>
-						<div class="form-group col-md-6">
-							<label for="visitorCardId">Visitor Card ID: </label> <input
-								type="text" class="form-control" name="visitorCardId"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getVisitorCardId())%>" required>
-						</div>
+					</div>
+					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="temperature">Temperature: </label> <input type="text"
 								class="form-control" name="temperature" id="temperature"
@@ -208,7 +200,7 @@
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active">Submit
 							Record</button>
-						<a href="/vms" class="btn btn-warning btn-lg active" role="button"
+						<a href="/vehms" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
 					</div>
 					<br> <br>

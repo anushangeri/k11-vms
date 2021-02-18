@@ -55,12 +55,30 @@
 			});
 		});
 	});
+	$(function () {
+        $("#ddlLorryChet").change(function () {
+            if ($(this).val() == "Y") {
+                $("#dvLorryChet").show();
+            } else {
+                $("#dvLorryChet").hide();
+            }
+        });
+    });
+	$(function () {
+        $("#ddlDelNotice").change(function () {
+            if ($(this).val() == "Y") {
+                $("#dvDelNotice").show();
+            } else {
+                $("#dvDelNotice").hide();
+            }
+        });
+    });
 </script>
 </head>
 <body>
 	<center>
 	<%
-		ArrayList<Visitor> vList = (ArrayList<Visitor>) request.getAttribute("vList");
+		ArrayList<Vehicle> vList = (ArrayList<Vehicle>) request.getAttribute("vList");
 		String message = (String) request.getAttribute("message");
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 		
@@ -80,14 +98,15 @@
 							<th class="th-sm">S/N</th>
 							<th class="th-sm">Name</th>
 							<th class="th-sm">Company Name</th>
-							<th class="th-sm" style="display:none;">ID Type</th>
-							<th class="th-sm" style="display:none;">ID Number</th>
+							<th class="th-sm"  style="display:none;">ID Type</th>
+							<th class="th-sm"  style="display:none;">ID Number</th>
 							<th class="th-sm">Visitor Contact Number</th>
-							<th class="th-sm">Vehicle Number</th>
-							<th class="th-sm">Host Name</th>
-							<th class="th-sm" style="display:none;">Host Contact Number</th>
-							<th class="th-sm">Visitor Pass ID</th>
-							<th class="th-sm">Covid Declaration?</th>
+							<th class="th-sm">Vehicle No./Primemover No.</th>
+							<th class="th-sm">Loaded/Not Loaded</th>
+							<th class="th-sm">Container No.</th>
+							<th class="th-sm" style="display:none;">Covid Declaration?</th>
+							<th class="th-sm">Lorry Chet No.</th>
+							<th class="th-sm">Delivery Notice No.</th>
 							<th class="th-sm">Purpose of Visit</th>
 							<th class="th-sm">Temperature</th>
 							<th class="th-sm">Time In</th>
@@ -97,22 +116,69 @@
 					<tbody>
 						<%
 							if (!vList.isEmpty()) {
-								Iterator<Visitor> vListIter = vList.iterator();
+								Iterator<Vehicle> vListIter = vList.iterator();
 								while (vListIter.hasNext()) {
-									Visitor v = vListIter.next();
+									Vehicle v = vListIter.next();
 						%>
 								<tr>
-									<td><%=v.getVmsId()%></td>
+									<td><%=v.getVehicleId()%></td>
 									<td><%=v.getName()%></td>
 									<td><%=v.getCompanyName()%></td>
-									<td style="display:none;"><%=v.getIdType()%></td>
-									<td style="display:none;"><%=v.getIdNo()%></td>
+									<td style="display:none;" ><%=v.getIdType()%></td>
+									<td style="display:none;" ><%=v.getIdNo()%></td>
 									<td><%=v.getMobileNo()%></td>
-									<td><%=v.getVehicleNo()%></td>
-									<td><%=v.getHostName()%></td>
-									<td style="display:none;"><%=v.getHostNo()%></td>
-									<td><%=v.getVisitorCardId()%></td>
-									<td><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
+									<td><%=v.getPrimeMoverNo()%></td>
+									<td><%=((v.getLoadedNoLoaded() == "null") ? "Not Loaded" : "Loaded")%></td>
+									<td><%=v.getContainerNo()%></td>
+									<td style="display:none;" ><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
+									<% if (v.getLorryChetNumber() != null && !StringUtils.isEmpty(v.getLorryChetNumber())) { %>
+										<td><%=v.getLorryChetNumber()%></td>
+									<%
+										}
+										else{
+									%>
+										<td>
+											<select id = "ddlLorryChet" onchange = "ShowHideDiv()">
+										        <option value="N">No</option>
+										        <option value="Y">Yes</option>            
+										    </select>
+										    <hr />
+											<div id="dvLorryChet" style="display: none">
+												<form method="POST" action ="/updateVehLorryChet">
+													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
+													<input type="text" class="form-control" name="lorryChetNumber"
+													oninput="this.value = this.value.toUpperCase()">
+													<input type="submit" name="Submit" value="Update">
+												</form>
+											</div>
+										</td>
+									<%
+										}
+									%>
+									<% if (v.getDeliveryNoticeNumber() != null && !StringUtils.isEmpty(v.getDeliveryNoticeNumber())) { %>
+										<td><%=v.getDeliveryNoticeNumber()%></td>
+									<%
+										}
+										else{
+									%>
+										<td>
+											<select id = "ddlDelNotice" onchange = "ShowHideDiv()">
+										        <option value="N">No</option>
+										        <option value="Y">Yes</option>            
+										    </select>
+										    <hr />
+											<div id="dvDelNotice" style="display: none">
+												<form method="POST" action ="/updateVehDeliveryNotice">
+													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
+													<input type="text" class="form-control" name="deliveryNoticeNumber"
+													oninput="this.value = this.value.toUpperCase()">
+													<input type="submit" name="Submit" value="Update">
+												</form>
+											</div>
+										</td>
+									<%
+										}
+									%>
 									<td><%=v.getVisitPurpose()%></td>
 									<td><%=v.getTemperature()%></td>
 									<td><%=sdf.format(v.getTimeInDt())%></td>
@@ -123,8 +189,8 @@
 										}
 										else{
 									%>
-										<td><form method="POST" action ="/updateVisitor">
-											<input type="hidden" id="vmsId" name="vmsId" value="<%=v.getVmsId()%>">
+										<td><form method="POST" action ="/updateVehTimeOut">
+											<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 											<input type="submit" name="Submit" value="Update"></form></td>
 									<%
 										}
@@ -151,14 +217,14 @@
 				<a href="index.jsp" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Back</a>
 		
-				<a href="retrieveToPopulate" class="btn btn-warning btn-lg active"
-				role="button" aria-pressed="true">Add Visitor Record</a>
+				<a href="retrieveVehToPopulate" class="btn btn-warning btn-lg active"
+				role="button" aria-pressed="true">Add Vehicle Record</a>
 				
 				<!-- Delete all record function is for K11 Admin only -->
 				<%if (request.getSession(false).getAttribute("usertype") != null) {
 					String userInput = (String) request.getSession(false).getAttribute("usertype");
 					if (userInput.toUpperCase().equals("K11ADMIN")){ %>
-						<a href="deleteAllVisitor" class="btn btn-warning btn-lg active"
+						<a href="deleteAllVehicle" class="btn btn-warning btn-lg active"
 						role="button" aria-pressed="true">Delete Visitor Record</a>
 						
 						<a href="managedatabase.jsp" class="btn btn-warning btn-lg active"
