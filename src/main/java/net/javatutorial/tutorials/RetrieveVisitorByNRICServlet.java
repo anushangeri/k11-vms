@@ -40,7 +40,6 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = (String) request.getSession(false).getAttribute("name");
 		String idType = (String) request.getSession(false).getAttribute("idType");
 		String idNo = (String) request.getSession(false).getAttribute("usertype");
 		ArrayList<Visitor> vList = null;
@@ -48,7 +47,7 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 		
 		if(!StringUtils.isEmpty(idNo)) {
 			if(!idNo.toUpperCase().equals("K11ADMIN")) {
-				vList = VMSManagerDAO.retrieveByNameIDandType(name, idType, idNo);
+				vList = VMSManagerDAO.retrieveByNameIDandType(idType, idNo);
 				if(vList != null && vList.size() > 0) {
 					v = vList.get(0);
 				}

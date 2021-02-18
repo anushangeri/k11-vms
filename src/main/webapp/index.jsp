@@ -24,15 +24,25 @@
 	rel="stylesheet">
 <script>
 	function validateForm() {
-		var x = document.forms["checkNRIC"]["idNo"].value;
-		var first = x.charAt(0);
+		var idNo = document.forms["checkNRIC"]["idNo"].value;
+		var idType = document.forms["checkNRIC"]["idType"].value;
+		var first = idNo.charAt(0);
 		var isDigitFirst = (first >= '0' && first <= '9');
-		var second = x.charAt(1);
+		var second = idNo.charAt(1);
 		var isDigitSecond = (second >= '0' && second <= '9');
-		var third = x.charAt(2);
+		var third = idNo.charAt(2);
 		var isDigitThird = (third >= '0' && third <= '9');
-		if (x != "K11ADMIN" && !isDigitFirst || !isDigitSecond || !isDigitThird) {
-			alert("PDPA Compliance: Enter ONLY last 3 digit of ID Number. E.g. 409");
+		var forth = idNo.charAt(3);
+		var isDigitForth = (forth >= '0' && forth <= '9');
+		var n = idNo.length;
+		if (idNo != "K11ADMIN" && (idType == "NRIC" || idType == "FIN") && (!(n >= 4) ||
+				!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth))  {
+			alert("PDPA Compliance: Enter ONLY last 3 digit and letter of ID Number. E.g. 409J ");
+			return false;
+		}
+		if (idNo != "K11ADMIN" && (idType == "PASSPORT NO.") && (!(n >= 4) ||
+				!isDigitFirst || !isDigitSecond || !isDigitThird || !isDigitForth))  {
+			alert("PDPA Compliance: Enter ONLY last 4 digit of Passport No. E.g. 4456");
 			return false;
 		}
 	}
@@ -92,8 +102,8 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="idNo">ID Number: </label> <input type="text"
-						class="form-control" name="idNo" id="idNo" placeholder="xxx"
-						minlength="3" maxlength="9" required>
+						class="form-control" name="idNo" id="idNo" placeholder="xxxx"
+						minlength="4" maxlength="9" required>
 				</div>
 				<button type="submit" class="btn btn-primary">Check NRIC</button>
 			</div>
