@@ -120,7 +120,7 @@
 								<input
 								type="text" class="form-control" name="idType"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getIdType())%>" required>
+								value="<%=((v == null) ? "" : v.getIdType())%>" readonly>
 							<%} %>
 						</div>
 					</div>
@@ -130,7 +130,7 @@
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? userInput : v.getIdNo())%>"
-								minlength="4" maxlength="9" required>
+								minlength="4" maxlength="9" readonly>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="mobileNo">Mobile: </label> <input type="text"
