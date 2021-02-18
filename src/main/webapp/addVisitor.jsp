@@ -101,17 +101,29 @@
 								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="idType">ID Type: </label> <select name="idType"
-								class="form-control" required>
-								<%
-									for (int i = 0; i < idType.size(); i++) {
+							<label for="idType">ID Type: </label> 
+								<%if(v == null){ %>
+									<select name="idType"
+										class="form-control" required>
+										<%
+											for (int i = 0; i < idType.size(); i++) {
+										%>
+										<option value="<%=idType.get(i)%>">
+											<%=idType.get(i)%></option>
+										<%
+											}
+										%>
+									</select>
+								<% } 
+								else{
 								%>
-								<option value="<%=idType.get(i)%>">
-									<%=idType.get(i)%></option>
+									<input
+									type="text" class="form-control" name="idType"
+									oninput="this.value = this.value.toUpperCase()"
+									value="<%=((v == null) ? "" : v.getIdType())%>" required>
 								<%
-									}
+								}
 								%>
-							</select>
 						</div>
 					</div>
 					<div class="form-row">
@@ -129,17 +141,30 @@
 								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="visitPurpose">Visit Purpose: </label> <select
-								name="visitPurpose" class="form-control" required>
-								<%
-									for (int i = 0; i < visitPurpose.size(); i++) {
+							<label for="visitPurpose">Visit Purpose: </label> 
+							<%if(v == null){ %>
+									<select
+										name="visitPurpose" class="form-control" required>
+										<%
+											for (int i = 0; i < visitPurpose.size(); i++) {
+										%>
+										<option value="<%=visitPurpose.get(i)%>">
+											<%=visitPurpose.get(i)%></option>
+										<%
+											}
+										%>
+									</select>
+								<% } 
+								else{
 								%>
-								<option value="<%=visitPurpose.get(i)%>">
-									<%=visitPurpose.get(i)%></option>
+									<input
+									type="text" class="form-control" name="visitPurpose"
+									oninput="this.value = this.value.toUpperCase()"
+									value="<%=((v == null) ? "" : v.getVisitPurpose())%>" required>
 								<%
-									}
+								}
 								%>
-							</select>
+							
 						</div>
 					</div>
 					<div class="form-row">
