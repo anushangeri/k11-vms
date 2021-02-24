@@ -77,12 +77,14 @@
 				to use:</b> Please enter Visitor Details.
 			<%
  	String userInput = "SxxxxxxxJ";
+	String name = "";
  	Visitor v = null;
  	if (request.getAttribute("visitorLatRec") != null) {
  		v = (Visitor) request.getAttribute("visitorLatRec");
  	}
  	if (request.getSession(false).getAttribute("usertype") != null) {
  		userInput = (String) request.getSession(false).getAttribute("usertype");
+ 		name = (String) request.getSession(false).getAttribute("name");
  	}
  %>
 			<center>
@@ -92,7 +94,7 @@
 							<label for="name">Name: </label> <input type="text"
 								class="form-control" name="name"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getName())%>" required>
+								value="<%=((v == null) ? name : v.getName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="companyName">Company Name: </label> <input
@@ -101,17 +103,25 @@
 								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="idType">ID Type: </label> <select name="idType"
-								class="form-control" required>
-								<%
-									for (int i = 0; i < idType.size(); i++) {
-								%>
-								<option value="<%=idType.get(i)%>">
-									<%=idType.get(i)%></option>
-								<%
-									}
-								%>
-							</select>
+							<label for="idType">ID Type: </label> 
+							<% if(v == null){%>
+								<select name="idType" class="form-control" required>
+									<%
+										for (int i = 0; i < idType.size(); i++) {
+									%>
+									<option value="<%=idType.get(i)%>">
+										<%=idType.get(i)%></option>
+									<%
+										}
+									%>
+								</select>
+							<% } 
+							else {%>
+								<input
+								type="text" class="form-control" name="idType"
+								oninput="this.value = this.value.toUpperCase()"
+								value="<%=((v == null) ? "" : v.getIdType())%>" readonly>
+							<%} %>
 						</div>
 					</div>
 					<div class="form-row">
@@ -120,7 +130,7 @@
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? userInput : v.getIdNo())%>"
-								maxlength="3" required>
+								minlength="4" maxlength="9" readonly>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="mobileNo">Mobile: </label> <input type="text"
@@ -129,17 +139,26 @@
 								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="visitPurpose">Visit Purpose: </label> <select
-								name="visitPurpose" class="form-control" required>
-								<%
-									for (int i = 0; i < visitPurpose.size(); i++) {
-								%>
-								<option value="<%=visitPurpose.get(i)%>">
-									<%=visitPurpose.get(i)%></option>
-								<%
-									}
-								%>
-							</select>
+							<label for="visitPurpose">Visit Purpose: </label> 
+							<% if(v == null){%>
+								<select
+									name="visitPurpose" class="form-control" required>
+									<%
+										for (int i = 0; i < visitPurpose.size(); i++) {
+									%>
+									<option value="<%=visitPurpose.get(i)%>">
+										<%=visitPurpose.get(i)%></option>
+									<%
+										}
+									%>
+								</select>
+							<% } 
+							else {%>
+								<input
+								type="text" class="form-control" name="visitPurpose"
+								oninput="this.value = this.value.toUpperCase()"
+								value="<%=((v == null) ? "" : v.getVisitPurpose())%>" required>
+							<%} %>
 						</div>
 					</div>
 					<div class="form-row">

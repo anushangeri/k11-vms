@@ -24,6 +24,8 @@ public class VehMSTblDAO {
 	        		"   MOBILE_NO  VARCHAR (100) NULL,   \r\n" + 
 	        		"   PRIME_MOVER_NO  VARCHAR (100)  NULL,\r\n" + 
 	        		"   CONTAINER_NO  VARCHAR (100) NULL, \r\n" +  
+	        		"   SEAL_NO  VARCHAR (100) NULL, \r\n" +  
+	        		"   CONTAINER_SIZE  VARCHAR (100) NULL, \r\n" +
 	        		"   LOADED_FLAG  VARCHAR (100) NULL,\r\n" + 
 	        		"   COVID_DECLARE_FLAG  VARCHAR (100) NULL,\r\n" + 
 	        		"   LORRY_CHET_NO  VARCHAR (100) NULL,\r\n" + 
@@ -72,7 +74,8 @@ public class VehMSTblDAO {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
 	        stmt.executeUpdate("ALTER TABLE VEHMS\r\n" + 
-	        		"ADD COLUMN ID_TYPE VARCHAR (100)  NULL;");
+	        		"ADD COLUMN SEAL_NO VARCHAR (100)  NULL,"
+	        		+ "ADD COLUMN CONTAINER_SIZE VARCHAR (100)  NULL;");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;

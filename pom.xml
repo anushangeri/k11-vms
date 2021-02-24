@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.heroku.sample</groupId>
 	<artifactId>webappRunnerSample</artifactId>
-	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>webappRunnerSample Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<web3j.version>3.6.0</web3j.version>
-		<logback-classic.version>1.2.3</logback-classic.version>
 		<web3j-maven-plugin.version>0.3.7</web3j-maven-plugin.version>
-		<junit.version>4.12</junit.version>
 		<exec-maven-plugin>1.6.0</exec-maven-plugin>
+		<logback-classic.version>1.2.3</logback-classic.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<web3j.version>3.6.0</web3j.version>
+		<junit.version>4.12</junit.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.6.2</version>
+			<scope>compile</scope>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -35,12 +42,7 @@
 			<groupId>com.google.gdata</groupId>
 			<artifactId>core</artifactId>
 			<version>1.47.1</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-			<scope>provided</scope>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -51,91 +53,163 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>9.4-1201-jdbc4</version>
+			<version>42.2.1</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>2.9.9</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>datatables</artifactId>
 			<version>1.9.4-2</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>displaytag</groupId>
 			<artifactId>displaytag</artifactId>
 			<version>1.2</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.0</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 			<version>2.1.1</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>displaytag</groupId>
 			<artifactId>displaytag-export-poi</artifactId>
 			<version>1.2</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>displaytag</groupId>
 			<artifactId>displaytag-portlet</artifactId>
 			<version>1.2</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.api-client</groupId>
+			<artifactId>google-api-client</artifactId>
+			<version>1.30.2</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.oauth-client</groupId>
+			<artifactId>google-oauth-client-jetty</artifactId>
+			<version>1.28.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-sheets</artifactId>
+			<version>v4-rev553-1.25.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>17.0</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-jsp</artifactId>
-			<version>9.2.10.v20150310</version>
+			<version>9.2.19.v20160908</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.glassfish</groupId>
+					<artifactId>javax.el</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.glassfish/javax.el -->
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.el</artifactId>
+			<version>3.0.0</version>
 		</dependency>
 	</dependencies>
+	<repositories>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</pluginRepository>
+	</pluginRepositories>
 	<build>
+		<sourceDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java</sourceDirectory>
+		<scriptSourceDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\scripts</scriptSourceDirectory>
+		<testSourceDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\test\java</testSourceDirectory>
+		<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\target\classes</outputDirectory>
+		<testOutputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\target\test-classes</testOutputDirectory>
+		<resources>
+			<resource>
+				<directory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\test\resources</directory>
+			</testResource>
+		</testResources>
+		<directory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\target</directory>
 		<finalName>webappRunnerSample</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.3</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.2-beta-5</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.8</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.5.3</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.3</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>com.github.jsimone</groupId>
-									<artifactId>webapp-runner</artifactId>
-									<version>7.0.22</version>
-									<destFileName>webapp-runner.jar</destFileName>
-								</artifactItem>
-							</artifactItems>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-			<!-- <plugin> -->
-			<!-- <artifactId>maven-compiler-plugin</artifactId> -->
-			<!-- <version>3.1</version> -->
-			<!-- <configuration> -->
-			<!-- <fork>true</fork> -->
-			<!-- <executable>C:\Program Files\Java\jdk1.8.0_161\bin\javac.exe</executable> -->
-			<!-- </configuration> -->
-			<!-- </plugin> -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<version>2.3</version>
 				<executions>
@@ -157,6 +231,166 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>2.0.11</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.5</version>
+				<executions>
+					<execution>
+						<id>default-clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>default-testResources</id>
+						<phase>process-test-resources</phase>
+						<goals>
+							<goal>testResources</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>resources</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<id>default-war</id>
+						<phase>package</phase>
+						<goals>
+							<goal>war</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<executions>
+					<execution>
+						<id>default-compile</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-testCompile</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.4</version>
+				<executions>
+					<execution>
+						<id>default-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>default-install</id>
+						<phase>install</phase>
+						<goals>
+							<goal>install</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+					<execution>
+						<id>default-deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.3</version>
+				<executions>
+					<execution>
+						<id>default-site</id>
+						<phase>site</phase>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\target\site</outputDirectory>
+							<reportPlugins>
+								<reportPlugin>
+									<groupId>org.apache.maven.plugins</groupId>
+									<artifactId>maven-project-info-reports-plugin</artifactId>
+								</reportPlugin>
+							</reportPlugins>
+						</configuration>
+					</execution>
+					<execution>
+						<id>default-deploy</id>
+						<phase>site-deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\target\site</outputDirectory>
+							<reportPlugins>
+								<reportPlugin>
+									<groupId>org.apache.maven.plugins</groupId>
+									<artifactId>maven-project-info-reports-plugin</artifactId>
+								</reportPlugin>
+							</reportPlugins>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\target\site</outputDirectory>
+					<reportPlugins>
+						<reportPlugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-project-info-reports-plugin</artifactId>
+						</reportPlugin>
+					</reportPlugins>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+	<reporting>
+		<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\target\site</outputDirectory>
+	</reporting>
 </project>

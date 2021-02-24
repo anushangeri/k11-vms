@@ -104,6 +104,8 @@
 							<th class="th-sm">Vehicle No./Primemover No.</th>
 							<th class="th-sm">Loaded/Not Loaded</th>
 							<th class="th-sm">Container No.</th>
+							<th class="th-sm">Container Size</th>
+							<th class="th-sm">Seal No.</th>
 							<th class="th-sm" style="display:none;">Covid Declaration?</th>
 							<th class="th-sm">Lorry Chet No.</th>
 							<th class="th-sm">Delivery Notice No.</th>
@@ -130,6 +132,8 @@
 									<td><%=v.getPrimeMoverNo()%></td>
 									<td><%=((v.getLoadedNoLoaded() == "null") ? "Not Loaded" : "Loaded")%></td>
 									<td><%=v.getContainerNo()%></td>
+									<td><%=v.getContainerSize()%></td>
+									<td><%=v.getSealNo()%></td>
 									<td style="display:none;" ><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
 									<% if (v.getLorryChetNumber() != null && !StringUtils.isEmpty(v.getLorryChetNumber())) { %>
 										<td><%=v.getLorryChetNumber()%></td>

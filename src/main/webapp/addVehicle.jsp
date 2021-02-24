@@ -35,10 +35,11 @@
 	<%
 		ArrayList<String> visitPurpose = new ArrayList<String>();
 		ArrayList<String> idType = new ArrayList<String>();
+		ArrayList<String> containerSize = new ArrayList<String>();
 		SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
 		try {
 			//Dropdown for visitPurpose START
-			String visitPurposeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/13/public/values";
+			String visitPurposeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/14/public/values";
 			// Use this String as url
 			URL visitPurposeurl = new URL(visitPurposeUrl);
 
@@ -64,6 +65,20 @@
 				idType.add(cec.getValue("idtype").trim());
 			}
 			//Dropdown for idType END
+			
+			//Dropdown for containerSize START
+			String containerSizeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/15/public/values";
+			// Use this String as url
+			URL containerSizeurl = new URL(containerSizeUrl);
+
+			// Get Feed of Spreadsheet url
+			ListFeed containerSizelf = service.getFeed(containerSizeurl, ListFeed.class);
+
+			for (ListEntry le : containerSizelf.getEntries()) {
+				CustomElementCollection cec = le.getCustomElements();
+				containerSize.add(cec.getValue("size").trim());
+			}
+			//Dropdown for visitPurpose END
 
 		} catch (Exception e) {
 	%>
@@ -91,7 +106,7 @@
 				<form action="addVehicle" method="post">
 					<div class="form-row"> 
 						<div class="form-group col-md-6">
-							<label for="name">Name: </label> <input type="text"
+							<label for="name">Vehicle Driver Name: </label> <input type="text"
 								class="form-control" name="name"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? name : v.getName())%>" required>
@@ -126,7 +141,7 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="idNo">ID Number: </label> <input type="text"
+							<label for="idNo">Vehicle Driver ID Number: </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? userInput : v.getIdNo())%>"
@@ -179,6 +194,36 @@
 								name="loadedNoLoaded" value="Yes" > <label
 								for="loadedNoLoaded"> Select if container is loaded.
 						</label>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="sealNo">Seal No: </label> <input type="text"
+								class="form-control" name="sealNo"
+								oninput="this.value = this.value.toUpperCase()"
+								value="<%=((v == null) ? "" : v.getSealNo())%>" required>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="containerSize">Container Size: </label> 
+							<% if(v == null){%>
+								<select
+									name="containerSize" class="form-control" required>
+									<%
+										for (int i = 0; i < containerSize.size(); i++) {
+									%>
+									<option value="<%=containerSize.get(i)%>">
+										<%=containerSize.get(i)%></option>
+									<%
+										}
+									%>
+								</select>
+							<% } 
+							else {%>
+								<input
+								type="text" class="form-control" name="containerSize"
+								oninput="this.value = this.value.toUpperCase()"
+								value="<%=((v == null) ? "" : v.getContainerSize())%>" required>
+							<%} %>
 						</div>
 					</div>
 					<div class="form-row">

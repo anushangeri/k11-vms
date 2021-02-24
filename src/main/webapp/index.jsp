@@ -36,17 +36,27 @@
 			<div class="card bg-dark text-white">
 				<div class="card-body font-size-percent">
 					<form method="POST" action ="vmsCheckNRIC.jsp">
+						<label
+							for="coviddeclaration"> Are you one of the following? <br> 
+							• visitor <br> 
+							• staff <br> 
+							• government agency <br>
+						</label>
 						<input type="hidden" id="recordType" name="recordType" value="visitorRecord">
-						<input id="removeBackground" type="submit" name="Submit" value="Are you a visitor? Select this."></form>
+						<input id="removeBackground" type="submit" name="Submit" value="Select this."></form>
 				</div>
 			</div>
 			<br>
 			<div class="card bg-warning text-white">
 				<div class="card-body font-size-percent">
 					<form method="POST" action ="vmsCheckNRIC.jsp">
+						<label
+							for="coviddeclaration"> Are you one of the following? <br> 
+							• commercial vehicle <br> 
+							• container <br> 
+						</label>
 						<input type="hidden" id="recordType" name="recordType" value="vehicleRecord">
-						<input id="removeBackground" type="submit" name="Submit" 
-						value="Are you a commercial vehicle / container? Select this."></form>
+						<input id="removeBackground" type="submit" name="Submit" value="Select this."></form>
 				</div>
 			</div>
 			<br>

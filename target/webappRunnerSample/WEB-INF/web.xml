@@ -139,6 +139,63 @@
 		<servlet-class>net.javatutorial.tutorials.VehRegLoginVerifyServlet</servlet-class>
 	</servlet>
 
+	<!-- Vehicle Movement System START  -->
+	<servlet>
+		<description />
+		<display-name>CVehMSTblServlet</display-name>
+		<servlet-name>CVehMSTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CVehMSTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>UVehMSTblServlet</display-name>
+		<servlet-name>UVehMSTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UVehMSTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>AddVehicleRecordServlet</display-name>
+		<servlet-name>AddVehicleRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddVehicleRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteAllVehicleRecordServlet</display-name>
+		<servlet-name>DeleteAllVehicleRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteAllVehicleRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>RetrieveVehicleByNRICServlet</display-name>
+		<servlet-name>RetrieveVehicleByNRICServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.RetrieveVehicleByNRICServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>UpdateVehicleTimeOutRecordServlet</display-name>
+		<servlet-name>UpdateVehicleTimeOutRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateVehicleTimeOutRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>UpdateVehicleLorryChetRecordServlet</display-name>
+		<servlet-name>UpdateVehicleLorryChetRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateVehicleLorryChetRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>UpdateVehicleDeliveryNoticeRecordServlet</display-name>
+		<servlet-name>UpdateVehicleDeliveryNoticeRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateVehicleDeliveryNoticeRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewVehicleRecordServlet</display-name>
+		<servlet-name>ViewVehicleRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewVehicleRecordServlet</servlet-class>
+	</servlet>
+	<!-- Vehicle Movement System END  -->
+	
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>
 		<url-pattern>/hello</url-pattern>
@@ -215,4 +272,43 @@
 		<servlet-name>VehRegLoginVerifyServlet</servlet-name>
 		<url-pattern>/vehRegLoginVerify</url-pattern>
 	</servlet-mapping>
+	
+	<!-- Vehicle Movement System START  -->
+	<servlet-mapping>
+		<servlet-name>CVehMSTblServlet</servlet-name>
+		<url-pattern>/createVehmsTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UVehMSTblServlet</servlet-name>
+		<url-pattern>/updateVehmsTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddVehicleRecordServlet</servlet-name>
+		<url-pattern>/addVehicle</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteAllVehicleRecordServlet</servlet-name>
+		<url-pattern>/deleteAllVehicle</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RetrieveVehicleByNRICServlet</servlet-name>
+		<url-pattern>/retrieveVehToPopulate</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateVehicleTimeOutRecordServlet</servlet-name>
+		<url-pattern>/updateVehTimeOut</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateVehicleLorryChetRecordServlet</servlet-name>
+		<url-pattern>/updateVehLorryChet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateVehicleDeliveryNoticeRecordServlet</servlet-name>
+		<url-pattern>/updateVehDeliveryNotice</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewVehicleRecordServlet</servlet-name>
+		<url-pattern>/vehms</url-pattern>
+	</servlet-mapping>
+	<!-- Vehicle Movement System END  -->
 </web-app>

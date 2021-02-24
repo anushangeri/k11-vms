@@ -40,7 +40,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ],
+						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -80,12 +80,12 @@
 							<th class="th-sm">S/N</th>
 							<th class="th-sm">Name</th>
 							<th class="th-sm">Company Name</th>
-							<th class="th-sm">ID Type</th>
-							<th class="th-sm">ID Number</th>
+							<th class="th-sm" style="display:none;">ID Type</th>
+							<th class="th-sm" style="display:none;">ID Number</th>
 							<th class="th-sm">Visitor Contact Number</th>
 							<th class="th-sm">Vehicle Number</th>
 							<th class="th-sm">Host Name</th>
-							<th class="th-sm">Host Contact Number</th>
+							<th class="th-sm" style="display:none;">Host Contact Number</th>
 							<th class="th-sm">Visitor Pass ID</th>
 							<th class="th-sm">Covid Declaration?</th>
 							<th class="th-sm">Purpose of Visit</th>
@@ -105,12 +105,12 @@
 									<td><%=v.getVmsId()%></td>
 									<td><%=v.getName()%></td>
 									<td><%=v.getCompanyName()%></td>
-									<td><%=v.getIdType()%></td>
-									<td><%=v.getIdNo()%></td>
+									<td style="display:none;"><%=v.getIdType()%></td>
+									<td style="display:none;"><%=v.getIdNo()%></td>
 									<td><%=v.getMobileNo()%></td>
 									<td><%=v.getVehicleNo()%></td>
 									<td><%=v.getHostName()%></td>
-									<td><%=v.getHostNo()%></td>
+									<td style="display:none;"><%=v.getHostNo()%></td>
 									<td><%=v.getVisitorCardId()%></td>
 									<td><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
 									<td><%=v.getVisitPurpose()%></td>
