@@ -78,7 +78,7 @@
 				CustomElementCollection cec = le.getCustomElements();
 				containerSize.add(cec.getValue("size").trim());
 			}
-			//Dropdown for visitPurpose END
+			//Dropdown for containerSize END
 
 		} catch (Exception e) {
 	%>
@@ -88,7 +88,7 @@
 	%>
 	<div class="container body-content">
 		<div class="page-header">
-			<label class="heading">Visitor Management System</label> <br> <b>How
+			<label class="heading">Vehicle Management System</label> <br> <b>How
 				to use:</b> Please enter Visitor Details.
 			<%
  	String userInput = "SxxxxxxxJ";
