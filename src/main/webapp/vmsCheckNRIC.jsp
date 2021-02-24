@@ -84,7 +84,7 @@
 			onsubmit="return validateForm()">
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="name">Visitor or Vehicle Driver Name : </label> <input type="text"
+					<label for="name">Visitor or Vehicle Driver Name: </label> <input type="text"
 						class="form-control" name="name"
 						oninput="this.value = this.value.toUpperCase()" required>
 				</div>
