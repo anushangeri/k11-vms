@@ -201,13 +201,13 @@
 							<label for="sealNo">Seal No: </label> <input type="text"
 								class="form-control" name="sealNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getSealNo())%>" required>
+								value="<%=((v == null) ? "" : v.getSealNo())%>">
 						</div>
 						<div class="form-group col-md-4">
 							<label for="containerSize">Container Size: </label> 
 							<% if(v == null){%>
 								<select
-									name="containerSize" class="form-control" required>
+									name="containerSize" class="form-control">
 									<%
 										for (int i = 0; i < containerSize.size(); i++) {
 									%>
@@ -222,7 +222,7 @@
 								<input
 								type="text" class="form-control" name="containerSize"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getContainerSize())%>" required>
+								value="<%=((v == null) ? "" : v.getContainerSize())%>">
 							<%} %>
 						</div>
 					</div>
