@@ -176,6 +176,8 @@ form{
 #removeBackground{
 	background-color: transparent !important;
 	margin-right: 2% !important;
+	border: none !important;
+	width: 100% !important;
 }
 
 /*for printing lable*/
