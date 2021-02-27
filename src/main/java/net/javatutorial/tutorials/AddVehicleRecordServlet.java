@@ -22,9 +22,9 @@ public class AddVehicleRecordServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//int nextVal = VehMSManagerDAO.getNextVal();
+		int nextVal = VehMSManagerDAO.getNextVal();
 		
-		String vehicleId = "" + 3;
+		String vehicleId = "" + nextVal;
 		String name = request.getParameter("name").trim();
 		String companyName = request.getParameter("companyName").trim();
 		String idType = request.getParameter("idType");
@@ -46,8 +46,8 @@ public class AddVehicleRecordServlet extends HttpServlet {
 		Vehicle v = new Vehicle( vehicleId,  name,  companyName, idType, idNo,  mobileNo,  primeMoverNo,
 				containerNo,  loadedNoLoaded, covidDec, lorryChetNumber, deliveryNoticeNumber,  
 				visitPurpose, temperature, sealNo, containerSize,  timestamp);
-		System.out.println(v.toString());
-		//String message = VehMSManagerDAO.addVisitor(v);
+		
+		String message = VehMSManagerDAO.addVisitor(v);
 		
 		ArrayList<String> responseObj = new ArrayList<String>();
 		responseObj.add(visitPurpose + " " + name);
