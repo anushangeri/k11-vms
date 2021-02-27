@@ -22,31 +22,31 @@ public class AddVehicleRecordServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int nextVal = VehMSManagerDAO.getNextVal();
+		//int nextVal = VehMSManagerDAO.getNextVal();
 		
-		String vehicleId = "" + nextVal;
+		String vehicleId = "" + 3;
 		String name = request.getParameter("name").trim();
 		String companyName = request.getParameter("companyName").trim();
 		String idType = request.getParameter("idType");
 		String idNo = request.getParameter("idNo");
-		String mobileNo = request.getParameter("mobileNo").length() > 0 ? request.getParameter("mobileNo") : "null";
-		String primeMoverNo = request.getParameter("primeMoverNo").length() > 0 ? request.getParameter("primeMoverNo") : "null";
-		String containerNo = request.getParameter("containerNo").length() > 0 ? request.getParameter("containerNo") : "null";
+		String mobileNo = request.getParameter("mobileNo");
+		String primeMoverNo = request.getParameter("primeMoverNo");
+		String containerNo = request.getParameter("containerNo");
 		String loadedNoLoaded = request.getParameter("loadedNoLoaded");
 		String covidDec = request.getParameter("coviddeclaration");
-		String lorryChetNumber = request.getParameter("lorryChetNumber").length() > 0 ? request.getParameter("lorryChetNumber") : "null";
-		String deliveryNoticeNumber = request.getParameter("deliveryNoticeNumber").length() > 0 ? request.getParameter("deliveryNoticeNumber") : "null";
+		String lorryChetNumber = request.getParameter("lorryChetNumber");
+		String deliveryNoticeNumber = request.getParameter("deliveryNoticeNumber");
 		String visitPurpose = request.getParameter("visitPurpose");
 		String temperature = request.getParameter("temperature");
-		String sealNo = request.getParameter("sealNo").length() > 0 ? request.getParameter("sealNo") : "null";
-		String containerSize = request.getParameter("containerSize").length() > 0 ? request.getParameter("containerSize") : "null";
+		String sealNo = request.getParameter("sealNo");
+		String containerSize = request.getParameter("containerSize");
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 
 		Vehicle v = new Vehicle( vehicleId,  name,  companyName, idType, idNo,  mobileNo,  primeMoverNo,
 				containerNo,  loadedNoLoaded, covidDec, lorryChetNumber, deliveryNoticeNumber,  
 				visitPurpose, temperature, sealNo, containerSize,  timestamp);
-		
+
 		String message = VehMSManagerDAO.addVisitor(v);
 		
 		ArrayList<String> responseObj = new ArrayList<String>();
