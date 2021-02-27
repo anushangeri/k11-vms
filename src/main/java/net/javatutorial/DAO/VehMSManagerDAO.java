@@ -28,7 +28,7 @@ public class VehMSManagerDAO {
 	        		+ "LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, VISIT_PURPOSE, "
 	        		+ "TEMPERATURE, TIME_IN_DT)" + 
 	        		"  VALUES ('1','t','T','NRIC','409R','T','T','','','','','','','','','',now())");
-	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
+	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS LIMIT 1;");
 	        while (rs.next()) {
 	        	message = "Read from DB: " + rs.getTimestamp("tick");
 	        }
