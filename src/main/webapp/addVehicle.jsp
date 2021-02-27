@@ -115,7 +115,7 @@
 							<label for="companyName">Company Name: </label> <input
 								type="text" class="form-control" name="companyName"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
+								value="<%=((v == null) ? " " : v.getCompanyName())%>" required>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="idType">ID Type: </label> 
@@ -135,7 +135,7 @@
 								<input
 								type="text" class="form-control" name="idType"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getIdType())%>" readonly>
+								value="<%=((v == null) ? " " : v.getIdType())%>" readonly>
 							<%} %>
 						</div>
 					</div>
@@ -151,7 +151,7 @@
 							<label for="mobileNo">Mobile: </label> <input type="text"
 								class="form-control" name="mobileNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
+								value="<%=((v == null) ? " " : v.getMobileNo())%>" required>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
@@ -172,7 +172,7 @@
 								<input
 								type="text" class="form-control" name="visitPurpose"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getVisitPurpose())%>" required>
+								value="<%=((v == null) ? " " : v.getVisitPurpose())%>" required>
 							<%} %>
 						</div>
 					</div>
@@ -181,13 +181,13 @@
 							<label for="primeMoverNo">Vehicle/Primemover Number: </label> <input
 								type="text" class="form-control" name="primeMoverNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getPrimeMoverNo())%>">
+								value="<%=((v == null) ? " " : v.getPrimeMoverNo())%>">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="containerNo">Container Number: </label> <input type="text"
 								class="form-control" name="containerNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getContainerNo())%>">
+								value="<%=((v == null) ? " " : v.getContainerNo())%>">
 						</div>
 						<div class="form-group col-md-4">
 							<input type="checkbox" id="loadedNoLoaded"
@@ -201,7 +201,7 @@
 							<label for="sealNo">Seal No: </label> <input type="text"
 								class="form-control" name="sealNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getSealNo())%>">
+								value="<%=((v == null) ? " " : v.getSealNo())%>">
 						</div>
 						<div class="form-group col-md-4">
 							<label for="containerSize">Container Size: </label> 
@@ -222,7 +222,7 @@
 								<input
 								type="text" class="form-control" name="containerSize"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getContainerSize())%>">
+								value="<%=((v == null) ? " " : v.getContainerSize())%>">
 							<%} %>
 						</div>
 					</div>
@@ -231,13 +231,13 @@
 							<label for="lorryChetNumber">Lorry Chet Number: </label> <input
 								type="text" class="form-control" name="lorryChetNumber"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getLorryChetNumber())%>">
+								value="<%=((v == null) ? " " : v.getLorryChetNumber())%>">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="deliveryNoticeNumber">Delivery Notice Number: </label> <input type="text"
 								class="form-control" name="deliveryNoticeNumber"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getDeliveryNoticeNumber())%>">
+								value="<%=((v == null) ? " " : v.getDeliveryNoticeNumber())%>">
 						</div>
 					</div>
 					<div class="form-row">
