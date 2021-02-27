@@ -50,7 +50,7 @@ public class AddVehicleRecordServlet extends HttpServlet {
 		String message = VehMSManagerDAO.addVisitor(v);
 		
 		ArrayList<String> responseObj = new ArrayList<String>();
-		responseObj.add(visitPurpose + " " + name);
+		responseObj.add(message + " " + name);
 		request.setAttribute("responseObj", responseObj);
 		// Redirect to view vehicle servlet to query all the vehicle again.
 		response.sendRedirect("/vehms");
