@@ -23,7 +23,8 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idNo = (String) request.getSession(false).getAttribute("usertype");
-		String message = "No vehicle records available to: " + idNo;
+		String name = (String) request.getSession(false).getAttribute("name");
+		String message = "No vehicle records available for: " + name;
 		ArrayList<Vehicle> vList = null;
 		if(!StringUtils.isEmpty(idNo)) {
 			if(idNo.toUpperCase().equals("K11ADMIN") || idNo.toUpperCase().equals("K11STAFF")) {
@@ -36,10 +37,10 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 			}
 			else{
 				vList = VehMSManagerDAO.retrieveByNRIC(idNo);
-				message = "List of vehicle records for " + idNo;
+				message = "List of vehicle records for " + name;
 				request.setAttribute("vList", vList);
 				if(vList == null || vList.size() == 0) {
-					message = "No vehicle records available for " + idNo;
+					message = "No vehicle records available for " + name;
 				}
 			}
 		}
