@@ -205,7 +205,7 @@
 						</div>
 						<div class="form-group col-md-4">
 							<label for="containerSize">Container Size: </label> 
-							<% if(v == null){%>
+							<% if (v.getContainerSize() == null || StringUtils.isEmpty(v.getContainerSize())){%>
 								<select
 									name="containerSize" class="form-control">
 									<%
