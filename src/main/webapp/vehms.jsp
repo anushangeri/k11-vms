@@ -80,6 +80,7 @@
 	<%
 		ArrayList<Vehicle> vList = (ArrayList<Vehicle>) request.getAttribute("vList");
 		String message = (String) request.getAttribute("message");
+		String vmessage = (String) request.getAttribute("v");
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 		
 		if (message != null && !StringUtils.isEmpty(message)) {
@@ -215,6 +216,7 @@
 	<%
 		}
 	%>
+	<label class="heading"><%=vmessage%> </label><br>
 	</div>
 		<div class="container body-content">
 			<center>

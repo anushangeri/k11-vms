@@ -51,6 +51,7 @@ public class AddVehicleRecordServlet extends HttpServlet {
 		
 		ArrayList<String> responseObj = new ArrayList<String>();
 		responseObj.add(message + " " + name);
+		request.setAttribute("v", v);
 		request.setAttribute("responseObj", responseObj);
 		// Redirect to view vehicle servlet to query all the vehicle again.
 		response.sendRedirect("/vehms");
