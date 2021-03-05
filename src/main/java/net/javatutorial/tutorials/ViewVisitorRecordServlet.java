@@ -23,7 +23,8 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idNo = (String) request.getSession(false).getAttribute("usertype");
-		String message = "No visitor records available to: " + idNo;
+		String name = (String) request.getSession(false).getAttribute("name");
+		String message = "No visitor records available for: " + name;
 		ArrayList<Visitor> vList = null;
 		if(!StringUtils.isEmpty(idNo)) {
 			if(idNo.toUpperCase().equals("K11ADMIN") || idNo.toUpperCase().equals("K11STAFF")) {
@@ -36,10 +37,10 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 			}
 			else{
 				vList = VMSManagerDAO.retrieveByNRIC(idNo);
-				message = "List of visitor records for " + idNo;
+				message = "List of visitor records for " + name;
 				request.setAttribute("vList", vList);
 				if(vList == null || vList.size() == 0) {
-					message = "No visitor records available for " + idNo;
+					message = "No visitor records available for " + name;
 				}
 			}
 		}
