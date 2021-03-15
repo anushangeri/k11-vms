@@ -130,11 +130,11 @@
 									<td style="display:none;" ><%=v.getIdNo()%></td>
 									<td><%=v.getMobileNo()%></td>
 									<td><%=v.getPrimeMoverNo()%></td>
-									<td><%=v.getLoadedNoLoaded()%></td>
+									<td><%=((v.getLoadedNoLoaded().equals("null") ? "Not Loaded" : "Loaded")%></td>
 									<td><%=v.getContainerNo()%></td>
 									<td><%=v.getContainerSize()%></td>
 									<td><%=v.getSealNo()%></td>
-									<td style="display:none;" ><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
+									<td style="display:none;" ><%=((v.getCovidDeclare().equals("null")) ? "No" : v.getCovidDeclare())%></td>
 									<% if (v.getLorryChetNumber() != null && !StringUtils.isEmpty(v.getLorryChetNumber())) { %>
 										<td><%=v.getLorryChetNumber()%></td>
 									<%
