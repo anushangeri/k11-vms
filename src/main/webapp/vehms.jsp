@@ -148,7 +148,7 @@
 										        <option value="<%=v.getVehicleId()%>">Yes</option>            
 										    </select>
 										    <br />
-											<div id="dvLorryChet" + <%=v.getVehicleId()%> style="display: none">
+											<div id="dvLorryChet<%=v.getVehicleId()%>" style="display: none">
 												<form method="POST" action ="/updateVehLorryChet">
 													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="lorryChetNumber"
