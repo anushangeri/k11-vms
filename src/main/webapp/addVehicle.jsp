@@ -174,7 +174,7 @@
 									<%
 										for (int i = 0; i < visitPurpose.size(); i++) {
 									%>
-									<option value="<%=visitPurpose.get(i)%>" <%=v.getVisitPurpose().equals(visitPurpose.get(i)) ? "selected" : "") %>>
+									<option value="<%=visitPurpose.get(i)%>" <%=v.getVisitPurpose().equals(visitPurpose.get(i)) ? "selected" : "" %>>
 										<%=visitPurpose.get(i)%></option>
 									<%
 										}
