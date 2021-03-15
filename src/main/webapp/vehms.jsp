@@ -55,16 +55,11 @@
 			});
 		});
 	});
-	$(function () {
-        $("#ddlLorryChet").change(function () {
-            if ($(this).val() != "N") {
-            	var ddlLorryChet = document.getElementById("ddlLorryChet");
-                $("#dvLorryChet5").show();
-            } else {
-                $("#dvLorryChet").hide();
-            }
-        });
-    });
+	function ShowHideDiv() {
+        var ddlLorryChet = document.getElementById("ddlLorryChet");
+        var dvLorryChet = document.getElementById("dvLorryChet");
+        dvLorryChet.style.display = ddlLorryChet.value == "Y" ? "block" : "none";
+    }
 	$(function () {
         $("#ddlDelNotice").change(function () {
             if ($(this).val() == "Y") {
@@ -143,12 +138,12 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlLorryChet">
+											<select id = "ddlLorryChet" onchange = "ShowHideDiv()">
 										        <option value="N">No</option>
-										        <option value="<%=v.getVehicleId()%>">Yes</option>            
+										        <option value="Y">Yes</option>            
 										    </select>
 										    <br />
-											<div id="dvLorryChet<%=v.getVehicleId()%>" style="display: none">
+											<div id="dvLorryChet" style="display: none">
 												<form method="POST" action ="/updateVehLorryChet">
 													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="lorryChetNumber"
