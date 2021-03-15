@@ -57,8 +57,9 @@
 	});
 	$(function () {
         $("#ddlLorryChet").change(function () {
-            if ($(this).val() == "Y") {
-                $("#dvLorryChet").show();
+            if ($(this).val() != "N") {
+            	var ddlLorryChet = document.getElementById("ddlLorryChet");
+                $("#dvLorryChet" + ddlLorryChet.value).show();
             } else {
                 $("#dvLorryChet").hide();
             }
@@ -144,10 +145,10 @@
 										<td>
 											<select id = "ddlLorryChet">
 										        <option value="N">No</option>
-										        <option value="Y">Yes</option>            
+										        <option value="<%=v.getVehicleId()%>">Yes</option>            
 										    </select>
-										    <hr />
-											<div id="dvLorryChet" style="display: none">
+										    <br />
+											<div id="dvLorryChet" + <%=v.getVehicleId()%> style="display: none">
 												<form method="POST" action ="/updateVehLorryChet">
 													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="lorryChetNumber"
