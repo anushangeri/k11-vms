@@ -59,7 +59,7 @@
         $("#ddlLorryChet").change(function () {
             if ($(this).val() != "N") {
             	var ddlLorryChet = document.getElementById("ddlLorryChet");
-                $("#dvLorryChet" + ddlLorryChet.value).show();
+                $("#dvLorryChet5").show();
             } else {
                 $("#dvLorryChet").hide();
             }
