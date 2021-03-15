@@ -55,7 +55,7 @@
 			});
 		});
 	});
-	$(function () {
+	$(function ShowHideDivLorryChet() {
         $("#ddlLorryChet").change(function () {
             if ($(this).val() == "Y") {
                 $("#dvLorryChet").show();
@@ -128,12 +128,12 @@
 									<td><%=v.getCompanyName()%></td>
 									<td style="display:none;" ><%=v.getIdType()%></td>
 									<td style="display:none;" ><%=v.getIdNo()%></td>
-									<td><%=v.getMobileNo()%></td>
-									<td><%=v.getPrimeMoverNo()%></td>
+									<td><%=(v.getMobileNo() != null ? v.getMobileNo() : "")%></td>
+									<td><%=(v.getPrimeMoverNo() != null ? v.getPrimeMoverNo() : "")%></td>
 									<td><%=(v.getLoadedNoLoaded().equals("null") ? "Not Loaded" : "Loaded")%></td>
-									<td><%=v.getContainerNo()%></td>
-									<td><%=v.getContainerSize()%></td>
-									<td><%=v.getSealNo()%></td>
+									<td><%=(v.getContainerNo() != null ? v.getContainerNo() : "")%></td>
+									<td><%=(v.getContainerSize() != null ? v.getContainerSize() : "")%></td>
+									<td><%=(v.getSealNo() != null ? v.getSealNo() : "")%></td>
 									<td style="display:none;" ><%=((v.getCovidDeclare().equals("null")) ? "No" : v.getCovidDeclare())%></td>
 									<% if (v.getLorryChetNumber() != null && !StringUtils.isEmpty(v.getLorryChetNumber())) { %>
 										<td><%=v.getLorryChetNumber()%></td>
@@ -142,7 +142,7 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlLorryChet" onchange = "ShowHideDiv()">
+											<select id = "ddlLorryChet" onchange = "ShowHideDivLorryChet()">
 										        <option value="N">No</option>
 										        <option value="Y">Yes</option>            
 										    </select>
