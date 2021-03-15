@@ -64,6 +64,7 @@
             } else {
                 $("#dvLorryChet"+value).show();
             }
+            $(this).val() = undefined;
         });
     });
 	$(function () {
@@ -144,7 +145,7 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlLorryChet" onchange = "ShowHideDiv()">
+											<select id = "ddlLorryChet">
 										        <option value="N">No</option>
 										        <option value="<%=v.getVehicleId()%>">Yes</option>            
 										    </select>
