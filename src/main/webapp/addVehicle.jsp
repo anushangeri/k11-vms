@@ -218,7 +218,7 @@
 									<%
 										for (int i = 0; i < containerSize.size(); i++) {
 									%>
-									<option value="<%=containerSize.get(i)%>">
+									<option value="<%=containerSize.get(i)%>" >
 										<%=containerSize.get(i)%></option>
 									<%
 										}
@@ -226,10 +226,17 @@
 								</select>
 							<% } 
 							else {%>
-								<input
-								type="text" class="form-control" name="containerSize"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getContainerSize())%>">
+								<select
+									name="containerSize" class="form-control">
+									<%
+										for (int i = 0; i < containerSize.size(); i++) {
+									%>
+									<option value="<%=containerSize.get(i)%>" <%=v.getContainerSize().equals(containerSize.get(i)) ? "selected" : "" %>>
+										<%=containerSize.get(i)%></option>
+									<%
+										}
+									%>
+								</select>
 							<%} %>
 						</div>
 					</div>
