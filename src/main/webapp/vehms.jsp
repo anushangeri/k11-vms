@@ -56,9 +56,10 @@
 		});
 	});
 	function ShowHideDiv() {
-        var ddlLorryChet = document.getElementById("ddlLorryChet" + $(this).val());
-        var dvLorryChet = document.getElementById("dvLorryChet" + $(this).val());
-        dvLorryChet.style.display = ddlLorryChet.value != "N" ? "none" : "block";
+		value =  ddlLorryChet.value;
+        var ddlLorryChet = document.getElementById("ddlLorryChet".concat(value));
+        var dvLorryChet = document.getElementById("dvLorryChet".concat(value));
+        dvLorryChet.style.display = ddlLorryChet.value == "N" ? "none" : "block";
     }
 	$(function () {
         $("#ddlDelNotice").change(function () {
