@@ -55,18 +55,11 @@
 			});
 		});
 	});
+	function showDiv(divId, element)
+	{
+	    document.getElementById(divId).style.display = element.value == "Y" ? 'block' : 'none';
+	}
 
-	$(function () {
-        $("#ddlLorryChet").change(function () {
-        	var value = $(this).val();
-            if (value == "N") {
-                $("#dvLorryChet"+value).hide();
-            } else {
-                $("#dvLorryChet"+value).show();
-            }
-            $(this).val() = undefined;
-        });
-    });
 	$(function () {
         $("#ddlDelNotice").change(function () {
             if ($(this).val() == "Y") {
@@ -145,9 +138,9 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlLorryChet">
+											<select id = "ddlLorryChet" onchange="showDiv('dvLorryChet<%=v.getVehicleId()%>', this)">
 										        <option value="N">No</option>
-										        <option value="<%=v.getVehicleId()%>">Yes</option>            
+										        <option value="Y">Yes</option>            
 										    </select>
 										    <hr />
 											<div id="dvLorryChet<%=v.getVehicleId()%>" style="display: none">
