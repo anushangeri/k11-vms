@@ -55,12 +55,17 @@
 			});
 		});
 	});
-	function ShowHideDiv() {
-        var ddlLorryChet = document.getElementById("ddlLorryChet");
-        var value = ddlLorryChet.value;
-        var dvLorryChet = document.getElementById("dvLorryChet" +value);
-        dvLorryChet.style.display = ddlLorryChet.value == "N" ? "none" : "block";
-    }
+
+	$(function () {
+        $("#ddlLorryChet").change(function () {
+        	var value = $(this).val();
+            if (value == "N") {
+                $("#dvLorryChet"+value).hide();
+            } else {
+                $("#dvLorryChet"+value).show();
+            }
+        });
+    });
 	$(function () {
         $("#ddlDelNotice").change(function () {
             if ($(this).val() == "Y") {
