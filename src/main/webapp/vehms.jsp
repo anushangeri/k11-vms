@@ -59,16 +59,7 @@
 	{
 	    document.getElementById(divId).style.display = element.value == "Y" ? 'block' : 'none';
 	}
-
-	$(function () {
-        $("#ddlDelNotice").change(function () {
-            if ($(this).val() == "Y") {
-                $("#dvDelNotice").show();
-            } else {
-                $("#dvDelNotice").hide();
-            }
-        });
-    });
+	
 </script>
 </head>
 <body>
@@ -162,12 +153,12 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlDelNotice">
+											<select id = "ddlDelNotice" onchange="showDiv('dvDelNotice<%=v.getVehicleId()%>', this)">
 										        <option value="N">No</option>
 										        <option value="Y">Yes</option>            
 										    </select>
 										    <hr />
-											<div id="dvDelNotice" style="display: none">
+											<div id="dvDelNotice<%=v.getVehicleId()%>" style="display: none">
 												<form method="POST" action ="/updateVehDeliveryNotice">
 													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="deliveryNoticeNumber"
