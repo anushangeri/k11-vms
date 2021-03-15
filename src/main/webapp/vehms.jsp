@@ -56,9 +56,9 @@
 		});
 	});
 	function ShowHideDiv() {
-        var ddlLorryChet = document.getElementById("ddlLorryChet");
-        var dvLorryChet = document.getElementById("dvLorryChet");
-        dvLorryChet.style.display = ddlLorryChet.value == "Y" ? "block" : "none";
+        var ddlLorryChet = document.getElementById("ddlLorryChet" + $(this).val());
+        var dvLorryChet = document.getElementById("dvLorryChet" + $(this).val());
+        dvLorryChet.style.display = ddlLorryChet.value != "N" ? "none" : "block";
     }
 	$(function () {
         $("#ddlDelNotice").change(function () {
@@ -138,12 +138,12 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlLorryChet" onchange = "ShowHideDiv()">
+											<select id = "ddlLorryChet<%=v.getVehicleId()%>" onchange = "ShowHideDiv()">
 										        <option value="N">No</option>
-										        <option value="Y">Yes</option>            
+										        <option value="<%=v.getVehicleId()%>">Yes</option>            
 										    </select>
-										    <br />
-											<div id="dvLorryChet" style="display: none">
+										    <hr />
+											<div id="dvLorryChet<%=v.getVehicleId()%>" style="display: none">
 												<form method="POST" action ="/updateVehLorryChet">
 													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="lorryChetNumber"
