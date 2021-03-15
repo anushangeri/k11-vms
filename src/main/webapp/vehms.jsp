@@ -130,7 +130,7 @@
 									<td style="display:none;" ><%=v.getIdNo()%></td>
 									<td><%=v.getMobileNo()%></td>
 									<td><%=v.getPrimeMoverNo()%></td>
-									<td><%=((v.getLoadedNoLoaded().equals("null") ? "Not Loaded" : "Loaded")%></td>
+									<td><%=(v.getLoadedNoLoaded().equals("null") ? "Not Loaded" : "Loaded")%></td>
 									<td><%=v.getContainerNo()%></td>
 									<td><%=v.getContainerSize()%></td>
 									<td><%=v.getSealNo()%></td>
