@@ -55,12 +55,14 @@
 			});
 		});
 	});
-	$(function ShowHideDivLorry() {
-        if ($(this).val() == "Y") {
-            $("#dvLorryChet").show();
-        } else {
-            $("#dvLorryChet").hide();
-        }
+	$(function () {
+        $("#ddlLorryChet").change(function () {
+            if ($(this).val() == "Y") {
+                $("#dvLorryChet").show();
+            } else {
+                $("#dvLorryChet").hide();
+            }
+        });
     });
 	$(function () {
         $("#ddlDelNotice").change(function () {
@@ -140,7 +142,7 @@
 										else{
 									%>
 										<td>
-											<select onchange = "ShowHideDivLorry()">
+											<select id = "ddlLorryChet">
 										        <option value="N">No</option>
 										        <option value="Y">Yes</option>            
 										    </select>
@@ -164,7 +166,7 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlDelNotice" onchange = "ShowHideDiv()">
+											<select id = "ddlDelNotice">
 										        <option value="N">No</option>
 										        <option value="Y">Yes</option>            
 										    </select>
