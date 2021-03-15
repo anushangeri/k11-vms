@@ -57,8 +57,8 @@
 	});
 	function ShowHideDiv() {
 		value =  ddlLorryChet.value;
-        var ddlLorryChet = document.getElementById("ddlLorryChet".concat(value));
-        var dvLorryChet = document.getElementById("dvLorryChet".concat(value));
+        var ddlLorryChet = document.getElementById("ddlLorryChet"+value);
+        var dvLorryChet = document.getElementById("dvLorryChet"+value);
         dvLorryChet.style.display = ddlLorryChet.value == "N" ? "none" : "block";
     }
 	$(function () {
