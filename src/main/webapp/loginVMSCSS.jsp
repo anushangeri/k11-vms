@@ -88,6 +88,7 @@
 
 .list{
 	background-color: #FFA8A4 !important;
+	float: right !important;
 }
 #tableview{
 	width: 80% !important;
@@ -98,7 +99,7 @@ body {
 	background-color: #F3F3F3;
 }
 </style>
-<nav class="navbar list pull-right" role="navigation">
+<nav class="navbar list" role="navigation">
 	<div class="container-fluid">
 	<!-- add links in nav bar if request by client -->
 		<button class="btn btn-info"> 
