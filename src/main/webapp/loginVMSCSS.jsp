@@ -93,7 +93,7 @@
 	width: 80% !important;
 	margin-left: 2% !important;
 }
-#login-btn{
+.login-btn{
 	float: right !important;
 }
 body {
@@ -101,13 +101,11 @@ body {
 }
 </style>
 <nav class="navbar list" role="navigation">
-	<div class="container-fluid">
 	<!-- add links in nav bar if request by client -->
-	<div class="pull-right">
+	<div class="login-btn">
 		<button class="btn btn-info"> 
 		        Login 
 		</button> 
-		</div>
 	</div>
 	<!-- /.container-fluid -->
 </nav>
