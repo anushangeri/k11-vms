@@ -98,10 +98,10 @@ body {
 	background-color: #F3F3F3;
 }
 </style>
-<nav class="navbar list" role="navigation">
+<nav class="navbar list pull-right" role="navigation">
 	<div class="container-fluid">
 	<!-- add links in nav bar if request by client -->
-		<button class='btn btn-info pull-right'> 
+		<button class="btn btn-info"> 
 		        Login 
 		</button> 
 	</div>
