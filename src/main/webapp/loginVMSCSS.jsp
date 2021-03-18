@@ -101,6 +101,9 @@ body {
 <nav class="navbar list" role="navigation">
 	<div class="container-fluid">
 	<!-- add links in nav bar if request by client -->
+		<button class='btn btn-info pull-right'> 
+		        Login 
+		</button> 
 	</div>
 	<!-- /.container-fluid -->
 </nav>
@@ -113,9 +116,11 @@ body {
 <title>K11 VMS</title>
 </head>
 <body>
-	<h1 id="k11title">VMS DEMO</h1>
-	<center><b>by K11 SECURITY ENGINEERING</b></center>
-	<br>
+ 	<div class="container"> 
+		<h1 id="k11title">VMS DEMO</h1>
+		<center><b>by K11 SECURITY ENGINEERING</b></center>
+		
+	</div> 
 </body>
 
 
