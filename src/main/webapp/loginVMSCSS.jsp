@@ -102,10 +102,14 @@ body {
 </style>
 <nav class="navbar list" role="navigation">
 	<!-- add links in nav bar if request by client -->
-	<div class="login-btn">
-		<button class="btn btn-info"> 
-		        Login 
-		</button> 
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+	       <button class="btn btn-info"> 
+			        Login 
+			</button> 
+      </li>
+     </ul>
 	</div>
 	<!-- /.container-fluid -->
 </nav>
