@@ -25,6 +25,7 @@
 .navbar-default {
 	background-color: #9b59b6;
 	border-color: #8e44ad;
+	position: relative !important;
 }
 
 .navbar-default .navbar-brand {
@@ -103,8 +104,8 @@ body {
 
 <div class="navbar navbar-inverse navbar-static-top">
     <div class="container">
-        <div class="collapse navbar-collapse navHeaderCollapse">
-            <ul class="nav navbar-nav navbar-right">
+        <div class="navbar-collapse">
+            <ul class="nav navbar-nav navbar-left">
                 <li>
 			       <button class="btn btn-info"> 
 					        Login 
