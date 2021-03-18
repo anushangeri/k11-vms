@@ -88,19 +88,20 @@
 
 .list{
 	background-color: #FFA8A4 !important;
-	float: right !important;
 }
 #tableview{
 	width: 80% !important;
 	margin-left: 2% !important;
 }
-
+#login-btn{
+	float: right !important;
+}
 body {
 	background-color: #F3F3F3;
 }
 </style>
 <nav class="navbar list" role="navigation">
-	<div class="container-fluid">
+	<div class="container-fluid" id="login-btn">
 	<!-- add links in nav bar if request by client -->
 		<button class="btn btn-info"> 
 		        Login 
