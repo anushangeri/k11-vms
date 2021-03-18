@@ -100,19 +100,21 @@ body {
 	background-color: #F3F3F3;
 }
 </style>
-<nav class="navbar list" role="navigation">
-	<!-- add links in nav bar if request by client -->
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-	       <button class="btn btn-info"> 
-			        Login 
-			</button> 
-      </li>
-     </ul>
-	</div>
-	<!-- /.container-fluid -->
-</nav>
+
+<div class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="collapse navbar-collapse navHeaderCollapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+			       <button class="btn btn-info"> 
+					        Login 
+					</button> 
+			     </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
