@@ -101,11 +101,13 @@ body {
 }
 </style>
 <nav class="navbar list" role="navigation">
-	<div class="container-fluid" id="login-btn">
+	<div class="container-fluid">
 	<!-- add links in nav bar if request by client -->
+	<div class="pull-right">
 		<button class="btn btn-info"> 
 		        Login 
 		</button> 
+		</div>
 	</div>
 	<!-- /.container-fluid -->
 </nav>
