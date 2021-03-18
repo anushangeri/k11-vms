@@ -107,7 +107,7 @@ body {
         <div class="navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li>
-			       <button class="btn btn-info"> 
+			       <button class="btn btn-light"> 
 					        Login 
 					</button> 
 			     </li>
