@@ -1,0 +1,169 @@
+package net.javatutorial.DAO;
+
+import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import net.javatutorial.entity.ClientAccount;
+import net.javatutorial.tutorials.Main;
+
+public class ClientAccountManagerDAO {
+	
+	public static String addClientAccount(ClientAccount v){
+		Connection connection = null;
+		ResultSet rs = null;
+		Statement stmt = null;
+		String message = "";
+		try {
+			connection = Main.getConnection();
+			stmt = connection.createStatement();
+
+	        stmt.executeUpdate("CREATE EXTENSION pgcrypto;"
+	        		+ "INSERT INTO CLIENTACCOUNT "
+	        		+  "(ACCOUNT_ID, NAME, ID_TYPE, ID_NO, PASSWORD, CREATED_DT, MODIFIED_DT)" + 
+	        		"   VALUES ('" +v.getAccountId()+ "','" +v.getName()+ "','" +v.getIdType()+ "','" 
+	        		+v.getIdNo()+ "', crypt('" +v.getPassword()+"' , gen_salt('bf')),'" +v.getCreatedDt()+ "','" +v.getModifiedDt()+"')");
+	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM CLIENTACCOUNT;");
+	        while (rs.next()) {
+	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        }
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			message = "" + e;
+			//e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			message = "" + e;
+		}
+		finally {
+        	Main.close(connection, stmt, rs);
+        }
+		message = "Successful";
+		return message;
+	}
+	public static String updateClientAccountPassword(ClientAccount v){
+		Connection connection = null;
+		ResultSet rs = null;
+		Statement stmt = null;
+		String message = "";
+		try {
+			connection = Main.getConnection();
+			stmt = connection.createStatement();
+
+	        stmt.executeUpdate("CREATE EXTENSION pgcrypto; "
+	        		+ "SET TIMEZONE = 'Singapore'; "
+	        		+ "UPDATE CLIENTACCOUNT "
+	        		+  "SET MODIFIED_DT = NOW(),"
+	        		+ "PASSWORD = crypt('" +v.getPassword()+"' , gen_salt('bf'))" +
+	        		"   WHERE ACCOUNT_ID = '" + v.getAccountId() + "';");
+	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM CLIENTACCOUNT WHERE ACCOUNT_ID ='" + v.getAccountId() +"';");
+	        while (rs.next()) {
+	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        }
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			message = "" + e;
+			//e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			message = "" + e;
+		}
+		finally {
+        	Main.close(connection, stmt, rs);
+        }
+		message = "Successful";
+		return message;
+	}
+	public static int getNextVal(){
+		Connection connection = null;
+		ResultSet rs = null;
+		Statement stmt = null;
+		int result = 1;
+		try {
+			connection = Main.getConnection();
+			stmt = connection.createStatement();
+//	        stmt.executeUpdate("SELECT count(*) FROM EMPLOYEES;");
+	        rs = stmt.executeQuery("SELECT MAX(ACCOUNT_ID) FROM CLIENTACCOUNT;");
+	        if(rs != null) {
+	        	while (rs.next()) {
+		        	if(rs.getString(1) != null && !rs.getString(1).isEmpty()) {
+		        		result = Integer.parseInt(rs.getString(1)) + 1;
+		        	}
+	                
+	            }
+	        }
+	        
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+        	Main.close(connection, stmt, rs);
+        }
+		return result;
+	}
+
+	public static ArrayList<ClientAccount> retrieveByNameIDandPassword(String idNo, String password) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        ClientAccount v = null;
+        ArrayList<ClientAccount> vList = new ArrayList<ClientAccount>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "CREATE EXTENSION pgcrypto;"
+            		+ "SELECT ACCOUNT_ID, NAME, \r\n" + 
+            		"              ID_TYPE, ID_NO, PASSWORD, CREATED_DT, MODIFIED_DT \r\n"
+            		+ " FROM CLIENTACCOUNT "
+            		+ " WHERE ID_NO ='" + idNo + "' AND PASSWORD = crypt('" +password+"' , gen_salt('bf')) \r\n"
+    				+ " ORDER BY MODIFIED_DT DESC";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new ClientAccount(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getTimestamp(6),
+            			rs.getTimestamp(7));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+
+	public static String deleteAll() {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        String message = "All records deleted - No client account records available";
+        try {
+        	connection = Main.getConnection();
+            String sql = "DELETE FROM CLIENTACCOUNT WHERE CREATED_DT <= GETDATE() - 30;";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return message;
+    }
+}

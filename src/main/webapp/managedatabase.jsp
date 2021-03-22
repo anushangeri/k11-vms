@@ -51,7 +51,7 @@
           </td>
 	    </tr>
 	    <tr>
-	      <th scope="row">1</th>
+	      <th scope="row">2</th>
 	      <td>Visitor Management System (VMS)</td>
 	      <td><form action="createVmsTbl" method="post">
                   <button class="btn" type="submit">Create</button>
@@ -67,7 +67,7 @@
           </td>
 	    </tr>
 	    <tr>
-	      <th scope="row">1</th>
+	      <th scope="row">3</th>
 	      <td>Vehicle Movement System</td>
 	      <td><form action="createVehmsTbl" method="post">
                   <button class="btn" type="submit">Create</button>
@@ -78,6 +78,22 @@
               </form>
           </td>
 	      <td><form action="deleteVehmsTbl" method="post">
+                  <button class="btn" type="submit">Delete</button>
+              </form>
+          </td>
+	    </tr>
+	    <tr>
+	      <th scope="row">4</th>
+	      <td>Client Account</td>
+	      <td><form action="clientAccountTbl" method="post">
+                  <button class="btn" type="submit">Create</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Update</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
                   <button class="btn" type="submit">Delete</button>
               </form>
           </td>

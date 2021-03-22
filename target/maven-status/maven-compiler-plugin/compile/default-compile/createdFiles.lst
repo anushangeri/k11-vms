@@ -8,6 +8,7 @@ net\javatutorial\tutorials\CVehMSTblServlet.class
 net\javatutorial\tutorials\SimpleServlet.class
 net\javatutorial\DAO\VMSTblDAO.class
 net\javatutorial\tutorials\Main.class
+net\javatutorial\DAO\ClientAccountTblDAO.class
 net\javatutorial\tutorials\RetrieveVehicleByNRICServlet.class
 net\javatutorial\tutorials\UVehMSTblServlet.class
 net\javatutorial\tutorials\CVMSTblServlet.class
@@ -15,11 +16,13 @@ net\javatutorial\tutorials\RetrieveVisitorByNRICServlet.class
 net\javatutorial\DAO\VMSManagerDAO.class
 net\javatutorial\tutorials\ViewVehicleRecordServlet.class
 net\javatutorial\tutorials\DeleteAllVisitorRecordServlet.class
+net\javatutorial\entity\ClientAccount.class
 net\javatutorial\tutorials\UpdateVehicleLorryChetRecordServlet.class
 net\javatutorial\DAO\VehMSTblDAO.class
 net\javatutorial\tutorials\AddVehicleRecordServlet.class
 net\javatutorial\tutorials\UpdateVehicleDeliveryNoticeRecordServlet.class
 net\javatutorial\tutorials\UpdateVehicleTimeOutRecordServlet.class
 net\javatutorial\tutorials\ViewVisitorRecordServlet.class
+net\javatutorial\DAO\ClientAccountManagerDAO.class
 net\javatutorial\tutorials\DeleteAllVehicleRecordServlet.class
 net\javatutorial\tutorials\AddVisitorRecordServlet.class

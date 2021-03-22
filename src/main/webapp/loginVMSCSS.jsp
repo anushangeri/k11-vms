@@ -107,9 +107,7 @@ body {
         <div class="navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li>
-			       <button class="btn btn-light"> 
-					        Login 
-					</button> 
+                	<a class="btn btn-light" href="/addClientAccount.jsp" role="button">Link</a>
 			     </li>
             </ul>
         </div>
