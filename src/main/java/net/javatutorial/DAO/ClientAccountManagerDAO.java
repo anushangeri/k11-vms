@@ -26,7 +26,7 @@ public class ClientAccountManagerDAO {
 	        		+ "INSERT INTO CLIENTACCOUNT "
 	        		+  "(ACCOUNT_ID, NAME, ID_TYPE, ID_NO, PASSWORD, CREATED_DT, MODIFIED_DT)" + 
 	        		"   VALUES ('" +v.getAccountId()+ "','" +v.getName()+ "','" +v.getIdType()+ "','" 
-	        		+v.getIdNo()+ "', '" +v.getPassword()+"' ,'" +v.getCreatedDt()+ "','" +v.getModifiedDt()+"')");
+	        		+v.getIdNo()+ "', crypt('" +v.getPassword()+"' , gen_salt('bf')),'" +v.getCreatedDt()+ "','" +v.getModifiedDt()+"')");
 	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM CLIENTACCOUNT;");
 	        while (rs.next()) {
 	        	message = "Read from DB: " + rs.getTimestamp("tick");

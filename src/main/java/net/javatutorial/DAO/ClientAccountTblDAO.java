@@ -16,7 +16,7 @@ public class ClientAccountTblDAO {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
 //	        stmt.executeUpdate("DROP TABLE IF EXISTS ticks");
-	        stmt.executeUpdate("CREATE EXTENSION pgcrypto;"
+	        stmt.executeUpdate("DROP TABLE IF EXISTS CLIENTACCOUNT;"
 	        		+ "CREATE TABLE IF NOT EXISTS CLIENTACCOUNT (\r\n" + 
 	        		"   ACCOUNT_ID VARCHAR (100)  NOT NULL,\r\n" + 
 	        		"   NAME VARCHAR (100)  NOT NULL,\r\n" + 
