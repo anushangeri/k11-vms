@@ -46,6 +46,7 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		String idType = request.getParameter("idType");
 		String idNo = request.getParameter("idNo");
 		String password= request.getParameter("psw");
+		String accessType= request.getParameter("accessType");
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 
@@ -53,7 +54,7 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		String salt = PasswordUtils.generateSalt(512).get();
 		String hashedPassword = PasswordUtils.hashPassword(password, salt).get();
 				
-		ClientAccount v = new ClientAccount( accountId,  name, idType, idNo,  hashedPassword,  timestamp, timestamp);
+		ClientAccount v = new ClientAccount( accountId,  name, idType, idNo,  hashedPassword, accessType, timestamp, timestamp);
 		
 		String message = ClientAccountManagerDAO.addClientAccount(v);
 		

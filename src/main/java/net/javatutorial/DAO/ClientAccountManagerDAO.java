@@ -23,9 +23,9 @@ public class ClientAccountManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("INSERT INTO CLIENTACCOUNT "
-	        		+  "(ACCOUNT_ID, NAME, ID_TYPE, ID_NO, PASSWORD, CREATED_DT, MODIFIED_DT)" + 
+	        		+  "(ACCOUNT_ID, NAME, ID_TYPE, ID_NO, PASSWORD, ACCESS_TYPE, CREATED_DT, MODIFIED_DT)" + 
 	        		"   VALUES ('" +v.getAccountId()+ "','" +v.getName()+ "','" +v.getIdType()+ "','" 
-	        		+v.getIdNo()+ "','" +v.getPassword()+ "','" +v.getCreatedDt()+ "','" +v.getModifiedDt()+"')");
+	        		+v.getIdNo()+ "','" +v.getPassword()+ "','" +v.getAccessType()+ "','" +v.getCreatedDt()+ "','" +v.getModifiedDt()+"')");
 	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM CLIENTACCOUNT;");
 	        while (rs.next()) {
 	        	message = "Read from DB: " + rs.getTimestamp("tick");
@@ -119,7 +119,7 @@ public class ClientAccountManagerDAO {
         try {
         	connection = Main.getConnection();
             String sql = "SELECT ACCOUNT_ID, NAME, \r\n" + 
-            		"              ID_TYPE, ID_NO, PASSWORD, CREATED_DT, MODIFIED_DT \r\n"
+            		"              ID_TYPE, ID_NO, PASSWORD, ACCESS_TYPE, CREATED_DT, MODIFIED_DT \r\n"
             		+ " FROM CLIENTACCOUNT "
             		+ " WHERE ID_NO ='" + idNo + "' AND PASSWORD = '" +password+"' \r\n"
     				+ " ORDER BY MODIFIED_DT DESC";
@@ -132,8 +132,9 @@ public class ClientAccountManagerDAO {
             			rs.getString(3),
             			rs.getString(4),
             			rs.getString(5),
-            			rs.getTimestamp(6),
-            			rs.getTimestamp(7));
+            			rs.getString(6),
+            			rs.getTimestamp(7),
+            			rs.getTimestamp(8));
                 vList.add(v);
             }
         } catch (Exception e) {

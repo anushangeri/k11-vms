@@ -135,6 +135,19 @@
 								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
 								required>
 						</div>
+						<div class="form-group col-md-4">
+							<label for="accessType">Access Type: </label> <select name="accessType"
+								class="form-control" required>
+								<%
+									for (int i = 0; i < idType.size(); i++) {
+								%>
+								<option value="<%=idType.get(i)%>">
+									<%=idType.get(i)%></option>
+								<%
+									}
+								%>
+							</select>
+						</div>
 					</div>
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active">Submit
