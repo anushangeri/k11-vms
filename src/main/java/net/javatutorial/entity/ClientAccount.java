@@ -16,7 +16,6 @@ public class ClientAccount {
     
 	public ClientAccount(String accountId, String name, String idType, String idNo, String password,
 			Timestamp createdDt, Timestamp modifiedDt) {
-		super();
 		this.accountId = accountId;
 		this.name = name;
 		this.idType = idType;
