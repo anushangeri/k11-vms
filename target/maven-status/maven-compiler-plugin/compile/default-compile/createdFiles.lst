@@ -1,3 +1,4 @@
+net\javatutorial\tutorials\AddClientAccountRecordServlet.class
 net\javatutorial\tutorials\VMSCheckNRICServlet.class
 net\javatutorial\DAO\VehMSManagerDAO.class
 net\javatutorial\tutorials\UVMSTblServlet.class
@@ -15,6 +16,7 @@ net\javatutorial\tutorials\CVMSTblServlet.class
 net\javatutorial\tutorials\RetrieveVisitorByNRICServlet.class
 net\javatutorial\DAO\VMSManagerDAO.class
 net\javatutorial\tutorials\ViewVehicleRecordServlet.class
+net\javatutorial\tutorials\CClientAccountTblServlet.class
 net\javatutorial\tutorials\DeleteAllVisitorRecordServlet.class
 net\javatutorial\entity\ClientAccount.class
 net\javatutorial\tutorials\UpdateVehicleLorryChetRecordServlet.class

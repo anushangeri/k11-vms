@@ -1,4 +1,5 @@
 E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java\net\javatutorial\tutorials\VMSCheckNRICServlet.java
+E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java\net\javatutorial\tutorials\CClientAccountTblServlet.java
 E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java\net\javatutorial\tutorials\RetrieveVisitorByNRICServlet.java
 E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java\net\javatutorial\tutorials\UpdateVehicleDeliveryNoticeRecordServlet.java
 E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java\net\javatutorial\DAO\ClientAccountTblDAO.java
@@ -9,6 +10,7 @@ E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java\net\javatu
 E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java\net\javatutorial\tutorials\SimpleServlet.java
 E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java\net\javatutorial\tutorials\UpdateVehicleLorryChetRecordServlet.java
 E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java\net\javatutorial\entity\ClientAccount.java
+E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java\net\javatutorial\tutorials\AddClientAccountRecordServlet.java
 E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java\net\javatutorial\tutorials\RetrieveVehicleByNRICServlet.java
 E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java\net\javatutorial\DAO\ClientAccountManagerDAO.java
 E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java\net\javatutorial\tutorials\UpdateVisitorRecordServlet.java

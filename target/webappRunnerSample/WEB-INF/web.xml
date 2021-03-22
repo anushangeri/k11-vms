@@ -195,7 +195,20 @@
 		<servlet-class>net.javatutorial.tutorials.ViewVehicleRecordServlet</servlet-class>
 	</servlet>
 	<!-- Vehicle Movement System END  -->
-	
+	<!-- Client Account START  -->
+	<servlet>
+		<description />
+		<display-name>CClientAccountTblServlet</display-name>
+		<servlet-name>CClientAccountTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CClientAccountTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>AddClientAccountRecordServlet</display-name>
+		<servlet-name>AddClientAccountRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddClientAccountRecordServlet</servlet-class>
+	</servlet>
+	<!-- Client Account END  -->
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>
 		<url-pattern>/hello</url-pattern>
@@ -311,4 +324,14 @@
 		<url-pattern>/vehms</url-pattern>
 	</servlet-mapping>
 	<!-- Vehicle Movement System END  -->
+	<!-- Client Account START  -->
+	<servlet-mapping>
+		<servlet-name>CClientAccountTblServlet</servlet-name>
+		<url-pattern>/clientAccountTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddClientAccountRecordServlet</servlet-name>
+		<url-pattern>/addClientAccount</url-pattern>
+	</servlet-mapping>
+	<!-- Client Account END  -->
 </web-app>
