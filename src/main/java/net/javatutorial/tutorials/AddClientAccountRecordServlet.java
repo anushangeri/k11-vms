@@ -24,6 +24,7 @@ import org.joda.time.format.DateTimeFormatter;
 
 import net.javatutorial.DAO.ClientAccountManagerDAO;
 import net.javatutorial.entity.ClientAccount;
+import net.javatutorial.tutorials.PasswordUtils;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -48,7 +49,11 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 
-		ClientAccount v = new ClientAccount( accountId,  name, idType, idNo, password,  timestamp, timestamp);
+		//hashing the password
+		String salt = PasswordUtils.generateSalt(512).get();
+		String hashedPassword = PasswordUtils.hashPassword(password, salt).get();
+				
+		ClientAccount v = new ClientAccount( accountId,  name, idType, idNo,  hashedPassword,  timestamp, timestamp);
 		
 		String message = ClientAccountManagerDAO.addClientAccount(v);
 		

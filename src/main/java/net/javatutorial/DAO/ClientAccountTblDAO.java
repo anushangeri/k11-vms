@@ -22,7 +22,7 @@ public class ClientAccountTblDAO {
 	        		"   NAME VARCHAR (100)  NOT NULL,\r\n" + 
 	        		"   ID_TYPE VARCHAR (100)   NULL, \r\n" + 
 	        		"   ID_NO VARCHAR (100)   NULL, \r\n" + 
-	        		"   PASSWORD  VARCHAR (100) NOT NULL,   \r\n" + 
+	        		"   PASSWORD  VARCHAR (255) NOT NULL,   \r\n" + 
 	        		"   CREATED_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
 	        		"   MODIFIED_DT TIMESTAMP   NULL \r\n" + 
 	        		");");

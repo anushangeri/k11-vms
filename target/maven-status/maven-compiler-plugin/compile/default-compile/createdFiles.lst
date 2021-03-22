@@ -9,6 +9,7 @@ net\javatutorial\tutorials\CVehMSTblServlet.class
 net\javatutorial\tutorials\SimpleServlet.class
 net\javatutorial\DAO\VMSTblDAO.class
 net\javatutorial\tutorials\Main.class
+net\javatutorial\tutorials\PasswordUtils.class
 net\javatutorial\DAO\ClientAccountTblDAO.class
 net\javatutorial\tutorials\RetrieveVehicleByNRICServlet.class
 net\javatutorial\tutorials\UVehMSTblServlet.class

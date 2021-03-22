@@ -22,11 +22,10 @@ public class ClientAccountManagerDAO {
 			connection = Main.getConnection();
 			stmt = connection.createStatement();
 
-	        stmt.executeUpdate("CREATE EXTENSION pgcrypto;"
-	        		+ "INSERT INTO CLIENTACCOUNT "
+	        stmt.executeUpdate("INSERT INTO CLIENTACCOUNT "
 	        		+  "(ACCOUNT_ID, NAME, ID_TYPE, ID_NO, PASSWORD, CREATED_DT, MODIFIED_DT)" + 
 	        		"   VALUES ('" +v.getAccountId()+ "','" +v.getName()+ "','" +v.getIdType()+ "','" 
-	        		+v.getIdNo()+ "', crypt('test' , gen_salt('bf')),'" +v.getCreatedDt()+ "','" +v.getModifiedDt()+"')");
+	        		+v.getIdNo()+ "','" +v.getPassword()+ "','" +v.getCreatedDt()+ "','" +v.getModifiedDt()+"')");
 	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM CLIENTACCOUNT;");
 	        while (rs.next()) {
 	        	message = "Read from DB: " + rs.getTimestamp("tick");
@@ -55,11 +54,10 @@ public class ClientAccountManagerDAO {
 			connection = Main.getConnection();
 			stmt = connection.createStatement();
 
-	        stmt.executeUpdate("CREATE EXTENSION pgcrypto; "
-	        		+ "SET TIMEZONE = 'Singapore'; "
+	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
 	        		+ "UPDATE CLIENTACCOUNT "
 	        		+  "SET MODIFIED_DT = NOW(),"
-	        		+ "PASSWORD = crypt('" +v.getPassword()+"' , gen_salt('bf'))" +
+	        		+ "PASSWORD = '" +v.getPassword()+"'" +
 	        		"   WHERE ACCOUNT_ID = '" + v.getAccountId() + "';");
 	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM CLIENTACCOUNT WHERE ACCOUNT_ID ='" + v.getAccountId() +"';");
 	        while (rs.next()) {
@@ -120,11 +118,10 @@ public class ClientAccountManagerDAO {
         ArrayList<ClientAccount> vList = new ArrayList<ClientAccount>();
         try {
         	connection = Main.getConnection();
-            String sql = "CREATE EXTENSION pgcrypto;"
-            		+ "SELECT ACCOUNT_ID, NAME, \r\n" + 
+            String sql = "SELECT ACCOUNT_ID, NAME, \r\n" + 
             		"              ID_TYPE, ID_NO, PASSWORD, CREATED_DT, MODIFIED_DT \r\n"
             		+ " FROM CLIENTACCOUNT "
-            		+ " WHERE ID_NO ='" + idNo + "' AND PASSWORD = crypt('" +password+"' , gen_salt('bf')) \r\n"
+            		+ " WHERE ID_NO ='" + idNo + "' AND PASSWORD = '" +password+"' \r\n"
     				+ " ORDER BY MODIFIED_DT DESC";
             pstmt = connection.prepareStatement(sql);
 
