@@ -106,6 +106,7 @@ body {
 </style>
 
 <div class="nav navbar-nav navbar navbar-inverse navbar-static-top">
+<div class="login-btn">
 	<div class="dropdown">
 		<button class="btn btn-secondary dropdown-toggle" type="button"
 			id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -114,6 +115,7 @@ body {
 			<a class="dropdown-item" href="/clientLogin.jsp">Login</a> 
 			<a class="dropdown-item" href="/addClientAccount.jsp">Add Account</a> 
 		</div>
+	</div>
 	</div>
 </div>
 
