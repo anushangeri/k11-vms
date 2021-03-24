@@ -60,9 +60,9 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		
 		ArrayList<String> responseObj = new ArrayList<String>();
 		responseObj.add(message + " " + name);
-		request.setAttribute("responseObj", responseObj);
-		// Redirect to view visitor servlet to query all the visitors again.
-		response.sendRedirect("/index.jsp");
+		request.setAttribute("responseObj", v.toString());
+		RequestDispatcher rd = request.getRequestDispatcher("clientLogin.jsp");
+        rd.forward(request, response);
 	}
 	@Override
 	public void init() throws ServletException {
