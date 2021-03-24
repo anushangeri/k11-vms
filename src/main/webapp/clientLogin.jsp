@@ -45,6 +45,16 @@
 			return false;
 		}
 	}
+	$(".toggle-password").click(function() {
+
+	  $(this).toggleClass("fa-eye fa-eye-slash");
+	  var input = $($(this).attr("toggle"));
+	  if (input.attr("type") == "password") {
+	    input.attr("type", "text");
+	  } else {
+	    input.attr("type", "password");
+	  }
+	});
 </script>
 </head>
 <body>
@@ -71,7 +81,7 @@
 					<label for="psw">Password</label> <input type="password" class="form-control" id="psw"
 						name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 						title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-						required>
+						required><span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 				</div>
 				<button type="submit" class="btn btn-primary">Login</button>
 			</div>
