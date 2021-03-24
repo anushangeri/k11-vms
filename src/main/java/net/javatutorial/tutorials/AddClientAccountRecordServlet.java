@@ -54,7 +54,7 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		String salt = PasswordUtils.generateSalt(512).get();
 		String hashedPassword = PasswordUtils.hashPassword(password, salt).get();
 				
-		ClientAccount v = new ClientAccount( accountId,  name, idType, idNo,  hashedPassword, accessType, timestamp, timestamp);
+		ClientAccount v = new ClientAccount( accountId,  name, idType, idNo,  hashedPassword, salt, accessType, timestamp, timestamp);
 		
 		String message = ClientAccountManagerDAO.addClientAccount(v);
 		

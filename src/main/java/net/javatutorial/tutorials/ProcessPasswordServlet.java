@@ -42,19 +42,18 @@ public class ProcessPasswordServlet extends HttpServlet {
 		
 		String idNo = request.getParameter("idNo");
 		String password = request.getParameter("psw");
-
-		//hashing the password entered by user
-		String salt = PasswordUtils.generateSalt(512).get();
 				
 		//retrieving the hashed password by DB based on idNo entered by user
 		ArrayList<ClientAccount> vList = ClientAccountManagerDAO.retrieveByID(idNo);
 		boolean verified = false;
 		String key = " ";
-		String userHash =  PasswordUtils.hashPassword(password, salt).get();
+		String userHash = " ";
+		String salt = " ";
 		if(vList != null && vList.size() > 0 ) {
 			ClientAccount c = vList.get(0);
 			key = c.getPassword();
-			
+			salt = c.getSalt();
+			userHash =  PasswordUtils.hashPassword(password, salt).get();
 			verified = PasswordUtils.verifyPassword(password, key, salt);
 		}
 		

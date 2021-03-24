@@ -9,24 +9,22 @@ public class ClientAccount {
     private String idType;
     private String idNo;
     private String password;
+    private String salt;
     private String accessType;
     private Timestamp createdDt;
     private Timestamp modifiedDt;
-    
-    
-	public ClientAccount(String accountId, String name, String idType, String idNo, String password, String accessType,
-			Timestamp createdDt, Timestamp modifiedDt) {
-		super();
+	public ClientAccount(String accountId, String name, String idType, String idNo, String password, String salt,
+			String accessType, Timestamp createdDt, Timestamp modifiedDt) {
 		this.accountId = accountId;
 		this.name = name;
 		this.idType = idType;
 		this.idNo = idNo;
 		this.password = password;
+		this.salt = salt;
 		this.accessType = accessType;
 		this.createdDt = createdDt;
 		this.modifiedDt = modifiedDt;
 	}
-	
 	/**
 	 * @return the accountId
 	 */
@@ -88,6 +86,18 @@ public class ClientAccount {
 		this.password = password;
 	}
 	/**
+	 * @return the salt
+	 */
+	public String getSalt() {
+		return salt;
+	}
+	/**
+	 * @param salt the salt to set
+	 */
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+	/**
 	 * @return the accessType
 	 */
 	public String getAccessType() {
@@ -126,10 +136,8 @@ public class ClientAccount {
 	@Override
 	public String toString() {
 		return "ClientAccount [accountId=" + accountId + ", name=" + name + ", idType=" + idType + ", idNo=" + idNo
-				+ ", password=" + password + ", accessType=" + accessType + ", createdDt=" + createdDt + ", modifiedDt="
-				+ modifiedDt + "]";
+				+ ", password=" + password + ", salt=" + salt + ", accessType=" + accessType + ", createdDt="
+				+ createdDt + ", modifiedDt=" + modifiedDt + "]";
 	}
     
-	
-	
 }
