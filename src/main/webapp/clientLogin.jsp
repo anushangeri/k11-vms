@@ -45,16 +45,14 @@
 			return false;
 		}
 	}
-	$(".toggle-password").click(function() {
-
-	  $(this).toggleClass("fa-eye fa-eye-slash");
-	  var input = $($(this).attr("toggle"));
-	  if (input.attr("type") == "password") {
-	    input.attr("type", "text");
-	  } else {
-	    input.attr("type", "password");
-	  }
-	});
+	function showPassword() {
+		  var x = document.getElementById("psw");
+		  if (x.type === "password") {
+		    x.type = "text";
+		  } else {
+		    x.type = "password";
+		  }
+	}
 </script>
 </head>
 <body>
@@ -78,20 +76,20 @@
 						minlength="4" maxlength="9" required>
 				</div>
 				<div class="form-group col-md-4">
-					<label for="psw">Password</label> <input type="password" class="form-control" id="password-field" 
+					<label for="psw">Password</label> <input type="password" class="form-control" id="psw"
 						name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 						title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-						required><span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+						required><input type="checkbox" onclick="showPassword()">Show Password
 				</div>
 				<button type="submit" class="btn btn-primary">Login</button>
 			</div>
 		</form>
 	</center>
 	<div class="container body-content">
-		<center>
-			<a href="index.jsp" class="btn btn-warning btn-lg active"
-				role="button" aria-pressed="true">Back</a>
-		</center>
-	</div>
+			<center>
+				<a href="index.jsp" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Back</a>
+			</center>
+		</div>
 </body>
 </html>
