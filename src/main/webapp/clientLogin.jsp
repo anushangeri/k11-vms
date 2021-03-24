@@ -78,7 +78,7 @@
 						minlength="4" maxlength="9" required>
 				</div>
 				<div class="form-group col-md-4">
-					<label for="psw">Password</label> <input type="password" class="form-control" id="psw"
+					<label for="psw">Password</label> <input type="password" class="form-control" id="password-field" 
 						name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 						title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
 						required><span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>

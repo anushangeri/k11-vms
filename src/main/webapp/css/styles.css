@@ -179,6 +179,13 @@ form{
 	border: none !important;
 	width: 100% !important;
 }
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+}
 
 /*for printing lable*/
 @media print {
