@@ -208,6 +208,12 @@
 		<servlet-name>AddClientAccountRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.AddClientAccountRecordServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>PasswordVerifiedServlet</display-name>
+		<servlet-name>PasswordVerifiedServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.PasswordVerifiedServlet</servlet-class>
+	</servlet>
 	<!-- Client Account END  -->
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>
@@ -332,6 +338,10 @@
 	<servlet-mapping>
 		<servlet-name>AddClientAccountRecordServlet</servlet-name>
 		<url-pattern>/addClientAccount</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PasswordVerifiedServlet</servlet-name>
+		<url-pattern>/verifyLogin</url-pattern>
 	</servlet-mapping>
 	<!-- Client Account END  -->
 </web-app>

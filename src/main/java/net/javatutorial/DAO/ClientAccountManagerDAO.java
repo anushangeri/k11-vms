@@ -145,6 +145,41 @@ public class ClientAccountManagerDAO {
         return vList;
     }
 
+	public static ArrayList<ClientAccount> retrieveByID(String idNo) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        ClientAccount v = null;
+        ArrayList<ClientAccount> vList = new ArrayList<ClientAccount>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT ACCOUNT_ID, NAME, \r\n" + 
+            		"              ID_TYPE, ID_NO, PASSWORD, ACCESS_TYPE, CREATED_DT, MODIFIED_DT \r\n"
+            		+ " FROM CLIENTACCOUNT "
+            		+ " WHERE ID_NO ='" + idNo + "' \r\n"
+    				+ " ORDER BY MODIFIED_DT DESC";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new ClientAccount(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getString(6),
+            			rs.getTimestamp(7),
+            			rs.getTimestamp(8));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
 	public static String deleteAll() {
         PreparedStatement pstmt = null;
         Connection connection = null;

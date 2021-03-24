@@ -33,7 +33,7 @@ public class PasswordUtils {
 	    RAND.nextBytes(salt);
 
 	    return Optional.of(Base64.getEncoder().encodeToString(salt));
-	  }
+	}
 	
 	public static Optional<String> hashPassword (String password, String salt) {
 
@@ -50,17 +50,17 @@ public class PasswordUtils {
 	      return Optional.of(Base64.getEncoder().encodeToString(securePassword));
 
 	    } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-	      System.err.println("Exception encountered in hashPassword()");
+	    	System.err.println("Exception encountered in hashPassword()");
 	      return Optional.empty();
 
 	    } finally {
 	      spec.clearPassword();
 	    }
-	  }
+	}
 
 	public static boolean verifyPassword (String password, String key, String salt) {
 	    Optional<String> optEncrypted = hashPassword(password, salt);
 	    if (!optEncrypted.isPresent()) return false;
 	    return optEncrypted.get().equals(key);
-	  }
+	}
 }
