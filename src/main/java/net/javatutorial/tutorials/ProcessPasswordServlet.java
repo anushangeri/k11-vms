@@ -58,11 +58,12 @@ public class ProcessPasswordServlet extends HttpServlet {
 			verified = PasswordUtils.verifyPassword(password, key, salt);
 		}
 		
-		ArrayList<String> responseObj = new ArrayList<String>();
-		responseObj.add(verified +" " + password +"userHash: "+ userHash +"key: " + key);
+		String responseObj = verified +" " + password +"userHash: "+ userHash +"key: " + key;
 		request.setAttribute("responseObj", responseObj);
 		// Redirect to view visitor servlet to query all the visitors again.
-		response.sendRedirect("/clientLogin.jsp");
+		//response.sendRedirect("/clientLogin.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("clientLogin.jsp");
+        rd.forward(request, response);
 	}
 	@Override
 	public void init() throws ServletException {
