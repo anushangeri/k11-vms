@@ -47,17 +47,17 @@ public class ProcessPasswordServlet extends HttpServlet {
 		ArrayList<ClientAccount> vList = ClientAccountManagerDAO.retrieveByID(idNo);
 		boolean verified = false;
 		String key = " ";
-		String userHash = " ";
 		String salt = " ";
 		if(vList != null && vList.size() > 0 ) {
 			ClientAccount c = vList.get(0);
-			key = c.getPassword();
-			salt = c.getSalt();
-			userHash =  PasswordUtils.hashPassword(password, salt).get();
-			verified = PasswordUtils.verifyPassword(password, key, salt);
+			if(c != null) {
+				key = c.getPassword();
+				salt = c.getSalt();
+				verified = PasswordUtils.verifyPassword(password, key, salt);
+			}
 		}
 		
-		String responseObj = verified +" " + password +"userHash: "+ userHash +"key: " + key;
+		String responseObj = verified +"";
 		request.setAttribute("responseObj", responseObj);
 		// Redirect to view visitor servlet to query all the visitors again.
 		//response.sendRedirect("/clientLogin.jsp");

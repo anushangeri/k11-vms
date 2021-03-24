@@ -58,9 +58,8 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		
 		String message = ClientAccountManagerDAO.addClientAccount(v);
 		
-		ArrayList<String> responseObj = new ArrayList<String>();
-		responseObj.add(message + " " + name);
-		request.setAttribute("responseObj", v.toString());
+		
+		request.setAttribute("responseObj", message);
 		RequestDispatcher rd = request.getRequestDispatcher("clientLogin.jsp");
         rd.forward(request, response);
 	}
