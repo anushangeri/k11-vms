@@ -18,9 +18,7 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="all">
 <link rel="stylesheet" href="css/styles.css" media="all">
-<link
-	href=' http://fonts.googleapis.com/css?family=Inconsolata|Droid+Sans'
-	rel='stylesheet' type='text/css'>
+
 <style type="text/css">
 .navbar-default {
 	background-color: #9b59b6;

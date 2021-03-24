@@ -20,7 +20,7 @@
 	src="https://drvic10k.github.io/bootstrap-sortable/Scripts/bootstrap-sortable.js"
 	type="text/javascript"></script>
 <link
-	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+	href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
 	rel="stylesheet">
 <script>
 	function validateForm() {
