@@ -1,4 +1,5 @@
 net\javatutorial\tutorials\AddClientAccountRecordServlet.class
+net\javatutorial\tutorials\ProcessPasswordServlet.class
 net\javatutorial\tutorials\VMSCheckNRICServlet.class
 net\javatutorial\DAO\VehMSManagerDAO.class
 net\javatutorial\tutorials\UVMSTblServlet.class

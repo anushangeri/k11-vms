@@ -34,7 +34,7 @@ import java.util.Date;
 /**
  * Servlet implementation class PasswordVerifiedServlet
  */
-public class PasswordVerifiedServlet extends HttpServlet {
+public class ProcessPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 	
 	@Override

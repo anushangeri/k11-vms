@@ -87,36 +87,32 @@
 	color: #ecdbff;
 }
 
-.list{
+.list {
 	background-color: #FFA8A4 !important;
 }
-#tableview{
+
+#tableview {
 	width: 80% !important;
 	margin-left: 2% !important;
 }
-.login-btn{
+
+.login-btn {
 	float: right !important;
 }
+
 body {
 	background-color: #F3F3F3;
 }
 </style>
-
-<div class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-        <div class="navbar-collapse">
-            <ul class="nav navbar-nav navbar-left">
-                <li>
-                	<a class="btn btn-light" href="/clientLogin.jsp" role="button">Login</a>
-			     </li>
-			     <li>
-                	<a class="btn btn-light" href="/addClientAccount.jsp" role="button">Add Account</a>
-			     </li>
-            </ul>
-        </div>
-    </div>
+<div class="dropdown">
+	<button class="btn btn-secondary dropdown-toggle" type="button"
+		id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+		aria-expanded="false">Client Options</button>
+	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		<a class="dropdown-item" href="/clientLogin.jsp">Login</a> 
+		<a class="dropdown-item" href="/addClientAccount.jsp">Add Account</a> 
+	</div>
 </div>
-
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
@@ -126,11 +122,13 @@ body {
 <title>K11 VMS</title>
 </head>
 <body>
- 	<div class="container"> 
+	<div class="container">
 		<h1 id="k11title">VMS DEMO</h1>
-		<center><b>by K11 SECURITY ENGINEERING</b></center>
-		
-	</div> 
+		<center>
+			<b>by K11 SECURITY ENGINEERING</b>
+		</center>
+
+	</div>
 </body>
 
 
