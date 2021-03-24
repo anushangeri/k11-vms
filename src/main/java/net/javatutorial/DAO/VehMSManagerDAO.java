@@ -157,7 +157,7 @@ public class VehMSManagerDAO {
 			connection = Main.getConnection();
 			stmt = connection.createStatement();
 //	        stmt.executeUpdate("SELECT count(*) FROM EMPLOYEES;");
-	        rs = stmt.executeQuery("SELECT MAX(VEHICLE_ID) FROM VEHMS;");
+	        rs = stmt.executeQuery("SELECT MAX(CAST(VEHICLE_ID AS INTEGER)) FROM VEHMS;");
 	        if(rs != null) {
 	        	while (rs.next()) {
 		        	if(rs.getString(1) != null && !rs.getString(1).isEmpty()) {

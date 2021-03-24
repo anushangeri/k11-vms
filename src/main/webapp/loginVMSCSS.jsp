@@ -109,6 +109,9 @@ body {
                 <li>
                 	<a class="btn btn-light" href="/addClientAccount.jsp" role="button">Login</a>
 			     </li>
+			     <li>
+                	<a class="btn btn-light" href="/addClientAccount.jsp" role="button">Add Account</a>
+			     </li>
             </ul>
         </div>
     </div>

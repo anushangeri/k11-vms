@@ -89,7 +89,7 @@ public class VMSManagerDAO {
 			connection = Main.getConnection();
 			stmt = connection.createStatement();
 //	        stmt.executeUpdate("SELECT count(*) FROM EMPLOYEES;");
-	        rs = stmt.executeQuery("SELECT MAX(VMS_ID) FROM VMS;");
+	        rs = stmt.executeQuery("SELECT MAX(CAST(VMS_ID AS INTEGER)) FROM VMS;");
 	        if(rs != null) {
 	        	while (rs.next()) {
 		        	if(rs.getString(1) != null && !rs.getString(1).isEmpty()) {
