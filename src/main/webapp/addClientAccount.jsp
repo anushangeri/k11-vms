@@ -74,6 +74,7 @@
 <body>
 	<%
 		ArrayList<String> idType = new ArrayList<String>();
+		ArrayList<String> accessType = new ArrayList<String>();
 		SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
 		try {
 			//Dropdown for idType START
@@ -89,6 +90,20 @@
 				idType.add(cec.getValue("idtype").trim());
 			}
 			//Dropdown for idType END
+			
+			//Dropdown for accessType START
+			String accessTypeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/10/public/values";
+			// Use this String as url
+			URL accessTypeurl = new URL(accessTypeUrl);
+
+			// Get Feed of Spreadsheet url
+			ListFeed accessTypelf = service.getFeed(accessTypeurl, ListFeed.class);
+
+			for (ListEntry le : accessTypelf.getEntries()) {
+				CustomElementCollection cec = le.getCustomElements();
+				accessType.add(cec.getValue("accesstype").trim());
+			}
+			//Dropdown for accessType END
 
 		} catch (Exception e) {
 	%>
@@ -139,10 +154,10 @@
 							<label for="accessType">Access Type: </label> <select name="accessType"
 								class="form-control" required>
 								<%
-									for (int i = 0; i < idType.size(); i++) {
+									for (int i = 0; i < accessType.size(); i++) {
 								%>
-								<option value="<%=idType.get(i)%>">
-									<%=idType.get(i)%></option>
+								<option value="<%=accessType.get(i)%>">
+									<%=accessType.get(i)%></option>
 								<%
 									}
 								%>
