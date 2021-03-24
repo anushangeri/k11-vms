@@ -104,15 +104,19 @@ body {
 	background-color: #F3F3F3;
 }
 </style>
-<div class="dropdown">
-	<button class="btn btn-secondary dropdown-toggle" type="button"
-		id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-		aria-expanded="false">Client Options</button>
-	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		<a class="dropdown-item" href="/clientLogin.jsp">Login</a> 
-		<a class="dropdown-item" href="/addClientAccount.jsp">Add Account</a> 
+
+<div class="nav navbar-nav navbar navbar-inverse navbar-static-top">
+	<div class="dropdown">
+		<button class="btn btn-secondary dropdown-toggle" type="button"
+			id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+			aria-expanded="false">Client Options</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a class="dropdown-item" href="/clientLogin.jsp">Login</a> 
+			<a class="dropdown-item" href="/addClientAccount.jsp">Add Account</a> 
+		</div>
 	</div>
 </div>
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
