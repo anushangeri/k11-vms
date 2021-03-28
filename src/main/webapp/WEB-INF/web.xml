@@ -220,6 +220,24 @@
 		<servlet-name>ResetPasswordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.ResetPasswordServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewClientRecordServlet</display-name>
+		<servlet-name>ViewClientRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewClientRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>OverridePasswordServlet</display-name>
+		<servlet-name>OverridePasswordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.OverridePasswordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteClientAccountServlet</display-name>
+		<servlet-name>DeleteClientAccountServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteClientAccountServlet</servlet-class>
+	</servlet>
 	<!-- Client Account END  -->
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>
@@ -352,6 +370,18 @@
 	<servlet-mapping>
 		<servlet-name>ResetPasswordServlet</servlet-name>
 		<url-pattern>/resetPassword</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewClientRecordServlet</servlet-name>
+		<url-pattern>/retrieveAllClientRecords</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>OverridePasswordServlet</servlet-name>
+		<url-pattern>/overridePassword</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteClientAccountServlet</servlet-name>
+		<url-pattern>/deleteClientRecord</url-pattern>
 	</servlet-mapping>
 	<!-- Client Account END  -->
 </web-app>
