@@ -27,10 +27,10 @@
 	<center>
 		<b>*Individuals are required to self-identify should they
 			experience any COVID-19 symptoms.</b> <br> <br>
+		<h1><%=request.getSession(false).getAttribute("usertype")%></h1>
+		<h1><%=request.getSession(false).getAttribute("idNo")%></h1>
 		<div class="container">
 			<form action="vms" method="get" >
-				<input type="hidden" id="recordType" name="recordType"
-					value="visitorRecord">
 				<button type="submit" id="removeBackground">
 					<div class="card bg-dark text-white">
 						<div class="card-body font-size-percent">
@@ -43,8 +43,6 @@
 			</form>
 			<br>
 			<form action="vehms" method="get" >
-				<input type="hidden" id="recordType" name="recordType"
-					value="vehicleRecord">
 				<button type="submit" id="removeBackground">
 					<div class="card bg-warning text-white">
 						<div class="card-body font-size-percent">
