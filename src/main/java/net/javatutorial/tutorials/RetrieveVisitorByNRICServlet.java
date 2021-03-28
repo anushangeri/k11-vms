@@ -51,12 +51,18 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 		ArrayList<Visitor> vList = null;
 		Visitor v = null;
 		
-		if(!StringUtils.isEmpty(idNo)) {
-			if(usertype == null) {
+		if(usertype == null) {
+			if(!StringUtils.isEmpty(idNo)) {
 				vList = VMSManagerDAO.retrieveByNameIDandType(idType, idNo);
+				if(vList != null || vList.size() > 0) {
+					v = vList.get(0);
+				}
 			}
-			else {
-				vList = VMSManagerDAO.retrieveByNameIDandType(idTypeFromClient, idNoFromClient);
+		}
+		else {
+			vList = VMSManagerDAO.retrieveByNameIDandType(idTypeFromClient, idNoFromClient);
+			if(vList != null || vList.size() > 0) {
+				v = vList.get(0);
 			}
 		}
 		request.setAttribute("visitorLatRec", v);
