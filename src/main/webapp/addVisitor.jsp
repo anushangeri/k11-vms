@@ -82,8 +82,8 @@
  	if (request.getAttribute("visitorLatRec") != null) {
  		v = (Visitor) request.getAttribute("visitorLatRec");
  	}
- 	if (request.getSession(false).getAttribute("usertype") != null) {
- 		userInput = (String) request.getSession(false).getAttribute("usertype");
+ 	if (request.getSession(false).getAttribute("idNo") != null) {
+ 		userInput = (String) request.getSession(false).getAttribute("idNo");
  		name = (String) request.getSession(false).getAttribute("name");
  	}
  %>
