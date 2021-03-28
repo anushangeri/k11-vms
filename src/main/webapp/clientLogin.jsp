@@ -81,7 +81,7 @@
 						title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
 						required><input type="checkbox" onclick="showPassword()">Show Password
 				</div>
-				<button type="submit" class="btn btn-primary">Login</button>
+				<button type="submit" class="btn btn-primary btn-lg active">Login</button>
 			</div>
 		</form>
 	</center>
