@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="org.apache.commons.collections.IteratorUtils"%>
 <%@page import="com.google.gdata.data.spreadsheet.CellEntry"%>
@@ -5,8 +6,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="net.javatutorial.entity.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@include file="loginVMSCSS.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.time.*"%>
 <%@page import="java.io.IOException"%>
@@ -91,17 +91,17 @@
 			String accessTypeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/10/public/values";
 			// Use this String as url
 			URL accessTypeurl = new URL(accessTypeUrl);
-
+			%>
+			<h1><%=accessTypeUrl%></h1>
+			<h1><%=accessTypeurl%></h1>
+			<% 
 			// Get Feed of Spreadsheet url
 			ListFeed accessTypelf = service.getFeed(accessTypeurl, ListFeed.class);
 
 			for (ListEntry le : accessTypelf.getEntries()) {
 				CustomElementCollection cec = le.getCustomElements();
 				accessType.add(cec.getValue("accesstype").trim());
-				%>
-				<h1><%=accessTypelf%></h1>
-				<h1><%=cec%></h1>
-				<% 
+				
 			}
 			//Dropdown for accessType END
 
