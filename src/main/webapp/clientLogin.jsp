@@ -59,7 +59,7 @@
 	<%
 		session.removeAttribute("usertype");
 		session.removeAttribute("name");
-		session.removeAttribute("idType");
+		session.removeAttribute("idNo");
 		
 		String responseObj = (String) request.getAttribute("responseObj");
 	%>

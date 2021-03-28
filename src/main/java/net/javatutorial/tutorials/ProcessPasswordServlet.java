@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.format.DateTimeFormatter;
@@ -39,7 +40,7 @@ public class ProcessPasswordServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session = request.getSession(true);
 		String idNo = request.getParameter("idNo");
 		String password = request.getParameter("psw");
 				
@@ -48,21 +49,25 @@ public class ProcessPasswordServlet extends HttpServlet {
 		boolean verified = false;
 		String key = " ";
 		String salt = " ";
+		ClientAccount c = null;
 		if(vList != null && vList.size() > 0 ) {
-			ClientAccount c = vList.get(0);
+			c = vList.get(0);
 			if(c != null) {
 				key = c.getPassword();
 				salt = c.getSalt();
 				verified = PasswordUtils.verifyPassword(password, key, salt);
 			}
 		}
-		
-		String responseObj = verified +"";
-		request.setAttribute("responseObj", responseObj);
-		// Redirect to view visitor servlet to query all the visitors again.
-		//response.sendRedirect("/clientLogin.jsp");
-		RequestDispatcher rd = request.getRequestDispatcher("clientLogin.jsp");
-        rd.forward(request, response);
+		if(verified) {
+			session.setAttribute("idNo", c.getIdNo());
+			session.setAttribute("name", c.getName());
+			session.setAttribute("usertype", c.getAccessType());
+		}
+		else {
+			request.setAttribute("responseObj", "Wrong NRIC and Password entered. Please try again.");
+			RequestDispatcher rd = request.getRequestDispatcher("clientLogin.jsp");
+			rd.forward(request, response);
+		}
 	}
 	@Override
 	public void init() throws ServletException {
