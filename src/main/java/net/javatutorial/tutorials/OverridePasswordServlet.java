@@ -56,7 +56,7 @@ public class OverridePasswordServlet extends HttpServlet {
 				c.setPassword(hashedPassword);
 				String message = ClientAccountManagerDAO.updateClientAccountPassword(c);
 				request.setAttribute("responseObj", message);
-				RequestDispatcher rd = request.getRequestDispatcher("clientManager.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/retrieveAllClientRecords");
 				rd.forward(request, response);			}
 		}
 		else {
