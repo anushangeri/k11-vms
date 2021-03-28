@@ -53,5 +53,21 @@
 			<br>
 		</div>
 	</center>
+	<div class="container body-content">
+		<center>
+			<!-- Create client account is for K11 Admin only -->
+			<%if (request.getSession(false).getAttribute("usertype") != null) {
+				String userInput = (String) request.getSession(false).getAttribute("usertype");
+				if (userInput.toUpperCase().equals("ADMIN")){ %>
+					<a href="addClientAccount.jsp" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Create Client Record</a>
+				<%	
+				}
+			%>
+			<% 
+			}
+			%>
+		</center>
+	</div>
 </body>
 </html>

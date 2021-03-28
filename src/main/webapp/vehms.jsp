@@ -235,12 +235,12 @@
 				<!-- Delete all record function is for K11 Admin only -->
 				<%if (request.getSession(false).getAttribute("usertype") != null) {
 					String userInput = (String) request.getSession(false).getAttribute("usertype");
-					if (userInput.toUpperCase().equals("K11ADMIN")){ %>
+					if (userInput.toUpperCase().equals("ADMIN")){ %>
 						<a href="deleteAllVehicle" class="btn btn-warning btn-lg active"
-						role="button" aria-pressed="true">Delete Visitor Record</a>
+						role="button" aria-pressed="true">Delete Vehicle Record</a>
 						
 						<a href="managedatabase.jsp" class="btn btn-warning btn-lg active"
-						role="button" aria-pressed="true">Manage Visitor Database</a>
+						role="button" aria-pressed="true">Manage Vehicle Database</a>
 					<%	
 					}
 					
