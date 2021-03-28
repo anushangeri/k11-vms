@@ -28,7 +28,7 @@
 		<b>*Individuals are required to self-identify should they
 			experience any COVID-19 symptoms.</b> <br> <br>
 		<div class="container">
-			<form method="POST" action="vms">
+			<form action="vms" method="get" >
 				<input type="hidden" id="recordType" name="recordType"
 					value="visitorRecord">
 				<button type="submit" id="removeBackground">
@@ -42,7 +42,7 @@
 				</button>
 			</form>
 			<br>
-			<form method="POST" action="vehms">
+			<form action="vehms" method="get" >
 				<input type="hidden" id="recordType" name="recordType"
 					value="vehicleRecord">
 				<button type="submit" id="removeBackground">
