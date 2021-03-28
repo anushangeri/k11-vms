@@ -197,6 +197,7 @@
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active">Submit
 							Record</button>
+							
 						<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
 					</div>
