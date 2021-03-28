@@ -15,7 +15,7 @@ import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.entity.Visitor;
 
 /**
- * Servlet implementation class AddEmployeeServlet
+ * Servlet implementation class ViewVisitorRecordServlet - to view visitor records
  */
 public class ViewVisitorRecordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
@@ -28,7 +28,7 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 		String message = "No visitor records available for: " + name;
 		ArrayList<Visitor> vList = null;
 		if(!StringUtils.isEmpty(idNo)) {
-			if(usertype.toUpperCase().equals("ADMIN") || usertype.toUpperCase().equals("STAFF")) {
+			if(usertype != null) {
 				vList = VMSManagerDAO.retrieveAll();
 				message = "List of visitor records";
 				request.setAttribute("vList", vList);

@@ -46,49 +46,12 @@ public class VMSCheckNRICServlet extends HttpServlet {
 		}
 				
 		boolean loginsuccessful = false;
-		
-		//CHECK K11CLICKS:DROPDOWN EXCEL VMS_ADMIN_CRED_12
-		SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
+				
 		if(!StringUtils.isEmpty(idNo)) {
 			loginsuccessful = true;
-			if(idNo.toUpperCase().equals("K11ADMIN")) {
-				session.setAttribute("usertype", "K11ADMIN");
-			}
-			else{
-				try {
-		            String sheetUrl
-		                    = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/12/public/values";
-
-		            // Use this String as url
-		            URL url = new URL(sheetUrl);
-
-		            // Get Feed of Spreadsheet url
-		            ListFeed lf = service.getFeed(url, ListFeed.class);
-		            //Iterate over feed to get cell value
-		            for (ListEntry le : lf.getEntries()) {
-		                CustomElementCollection cec = le.getCustomElements();
-		                if (cec != null){
-		                	String idTypeExcel = cec.getValue("idtype").trim();
-		                    String nricfin = cec.getValue("nricfin").trim();
-		                    String usertype = cec.getValue("usertype").trim();
-		                	if(nricfin.equals(idNo) && idTypeExcel.equals(idType)) {
-	                    		//if admin, don't set NRIC because admin can see everything
-	                    		session.setAttribute("usertype", usertype);
-	                    	}
-		                }
-		            }
-		            //if loop through google sheets and cannot find match means it is a public user not K11 STAFF
-		            if(session.getAttribute("usertype") == null) {
-		            	session.setAttribute("name", name);
-		            	session.setAttribute("idType", idType);
-		            	session.setAttribute("usertype", idNo);
-		            }
-		            
-		        }catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-			}
+			session.setAttribute("name", name);
+        	session.setAttribute("idType", idType);
+        	session.setAttribute("idNo", idNo);
 		}
 		if(loginsuccessful) {
 			responseObj.add("Login successful.");

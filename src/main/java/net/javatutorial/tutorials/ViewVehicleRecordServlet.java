@@ -28,7 +28,7 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 		String message = "No vehicle records available for: " + name;
 		ArrayList<Vehicle> vList = null;
 		if(!StringUtils.isEmpty(idNo)) {
-			if(idNo.toUpperCase().equals("ADMIN") || idNo.toUpperCase().equals("STAFF")) {
+			if(usertype != null) {
 				vList = VehMSManagerDAO.retrieveAll();
 				message = "List of vehicle records";
 				request.setAttribute("vList", vList);
