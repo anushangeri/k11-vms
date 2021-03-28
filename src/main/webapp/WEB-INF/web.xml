@@ -214,6 +214,12 @@
 		<servlet-name>ProcessPasswordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.ProcessPasswordServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>ResetPasswordServlet</display-name>
+		<servlet-name>ResetPasswordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ResetPasswordServlet</servlet-class>
+	</servlet>
 	<!-- Client Account END  -->
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>
@@ -342,6 +348,10 @@
 	<servlet-mapping>
 		<servlet-name>ProcessPasswordServlet</servlet-name>
 		<url-pattern>/verifyLogin</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ResetPasswordServlet</servlet-name>
+		<url-pattern>/resetPassword</url-pattern>
 	</servlet-mapping>
 	<!-- Client Account END  -->
 </web-app>

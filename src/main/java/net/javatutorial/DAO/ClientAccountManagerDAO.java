@@ -57,7 +57,8 @@ public class ClientAccountManagerDAO {
 	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
 	        		+ "UPDATE CLIENTACCOUNT "
 	        		+  "SET MODIFIED_DT = NOW(),"
-	        		+ "PASSWORD = '" +v.getPassword()+"'" +
+	        		+ "PASSWORD = '" +v.getPassword()+"',"
+	        		+ "SALT = '" +v.getSalt()+"'" +
 	        		"   WHERE ACCOUNT_ID = '" + v.getAccountId() + "';");
 	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM CLIENTACCOUNT WHERE ACCOUNT_ID ='" + v.getAccountId() +"';");
 	        while (rs.next()) {
