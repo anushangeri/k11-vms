@@ -226,9 +226,10 @@ public class ClientAccountManagerDAO {
         try {
         	connection = Main.getConnection();
             String sql = "DELETE FROM CLIENTACCOUNT WHERE ACCOUNT_ID ='" + accountId + "'";
+            message = "Successful";
             pstmt = connection.prepareStatement(sql);
             rs = pstmt.executeQuery();
-            message = "Successful";
+            
             
         } catch (Exception e) {
             e.printStackTrace();

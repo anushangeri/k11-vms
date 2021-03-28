@@ -23,7 +23,7 @@ public class DeleteClientAccountServlet extends HttpServlet {
 		String message = ClientAccountManagerDAO.deleteRecordByAccountId(accountId);
 		
 		request.setAttribute("message", message);
-        RequestDispatcher rd = request.getRequestDispatcher("clientManager.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/retrieveAllClientRecords");
         rd.forward(request, response);
 	}
 	@Override
