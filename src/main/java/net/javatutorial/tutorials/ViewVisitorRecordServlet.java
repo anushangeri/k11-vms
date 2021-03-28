@@ -22,12 +22,13 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idNo = (String) request.getSession(false).getAttribute("usertype");
+		String usertype = (String) request.getSession(false).getAttribute("usertype");
+		String idNo = (String) request.getSession(false).getAttribute("idNo");
 		String name = (String) request.getSession(false).getAttribute("name");
 		String message = "No visitor records available for: " + name;
 		ArrayList<Visitor> vList = null;
 		if(!StringUtils.isEmpty(idNo)) {
-			if(idNo.toUpperCase().equals("K11ADMIN") || idNo.toUpperCase().equals("K11STAFF")) {
+			if(usertype.toUpperCase().equals("ADMIN") || usertype.toUpperCase().equals("STAFF")) {
 				vList = VMSManagerDAO.retrieveAll();
 				message = "List of visitor records";
 				request.setAttribute("vList", vList);

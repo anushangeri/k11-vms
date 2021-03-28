@@ -66,6 +66,38 @@
   content: "✖";
 }
 </style>
+<script>
+	function validateForm() {
+		var idNo = document.forms["checkNRIC"]["idNo"].value;
+		var first = idNo.charAt(0);
+		var isDigitFirst = (first >= '0' && first <= '9');
+		var second = idNo.charAt(1);
+		var isDigitSecond = (second >= '0' && second <= '9');
+		var third = idNo.charAt(2);
+		var isDigitThird = (third >= '0' && third <= '9');
+		var forth = idNo.charAt(3);
+		var isDigitForth = (forth >= '0' && forth <= '9');
+		var n = idNo.length;
+		if (idNo != "K11ADMIN" && (!(n >= 4) ||
+				!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth))  {
+			alert("PDPA Compliance: Enter ONLY last 3 digit and letter of ID Number. E.g. 409J ");
+			return false;
+		}
+		if (idNo != "K11ADMIN" && (!(n >= 4) ||
+				!isDigitFirst || !isDigitSecond || !isDigitThird || !isDigitForth))  {
+			alert("PDPA Compliance: Enter ONLY last 4 digit of Passport No. E.g. 4456");
+			return false;
+		}
+	}
+	function showPassword() {
+		  var x = document.getElementById("psw");
+		  if (x.type === "password") {
+		    x.type = "text";
+		  } else {
+		    x.type = "password";
+		  }
+	}
+</script>
 </head>
 <body>
 	<%
@@ -114,7 +146,7 @@
 			<label class="heading">Visitor/Vehicle Management System</label> <br>
 			<b>How to use:</b> Please enter Client Details.
 			<center>
-				<form action="addClientAccount" method="post">
+				<form action="addClientAccount" method="post" onsubmit="return validateForm()">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="name">Name: </label> <input type="text"
@@ -143,7 +175,7 @@
 								maxlength="9">
 						</div>
 						<div class="form-group col-md-4">
-							<label for="psw">Password</label> <input type="password" class="form-control" id="psw"
+							<label for="psw">Password</label> <input type="password" class="form-control" id="psw" onclick="showPassword()"
 								name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
 								required>
