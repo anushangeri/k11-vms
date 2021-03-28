@@ -62,7 +62,10 @@
 		session.removeAttribute("idNo");
 		
 		String responseObj = (String) request.getAttribute("responseObj");
+		if (responseObj != null && !StringUtils.isEmpty(responseObj)) {
 	%>
+			<label class="heading"><%=responseObj%> </label><br>
+		<%} %>
 	<center>
 		<b>*Individuals are required to self-identify should they
 			experience any COVID-19 symptoms.</b>
