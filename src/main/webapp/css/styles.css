@@ -186,8 +186,8 @@ form{
   position: relative;
   z-index: 2;
 }
-button{
-	margin-right: 5%;
+.btn-primary{
+	margin-right: 2% !important;
 }
 /*for printing lable*/
 @media print {
