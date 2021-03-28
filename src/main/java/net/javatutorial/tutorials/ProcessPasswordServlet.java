@@ -62,6 +62,8 @@ public class ProcessPasswordServlet extends HttpServlet {
 			session.setAttribute("idNo", c.getIdNo());
 			session.setAttribute("name", c.getName());
 			session.setAttribute("usertype", c.getAccessType());
+			RequestDispatcher rd = request.getRequestDispatcher("clientMain.jsp");
+			rd.forward(request, response);
 		}
 		else {
 			request.setAttribute("responseObj", "Wrong NRIC and Password entered. Please try again.");
