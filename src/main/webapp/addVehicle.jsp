@@ -97,7 +97,7 @@
  	if (request.getAttribute("vehicleLatRec") != null) {
  		v = (Vehicle) request.getAttribute("vehicleLatRec");
  	}
- 	if (request.getSession(false).getAttribute("idNo") != null) {
+ 	if (request.getSession(false).getAttribute("usertype") == null && request.getSession(false).getAttribute("idNo") != null) {
  		idNo = (String) request.getSession(false).getAttribute("idNo");
  		name = (String) request.getSession(false).getAttribute("name");
  	}

@@ -72,7 +72,6 @@
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
 		<label class="heading"><%=message%> </label><br>
-		<label class="heading"><%=userType%> </label><br>
 		<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b>
 	</center>
 		<% 

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
+import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.DAO.VehMSManagerDAO;
 import net.javatutorial.entity.Vehicle;
 
@@ -27,16 +28,26 @@ public class RetrieveVehicleByNRICServlet extends HttpServlet {
 		String usertype = (String) request.getSession(false).getAttribute("usertype");
 		String idNo = (String) request.getSession(false).getAttribute("idNo");
 		String idType = (String) request.getSession(false).getAttribute("idType");
-		String name = (String) request.getSession(false).getAttribute("name");
+
+		//from client login view
+		String idNoFromClient = request.getParameter("idNo");
+		String idTypeFromClient = request.getParameter("idType");
+				
 		ArrayList<Vehicle> vList = null;
 		Vehicle v = null;
 		
-		if(!StringUtils.isEmpty(idNo)) {
-			if(usertype == null) {
+		if(usertype == null) {
+			if(!StringUtils.isEmpty(idNo)) {
 				vList = VehMSManagerDAO.retrieveByNameIDandType(idType, idNo);
 				if(vList != null && vList.size() > 0) {
 					v = vList.get(0);
 				}
+			}
+		}
+		else {
+			vList = VehMSManagerDAO.retrieveByNameIDandType(idTypeFromClient, idNoFromClient);
+			if(vList != null || vList.size() > 0) {
+				v = vList.get(0);
 			}
 		}
 		request.setAttribute("vehicleLatRec", v);
