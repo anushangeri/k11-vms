@@ -175,10 +175,10 @@
 								maxlength="9">
 						</div>
 						<div class="form-group col-md-4">
-							<label for="psw">Password</label> <input type="password" class="form-control" id="psw" onclick="showPassword()"
+							<label for="psw">Password</label> <input type="password" class="form-control" id="psw"
 								name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-								required>
+								required><input type="checkbox" onclick="showPassword()">Show Password
 						</div>
 						<div class="form-group col-md-4">
 							<label for="accessType">Access Type: </label> <select name="accessType"
