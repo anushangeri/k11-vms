@@ -55,6 +55,12 @@
 	</center>
 	<div class="container body-content">
 		<center>
+			<a href="clientLogin.jsp" class="btn btn-warning btn-lg active"
+				role="button" aria-pressed="true">Back</a>
+		</center>
+	</div>
+	<div class="container body-content">
+		<center>
 			<!-- Create client account is for K11 Admin only -->
 			<%if (request.getSession(false).getAttribute("usertype") != null) {
 				String userInput = (String) request.getSession(false).getAttribute("usertype");
