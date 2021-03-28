@@ -67,7 +67,7 @@
 		String userType = "";
 	 	if (request.getSession(false).getAttribute("idNo") != null) {
 	 		idNo = (String) request.getSession(false).getAttribute("idNo");
-	 		userType = (String) request.getSession(false).getAttribute("userType");
+	 		userType = (String) request.getSession(false).getAttribute("usertype");
 	 	}
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
