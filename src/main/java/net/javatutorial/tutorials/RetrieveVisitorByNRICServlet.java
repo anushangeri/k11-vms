@@ -54,14 +54,14 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 		if(usertype == null) {
 			if(!StringUtils.isEmpty(idNo)) {
 				vList = VMSManagerDAO.retrieveByNameIDandType(idType, idNo);
-				if(vList != null || vList.size() > 0) {
+				if(vList != null && vList.size() > 0) {
 					v = vList.get(0);
 				}
 			}
 		}
 		else {
 			vList = VMSManagerDAO.retrieveByNameIDandType(idTypeFromClient, idNoFromClient);
-			if(vList != null || vList.size() > 0) {
+			if(vList != null && vList.size() > 0) {
 				v = vList.get(0);
 			}
 		}

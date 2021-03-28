@@ -46,7 +46,7 @@ public class RetrieveVehicleByNRICServlet extends HttpServlet {
 		}
 		else {
 			vList = VehMSManagerDAO.retrieveByNameIDandType(idTypeFromClient, idNoFromClient);
-			if(vList != null || vList.size() > 0) {
+			if(vList != null && vList.size() > 0) {
 				v = vList.get(0);
 			}
 		}

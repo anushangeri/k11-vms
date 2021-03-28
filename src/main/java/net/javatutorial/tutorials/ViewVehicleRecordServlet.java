@@ -32,7 +32,7 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 				vList = VehMSManagerDAO.retrieveAll();
 				message = "List of vehicle records";
 				request.setAttribute("vList", vList);
-				if(vList == null || vList.size() == 0) {
+				if(vList == null && vList.size() == 0) {
 					message = "No vehicle records available";
 				}
 			}
@@ -40,7 +40,7 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 				vList = VehMSManagerDAO.retrieveByNRIC(idNo);
 				message = "List of vehicle records for " + name;
 				request.setAttribute("vList", vList);
-				if(vList == null || vList.size() == 0) {
+				if(vList == null && vList.size() == 0) {
 					message = "No vehicle records available for " + name;
 				}
 			}
