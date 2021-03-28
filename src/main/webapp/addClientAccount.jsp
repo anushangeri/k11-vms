@@ -88,13 +88,11 @@
 			//Dropdown for idType END
 			
 			//Dropdown for accessType START
+			//REMEMBER TO ADD A SPACE FOR THE FIRST EMPTY ROW!
 			String accessTypeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/10/public/values";
 			// Use this String as url
 			URL accessTypeurl = new URL(accessTypeUrl);
-			%>
-			<h1><%=accessTypeUrl%></h1>
-			<h1><%=accessTypeurl%></h1>
-			<% 
+
 			// Get Feed of Spreadsheet url
 			ListFeed accessTypelf = service.getFeed(accessTypeurl, ListFeed.class);
 
