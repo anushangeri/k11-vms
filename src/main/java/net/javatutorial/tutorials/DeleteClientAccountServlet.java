@@ -18,7 +18,7 @@ public class DeleteClientAccountServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String accountId = request.getParameter("accountId");
 		String message = ClientAccountManagerDAO.deleteRecordByAccountId(accountId);
 		
