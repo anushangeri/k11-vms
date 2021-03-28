@@ -72,6 +72,7 @@
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
 		<label class="heading"><%=message%> </label><br>
+		<label class="heading"><%=userType%> </label><br>
 		<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b>
 	</center>
 		<% 
@@ -177,8 +178,8 @@
 				
 				<!-- Delete all record function is for K11 Admin only -->
 				<%if (request.getSession(false).getAttribute("usertype") != null) {
-					String userInput = (String) request.getSession(false).getAttribute("usertype");
-					if (userInput.toUpperCase().equals("K11ADMIN")){ %>
+					String usertype = (String) request.getSession(false).getAttribute("usertype");
+					if (usertype.toUpperCase().equals("ADMIN")){ %>
 						<a href="deleteAllVisitor" class="btn btn-warning btn-lg active"
 						role="button" aria-pressed="true">Delete Visitor Record</a>
 						

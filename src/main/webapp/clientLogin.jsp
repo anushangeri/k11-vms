@@ -80,12 +80,14 @@
 						title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
 						required><input type="checkbox" onclick="showPassword()">Show Password
 				</div>
-				<div class="form-row">
-					<button type="submit" class="btn btn-primary btn-lg active">Login</button>
-						
-					<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
-						aria-pressed="true">Back</a>
-				</div>
+			</div>
+			<br>
+			<div class="form-row">
+				<button type="submit" class="btn btn-primary btn-lg active">
+				Login</button>
+					
+				<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
+					aria-pressed="true">Back</a>
 			</div>
 		</form>
 	</center>
