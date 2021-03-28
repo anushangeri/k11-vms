@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="loginVMSCSS.jsp"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="org.apache.commons.collections.IteratorUtils"%>
 <%@page import="com.google.gdata.data.spreadsheet.CellEntry"%>
@@ -5,8 +7,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="net.javatutorial.entity.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="loginVMSCSS.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.time.*"%>
 <%@page import="java.io.IOException"%>
