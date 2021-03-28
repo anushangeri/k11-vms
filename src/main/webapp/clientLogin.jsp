@@ -81,8 +81,7 @@
 						required><input type="checkbox" onclick="showPassword()">Show Password
 				</div>
 				<div class="form-row">
-					<button type="submit" class="btn btn-primary btn-lg active">Submit
-						Record</button>
+					<button type="submit" class="btn btn-primary btn-lg active">Login</button>
 						
 					<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
 						aria-pressed="true">Back</a>

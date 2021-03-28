@@ -91,14 +91,14 @@
 			<label class="heading">Vehicle Management System</label> <br> <b>How
 				to use:</b> Please enter Visitor Details.
 			<%
- 	String userInput = "SxxxxxxxJ";
+ 	String idNo = "SxxxxxxxJ";
     String name = "";			
 	Vehicle v = null;
  	if (request.getAttribute("vehicleLatRec") != null) {
  		v = (Vehicle) request.getAttribute("vehicleLatRec");
  	}
  	if (request.getSession(false).getAttribute("idNo") != null) {
- 		userInput = (String) request.getSession(false).getAttribute("idNo");
+ 		idNo = (String) request.getSession(false).getAttribute("idNo");
  		name = (String) request.getSession(false).getAttribute("name");
  	}
  %>
@@ -144,7 +144,7 @@
 							<label for="idNo">Vehicle Driver ID Number: </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? userInput : v.getIdNo())%>"
+								value="<%=((v == null) ? idNo : v.getIdNo())%>"
 								minlength="4" maxlength="9" readonly>
 						</div>
 						<div class="form-group col-md-6">

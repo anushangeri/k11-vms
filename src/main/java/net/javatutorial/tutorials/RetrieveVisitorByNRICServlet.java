@@ -43,13 +43,20 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 		String usertype = (String) request.getSession(false).getAttribute("usertype");
 		String idNo = (String) request.getSession(false).getAttribute("idNo");
 		String idType = (String) request.getSession(false).getAttribute("idType");
-		String name = (String) request.getSession(false).getAttribute("name");
+		
+		//from client login view
+		String idNoFromClient = request.getParameter("idNo");
+		String idTypeFromClient = request.getParameter("idType");
+		
 		ArrayList<Visitor> vList = null;
 		Visitor v = null;
 		
 		if(!StringUtils.isEmpty(idNo)) {
 			if(usertype == null) {
 				vList = VMSManagerDAO.retrieveByNameIDandType(idType, idNo);
+			}
+			else {
+				vList = VMSManagerDAO.retrieveByNameIDandType(idTypeFromClient, idNoFromClient);
 			}
 		}
 		request.setAttribute("visitorLatRec", v);

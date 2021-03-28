@@ -63,7 +63,12 @@
 		ArrayList<Visitor> vList = (ArrayList<Visitor>) request.getAttribute("vList");
 		String message = (String) request.getAttribute("message");
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
-		
+		String idNo = "SxxxxxxxJ";
+		String userType = "";
+	 	if (request.getSession(false).getAttribute("idNo") != null) {
+	 		idNo = (String) request.getSession(false).getAttribute("idNo");
+	 		userType = (String) request.getSession(false).getAttribute("userType");
+	 	}
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
 		<label class="heading"><%=message%> </label><br>
@@ -81,7 +86,14 @@
 							<th class="th-sm">Name</th>
 							<th class="th-sm">Company Name</th>
 							<th class="th-sm" style="display:none;">ID Type</th>
-							<th class="th-sm" style="display:none;">ID Number</th>
+							<%if(userType == null) { %>
+								<th class="th-sm" style="display:none;">ID Number</th>
+							<% 
+							} else{
+							%>
+								 <th class="th-sm">ID Number</th>
+							<%
+							}%>
 							<th class="th-sm">Visitor Contact Number</th>
 							<th class="th-sm">Vehicle Number</th>
 							<th class="th-sm">Host Name</th>
@@ -106,7 +118,16 @@
 									<td><%=v.getName()%></td>
 									<td><%=v.getCompanyName()%></td>
 									<td style="display:none;"><%=v.getIdType()%></td>
-									<td style="display:none;"><%=v.getIdNo()%></td>
+									<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
+									<%if(userType == null) { %>
+										<td style="display:none;"><%=v.getIdNo()%></td>
+									<% 
+									} else{
+									%>
+										 <td><a href="/retrieveToPopulate?idNo=<%=v.getIdNo()%>&idType=<%=v.getIdType()%>"><%=v.getIdNo()%></a></td>
+									<%
+									}%>
+									
 									<td><%=v.getMobileNo()%></td>
 									<td><%=v.getVehicleNo()%></td>
 									<td><%=v.getHostName()%></td>
