@@ -186,7 +186,9 @@ form{
   position: relative;
   z-index: 2;
 }
-
+button{
+	margin-right: 5%;
+}
 /*for printing lable*/
 @media print {
 table.eptable {
