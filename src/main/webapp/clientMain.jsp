@@ -28,7 +28,7 @@
 		<b>*Individuals are required to self-identify should they
 			experience any COVID-19 symptoms.</b> <br> <br>
 		<div class="container">
-			<form method="POST" action="vmsCheckNRIC.jsp">
+			<form method="POST" action="/vms">
 				<input type="hidden" id="recordType" name="recordType"
 					value="visitorRecord">
 				<button type="submit" id="removeBackground">
@@ -42,7 +42,7 @@
 				</button>
 			</form>
 			<br>
-			<form method="POST" action="vmsCheckNRIC.jsp">
+			<form method="POST" action="/vehms">
 				<input type="hidden" id="recordType" name="recordType"
 					value="vehicleRecord">
 				<button type="submit" id="removeBackground">
