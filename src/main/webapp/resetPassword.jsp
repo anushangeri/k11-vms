@@ -179,7 +179,7 @@
 							<label for="oldpassword">Old Password</label> <input type="password" class="form-control" id="oldpassword"
 								name="oldpassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-								required><input type="checkbox" onclick="showPassword()">Show Password
+								required>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="psw">New Password</label> <input type="password" class="form-control" id="psw"
