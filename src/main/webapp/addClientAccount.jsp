@@ -6,7 +6,7 @@
 <%@page import="java.sql.Timestamp"%>
 <%@page import="net.javatutorial.entity.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="loginVMSCSS.jsp"%>
+
 <%@page import="java.util.*"%>
 <%@page import="java.time.*"%>
 <%@page import="java.io.IOException"%>
@@ -98,6 +98,10 @@
 			for (ListEntry le : accessTypelf.getEntries()) {
 				CustomElementCollection cec = le.getCustomElements();
 				accessType.add(cec.getValue("accesstype").trim());
+				%>
+				<h1><%=accessTypelf%></h1>
+				<h1><%=cec%></h1>
+				<% 
 			}
 			//Dropdown for accessType END
 
