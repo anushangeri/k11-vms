@@ -28,9 +28,11 @@
 <script src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.24/sorting/datetime-moment.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$(document).ready(function() {
+			$.fn.dataTable.moment('DD/MM/YYYY hh:mm:ss A');
 			$('table').DataTable({
 				dom : 'Blfrtip',
 				buttons : [ {
@@ -51,7 +53,8 @@
 					customize : function(xlsx) {
 						var sheet = xlsx.xl.worksheets['sheet1.xml'];
 					}
-				} ]
+				} ],
+				"order": [[13, 'desc']]
 			});
 		});
 	});
@@ -228,7 +231,8 @@
 	</div>
 		<div class="container body-content">
 			<center>
-				<button class="btn btn-warning btn-lg active" onclick="goBack()">Go Back</button>
+				<a href="/index.jsp" class="btn btn-warning btn-lg active"
+				role="button" aria-pressed="true">Back</a>
 		
 				<a href="retrieveVehToPopulate" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Add Vehicle Record</a>

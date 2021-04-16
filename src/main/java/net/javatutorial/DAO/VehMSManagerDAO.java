@@ -84,6 +84,72 @@ public class VehMSManagerDAO {
 		return message;
 	}
 	
+	public static String updateVehicleCustomTimeOut(Vehicle v){
+		Connection connection = null;
+		ResultSet rs = null;
+		Statement stmt = null;
+		String message = "";
+		try {
+			connection = Main.getConnection();
+			stmt = connection.createStatement();
+
+	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
+	        		+ "UPDATE VEHMS "
+	        		+ "SET TIME_OUT_DT = '" + v.getTimeOutDt() + "' "
+	        		+ "WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
+	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
+	        while (rs.next()) {
+	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        }
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			message = "" + e;
+			//e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			message = "" + e;
+		}
+		finally {
+        	Main.close(connection, stmt, rs);
+        }
+		message = "Successful";
+		return message;
+	}
+	
+	public static String updateVehicleCustomTimeIn(Vehicle v){
+		Connection connection = null;
+		ResultSet rs = null;
+		Statement stmt = null;
+		String message = "";
+		try {
+			connection = Main.getConnection();
+			stmt = connection.createStatement();
+
+	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
+	        		+ "UPDATE VEHMS "
+	        		+ "SET TIME_OUT_DT = '" + v.getTimeInDt() + "' "
+	        		+ "WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
+	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
+	        while (rs.next()) {
+	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        }
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			message = "" + e;
+			//e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			message = "" + e;
+		}
+		finally {
+        	Main.close(connection, stmt, rs);
+        }
+		message = "Successful";
+		return message;
+	}
+	
 	public static String updateVehicleLorryChet(Vehicle v){
 		Connection connection = null;
 		ResultSet rs = null;
