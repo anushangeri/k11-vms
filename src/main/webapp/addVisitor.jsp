@@ -154,10 +154,17 @@
 								</select>
 							<% } 
 							else {%>
-								<input
-								type="text" class="form-control" name="visitPurpose"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getVisitPurpose())%>" required>
+								<select
+									name="visitPurpose" class="form-control" required>
+									<%
+										for (int i = 0; i < visitPurpose.size(); i++) {
+									%>
+									<option value="<%=visitPurpose.get(i)%>" <%=v.getVisitPurpose().equals(visitPurpose.get(i)) ? "selected" : "" %>>
+										<%=visitPurpose.get(i)%></option>
+									<%
+										}
+									%>
+								</select>
 							<%} %>
 						</div>
 					</div>
