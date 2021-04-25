@@ -31,8 +31,8 @@ public class CClientAccountTblServlet extends HttpServlet {
 		String accountId = "1";
 		String name = "K11ADMIN";
 		String idType = "NRIC";
-		String idNo = "P@ssw0rd";
-		String password= "K11ADMIN";
+		String idNo = "K11ADMIN";
+		String password= "P@ssw0rd";
 		String accessType= "ADMIN";
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
