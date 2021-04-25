@@ -28,9 +28,7 @@ public class CClientAccountTblServlet extends HttpServlet {
 
 		String responseObj = ClientAccountTblDAO.createClientAccountTbl();
 		
-		int nextVal = ClientAccountManagerDAO.getNextVal();
-		
-		String accountId = "" + nextVal;
+		String accountId = "1";
 		String name = "K11ADMIN";
 		String idType = "NRIC";
 		String idNo = "P@ssw0rd";
