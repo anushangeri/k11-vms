@@ -36,7 +36,7 @@
 		var tempAsStr = document.forms["addVehicle"]["temperature"].value;
 		var tempAsInt = parseInt(tempAsStr);
 		var n = tempAsStr.length;
-		if (tempAsInt != "NaN" && n > 0 && tempAsInt >= 36 && tempAsInt <= 37.5)  {
+		if (isNaN(tempAsInt) || n > 0 || tempAsInt < 36 || tempAsInt > 37.5)  {
 			alert("COVID Alert: Invalid temperature or temperature is high. Please go home if you are sick.");
 			return false;
 		}

@@ -30,6 +30,17 @@
 <style type="text/css"></style>
 <script type="text/javascript"
 	src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script>
+function validateForm() {
+	var tempAsStr = document.forms["addVisitor"]["temperature"].value;
+	var tempAsInt = parseInt(tempAsStr);
+	var n = tempAsStr.length;
+	if (isNaN(tempAsInt) || n > 0 || tempAsInt < 36 || tempAsInt > 37.5)  {
+		alert("COVID Alert: Invalid temperature or temperature is high. Please go home if you are sick.");
+		return false;
+	}
+}
+</script>
 </head>
 <body>
 	<%
@@ -88,7 +99,7 @@
  	}
  %>
 			<center>
-				<form action="addVisitor" method="post">
+				<form action="addVisitor" method="post" name="addVisitor" onsubmit="return validateForm()">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="name">Name: </label> <input type="text"
