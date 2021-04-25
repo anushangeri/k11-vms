@@ -33,7 +33,7 @@ public class CClientAccountTblServlet extends HttpServlet {
 		String accountId = "" + nextVal;
 		String name = "K11ADMIN";
 		String idType = "NRIC";
-		String idNo = "000K";
+		String idNo = "P@ssw0rd";
 		String password= "K11ADMIN";
 		String accessType= "ADMIN";
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
