@@ -27,7 +27,8 @@ public class ClientAccountTblDAO {
 	        		"   ACCESS_TYPE VARCHAR (100)   NULL, \r\n" + 
 	        		"   CREATED_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
 	        		"   MODIFIED_DT TIMESTAMP   NULL \r\n" + 
-	        		");");
+	        		"); "
+	        		);
 //	        stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
 //	        ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
 //	        while (rs.next()) {
