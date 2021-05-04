@@ -89,7 +89,7 @@
 		%>
 			<div class="container body-content" id="tableview">
 				<table id="example"
-					class="table table-striped table-bordered table-sm sortable">
+					class="table table-striped table-bordered table-sm sortable" style="width: 80%;">
 					<thead>
 						<tr>
 							<th class="th-sm">S/N</th>
