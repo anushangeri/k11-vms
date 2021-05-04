@@ -92,6 +92,7 @@
 							<th class="th-sm">Company Name</th>
 							<th class="th-sm">Created Date</th>
 							<th class="th-sm">Last Modified Date</th>
+							<th class="th-sm">Edit</th>
 							<th class="th-sm">Delete</th>
 						</tr>
 					</thead>
