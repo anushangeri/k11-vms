@@ -239,6 +239,50 @@
 		<servlet-class>net.javatutorial.tutorials.DeleteClientAccountServlet</servlet-class>
 	</servlet>
 	<!-- Client Account END  -->
+	<!-- Site START  -->
+	<servlet>
+		<description />
+		<display-name>CSiteTblServlet</display-name>
+		<servlet-name>CSiteTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CSiteTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>USiteTblServlet</display-name>
+		<servlet-name>USiteTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.USiteTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>AddSiteRecordServlet</display-name>
+		<servlet-name>AddSiteRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddSiteRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>EditSiteBySiteIDServlet</display-name>
+		<servlet-name>EditSiteBySiteIDServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.EditSiteBySiteIDServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>UpdateSiteRecordServlet</display-name>
+		<servlet-name>UpdateSiteRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateSiteRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewSiteRecordServlet</display-name>
+		<servlet-name>ViewSiteRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewSiteRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteSiteServlet</display-name>
+		<servlet-name>DeleteSiteServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteSiteServlet</servlet-class>
+	</servlet>
+	<!-- Site END  -->
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>
 		<url-pattern>/hello</url-pattern>
@@ -384,4 +428,34 @@
 		<url-pattern>/deleteClientRecord</url-pattern>
 	</servlet-mapping>
 	<!-- Client Account END  -->
+	<!-- Site START  -->
+	<servlet-mapping>
+		<servlet-name>CSiteTblServlet</servlet-name>
+		<url-pattern>/createSiteTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>USiteTblServlet</servlet-name>
+		<url-pattern>/updateSiteTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddSiteRecordServlet</servlet-name>
+		<url-pattern>/addSite</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditSiteBySiteIDServlet</servlet-name>
+		<url-pattern>/editSite</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateSiteRecordServlet</servlet-name>
+		<url-pattern>/updateSite</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewSiteRecordServlet</servlet-name>
+		<url-pattern>/retrieveAllSiteRecords</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteSiteServlet</servlet-name>
+		<url-pattern>/deleteSite</url-pattern>
+	</servlet-mapping>
+	<!-- Site END  -->
 </web-app>

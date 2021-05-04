@@ -98,6 +98,22 @@
               </form>
           </td>
 	    </tr>
+	   	<tr>
+	      <th scope="row">5</th>
+	      <td>Site</td>
+	      <td><form action="createSiteTbl" method="post">
+                  <button class="btn" type="submit">Create</button>
+              </form>
+          </td>
+	      <td><form action="updateSiteTbl" method="post">
+                  <button class="btn" type="submit">Update</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Delete</button>
+              </form>
+          </td>
+	    </tr>
 	  </tbody>
 	</table>
 </body>

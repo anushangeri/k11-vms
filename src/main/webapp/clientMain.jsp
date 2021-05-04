@@ -69,6 +69,12 @@
 					role="button" aria-pressed="true">Create Client Record</a>
 					<a href="/retrieveAllClientRecords" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Manage Client Records</a>
+					<br>
+					
+					<a href="addSite.jsp" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Create Site Record</a>
+					<a href="/retrieveAllSiteRecords" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Manage Site Records</a>
 				<%	
 				}
 			%>
