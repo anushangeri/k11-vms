@@ -136,7 +136,7 @@ function validateForm() {
 										for (Site eachSite: siteDropdown) {
 									%>
 											<option value="<%=eachSite.getSiteName()%>" 
-											<%=v.getSite().equals(eachSite.getSiteName()) ? "selected" : "" %>>
+											<%=v.getSite()!= null && v.getSite().equals(eachSite.getSiteName()) ? "selected" : "" %>>
 												<%=eachSite.getSiteName()%></option>
 									<%
 										}
