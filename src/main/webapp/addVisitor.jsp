@@ -94,7 +94,7 @@ function validateForm() {
  		v = (Visitor) request.getAttribute("visitorLatRec");
  	}
  	if (request.getAttribute("siteDropdown") != null) {
- 		siteDropdown = (Site) request.getAttribute("siteDropdown");
+ 		siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
  	}
  	if (request.getSession(false).getAttribute("usertype") == null && request.getSession(false).getAttribute("idNo") != null) {
  		idNo = (String) request.getSession(false).getAttribute("idNo");
