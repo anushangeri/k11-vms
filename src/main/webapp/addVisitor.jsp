@@ -89,8 +89,12 @@ function validateForm() {
  	String idNo = "SxxxxxxxJ";
 	String name = "";
  	Visitor v = null;
+ 	ArrayList<Site> siteDropdown = null;
  	if (request.getAttribute("visitorLatRec") != null) {
  		v = (Visitor) request.getAttribute("visitorLatRec");
+ 	}
+ 	if (request.getAttribute("siteDropdown") != null) {
+ 		siteDropdown = (Site) request.getAttribute("siteDropdown");
  	}
  	if (request.getSession(false).getAttribute("usertype") == null && request.getSession(false).getAttribute("idNo") != null) {
  		idNo = (String) request.getSession(false).getAttribute("idNo");
@@ -113,10 +117,32 @@ function validateForm() {
 								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="siteVisiting">Site You Are Visiting: </label> <input
-								type="text" class="form-control" name="siteVisiting"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getSite())%>" required>
+							<label for="siteVisiting">Site You Are Visiting: </label> 
+							<% if(v == null){%>
+								<select name="siteVisiting" class="form-control" required>
+									<%
+										for (Site eachSite: siteDropdown) {
+									%>
+											<option value="<%=eachSite.getSiteName()%>">
+												<%=eachSite.getSiteName()%></option>
+									<%
+										}
+									%>
+								</select>
+							<% } 
+							else {%>
+								<select name="siteVisiting" class="form-control" required>
+									<%
+										for (Site eachSite: siteDropdown) {
+									%>
+											<option value="<%=eachSite.getSiteName()%>" 
+											<%=v.getSite().equals(eachSite.getSiteName()) ? "selected" : "" %>>
+												<%=eachSite.getSiteName()%></option>
+									<%
+										}
+									%>
+								</select>
+							<%} %>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="idType">ID Type: </label> 

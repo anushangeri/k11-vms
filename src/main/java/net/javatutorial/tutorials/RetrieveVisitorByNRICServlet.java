@@ -27,8 +27,10 @@ import com.google.gdata.data.spreadsheet.CustomElementCollection;
 import com.google.gdata.data.spreadsheet.ListEntry;
 import com.google.gdata.data.spreadsheet.ListFeed;
 
+import net.javatutorial.DAO.SiteManagerDAO;
 import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.entity.Visitor;
+import net.javatutorial.entity.Site;
 
 /**
  * Servlet implementation class RetrieveVisitorByNRICServlet
@@ -65,7 +67,9 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 				v = vList.get(0);
 			}
 		}
+		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		request.setAttribute("visitorLatRec", v);
+		request.setAttribute("siteDropdown", siteDropdown);
         RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
         rd.forward(request, response);
 	}
