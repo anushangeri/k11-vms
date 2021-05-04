@@ -23,7 +23,7 @@ public class EditSiteBySiteIDServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usertype = (String) request.getSession(false).getAttribute("usertype");
 		String idNo = (String) request.getSession(false).getAttribute("idNo");
 		String idType = (String) request.getSession(false).getAttribute("idType");

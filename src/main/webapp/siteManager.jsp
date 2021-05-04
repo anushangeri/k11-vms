@@ -111,7 +111,7 @@
 									<td>
 										<form method="POST" action ="/editSite">
 											<input type="hidden" id="siteId" name="siteId" value="<%=v.getSiteId()%>">
-											<input type="submit" name="Submit" value="Override Password">
+											<input type="submit" name="Submit" value="Edit">
 										</form>
 									</td>
 									<td>
