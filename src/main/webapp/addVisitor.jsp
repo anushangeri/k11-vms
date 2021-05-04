@@ -112,6 +112,12 @@ function validateForm() {
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
 						</div>
+						<div class="form-group col-md-6">
+							<label for="siteVisiting">Site You Are Visiting: </label> <input
+								type="text" class="form-control" name="siteVisiting"
+								oninput="this.value = this.value.toUpperCase()"
+								value="<%=((v == null) ? "" : v.getSite())%>" required>
+						</div>
 						<div class="form-group col-md-4">
 							<label for="idType">ID Type: </label> 
 							<% if(v == null){%>

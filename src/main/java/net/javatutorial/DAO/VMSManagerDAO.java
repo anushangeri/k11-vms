@@ -23,9 +23,10 @@ public class VMSManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("INSERT INTO VMS "
-	        		+  "(VMS_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, VEHICLE_NO, HOST_NAME, HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, "
+	        		+  "(VMS_ID, NAME, COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, VEHICLE_NO, HOST_NAME, HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, "
 	        		+ "VISIT_PURPOSE, TEMPERATURE, TIME_IN_DT)" + 
-	        		"   VALUES ('" +v.getVmsId()+ "','" +v.getName()+ "','" +v.getCompanyName()+ "','" +v.getIdType()+ "','" 
+	        		"   VALUES ('" +v.getVmsId()+ "','" +v.getName()+ "','" +v.getCompanyName()+ "','" 
+	        		+v.getSite()+ "','" +v.getIdType()+ "','" 
 	        		+v.getIdNo()+ "','" +v.getMobileNo()+ "','" +v.getVehicleNo()+ "','" +v.getHostName()+ "','" 
 	        		+v.getHostNo()+ "','" +v.getVisitorCardId()+ "','" +v.getCovidDeclare()+ "','" 
 	        		+v.getVisitPurpose()+ "','" +v.getTemperature()+ "','" +v.getTimeInDt()+ "')");
@@ -121,7 +122,7 @@ public class VMSManagerDAO {
         try {
         	connection = Main.getConnection();
             String sql = "SELECT VMS_ID, NAME,\r\n" + 
-            		"              COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
+            		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              TIME_IN_DT, TIME_OUT_DT FROM VMS ORDER BY TIME_IN_DT DESC; ";
@@ -142,8 +143,9 @@ public class VMSManagerDAO {
             			rs.getString(11),
             			rs.getString(12),
             			rs.getString(13),
-            			rs.getTimestamp(14),
-            			rs.getTimestamp(15));
+            			rs.getString(14),
+            			rs.getTimestamp(15),
+            			rs.getTimestamp(16));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -163,7 +165,7 @@ public class VMSManagerDAO {
         try {
         	connection = Main.getConnection();
             String sql = "SELECT VMS_ID, NAME,\r\n" + 
-            		"              COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
+            		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE ID_NO ='" + idNo + "' ORDER BY TIME_IN_DT DESC;";
@@ -184,8 +186,9 @@ public class VMSManagerDAO {
             			rs.getString(11),
             			rs.getString(12),
             			rs.getString(13),
-            			rs.getTimestamp(14),
-            			rs.getTimestamp(15));
+            			rs.getString(14),
+            			rs.getTimestamp(15),
+            			rs.getTimestamp(16));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -205,7 +208,7 @@ public class VMSManagerDAO {
         try {
         	connection = Main.getConnection();
             String sql = "SELECT VMS_ID, NAME, \r\n" + 
-            		"              COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
+            		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME, \r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              TIME_IN_DT, TIME_OUT_DT "
@@ -229,8 +232,9 @@ public class VMSManagerDAO {
             			rs.getString(11),
             			rs.getString(12),
             			rs.getString(13),
-            			rs.getTimestamp(14),
-            			rs.getTimestamp(15));
+            			rs.getString(14),
+            			rs.getTimestamp(15),
+            			rs.getTimestamp(16));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -249,7 +253,7 @@ public class VMSManagerDAO {
         try {
         	connection = Main.getConnection();
             String sql = "SELECT VMS_ID, NAME,\r\n" + 
-            		"              COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
+            		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE VMS_ID ='" + vmsId + "' ORDER BY TIME_IN_DT DESC;";
@@ -270,8 +274,9 @@ public class VMSManagerDAO {
             			rs.getString(11),
             			rs.getString(12),
             			rs.getString(13),
-            			rs.getTimestamp(14),
-            			rs.getTimestamp(15));
+            			rs.getString(14),
+            			rs.getTimestamp(15),
+            			rs.getTimestamp(16));
             }
         } catch (Exception e) {
             e.printStackTrace();
