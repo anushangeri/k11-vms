@@ -41,7 +41,7 @@ public class AddSiteRecordServlet extends HttpServlet {
 		int nextVal = SiteManagerDAO.getNextVal();
 		
 		String siteId = "" + nextVal;
-		String siteName = request.getParameter("siteName").trim();
+		String siteName = request.getParameter("siteName");
 		String companyName = request.getParameter("companyName");
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());

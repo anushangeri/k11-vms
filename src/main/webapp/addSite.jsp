@@ -46,12 +46,12 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="siteName">Site Name: </label> <input type="text"
-								class="form-control" name="name"
+								class="form-control" name="siteName"
 								oninput="this.value = this.value.toUpperCase()" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="companyName">Company Name: </label> <input type="text"
-								class="form-control" name="name"
+								class="form-control" name="companyName"
 								oninput="this.value = this.value.toUpperCase()" required>
 						</div>
 					</div>
@@ -71,13 +71,13 @@
 						<input type="hidden" id="siteId" name="siteId" value="<%=v.getSiteId()%>">
 						<div class="form-group col-md-6">
 							<label for="siteName">Site Name: </label> <input type="text"
-								class="form-control" name="name"
+								class="form-control" name="siteName"
 								oninput="this.value = this.value.toUpperCase()" 
 								value="<%=((v == null) ? "" : v.getSiteName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="companyName">Company Name: </label> <input type="text"
-								class="form-control" name="name"
+								class="form-control" name="companyName"
 								oninput="this.value = this.value.toUpperCase()" 
 								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
 						</div>
