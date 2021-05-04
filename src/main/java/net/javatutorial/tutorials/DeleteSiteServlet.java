@@ -22,7 +22,7 @@ public class DeleteSiteServlet extends HttpServlet {
 		String message = SiteManagerDAO.deleteBySiteId(siteId);
 		
 		request.setAttribute("message", message);
-		response.sendRedirect("/viewsites");
+		response.sendRedirect("/retrieveAllSiteRecords");
 	}
 	@Override
 	public void init() throws ServletException {

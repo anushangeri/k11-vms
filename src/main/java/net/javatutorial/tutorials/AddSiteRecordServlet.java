@@ -54,7 +54,7 @@ public class AddSiteRecordServlet extends HttpServlet {
 		
 		request.setAttribute("responseObj", message);
 		// Redirect to view site servlet to query all the site again.
-		response.sendRedirect("/viewsites");
+		response.sendRedirect("/retrieveAllSiteRecords");
 	}
 	@Override
 	public void init() throws ServletException {
