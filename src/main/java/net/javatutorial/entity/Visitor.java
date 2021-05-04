@@ -42,6 +42,29 @@ public class Visitor {
 		this.timeInDt = timeInDt;
 		this.timeOutDt = timeOutDt;
 	}
+	
+	public Visitor(String vmsId, String name, String companyName, String site, String idType, String idNo,
+			String mobileNo, String vehicleNo, String hostName, String hostNo, String visitorCardId,
+			String covidDeclare, String visitPurpose, String temperature, Timestamp timeInDt) {
+		super();
+		this.vmsId = vmsId;
+		this.name = name;
+		this.companyName = companyName;
+		this.site = site;
+		this.idType = idType;
+		this.idNo = idNo;
+		this.mobileNo = mobileNo;
+		this.vehicleNo = vehicleNo;
+		this.hostName = hostName;
+		this.hostNo = hostNo;
+		this.visitorCardId = visitorCardId;
+		this.covidDeclare = covidDeclare;
+		this.visitPurpose = visitPurpose;
+		this.temperature = temperature;
+		this.timeInDt = timeInDt;
+	}
+
+
 
 	/**
 	 * @return the vmsId
