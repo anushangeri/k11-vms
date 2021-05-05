@@ -20,6 +20,7 @@ public class ClientAccountTblDAO {
 	        		+ "CREATE TABLE IF NOT EXISTS CLIENTACCOUNT (\r\n" + 
 	        		"   ACCOUNT_ID VARCHAR (100)  NOT NULL,\r\n" + 
 	        		"   NAME VARCHAR (100)  NOT NULL,\r\n" + 
+	        		"   SITE VARCHAR (100)   NULL, \r\n" + 
 	        		"   ID_TYPE VARCHAR (100)   NULL, \r\n" + 
 	        		"   ID_NO VARCHAR (100)   NULL, \r\n" + 
 	        		"   PASSWORD  VARCHAR (255) NOT NULL,   \r\n" + 
@@ -80,7 +81,7 @@ public class ClientAccountTblDAO {
 			Statement stmt = connection.createStatement();
 //	        stmt.executeUpdate("DROP TABLE IF EXISTS ticks");
 	        stmt.executeUpdate("ALTER TABLE CLIENTACCOUNT\r\n" + 
-	        		"ADD COLUMN ID_TYPE VARCHAR (100)  NULL;");
+	        		"ADD COLUMN SITE VARCHAR (100)  NULL;");
 //	        stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
 //	        ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
 //	        while (rs.next()) {

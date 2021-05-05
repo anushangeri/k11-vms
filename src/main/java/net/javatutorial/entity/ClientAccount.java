@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 public class ClientAccount {
 	private String accountId;
     private String name;
+    private String site;
     private String idType;
     private String idNo;
     private String password;
@@ -13,10 +14,12 @@ public class ClientAccount {
     private String accessType;
     private Timestamp createdDt;
     private Timestamp modifiedDt;
-	public ClientAccount(String accountId, String name, String idType, String idNo, String password, String salt,
-			String accessType, Timestamp createdDt, Timestamp modifiedDt) {
+	public ClientAccount(String accountId, String name, String site, String idType, String idNo, String password,
+			String salt, String accessType, Timestamp createdDt, Timestamp modifiedDt) {
+		super();
 		this.accountId = accountId;
 		this.name = name;
+		this.site = site;
 		this.idType = idType;
 		this.idNo = idNo;
 		this.password = password;
@@ -48,6 +51,18 @@ public class ClientAccount {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	/**
+	 * @return the site
+	 */
+	public String getSite() {
+		return site;
+	}
+	/**
+	 * @param site the site to set
+	 */
+	public void setSite(String site) {
+		this.site = site;
 	}
 	/**
 	 * @return the idType
@@ -135,9 +150,10 @@ public class ClientAccount {
 	}
 	@Override
 	public String toString() {
-		return "ClientAccount [accountId=" + accountId + ", name=" + name + ", idType=" + idType + ", idNo=" + idNo
-				+ ", password=" + password + ", salt=" + salt + ", accessType=" + accessType + ", createdDt="
-				+ createdDt + ", modifiedDt=" + modifiedDt + "]";
+		return "ClientAccount [accountId=" + accountId + ", name=" + name + ", site=" + site + ", idType=" + idType
+				+ ", idNo=" + idNo + ", password=" + password + ", salt=" + salt + ", accessType=" + accessType
+				+ ", createdDt=" + createdDt + ", modifiedDt=" + modifiedDt + "]";
 	}
+
     
 }

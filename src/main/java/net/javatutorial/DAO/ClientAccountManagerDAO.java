@@ -119,7 +119,7 @@ public class ClientAccountManagerDAO {
         ArrayList<ClientAccount> vList = new ArrayList<ClientAccount>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT ACCOUNT_ID, NAME, \r\n" + 
+            String sql = "SELECT ACCOUNT_ID, NAME, SITE, \r\n" + 
             		"              ID_TYPE, ID_NO, PASSWORD, SALT, ACCESS_TYPE, CREATED_DT, MODIFIED_DT \r\n"
             		+ " FROM CLIENTACCOUNT "
             		+ " WHERE ID_NO ='" + idNo + "' AND PASSWORD = '" +password+"' \r\n"
@@ -135,8 +135,9 @@ public class ClientAccountManagerDAO {
             			rs.getString(5),
             			rs.getString(6),
             			rs.getString(7),
-            			rs.getTimestamp(8),
-            			rs.getTimestamp(9));
+            			rs.getString(8),
+            			rs.getTimestamp(9),
+            			rs.getTimestamp(10));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -155,7 +156,7 @@ public class ClientAccountManagerDAO {
         ArrayList<ClientAccount> vList = new ArrayList<ClientAccount>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT ACCOUNT_ID, NAME, \r\n" + 
+            String sql = "SELECT ACCOUNT_ID, NAME, SITE\r\n" + 
             		"              ID_TYPE, ID_NO, PASSWORD, SALT, ACCESS_TYPE, CREATED_DT, MODIFIED_DT \r\n"
             		+ " FROM CLIENTACCOUNT "
             		+ " WHERE ID_NO ='" + idNo + "' \r\n"
@@ -171,8 +172,9 @@ public class ClientAccountManagerDAO {
             			rs.getString(5),
             			rs.getString(6),
             			rs.getString(7),
-            			rs.getTimestamp(8),
-            			rs.getTimestamp(9));
+            			rs.getString(8),
+            			rs.getTimestamp(9),
+            			rs.getTimestamp(10));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -191,7 +193,7 @@ public class ClientAccountManagerDAO {
         ArrayList<ClientAccount> vList = new ArrayList<ClientAccount>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT ACCOUNT_ID, NAME, \r\n" + 
+            String sql = "SELECT ACCOUNT_ID, NAME, SITE, \r\n" + 
             		"              ID_TYPE, ID_NO, PASSWORD, SALT, ACCESS_TYPE, CREATED_DT, MODIFIED_DT \r\n"
             		+ " FROM CLIENTACCOUNT "
     				+ " ORDER BY MODIFIED_DT DESC";
@@ -206,8 +208,9 @@ public class ClientAccountManagerDAO {
             			rs.getString(5),
             			rs.getString(6),
             			rs.getString(7),
-            			rs.getTimestamp(8),
-            			rs.getTimestamp(9));
+            			rs.getString(8),
+            			rs.getTimestamp(9),
+            			rs.getTimestamp(10));
                 vList.add(v);
             }
         } catch (Exception e) {

@@ -30,6 +30,7 @@ public class CClientAccountTblServlet extends HttpServlet {
 		
 		String accountId = "1";
 		String name = "K11ADMIN";
+		String site = null;
 		String idType = "NRIC";
 		String idNo = "K11ADMIN";
 		String password= "P@ssw0rd";
@@ -41,7 +42,7 @@ public class CClientAccountTblServlet extends HttpServlet {
 		String salt = PasswordUtils.generateSalt(512).get();
 		String hashedPassword = PasswordUtils.hashPassword(password, salt).get();
 				
-		ClientAccount v = new ClientAccount( accountId,  name, idType, idNo,  hashedPassword, salt, accessType, timestamp, timestamp);
+		ClientAccount v = new ClientAccount( accountId,  name, site, idType, idNo,  hashedPassword, salt, accessType, timestamp, timestamp);
 		
 		String message = ClientAccountManagerDAO.addClientAccount(v);
 		

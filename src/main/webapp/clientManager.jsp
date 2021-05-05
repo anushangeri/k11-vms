@@ -89,6 +89,7 @@
 						<tr>
 							<th class="th-sm">S/N</th>
 							<th class="th-sm">Name</th>
+							<th class="th-sm">Site</th>
 							<th class="th-sm">ID Type</th>
 							<th class="th-sm">ID Number</th>
 							<th class="th-sm">Access Type</th>
@@ -108,6 +109,7 @@
 								<tr>
 									<td><%=v.getAccountId()%></td>
 									<td><%=v.getName()%></td>
+									<td><%=v.getSite()%></td>
 									<td><%=v.getIdType()%></td>
 									<td><%=v.getIdNo()%></td>
 									<td><%=v.getAccessType()%></td>

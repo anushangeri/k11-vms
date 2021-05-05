@@ -156,6 +156,50 @@ public class VMSManagerDAO {
         return vList;
     }
 	
+	public static ArrayList<Visitor> retrieveBySite(String site) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        Visitor v = null;
+        ArrayList<Visitor> vList = new ArrayList<Visitor>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT VMS_ID, NAME,\r\n" + 
+            		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
+            		"              VEHICLE_NO, HOST_NAME,\r\n" + 
+            		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
+            		"              TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE SITE ='" + site + "' ORDER BY TIME_IN_DT DESC;";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new Visitor(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getString(6),
+            			rs.getString(7),
+            			rs.getString(8),
+            			rs.getString(9),
+            			rs.getString(10),
+            			rs.getString(11),
+            			rs.getString(12),
+            			rs.getString(13),
+            			rs.getString(14),
+            			rs.getTimestamp(15),
+            			rs.getTimestamp(16));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	
 	public static ArrayList<Visitor> retrieveByNRIC(String idNo) {
         PreparedStatement pstmt = null;
         Connection connection = null;

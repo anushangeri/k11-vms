@@ -43,6 +43,7 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		
 		String accountId = "" + nextVal;
 		String name = request.getParameter("name").trim();
+		String site = request.getParameter("site");
 		String idType = request.getParameter("idType");
 		String idNo = request.getParameter("idNo");
 		String password= request.getParameter("psw");
@@ -54,7 +55,7 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		String salt = PasswordUtils.generateSalt(512).get();
 		String hashedPassword = PasswordUtils.hashPassword(password, salt).get();
 				
-		ClientAccount v = new ClientAccount( accountId,  name, idType, idNo,  hashedPassword, salt, accessType, timestamp, timestamp);
+		ClientAccount v = new ClientAccount( accountId,  name, site, idType, idNo,  hashedPassword, salt, accessType, timestamp, timestamp);
 		
 		String message = ClientAccountManagerDAO.addClientAccount(v);
 		

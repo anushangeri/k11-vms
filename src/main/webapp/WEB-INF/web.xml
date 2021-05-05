@@ -204,6 +204,12 @@
 	</servlet>
 	<servlet>
 		<description />
+		<display-name>UClientAccountTblServlet</display-name>
+		<servlet-name>UClientAccountTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UClientAccountTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
 		<display-name>AddClientAccountRecordServlet</display-name>
 		<servlet-name>AddClientAccountRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.AddClientAccountRecordServlet</servlet-class>
@@ -402,6 +408,10 @@
 	<servlet-mapping>
 		<servlet-name>CClientAccountTblServlet</servlet-name>
 		<url-pattern>/clientAccountTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UClientAccountTblServlet</servlet-name>
+		<url-pattern>/updateClientAccountTbl</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>AddClientAccountRecordServlet</servlet-name>

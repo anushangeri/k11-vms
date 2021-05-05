@@ -6,6 +6,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="net.javatutorial.entity.*"%>
+<%@page import="net.javatutorial.DAO.*"%>
 <%@include file="loginVMSCSS.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.time.*"%>
@@ -140,6 +141,8 @@
 	<h1><%=e%></h1>
 	<%
 		}
+	 	
+	 	ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 	%>
 	<div class="container body-content">
 		<div class="page-header">
@@ -165,6 +168,19 @@
 									}
 								%>
 							</select>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="site">Site You Are In Charge: </label> 
+								<select name="site" class="form-control" required>
+									<%
+										for (Site eachSite: siteDropdown) {
+									%>
+											<option value="<%=eachSite.getSiteName()%>">
+												<%=eachSite.getSiteName()%></option>
+									<%
+										}
+									%>
+								</select>
 						</div>
 					</div>
 					<div class="form-row">
