@@ -38,7 +38,7 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 					message = "No visitor records available";
 				}
 			}
-			else if(usertype.equals("STAFF") && !StringUtils.isEmpty(siteInCharge)) {
+			else if(!usertype.equals("ADMIN") && !StringUtils.isEmpty(siteInCharge)) {
 				vList = VMSManagerDAO.retrieveBySite(siteInCharge);
 				message = "List of visitor records";
 				request.setAttribute("vList", vList);
