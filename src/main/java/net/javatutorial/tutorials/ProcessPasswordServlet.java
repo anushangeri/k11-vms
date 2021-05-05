@@ -67,7 +67,7 @@ public class ProcessPasswordServlet extends HttpServlet {
 			rd.forward(request, response);
 		}
 		else {
-			request.setAttribute("responseObj", "Wrong NRIC and Password entered. Please try again.");
+			request.setAttribute("responseObj",c.toString());
 			RequestDispatcher rd = request.getRequestDispatcher("clientLogin.jsp");
 			rd.forward(request, response);
 		}
