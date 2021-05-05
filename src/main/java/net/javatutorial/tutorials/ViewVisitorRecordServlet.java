@@ -30,7 +30,7 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 		String message = "No visitor records available for: " + name;
 		ArrayList<Visitor> vList = null;
 		if(!StringUtils.isEmpty(idNo)) {
-			if(usertype.equals("ADMIN")) {
+			if(!StringUtils.isEmpty(usertype) && usertype != null && usertype.equals("ADMIN")) {
 				vList = VMSManagerDAO.retrieveAll();
 				message = "List of visitor records";
 				request.setAttribute("vList", vList);
@@ -38,7 +38,7 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 					message = "No visitor records available";
 				}
 			}
-			else if(!usertype.equals("ADMIN") && !StringUtils.isEmpty(siteInCharge)) {
+			else if(!StringUtils.isEmpty(usertype) && usertype != null && !usertype.equals("ADMIN") && !StringUtils.isEmpty(siteInCharge)) {
 				vList = VMSManagerDAO.retrieveBySite(siteInCharge);
 				message = "List of visitor records";
 				request.setAttribute("vList", vList);

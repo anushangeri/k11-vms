@@ -125,7 +125,7 @@
 									<td><%=v.getVmsId()%></td>
 									<td><%=v.getName()%></td>
 									<td><%=v.getCompanyName()%></td>
-									<td><%=v.getSite()%></td>
+									<td><%=((v.getSite() == null) ? "" : v.getSite())%></td>
 									<td style="display:none;"><%=v.getIdType()%></td>
 									<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
 									<%if(userType == null) { %>
