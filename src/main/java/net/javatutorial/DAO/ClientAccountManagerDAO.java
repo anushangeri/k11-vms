@@ -23,8 +23,8 @@ public class ClientAccountManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("INSERT INTO CLIENTACCOUNT "
-	        		+  "(ACCOUNT_ID, NAME, ID_TYPE, ID_NO, PASSWORD, SALT, ACCESS_TYPE, CREATED_DT, MODIFIED_DT)" + 
-	        		"   VALUES ('" +v.getAccountId()+ "','" +v.getName()+ "','" +v.getIdType()+ "','" 
+	        		+  "(ACCOUNT_ID, NAME, SITE, ID_TYPE, ID_NO, PASSWORD, SALT, ACCESS_TYPE, CREATED_DT, MODIFIED_DT)" + 
+	        		"   VALUES ('" +v.getAccountId()+ "','" +v.getName()+ "','" +v.getIdType()+ "','" +v.getSite()+ "','" 
 	        		+v.getIdNo()+ "','" +v.getPassword()+ "','" +v.getSalt()+ "','" +v.getAccessType()+ "','" +v.getCreatedDt()+ "','" +v.getModifiedDt()+"')");
 	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM CLIENTACCOUNT;");
 	        while (rs.next()) {
@@ -156,7 +156,7 @@ public class ClientAccountManagerDAO {
         ArrayList<ClientAccount> vList = new ArrayList<ClientAccount>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT ACCOUNT_ID, NAME, SITE\r\n" + 
+            String sql = "SELECT ACCOUNT_ID, NAME, SITE, \r\n" + 
             		"              ID_TYPE, ID_NO, PASSWORD, SALT, ACCESS_TYPE, CREATED_DT, MODIFIED_DT \r\n"
             		+ " FROM CLIENTACCOUNT "
             		+ " WHERE ID_NO ='" + idNo + "' \r\n"
