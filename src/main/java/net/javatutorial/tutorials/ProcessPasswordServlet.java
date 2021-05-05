@@ -62,7 +62,7 @@ public class ProcessPasswordServlet extends HttpServlet {
 			session.setAttribute("idNo", c.getIdNo());
 			session.setAttribute("name", c.getName());
 			session.setAttribute("usertype", c.getAccessType());
-			session.setAttribute("siteInCharge", c.getSite());
+			session.setAttribute("siteInCharge", c.getSite() == null ? null : c.getSite());
 			RequestDispatcher rd = request.getRequestDispatcher("clientMain.jsp");
 			rd.forward(request, response);
 		}
