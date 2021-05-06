@@ -67,7 +67,7 @@ public class ProcessPasswordServlet extends HttpServlet {
 			rd.forward(request, response);
 		}
 		else {
-			request.setAttribute("responseObj",c.toString());
+			request.setAttribute("responseObj","Invalid Password or ID");
 			RequestDispatcher rd = request.getRequestDispatcher("clientLogin.jsp");
 			rd.forward(request, response);
 		}
