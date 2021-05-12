@@ -257,8 +257,10 @@ function showDiv(divId, element)
 								COVID-19 symptoms.</b>
 						</label>
 					</div>
+					<br>
+					<br>
 					<div id = "officerLogin" class="form-row">
-					<b>Please aproach guard house and seek approval from security officer on duty.</b>
+					<i>Please aproach guard house and seek approval from security officer on duty.</i>
 						<div class="form-group col-md-6">
 							<label for="idNo">Approving Officer ID Number: </label> <input type="text"
 								class="form-control" name="idNo" id="idNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
