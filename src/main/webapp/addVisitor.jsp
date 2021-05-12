@@ -258,8 +258,9 @@ function showDiv(divId, element)
 						</label>
 					</div>
 					<div id = "officerLogin" class="form-row">
+					<b>Please aproach guard house and seek approval from security officer on duty.</b>
 						<div class="form-group col-md-6">
-							<label for="idNo">ID Number: </label> <input type="text"
+							<label for="idNo">Approving Officer ID Number: </label> <input type="text"
 								class="form-control" name="idNo" id="idNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
 								minlength="4" maxlength="9" required>
 						</div>
