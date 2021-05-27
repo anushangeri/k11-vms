@@ -149,9 +149,10 @@
 									<td><%=v.getVisitorCardId()%></td>
 									<td><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
 									<td>
+										<label><%=(v.getRemarks() != null ? v.getRemarks() : "No Remarks Yet")%></label>
 										<select id = "ddlRemarks" onchange="showDiv('dvRemarks<%=v.getVmsId()%>', this)">
-									        <option value="N">No</option>
-									        <option value="Y">Yes</option>            
+									        <option value="N">No Edit Remarks</option>
+									        <option value="Y">Yes Edit Remarks</option>            
 									    </select>
 									    <hr />
 										<div id="dvRemarks<%=v.getVmsId()%>" style="display: none">

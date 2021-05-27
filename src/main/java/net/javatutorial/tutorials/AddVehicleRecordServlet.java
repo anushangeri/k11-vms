@@ -40,12 +40,13 @@ public class AddVehicleRecordServlet extends HttpServlet {
 		String temperature = request.getParameter("temperature");
 		String sealNo = request.getParameter("sealNo");
 		String containerSize = request.getParameter("containerSize");
+		String remarks = request.getParameter("remarks");
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 
 		Vehicle v = new Vehicle( vehicleId,  name,  companyName, idType, idNo,  mobileNo,  primeMoverNo,
 				containerNo,  loadedNoLoaded, covidDec, lorryChetNumber, deliveryNoticeNumber,  
-				visitPurpose, temperature, sealNo, containerSize,  null , timestamp);
+				visitPurpose, temperature, sealNo, containerSize,  remarks , timestamp);
 
 		String message = VehMSManagerDAO.addVisitor(v);
 		
