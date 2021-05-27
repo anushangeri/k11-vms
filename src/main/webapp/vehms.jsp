@@ -198,7 +198,7 @@
 										}
 									%>
 									<td>
-										<label><%=(v.getRemarks() != null ? v.getRemarks() : "No Remarks Yet")%></label>
+										<p><%=(v.getRemarks() != null ? v.getRemarks() : "No Remarks Yet")%></p>
 										<select id = "ddlRemarks" onchange="showDiv('dvRemarks<%=v.getVehicleId()%>', this)">
 									        <option value="N">No Edit Remarks</option>
 									        <option value="Y">Yes Edit Remarks</option>            
