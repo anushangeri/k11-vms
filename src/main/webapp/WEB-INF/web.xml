@@ -133,13 +133,18 @@
 	</servlet>
 	<servlet>
 		<description />
-
+		<display-name>UpdateVisitorRemarksRecordServlet</display-name>
+		<servlet-name>UpdateVisitorRemarksRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateVisitorRemarksRecordServlet</servlet-class>
+	</servlet>
+	
+	<!-- Vehicle Movement System START  -->
+	<servlet>
+		<description />
 		<display-name>VehRegLoginVerifyServlet</display-name>
 		<servlet-name>VehRegLoginVerifyServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.VehRegLoginVerifyServlet</servlet-class>
 	</servlet>
-
-	<!-- Vehicle Movement System START  -->
 	<servlet>
 		<description />
 		<display-name>CVehMSTblServlet</display-name>
@@ -193,6 +198,12 @@
 		<display-name>ViewVehicleRecordServlet</display-name>
 		<servlet-name>ViewVehicleRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.ViewVehicleRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>UpdateVehicleRemarksRecordServlet</display-name>
+		<servlet-name>UpdateVehicleRemarksRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateVehicleRemarksRecordServlet</servlet-class>
 	</servlet>
 	<!-- Vehicle Movement System END  -->
 	<!-- Client Account START  -->
@@ -353,20 +364,25 @@
 		<servlet-name>ViewVisitorRecordServlet</servlet-name>
 		<url-pattern>/vms</url-pattern>
 	</servlet-mapping>
-		<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>UpdateVisitorRecordServlet</servlet-name>
 		<url-pattern>/updateVisitor</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateVisitorRemarksRecordServlet</servlet-name>
+		<url-pattern>/updateVisitorRemarks</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DeleteAllVisitorRecordServlet</servlet-name>
 		<url-pattern>/deleteAllVisitor</url-pattern>
 	</servlet-mapping>
+
+	
+	<!-- Vehicle Movement System START  -->
 	<servlet-mapping>
 		<servlet-name>VehRegLoginVerifyServlet</servlet-name>
 		<url-pattern>/vehRegLoginVerify</url-pattern>
 	</servlet-mapping>
-	
-	<!-- Vehicle Movement System START  -->
 	<servlet-mapping>
 		<servlet-name>CVehMSTblServlet</servlet-name>
 		<url-pattern>/createVehmsTbl</url-pattern>
@@ -398,6 +414,10 @@
 	<servlet-mapping>
 		<servlet-name>UpdateVehicleDeliveryNoticeRecordServlet</servlet-name>
 		<url-pattern>/updateVehDeliveryNotice</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateVehicleRemarksRecordServlet</servlet-name>
+		<url-pattern>/updateVehRemarks</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ViewVehicleRecordServlet</servlet-name>

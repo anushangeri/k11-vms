@@ -133,13 +133,18 @@
 	</servlet>
 	<servlet>
 		<description />
-
+		<display-name>UpdateVisitorRemarksRecordServlet</display-name>
+		<servlet-name>UpdateVisitorRemarksRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateVisitorRemarksRecordServlet</servlet-class>
+	</servlet>
+	
+	<!-- Vehicle Movement System START  -->
+	<servlet>
+		<description />
 		<display-name>VehRegLoginVerifyServlet</display-name>
 		<servlet-name>VehRegLoginVerifyServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.VehRegLoginVerifyServlet</servlet-class>
 	</servlet>
-
-	<!-- Vehicle Movement System START  -->
 	<servlet>
 		<description />
 		<display-name>CVehMSTblServlet</display-name>
@@ -194,6 +199,12 @@
 		<servlet-name>ViewVehicleRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.ViewVehicleRecordServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>UpdateVehicleRemarksRecordServlet</display-name>
+		<servlet-name>UpdateVehicleRemarksRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateVehicleRemarksRecordServlet</servlet-class>
+	</servlet>
 	<!-- Vehicle Movement System END  -->
 	<!-- Client Account START  -->
 	<servlet>
@@ -201,6 +212,12 @@
 		<display-name>CClientAccountTblServlet</display-name>
 		<servlet-name>CClientAccountTblServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.CClientAccountTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>UClientAccountTblServlet</display-name>
+		<servlet-name>UClientAccountTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UClientAccountTblServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<description />
@@ -214,7 +231,75 @@
 		<servlet-name>ProcessPasswordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.ProcessPasswordServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>ResetPasswordServlet</display-name>
+		<servlet-name>ResetPasswordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ResetPasswordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewClientRecordServlet</display-name>
+		<servlet-name>ViewClientRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewClientRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>OverridePasswordServlet</display-name>
+		<servlet-name>OverridePasswordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.OverridePasswordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteClientAccountServlet</display-name>
+		<servlet-name>DeleteClientAccountServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteClientAccountServlet</servlet-class>
+	</servlet>
 	<!-- Client Account END  -->
+	<!-- Site START  -->
+	<servlet>
+		<description />
+		<display-name>CSiteTblServlet</display-name>
+		<servlet-name>CSiteTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CSiteTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>USiteTblServlet</display-name>
+		<servlet-name>USiteTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.USiteTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>AddSiteRecordServlet</display-name>
+		<servlet-name>AddSiteRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddSiteRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>EditSiteBySiteIDServlet</display-name>
+		<servlet-name>EditSiteBySiteIDServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.EditSiteBySiteIDServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>UpdateSiteRecordServlet</display-name>
+		<servlet-name>UpdateSiteRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateSiteRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewSiteRecordServlet</display-name>
+		<servlet-name>ViewSiteRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewSiteRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteSiteServlet</display-name>
+		<servlet-name>DeleteSiteServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteSiteServlet</servlet-class>
+	</servlet>
+	<!-- Site END  -->
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>
 		<url-pattern>/hello</url-pattern>
@@ -279,20 +364,25 @@
 		<servlet-name>ViewVisitorRecordServlet</servlet-name>
 		<url-pattern>/vms</url-pattern>
 	</servlet-mapping>
-		<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>UpdateVisitorRecordServlet</servlet-name>
 		<url-pattern>/updateVisitor</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateVisitorRemarksRecordServlet</servlet-name>
+		<url-pattern>/updateVisitorRemarks</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DeleteAllVisitorRecordServlet</servlet-name>
 		<url-pattern>/deleteAllVisitor</url-pattern>
 	</servlet-mapping>
+
+	
+	<!-- Vehicle Movement System START  -->
 	<servlet-mapping>
 		<servlet-name>VehRegLoginVerifyServlet</servlet-name>
 		<url-pattern>/vehRegLoginVerify</url-pattern>
 	</servlet-mapping>
-	
-	<!-- Vehicle Movement System START  -->
 	<servlet-mapping>
 		<servlet-name>CVehMSTblServlet</servlet-name>
 		<url-pattern>/createVehmsTbl</url-pattern>
@@ -326,6 +416,10 @@
 		<url-pattern>/updateVehDeliveryNotice</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>UpdateVehicleRemarksRecordServlet</servlet-name>
+		<url-pattern>/updateVehRemarks</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>ViewVehicleRecordServlet</servlet-name>
 		<url-pattern>/vehms</url-pattern>
 	</servlet-mapping>
@@ -336,6 +430,10 @@
 		<url-pattern>/clientAccountTbl</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>UClientAccountTblServlet</servlet-name>
+		<url-pattern>/updateClientAccountTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>AddClientAccountRecordServlet</servlet-name>
 		<url-pattern>/addClientAccount</url-pattern>
 	</servlet-mapping>
@@ -343,5 +441,51 @@
 		<servlet-name>ProcessPasswordServlet</servlet-name>
 		<url-pattern>/verifyLogin</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ResetPasswordServlet</servlet-name>
+		<url-pattern>/resetPassword</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewClientRecordServlet</servlet-name>
+		<url-pattern>/retrieveAllClientRecords</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>OverridePasswordServlet</servlet-name>
+		<url-pattern>/overridePassword</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteClientAccountServlet</servlet-name>
+		<url-pattern>/deleteClientRecord</url-pattern>
+	</servlet-mapping>
 	<!-- Client Account END  -->
+	<!-- Site START  -->
+	<servlet-mapping>
+		<servlet-name>CSiteTblServlet</servlet-name>
+		<url-pattern>/createSiteTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>USiteTblServlet</servlet-name>
+		<url-pattern>/updateSiteTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddSiteRecordServlet</servlet-name>
+		<url-pattern>/addSite</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditSiteBySiteIDServlet</servlet-name>
+		<url-pattern>/editSite</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateSiteRecordServlet</servlet-name>
+		<url-pattern>/updateSite</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewSiteRecordServlet</servlet-name>
+		<url-pattern>/retrieveAllSiteRecords</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteSiteServlet</servlet-name>
+		<url-pattern>/deleteSite</url-pattern>
+	</servlet-mapping>
+	<!-- Site END  -->
 </web-app>

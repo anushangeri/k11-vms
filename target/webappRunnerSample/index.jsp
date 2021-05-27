@@ -26,6 +26,8 @@
 <body>
 	<%
 		session.removeAttribute("usertype");
+		session.removeAttribute("name");
+		session.removeAttribute("idNo");
 	%>
 	<center>
 		<b>*Individuals are required to self-identify should they

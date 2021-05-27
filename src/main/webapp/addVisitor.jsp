@@ -259,7 +259,7 @@ function showDiv(divId, element)
 					</div>
 					<br>
 					<br>
-					<div id = "officerLogin" class="form-row">
+					<!--  <div id = "officerLogin" class="form-row">
 					<i>Please aproach guard house and seek approval from security officer on duty.</i>
 						<div class="form-group col-md-6">
 							<label for="idNo">Approving Officer ID Number: </label> <input type="text"
@@ -272,7 +272,7 @@ function showDiv(divId, element)
 								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
 								required><input type="checkbox" onclick="showPassword()">Show Password
 						</div>
-					</div>
+					</div>-->
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active">Submit
 							Record</button>

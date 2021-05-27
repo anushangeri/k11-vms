@@ -59,6 +59,10 @@
 			});
 		});
 	});
+	function showDiv(divId, element)
+	{
+	    document.getElementById(divId).style.display = element.value == "Y" ? 'block' : 'none';
+	}
 	function goBack() {
 	  window.history.back();
 	}
@@ -108,6 +112,7 @@
 							<th class="th-sm" style="display:none;">Host Contact Number</th>
 							<th class="th-sm">Visitor Pass ID</th>
 							<th class="th-sm">Covid Declaration?</th>
+							<th class="th-sm">Remarks</th>
 							<th class="th-sm">Purpose of Visit</th>
 							<th class="th-sm">Temperature</th>
 							<th class="th-sm">Time In</th>
@@ -143,6 +148,21 @@
 									<td style="display:none;"><%=v.getHostNo()%></td>
 									<td><%=v.getVisitorCardId()%></td>
 									<td><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
+									<td>
+										<select id = "ddlRemarks" onchange="showDiv('dvRemarks<%=v.getVmsId()%>', this)">
+									        <option value="N">No</option>
+									        <option value="Y">Yes</option>            
+									    </select>
+									    <hr />
+										<div id="dvRemarks<%=v.getVmsId()%>" style="display: none">
+											<form method="POST" action ="/updateVisitorRemarks">
+												<input type="hidden" id="vmsId" name="vmsId" value="<%=v.getVmsId()%>">
+												<input type="text" class="form-control" name="remarks"
+												oninput="this.value = this.value.toUpperCase()">
+												<input type="submit" name="Submit" value="Update">
+											</form>
+										</div>
+									</td>
 									<td><%=v.getVisitPurpose()%></td>
 									<td><%=v.getTemperature()%></td>
 									<td><%=sdf.format(v.getTimeInDt())%></td>

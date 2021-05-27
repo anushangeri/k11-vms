@@ -74,8 +74,7 @@ public class VehMSTblDAO {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
 	        stmt.executeUpdate("ALTER TABLE VEHMS\r\n" + 
-	        		"ADD COLUMN SEAL_NO VARCHAR (100)  NULL,"
-	        		+ "ADD COLUMN CONTAINER_SIZE VARCHAR (100)  NULL;");
+	        		"ADD COLUMN REMARKS VARCHAR (100)  NULL;");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;

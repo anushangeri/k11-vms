@@ -114,6 +114,7 @@
 							<th class="th-sm" style="display:none;">Covid Declaration?</th>
 							<th class="th-sm">Lorry Chet No.</th>
 							<th class="th-sm">Delivery Notice No.</th>
+							<th class="th-sm">Remarks</th>
 							<th class="th-sm">Purpose of Visit</th>
 							<th class="th-sm">Temperature</th>
 							<th class="th-sm">Time In</th>
@@ -196,6 +197,21 @@
 									<%
 										}
 									%>
+									<td>
+										<select id = "ddlRemarks" onchange="showDiv('dvRemarks<%=v.getVehicleId()%>', this)">
+									        <option value="N">No</option>
+									        <option value="Y">Yes</option>            
+									    </select>
+									    <hr />
+										<div id="dvRemarks<%=v.getVehicleId()%>" style="display: none">
+											<form method="POST" action ="/updateVehRemarks">
+												<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
+												<input type="text" class="form-control" name="remarks"
+												oninput="this.value = this.value.toUpperCase()">
+												<input type="submit" name="Submit" value="Update">
+											</form>
+										</div>
+									</td>
 									<td><%=v.getVisitPurpose()%></td>
 									<td><%=v.getTemperature()%></td>
 									<td><%=sdf.format(v.getTimeInDt())%></td>

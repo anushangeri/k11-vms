@@ -63,7 +63,7 @@ public class AddVisitorRecordServlet extends HttpServlet {
 //			timeIn += ":00";
 //		}
 		Visitor v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
-			 hostName,  hostNo,  visitorCardId, covidDec, visitPurpose, temperature,  timestamp);
+			 hostName,  hostNo,  visitorCardId, covidDec, visitPurpose, null, temperature,  timestamp);
 		
 		String message = VMSManagerDAO.addVisitor(v);
 		
