@@ -248,8 +248,7 @@
 	</div>
 		<div class="container body-content">
 			<center>
-				<a href="/index.jsp" class="btn btn-warning btn-lg active"
-				role="button" aria-pressed="true">Back</a>
+				<button class="btn btn-warning btn-lg active" onclick="goBack()">Go Back</button>
 		
 				<a href="retrieveVehToPopulate" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Add Vehicle Record</a>
