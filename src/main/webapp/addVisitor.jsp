@@ -42,6 +42,13 @@ function validateForm() {
 function showDiv(divId, element)
 {
     document.getElementById(divId).style.display = element.value == "GOVERNMENT AGENCY" ? 'block' : 'none';
+    document.getElementById(divId).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : '';
+    
+}
+function showOfficeDivOnLoad(officerLogin,visitPurpose)
+{
+    document.getElementById(officerLogin).style.display = document.getElementById(visitPurpose).value == "GOVERNMENT AGENCY" ? 'block' : 'none';
+    document.getElementById(officerLogin).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : '';
     
 }
 function showPassword() {
@@ -54,7 +61,7 @@ function showPassword() {
 }
 </script>
 </head>
-<body>
+<body onload="showOfficeDivOnLoad('officerLogin','visitPurpose')">
 	<%
 		ArrayList<String> visitPurpose = new ArrayList<String>();
 		ArrayList<String> idType = new ArrayList<String>();
@@ -198,7 +205,7 @@ function showPassword() {
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
 							<% if(v == null){%>
-								<select id = "visitPurpose" onload="showDiv('officerLogin', this)"
+								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
 									name="visitPurpose" class="form-control" required>
 									<%
 										for (int i = 0; i < visitPurpose.size(); i++) {
@@ -211,7 +218,7 @@ function showPassword() {
 								</select>
 							<% } 
 							else {%>
-								<select id = "visitPurpose" onload="showDiv('officerLogin', this)"
+								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
 									name="visitPurpose" class="form-control" required>
 									<%
 										for (int i = 0; i < visitPurpose.size(); i++) {
