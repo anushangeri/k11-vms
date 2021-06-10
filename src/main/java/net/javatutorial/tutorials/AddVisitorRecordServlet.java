@@ -22,7 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.format.DateTimeFormatter;
 
+import net.javatutorial.DAO.ClientAccountManagerDAO;
 import net.javatutorial.DAO.VMSManagerDAO;
+import net.javatutorial.entity.ClientAccount;
 import net.javatutorial.entity.Visitor;
 
 import java.util.Calendar;
@@ -57,16 +59,39 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		String remarks = request.getParameter("remarks");
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
-		//Timestamp timeInDt = new Timestamp(System.currentTimeMillis());
-		// make sure the seconds are set before parsing because Chrome won't send the seconds part
-		// https://stackoverflow.com/questions/27827614/conversion-from-datetime-local-to-java-sql-timestamp
-//		if (StringUtils.countMatches(timeIn, ":") == 1) {
-//			timeIn += ":00";
-//		}
-		Visitor v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
-			 hostName,  hostNo,  visitorCardId, covidDec, remarks, visitPurpose,  temperature,  timestamp);
+
+		//Step 1: verify officer login (if parameters not empty) and visitPurpose = GovtAgency
+		String officerIdNo = request.getParameter("officerIdNo");
+		String officerpsw = request.getParameter("officerpsw");
 		
-		String message = VMSManagerDAO.addVisitor(v);
+		//retrieving the hashed password by DB based on idNo entered by user
+		ArrayList<ClientAccount> vList = ClientAccountManagerDAO.retrieveByID(officerIdNo);
+		boolean verified = false;
+		String key = " ";
+		String salt = " ";
+		ClientAccount c = null;
+		if(vList != null && vList.size() > 0 ) {
+			c = vList.get(0);
+			if(c != null) {
+				key = c.getPassword();
+				salt = c.getSalt();
+				verified = PasswordUtils.verifyPassword(officerpsw, key, salt);
+			}
+		}
+		Visitor v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
+				 hostName,  hostNo,  visitorCardId, covidDec, remarks, visitPurpose,  temperature,  timestamp);
+		String message = "Something went wrong, please try again.";
+		if(verified && visitPurpose.equals("GOVERNMENT AGENCY")) {
+			//Step 2: add visitor
+			message = VMSManagerDAO.addVisitor(v);
+		}
+		else {
+			//Step 1a: if verify fail, return to add page, populate parameters
+			request.setAttribute("responseObj", message);
+			request.setAttribute("visitorLatRec", v);
+			RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
+			rd.forward(request, response);
+		}
 		
 		ArrayList<String> responseObj = new ArrayList<String>();
 		responseObj.add(message + " " + name);

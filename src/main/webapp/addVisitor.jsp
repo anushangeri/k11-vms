@@ -263,20 +263,20 @@ function showDiv(divId, element)
 					</div>
 					<br>
 					<br>
-					<!--  <div id = "officerLogin" class="form-row">
+					<div id = "officerLogin" class="form-row">
 					<i>Please aproach guard house and seek approval from security officer on duty.</i>
 						<div class="form-group col-md-6">
-							<label for="idNo">Approving Officer ID Number: </label> <input type="text"
-								class="form-control" name="idNo" id="idNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
+							<label for="officerIdNo">Approving Officer ID Number: </label> <input type="text"
+								class="form-control" name="officerIdNo" id="officerIdNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
 								minlength="4" maxlength="9" required>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="psw">Password</label> <input type="password" class="form-control" id="psw"
-								name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+							<label for="officerpsw">Password</label> <input type="password" class="form-control" id="officerpsw"
+								name="officerpsw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
 								required><input type="checkbox" onclick="showPassword()">Show Password
 						</div>
-					</div>-->
+					</div>
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active">Submit
 							Record</button>
