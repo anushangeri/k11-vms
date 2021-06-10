@@ -23,8 +23,10 @@ import org.apache.commons.lang.StringUtils;
 import org.joda.time.format.DateTimeFormatter;
 
 import net.javatutorial.DAO.ClientAccountManagerDAO;
+import net.javatutorial.DAO.SiteManagerDAO;
 import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.entity.ClientAccount;
+import net.javatutorial.entity.Site;
 import net.javatutorial.entity.Visitor;
 
 import java.util.Calendar;
@@ -87,8 +89,10 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		}
 		else {
 			//Step 1a: if verify fail, return to add page, populate parameters
+			ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 			request.setAttribute("responseObj", message);
 			request.setAttribute("visitorLatRec", v);
+			request.setAttribute("siteDropdown", siteDropdown);
 			RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
 			rd.forward(request, response);
 		}

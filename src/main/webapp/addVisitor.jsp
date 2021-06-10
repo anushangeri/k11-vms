@@ -43,6 +43,14 @@ function showDiv(divId, element)
 {
     document.getElementById(divId).style.display = element.value == "GOVERNMENT AGENCY" ? 'block' : 'none';
 }
+function showPassword() {
+	  var x = document.getElementById("officerpsw");
+	  if (x.type === "password") {
+	    x.type = "text";
+	  } else {
+	    x.type = "password";
+	  }
+}
 </script>
 </head>
 <body>
