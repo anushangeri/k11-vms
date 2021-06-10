@@ -87,6 +87,10 @@ public class AddVisitorRecordServlet extends HttpServlet {
 			//Step 2: add visitor
 			message = VMSManagerDAO.addVisitor(v);
 		}
+		else if(!visitPurpose.equals("GOVERNMENT AGENCY")) {
+			//Step 2: add visitor if not GOVT AGENCY
+			message = VMSManagerDAO.addVisitor(v);
+		}
 		else {
 			//Step 1a: if verify fail, return to add page, populate parameters
 			ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
