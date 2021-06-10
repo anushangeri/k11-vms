@@ -42,13 +42,6 @@ function validateForm() {
 function showDiv(divId, element)
 {
     document.getElementById(divId).style.display = element.value == "GOVERNMENT AGENCY" ? 'block' : 'none';
-    document.getElementById(divId).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : '';
-    
-}
-function showOfficeDivOnLoad(officerLogin,visitPurpose)
-{
-    document.getElementById(officerLogin).style.display = document.getElementById(visitPurpose).value == "GOVERNMENT AGENCY" ? 'block' : 'none';
-    document.getElementById(officerLogin).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : '';
     
 }
 function showPassword() {
@@ -281,7 +274,7 @@ function showPassword() {
 					</div>
 					<br>
 					<br>
-					<div id = "officerLogin" class="form-row" onload="showOfficeDivOnLoad('officerLogin', 'visitPurpose')">
+					<div id = "officerLogin" class="form-row">
 					<i>Please aproach guard house and seek approval from security officer on duty.</i>
 						<div class="form-group col-md-6">
 							<label for="officerIdNo">Approving Officer ID Number: </label> <input type="text"
