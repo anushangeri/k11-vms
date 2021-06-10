@@ -98,6 +98,7 @@ function showPassword() {
 	<div class="container body-content">
 		<div class="page-header">
 			<label class="heading"><%=((request.getAttribute("responseObj") != null) ? request.getAttribute("responseObj") : "")%></label>
+			<br>
 			<label class="heading">Visitor Management System</label> <br> <b>How
 				to use:</b> Please enter Visitor Details.
 			<%
