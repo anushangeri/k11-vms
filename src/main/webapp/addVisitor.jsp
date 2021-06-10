@@ -198,7 +198,7 @@ function showPassword() {
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
 							<% if(v == null){%>
-								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
+								<select id = "visitPurpose" onload="showDiv('officerLogin', this)"
 									name="visitPurpose" class="form-control" required>
 									<%
 										for (int i = 0; i < visitPurpose.size(); i++) {
@@ -211,7 +211,7 @@ function showPassword() {
 								</select>
 							<% } 
 							else {%>
-								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
+								<select id = "visitPurpose" onload="showDiv('officerLogin', this)"
 									name="visitPurpose" class="form-control" required>
 									<%
 										for (int i = 0; i < visitPurpose.size(); i++) {
