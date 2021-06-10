@@ -42,6 +42,7 @@ function validateForm() {
 function showDiv(divId, element)
 {
     document.getElementById(divId).style.display = element.value == "GOVERNMENT AGENCY" ? 'block' : 'none';
+    element.getField("officerIdNo").required=true;
 }
 function showPassword() {
 	  var x = document.getElementById("officerpsw");
@@ -276,13 +277,13 @@ function showPassword() {
 						<div class="form-group col-md-6">
 							<label for="officerIdNo">Approving Officer ID Number: </label> <input type="text"
 								class="form-control" name="officerIdNo" id="officerIdNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
-								minlength="4" maxlength="9" required>
+								minlength="4" maxlength="9">
 						</div>
 						<div class="form-group col-md-4">
 							<label for="officerpsw">Password</label> <input type="password" class="form-control" id="officerpsw"
 								name="officerpsw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-								required><input type="checkbox" onclick="showPassword()">Show Password
+								><input type="checkbox" onclick="showPassword()">Show Password
 						</div>
 					</div>
 					<div class="form-row">
