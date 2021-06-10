@@ -42,7 +42,8 @@ function validateForm() {
 function showDiv(divId, element)
 {
     document.getElementById(divId).style.display = element.value == "GOVERNMENT AGENCY" ? 'block' : 'none';
-    document.getElementById("officerIdNo").required= element.value == "GOVERNMENT AGENCY" ? true : false;
+    element.value == "GOVERNMENT AGENCY" ? document.getElementById("officerIdNo").setAttribute("required", "") : '';
+    
 }
 function showPassword() {
 	  var x = document.getElementById("officerpsw");
