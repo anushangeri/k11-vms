@@ -42,7 +42,7 @@ function validateForm() {
 function showDiv(divId, element)
 {
     document.getElementById(divId).style.display = element.value == "GOVERNMENT AGENCY" ? 'block' : 'none';
-    element.value == "GOVERNMENT AGENCY" ? document.getElementById("officerIdNo").setAttribute("required", "") : '';
+    document.getElementById(divId).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : '';
     
 }
 function showPassword() {
