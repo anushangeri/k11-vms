@@ -166,7 +166,7 @@
 										</div>
 									</td>
 									<td><%=v.getVisitPurpose()%></td>
-									<td><%=((v.getApprovingOfficer() == "null") ? "None" : v.getApprovingOfficer())%></td>
+									<td><%=((v.getApprovingOfficer() == null) ? "None" : v.getApprovingOfficer())%></td>
 									<td><%=v.getTemperature()%></td>
 									<td><%=sdf.format(v.getTimeInDt())%></td>
 									<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
