@@ -43,7 +43,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -55,7 +55,7 @@
 						var sheet = xlsx.xl.worksheets['sheet1.xml'];
 					}
 				} ],
-				"order": [[15, 'desc']]
+				"order": [[16, 'desc']]
 			});
 		});
 	});
@@ -114,6 +114,7 @@
 							<th class="th-sm">Covid Declaration?</th>
 							<th class="th-sm">Remarks</th>
 							<th class="th-sm">Purpose of Visit</th>
+							<th class="th-sm">Approving Officer</th>
 							<th class="th-sm">Temperature</th>
 							<th class="th-sm">Time In</th>
 							<th class="th-sm">Time Out</th>
@@ -165,6 +166,7 @@
 										</div>
 									</td>
 									<td><%=v.getVisitPurpose()%></td>
+									<td><%=((v.getApprovingOfficer() == "null") ? "None" : v.getApprovingOfficer())%></td>
 									<td><%=v.getTemperature()%></td>
 									<td><%=sdf.format(v.getTimeInDt())%></td>
 									<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
