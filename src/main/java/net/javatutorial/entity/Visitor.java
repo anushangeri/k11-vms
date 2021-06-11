@@ -19,13 +19,15 @@ public class Visitor {
     private String remarks;
     private String visitPurpose;
     private String temperature;
+    private String approvingOfficer;
     private Timestamp timeInDt;
     private Timestamp timeOutDt;
     
+
 	public Visitor(String vmsId, String name, String companyName, String site, String idType, String idNo,
 			String mobileNo, String vehicleNo, String hostName, String hostNo, String visitorCardId,
-			String covidDeclare, String remarks, String visitPurpose, String temperature, Timestamp timeInDt,
-			Timestamp timeOutDt) {
+			String covidDeclare, String remarks, String visitPurpose, String temperature, String approvingOfficer,
+			Timestamp timeInDt, Timestamp timeOutDt) {
 		super();
 		this.vmsId = vmsId;
 		this.name = name;
@@ -42,13 +44,15 @@ public class Visitor {
 		this.remarks = remarks;
 		this.visitPurpose = visitPurpose;
 		this.temperature = temperature;
+		this.approvingOfficer = approvingOfficer;
 		this.timeInDt = timeInDt;
 		this.timeOutDt = timeOutDt;
 	}
-	
+
 	public Visitor(String vmsId, String name, String companyName, String site, String idType, String idNo,
 			String mobileNo, String vehicleNo, String hostName, String hostNo, String visitorCardId,
-			String covidDeclare, String remarks, String visitPurpose, String temperature, Timestamp timeInDt) {
+			String covidDeclare, String remarks, String visitPurpose, String temperature, String approvingOfficer,
+			Timestamp timeInDt) {
 		super();
 		this.vmsId = vmsId;
 		this.name = name;
@@ -65,6 +69,7 @@ public class Visitor {
 		this.remarks = remarks;
 		this.visitPurpose = visitPurpose;
 		this.temperature = temperature;
+		this.approvingOfficer = approvingOfficer;
 		this.timeInDt = timeInDt;
 	}
 
@@ -272,6 +277,21 @@ public class Visitor {
 	public void setTimeOutDt(Timestamp timeOutDt) {
 		this.timeOutDt = timeOutDt;
 	}
+	
+	/**
+	 * @return the approvingOfficer
+	 */
+	public String getApprovingOfficer() {
+		return approvingOfficer;
+	}
+
+	/**
+	 * @param approvingOfficer the approvingOfficer to set
+	 */
+	public void setApprovingOfficer(String approvingOfficer) {
+		this.approvingOfficer = approvingOfficer;
+	}
+
 	@Override
 	public String toString() {
 		return "Visitor [vmsId=" + vmsId + ", name=" + name + ", companyName=" + companyName + ", site=" + site

@@ -80,15 +80,20 @@ public class AddVisitorRecordServlet extends HttpServlet {
 				verified = PasswordUtils.verifyPassword(officerpsw, key, salt);
 			}
 		}
-		Visitor v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
-				 hostName,  hostNo,  visitorCardId, covidDec, remarks, visitPurpose,  temperature,  timestamp);
+		Visitor v = null;
 		String message = "Something went wrong, please try again.";
 		if(verified && visitPurpose.equals("GOVERNMENT AGENCY")) {
 			//Step 2: add visitor
+			v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
+					 hostName,  hostNo,  visitorCardId, covidDec, remarks, visitPurpose,  
+					 temperature, c.getName() , timestamp);
 			message = VMSManagerDAO.addVisitor(v);
 		}
 		else if(!visitPurpose.equals("GOVERNMENT AGENCY")) {
 			//Step 2: add visitor if not GOVT AGENCY
+			v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
+					 hostName,  hostNo,  visitorCardId, covidDec, remarks, visitPurpose,  
+					 temperature, null , timestamp);
 			message = VMSManagerDAO.addVisitor(v);
 		}
 		else {
