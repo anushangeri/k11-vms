@@ -1,5 +1,6 @@
 net\javatutorial\tutorials\AddClientAccountRecordServlet.class
 net\javatutorial\tutorials\ProcessPasswordServlet.class
+com\heroku\devcenter\SchedulerMain$HelloJob.class
 net\javatutorial\entity\Visitor.class
 net\javatutorial\tutorials\AddSiteRecordServlet.class
 net\javatutorial\tutorials\UpdateVisitorRecordServlet.class
@@ -35,12 +36,14 @@ net\javatutorial\tutorials\PasswordUtils.class
 net\javatutorial\tutorials\UClientAccountTblServlet.class
 net\javatutorial\DAO\ClientAccountTblDAO.class
 net\javatutorial\tutorials\UVehMSTblServlet.class
+com\heroku\devcenter\WorkerMain.class
 net\javatutorial\tutorials\ViewSiteRecordServlet.class
 net\javatutorial\tutorials\RetrieveVisitorByNRICServlet.class
 net\javatutorial\tutorials\ViewVehicleRecordServlet.class
 net\javatutorial\tutorials\DeleteClientAccountServlet.class
 net\javatutorial\tutorials\EditSiteBySiteIDServlet.class
 net\javatutorial\tutorials\ViewClientRecordServlet.class
+com\heroku\devcenter\SchedulerMain.class
 net\javatutorial\tutorials\CSiteTblServlet.class
 net\javatutorial\tutorials\UpdateVehicleDeliveryNoticeRecordServlet.class
 net\javatutorial\tutorials\UpdateVehicleTimeOutRecordServlet.class
