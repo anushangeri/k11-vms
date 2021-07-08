@@ -1,6 +1,5 @@
 net\javatutorial\tutorials\AddClientAccountRecordServlet.class
 net\javatutorial\tutorials\ProcessPasswordServlet.class
-com\heroku\devcenter\SchedulerMain$HelloJob.class
 net\javatutorial\entity\Visitor.class
 net\javatutorial\tutorials\AddSiteRecordServlet.class
 net\javatutorial\tutorials\UpdateVisitorRecordServlet.class
