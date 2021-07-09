@@ -27,7 +27,8 @@ public class VMSArchiveManagerDAO {
 	        		+ " REMARKS, VISIT_PURPOSE, TEMPERATURE, APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT, ARCHIVED_DT)" + 
 	        		"  SELECT VMS_ID, NAME, COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, VEHICLE_NO, HOST_NAME, HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, " + 
 	        		"	REMARKS, VISIT_PURPOSE, TEMPERATURE, APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT, NOW() "
-	        		+ " FROM VMS WHERE TIME_IN_DT <= (CURRENT_DATE - INTERVAL '30 days');");
+	        		+ " FROM VMS WHERE TIME_IN_DT <= (CURRENT_DATE - INTERVAL '30 days');"
+	        		+ " DELETE FROM VMS WHERE TIME_IN_DT <= (CURRENT_DATE - INTERVAL '30 days');");
 	        rs = stmt.executeQuery("SELECT NAME FROM VMS_ARCHIVED ORDER BY VMS_ID DESC LIMIT 1;");
 	        while (rs.next()) {
 	        	message = "Read from DB: " + rs.getTimestamp("tick");
