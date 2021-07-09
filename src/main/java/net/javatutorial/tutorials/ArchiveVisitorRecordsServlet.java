@@ -16,12 +16,13 @@ public class ArchiveVisitorRecordsServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String message = VMSArchiveManagerDAO.moveVisitor();
-		request.setAttribute("responseObj", message);
-		// Redirect to view visitor servlet to query all the visitors again.
-		response.sendRedirect("index.jsp");
+//		request.setAttribute("responseObj", message);
+//		// Redirect to view visitor servlet to query all the visitors again.
+//		response.sendRedirect("index.jsp");
+		
 	}
 	@Override
 	public void init() throws ServletException {
