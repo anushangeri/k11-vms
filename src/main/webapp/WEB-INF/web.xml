@@ -138,6 +138,21 @@
 		<servlet-class>net.javatutorial.tutorials.UpdateVisitorRemarksRecordServlet</servlet-class>
 	</servlet>
 	
+	<!-- VMS Archived START  -->
+	<servlet>
+		<description />
+		<display-name>CVMSArchivedTblServlet</display-name>
+		<servlet-name>CVMSArchivedTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CVMSArchivedTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ArchiveVisitorRecordsServlet</display-name>
+		<servlet-name>ArchiveVisitorRecordsServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ArchiveVisitorRecordsServlet</servlet-class>
+	</servlet>
+	<!-- VMS Archived END  -->
+	
 	<!-- Vehicle Movement System START  -->
 	<servlet>
 		<description />
@@ -377,6 +392,16 @@
 		<url-pattern>/deleteAllVisitor</url-pattern>
 	</servlet-mapping>
 
+	<!-- VMS Archived START  -->
+	<servlet-mapping>
+		<servlet-name>CVMSArchivedTblServlet</servlet-name>
+		<url-pattern>/createVmsArchivedTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ArchiveVisitorRecordsServlet</servlet-name>
+		<url-pattern>/archiveVisitors</url-pattern>
+	</servlet-mapping>
+	<!-- VMS Archived END  -->
 	
 	<!-- Vehicle Movement System START  -->
 	<servlet-mapping>

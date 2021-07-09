@@ -66,6 +66,8 @@
 			</form>
 			<br>
 		</div>
+		<a href="/archiveVisitors" class="btn btn-warning btn-lg active" role="button"
+					aria-pressed="true">Visitors</a>
 	</center>
 </body>
 </html>
