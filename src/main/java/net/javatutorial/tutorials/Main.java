@@ -23,11 +23,11 @@ public class Main {
 //    }
 //    
     public static Connection getConnection() throws URISyntaxException, SQLException {
-        URI dbUri = new URI(System.getenv("JDBC_DATABASE_URL"));
+        URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() ;
 
         return DriverManager.getConnection(dbUrl, username, password);
 //    	String dbUrl = System.getenv("JDBC_DATABASE_URL");
