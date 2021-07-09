@@ -1,4 +1,4 @@
-package com.heroku.devcenter;
+package net.javatutorial.tutorials;
 
 import net.javatutorial.DAO.VMSArchiveManagerDAO;
 
