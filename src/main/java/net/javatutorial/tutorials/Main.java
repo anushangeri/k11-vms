@@ -27,7 +27,7 @@ public class Main {
 
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() ;
+        String dbUrl = "postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() ;
 
         return DriverManager.getConnection(dbUrl, username, password);
 //    	String dbUrl = System.getenv("JDBC_DATABASE_URL");
