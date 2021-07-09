@@ -34,8 +34,8 @@ public class VMSArchiveTblDAO {
 	        		"   REMARKS  VARCHAR (100) NULL,\r\n" + 
 	        		"   APPROVING_OFFICER  VARCHAR (100) NULL,\r\n" + 
 	        		"   TIME_IN_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
-	        		"   TIME_OUT_DT TIMESTAMP   NULL \r\n" + 
-	        		"   ARCHIVED_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
+	        		"   TIME_OUT_DT TIMESTAMP   NULL, \r\n" + 
+	        		"   ARCHIVED_DT TIMESTAMP  NOT NULL DEFAULT NOW() \r\n" + 
 	        		");");
 //	        stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
 //	        ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
