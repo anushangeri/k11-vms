@@ -66,8 +66,15 @@
 			</form>
 			<br>
 		</div>
-		<a href="/archiveVisitors" class="btn btn-warning btn-lg active" role="button"
-					aria-pressed="true">Visitors</a>
+		<form method="POST" action="/archiveVisitors">
+				<button type="submit" id="removeBackground">
+					<div class="card bg-warning text-white">
+						<div class="card-body font-size-percent">
+							Select this.
+						</div>
+					</div>
+				</button>
+			</form>
 	</center>
 </body>
 </html>
