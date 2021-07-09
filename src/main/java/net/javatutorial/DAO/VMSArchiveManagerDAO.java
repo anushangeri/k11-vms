@@ -45,7 +45,6 @@ public class VMSArchiveManagerDAO {
 		finally {
         	Main.close(connection, stmt, rs);
         }
-		message = "Successful";
 		return message;
 	}
 	
