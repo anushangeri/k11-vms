@@ -315,6 +315,33 @@
 		<servlet-class>net.javatutorial.tutorials.DeleteSiteServlet</servlet-class>
 	</servlet>
 	<!-- Site END  -->
+	<!-- Dropdown List START  -->
+	<servlet>
+		<description />
+		<display-name>CDropdownTblServlet</display-name>
+		<servlet-name>CDropdownTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CDropdownTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>AddDropdownRecordServlet</display-name>
+		<servlet-name>AddDropdownRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddDropdownRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewDropdownRecordServlet</display-name>
+		<servlet-name>ViewDropdownRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewDropdownRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>RetrieveDropdownByKeyServlet</display-name>
+		<servlet-name>RetrieveDropdownByKeyServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.RetrieveDropdownByKeyServlet</servlet-class>
+	</servlet>
+	<!-- Site END  -->
+	
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>
 		<url-pattern>/hello</url-pattern>
@@ -513,4 +540,23 @@
 		<url-pattern>/deleteSite</url-pattern>
 	</servlet-mapping>
 	<!-- Site END  -->
+	<!-- Dropdown START  -->
+	<servlet-mapping>
+		<servlet-name>CDropdownTblServlet</servlet-name>
+		<url-pattern>/createDropdownTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddDropdownRecordServlet</servlet-name>
+		<url-pattern>/addDropdown</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewDropdownRecordServlet</servlet-name>
+		<url-pattern>/retrieveAllDropdownRecords</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RetrieveDropdownByKeyServlet</servlet-name>
+		<url-pattern>/getDropdownList</url-pattern>
+	</servlet-mapping>
+	<!-- Dropdown END  -->
+	
 </web-app>
