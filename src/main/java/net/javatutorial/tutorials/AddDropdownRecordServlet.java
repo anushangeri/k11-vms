@@ -24,7 +24,7 @@ public class AddDropdownRecordServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int nextVal = SiteManagerDAO.getNextVal();
+		int nextVal = DropdownListManagerDAO.getNextVal();
 		
 		String dropdownId = "" + nextVal;
 		String dropdownKey = request.getParameter("dropdownKey");
