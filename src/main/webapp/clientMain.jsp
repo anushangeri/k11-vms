@@ -77,9 +77,9 @@
 					role="button" aria-pressed="true">Manage Site Records</a>
 					
 					<a href="addDropdown.jsp" class="btn btn-warning btn-lg active"
-					role="button" aria-pressed="true">Create Site Record</a>
+					role="button" aria-pressed="true">Create Dropdown Record</a>
 					<a href="/retrieveAllDropdownRecords" class="btn btn-warning btn-lg active"
-					role="button" aria-pressed="true">Manage Site Records</a>
+					role="button" aria-pressed="true">Manage Dropdown Records</a>
 				<%	
 				}
 			%>
