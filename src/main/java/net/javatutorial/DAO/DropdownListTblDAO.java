@@ -15,7 +15,8 @@ public class DropdownListTblDAO {
 		try {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
-	        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS DROPDOWN (\r\n" + 
+	        stmt.executeUpdate("DROP TABLE IF EXISTS DROPDOWN; "
+	        		+ "CREATE TABLE IF NOT EXISTS DROPDOWN (\r\n" + 
 	        		"   DROPDOWN_ID VARCHAR (100)  NOT NULL,\r\n" + 
 	        		"   DROPDOWN_KEY VARCHAR (100)  NOT NULL,\r\n" + 
 	        		"   DROPDOWN_VALUE VARCHAR (100)  NOT NULL,\r\n"  +
