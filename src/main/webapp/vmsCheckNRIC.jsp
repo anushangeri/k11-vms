@@ -55,13 +55,6 @@
 		SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
 		try {
 			//Dropdown for idType START
-// 			String idTypeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/3/public/values";
-// 			// Use this String as url
-// 			URL idTypeurl = new URL(idTypeUrl);
-
-// 			// Get Feed of Spreadsheet url
-// 			ListFeed idTypelf = service.getFeed(idTypeurl, ListFeed.class);
-			
 			idType = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
 			//Dropdown for idType END
 

@@ -7,18 +7,13 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="net.javatutorial.entity.*"%>
+<%@page import="net.javatutorial.DAO.*"%>
 <%@page import="java.util.*"%>
 <%@page import="java.time.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="com.google.gdata.client.spreadsheet.SpreadsheetService"%>
-<%@page
-	import="com.google.gdata.data.spreadsheet.CustomElementCollection"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListEntry"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListFeed"%>
-<%@page import="com.google.gdata.util.ServiceException"%>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -44,51 +39,20 @@
 </head>
 <body>
 	<%
-		ArrayList<String> visitPurpose = new ArrayList<String>();
-		ArrayList<String> idType = new ArrayList<String>();
-		ArrayList<String> containerSize = new ArrayList<String>();
-		SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
+		ArrayList<Dropdown> visitPurpose = new ArrayList<Dropdown>();
+		ArrayList<Dropdown> idType = new ArrayList<Dropdown>();
+		ArrayList<Dropdown> containerSize = new ArrayList<Dropdown>();
 		try {
 			//Dropdown for visitPurpose START
-			String visitPurposeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/14/public/values";
-			// Use this String as url
-			URL visitPurposeurl = new URL(visitPurposeUrl);
-
-			// Get Feed of Spreadsheet url
-			ListFeed visitPurpoself = service.getFeed(visitPurposeurl, ListFeed.class);
-
-			for (ListEntry le : visitPurpoself.getEntries()) {
-				CustomElementCollection cec = le.getCustomElements();
-				visitPurpose.add(cec.getValue("purpose").trim());
-			}
+			visitPurpose = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
 			//Dropdown for visitPurpose END
 
 			//Dropdown for idType START
-			String idTypeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/3/public/values";
-			// Use this String as url
-			URL idTypeurl = new URL(idTypeUrl);
-
-			// Get Feed of Spreadsheet url
-			ListFeed idTypelf = service.getFeed(idTypeurl, ListFeed.class);
-
-			for (ListEntry le : idTypelf.getEntries()) {
-				CustomElementCollection cec = le.getCustomElements();
-				idType.add(cec.getValue("idtype").trim());
-			}
+			idType = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
 			//Dropdown for idType END
 			
 			//Dropdown for containerSize START
-			String containerSizeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/15/public/values";
-			// Use this String as url
-			URL containerSizeurl = new URL(containerSizeUrl);
-
-			// Get Feed of Spreadsheet url
-			ListFeed containerSizelf = service.getFeed(containerSizeurl, ListFeed.class);
-
-			for (ListEntry le : containerSizelf.getEntries()) {
-				CustomElementCollection cec = le.getCustomElements();
-				containerSize.add(cec.getValue("size").trim());
-			}
+			containerSize = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
 			//Dropdown for containerSize END
 
 		} catch (Exception e) {
@@ -133,10 +97,10 @@
 							<% if(v == null){%>
 								<select name="idType" class="form-control" required>
 									<%
-										for (int i = 0; i < idType.size(); i++) {
+										for (Dropdown d: idType) {
 									%>
-									<option value="<%=idType.get(i)%>">
-										<%=idType.get(i)%></option>
+									<option value="<%=d.getDropdownValue()%>">
+										<%=d.getDropdownValue()%></option>
 									<%
 										}
 									%>
@@ -170,10 +134,10 @@
 								<select
 									name="visitPurpose" class="form-control" required>
 									<%
-										for (int i = 0; i < visitPurpose.size(); i++) {
+										for (Dropdown d: visitPurpose) {
 									%>
-									<option value="<%=visitPurpose.get(i)%>">
-										<%=visitPurpose.get(i)%></option>
+									<option value="<%=d.getDropdownValue()%>">
+										<%=d.getDropdownValue()%></option>
 									<%
 										}
 									%>
@@ -183,10 +147,11 @@
 								<select
 									name="visitPurpose" class="form-control" required>
 									<%
-										for (int i = 0; i < visitPurpose.size(); i++) {
+										for (Dropdown d: visitPurpose) {
 									%>
-									<option value="<%=visitPurpose.get(i)%>" <%=v.getVisitPurpose().equals(visitPurpose.get(i)) ? "selected" : "" %>>
-										<%=visitPurpose.get(i)%></option>
+									<option value="<%=d.getDropdownValue()%>" 
+										<%=v.getVisitPurpose().equals(d.getDropdownValue()) ? "selected" : "" %>>
+										<%=d.getDropdownValue()%></option>
 									<%
 										}
 									%>
@@ -227,10 +192,10 @@
 								<select
 									name="containerSize" class="form-control">
 									<%
-										for (int i = 0; i < containerSize.size(); i++) {
+										for (Dropdown d: containerSize) {
 									%>
-									<option value="<%=containerSize.get(i)%>" >
-										<%=containerSize.get(i)%></option>
+									<option value="<%=d.getDropdownValue()%>" >
+										<%=d.getDropdownValue()%></option>
 									<%
 										}
 									%>
@@ -240,10 +205,11 @@
 								<select
 									name="containerSize" class="form-control">
 									<%
-										for (int i = 0; i < containerSize.size(); i++) {
+										for (Dropdown d: containerSize) {
 									%>
-									<option value="<%=containerSize.get(i)%>" <%=v.getContainerSize().equals(containerSize.get(i)) ? "selected" : "" %>>
-										<%=containerSize.get(i)%></option>
+									<option value="<%=d.getDropdownValue()%>" 
+										<%=v.getContainerSize().equals(d.getDropdownValue()) ? "selected" : "" %>>
+										<%=d.getDropdownValue()%></option>
 									<%
 										}
 									%>
