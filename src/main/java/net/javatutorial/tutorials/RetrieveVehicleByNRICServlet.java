@@ -27,25 +27,23 @@ public class RetrieveVehicleByNRICServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usertype = (String) request.getSession(false).getAttribute("usertype");
 		String idNo = (String) request.getSession(false).getAttribute("idNo");
-		String idType = (String) request.getSession(false).getAttribute("idType");
 
 		//from client login view
 		String idNoFromClient = request.getParameter("idNo");
-		String idTypeFromClient = request.getParameter("idType");
 				
 		ArrayList<Vehicle> vList = null;
 		Vehicle v = null;
 		
 		if(usertype == null) {
 			if(!StringUtils.isEmpty(idNo)) {
-				vList = VehMSManagerDAO.retrieveByNameIDandType(idType, idNo);
+				vList = VehMSManagerDAO.retrieveByNameIDPopulate(idNo);
 				if(vList != null && vList.size() > 0) {
 					v = vList.get(0);
 				}
 			}
 		}
 		else {
-			vList = VehMSManagerDAO.retrieveByNameIDandType(idTypeFromClient, idNoFromClient);
+			vList = VehMSManagerDAO.retrieveByNameIDPopulate(idNoFromClient);
 			if(vList != null && vList.size() > 0) {
 				v = vList.get(0);
 			}

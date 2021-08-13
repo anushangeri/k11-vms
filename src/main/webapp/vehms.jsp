@@ -3,11 +3,6 @@
 <%@page import="java.util.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
-<%@page import="com.google.gdata.client.spreadsheet.SpreadsheetService"%>
-<%@page import="com.google.gdata.data.spreadsheet.CustomElementCollection"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListEntry"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListFeed"%>
-<%@page import="com.google.gdata.util.ServiceException"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.javatutorial.entity.*"%>
 <!DOCTYPE html>
@@ -62,9 +57,6 @@
 	{
 	    document.getElementById(divId).style.display = element.value == "Y" ? 'block' : 'none';
 	}
-	function goBack() {
-	  window.history.back();
-	}
 </script>
 </head>
 <body>
@@ -95,7 +87,6 @@
 							<th class="th-sm">S/N</th>
 							<th class="th-sm">Name</th>
 							<th class="th-sm">Company Name</th>
-							<th class="th-sm"  style="display:none;">ID Type</th>
 							<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
 							<%if(userType == null) { %>
 								<th class="th-sm" style="display:none;">ID Number</th>
@@ -132,14 +123,13 @@
 									<td><%=v.getVehicleId()%></td>
 									<td><%=v.getName()%></td>
 									<td><%=v.getCompanyName()%></td>
-									<td style="display:none;" ><%=v.getIdType()%></td>
 									<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
 									<%if(userType == null) { %>
 										<td style="display:none;"><%=v.getIdNo()%></td>
 									<% 
 									} else{
 									%>
-										 <td><a href="/retrieveVehToPopulate?idNo=<%=v.getIdNo()%>&idType=<%=v.getIdType()%>"><%=v.getIdNo()%></a></td>
+										 <td><a href="/retrieveVehToPopulate?idNo=<%=v.getIdNo()%>"><%=v.getIdNo()%></a></td>
 									<%
 									}%>
 									<td><%=(v.getMobileNo() != null ? v.getMobileNo() : "")%></td>
@@ -248,7 +238,8 @@
 	</div>
 		<div class="container body-content">
 			<center>
-				<button class="btn btn-warning btn-lg active" onclick="goBack()">Go Back</button>
+				<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
+							aria-pressed="true">Back</a>
 		
 				<a href="retrieveVehToPopulate" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Add Vehicle Record</a>

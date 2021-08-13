@@ -370,7 +370,7 @@ public class VehMSManagerDAO {
     }
 	
 	// to be used in populate	
-	public static ArrayList<Vehicle> retrieveByNameIDandType(String idType, String idNo) {
+	public static ArrayList<Vehicle> retrieveByNameIDPopulate(String idNo) {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
@@ -382,7 +382,7 @@ public class VehMSManagerDAO {
             		"CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" + 
             		"VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, TIME_IN_DT, TIME_OUT_DT \r\n" + 
             		" FROM VEHMS"
-            		+ " WHERE ID_NO ='" + idNo + "' AND ID_TYPE = '" + idType + "' "
+            		+ " WHERE ID_NO ='" + idNo + "'"
     				+ " ORDER BY TIME_IN_DT DESC";
             pstmt = connection.prepareStatement(sql);
 

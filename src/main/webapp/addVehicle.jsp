@@ -92,27 +92,27 @@
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
 						</div>
-						<div class="form-group col-md-4">
-							<label for="idType">ID Type: </label> 
-							<% if(v == null){%>
-								<select name="idType" class="form-control" required>
-									<%
-										for (Dropdown d: idType) {
-									%>
-									<option value="<%=d.getDropdownValue()%>">
-										<%=d.getDropdownValue()%></option>
-									<%
-										}
-									%>
-								</select>
-							<% } 
-							else {%>
-								<input
-								type="text" class="form-control" name="idType"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getIdType())%>" readonly>
-							<%} %>
-						</div>
+<!-- 						<div class="form-group col-md-4"> -->
+<!-- 							<label for="idType">ID Type: </label>  -->
+<%-- 							<% if(v == null){%> --%>
+<!-- 								<select name="idType" class="form-control" required> -->
+<%-- 									<% --%>
+// 										for (Dropdown d: idType) {
+<%-- 									%> --%>
+<%-- 									<option value="<%=d.getDropdownValue()%>"> --%>
+<%-- 										<%=d.getDropdownValue()%></option> --%>
+<%-- 									<% --%>
+// 										}
+<%-- 									%> --%>
+<!-- 								</select> -->
+<%-- 							<% }  --%>
+<%-- 							else {%> --%>
+<!-- 								<input -->
+<!-- 								type="text" class="form-control" name="idType" -->
+<!-- 								oninput="this.value = this.value.toUpperCase()" -->
+<%-- 								value="<%=((v == null) ? "" : v.getIdType())%>" readonly> --%>
+<%-- 							<%} %> --%>
+<!-- 						</div> -->
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">

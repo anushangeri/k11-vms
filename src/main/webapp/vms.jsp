@@ -3,11 +3,6 @@
 <%@page import="java.util.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
-<%@page import="com.google.gdata.client.spreadsheet.SpreadsheetService"%>
-<%@page import="com.google.gdata.data.spreadsheet.CustomElementCollection"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListEntry"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListFeed"%>
-<%@page import="com.google.gdata.util.ServiceException"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.javatutorial.entity.*"%>
 <!DOCTYPE html>
@@ -62,9 +57,6 @@
 	function showDiv(divId, element)
 	{
 	    document.getElementById(divId).style.display = element.value == "Y" ? 'block' : 'none';
-	}
-	function goBack() {
-	  window.history.back();
 	}
 </script>
 </head>
@@ -201,7 +193,8 @@
 	</div>
 		<div class="container body-content">
 			<center>
-				<button class="btn btn-warning btn-lg active" onclick="goBack()">Go Back</button>
+				<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
+							aria-pressed="true">Back</a>
 				
 				<a href="retrieveToPopulate" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Add Visitor Record</a>
