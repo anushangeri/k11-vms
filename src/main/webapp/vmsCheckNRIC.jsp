@@ -10,6 +10,7 @@
 <%@page import="com.google.gdata.data.spreadsheet.ListFeed"%>
 <%@page import="com.google.gdata.util.ServiceException"%>
 <%@page import="net.javatutorial.entity.*"%>
+<%@page import="net.javatutorial.DAO.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,21 +51,22 @@
 </head>
 <body>
 	<%
-		ArrayList<String> idType = new ArrayList<String>();
+		ArrayList<Dropdown> idType = new ArrayList<Dropdown>();
 		SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
 		try {
 			//Dropdown for idType START
-			String idTypeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/3/public/values";
-			// Use this String as url
-			URL idTypeurl = new URL(idTypeUrl);
+// 			String idTypeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/3/public/values";
+// 			// Use this String as url
+// 			URL idTypeurl = new URL(idTypeUrl);
 
-			// Get Feed of Spreadsheet url
-			ListFeed idTypelf = service.getFeed(idTypeurl, ListFeed.class);
+// 			// Get Feed of Spreadsheet url
+// 			ListFeed idTypelf = service.getFeed(idTypeurl, ListFeed.class);
 
-			for (ListEntry le : idTypelf.getEntries()) {
-				CustomElementCollection cec = le.getCustomElements();
-				idType.add(cec.getValue("idtype").trim());
-			}
+			idType = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE]");
+// 			for (ListEntry le : idType.get) {
+// 				CustomElementCollection cec = le.getCustomElements();
+// 				idType.add(cec.getValue("idtype").trim());
+// 			}
 			//Dropdown for idType END
 
 		} catch (Exception e) {
@@ -92,10 +94,10 @@
 					<label for="idType">ID Type: </label> <select name="idType"
 						class="form-control" required>
 						<%
-						for (int i = 0; i < idType.size(); i++) {
+						for (Dropdown d: idType) {
 						%>
-						<option value="<%=idType.get(i)%>">
-							<%=idType.get(i)%></option>
+						<option value="<%=d.getDropdownValue()%>">
+							<%=d.getDropdownValue()%></option>
 						<%
 						}
 						%>
