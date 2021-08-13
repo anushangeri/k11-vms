@@ -96,12 +96,12 @@
 <!-- 							<label for="idType">ID Type: </label>  -->
 <%-- 							<% if(v == null){%> --%>
 <!-- 								<select name="idType" class="form-control" required> -->
-<%-- 									<% --%>
+<%-- 									<% 
 // 										for (Dropdown d: idType) {
 <%-- 									%> --%>
 <%-- 									<option value="<%=d.getDropdownValue()%>"> --%>
 <%-- 										<%=d.getDropdownValue()%></option> --%>
-<%-- 									<% --%>
+<%-- 									<% 
 // 										}
 <%-- 									%> --%>
 <!-- 								</select> -->
