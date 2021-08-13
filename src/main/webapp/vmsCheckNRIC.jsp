@@ -62,7 +62,7 @@
 // 			// Get Feed of Spreadsheet url
 // 			ListFeed idTypelf = service.getFeed(idTypeurl, ListFeed.class);
 
-			idType = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE]");
+			idType = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
 // 			for (ListEntry le : idType.get) {
 // 				CustomElementCollection cec = le.getCustomElements();
 // 				idType.add(cec.getValue("idtype").trim());
