@@ -38,29 +38,6 @@
 </script>	
 </head>
 <body>
-	<%
-		ArrayList<Dropdown> visitPurpose = new ArrayList<Dropdown>();
-		ArrayList<Dropdown> idType = new ArrayList<Dropdown>();
-		ArrayList<Dropdown> containerSize = new ArrayList<Dropdown>();
-		try {
-			//Dropdown for visitPurpose START
-			visitPurpose = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
-			//Dropdown for visitPurpose END
-
-			//Dropdown for idType START
-			idType = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
-			//Dropdown for idType END
-			
-			//Dropdown for containerSize START
-			containerSize = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
-			//Dropdown for containerSize END
-
-		} catch (Exception e) {
-	%>
-	<h1><%=e%></h1>
-	<%
-		}
-	%>
 	<div class="container body-content">
 		<div class="page-header">
 			<label class="heading">Vehicle Management System</label> <br> <b>How
@@ -69,8 +46,16 @@
  	String idNo = "SxxxxxxxJ";
     String name = "";			
 	Vehicle v = null;
+	ArrayList<Dropdown> visitPurpose = new ArrayList<Dropdown>();
+ 	ArrayList<Dropdown> containerSize = new ArrayList<Dropdown>();
  	if (request.getAttribute("vehicleLatRec") != null) {
  		v = (Vehicle) request.getAttribute("vehicleLatRec");
+ 	}
+ 	if (request.getAttribute("visitPurpose") != null) {
+ 		visitPurpose = (ArrayList<Dropdown>) request.getAttribute("visitPurpose");
+ 	}
+ 	if (request.getAttribute("containerSize") != null) {
+ 		containerSize = (ArrayList<Dropdown>) request.getAttribute("containerSize");
  	}
  	if (request.getSession(false).getAttribute("usertype") == null && request.getSession(false).getAttribute("idNo") != null) {
  		idNo = (String) request.getSession(false).getAttribute("idNo");
@@ -92,27 +77,6 @@
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
 						</div>
-<!-- 						<div class="form-group col-md-4"> -->
-<!-- 							<label for="idType">ID Type: </label>  -->
-<%-- 							<% if(v == null){%> --%>
-<!-- 								<select name="idType" class="form-control" required> -->
-<%-- 									<% 
-// 										for (Dropdown d: idType) {
-<%-- 									%> --%>
-<%-- 									<option value="<%=d.getDropdownValue()%>"> --%>
-<%-- 										<%=d.getDropdownValue()%></option> --%>
-<%-- 									<% 
-// 										}
-<%-- 									%> --%>
-<!-- 								</select> -->
-<%-- 							<% }  --%>
-<%-- 							else {%> --%>
-<!-- 								<input -->
-<!-- 								type="text" class="form-control" name="idType" -->
-<!-- 								oninput="this.value = this.value.toUpperCase()" -->
-<%-- 								value="<%=((v == null) ? "" : v.getIdType())%>" readonly> --%>
-<%-- 							<%} %> --%>
-<!-- 						</div> -->
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">

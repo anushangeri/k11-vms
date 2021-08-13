@@ -89,7 +89,6 @@
 							<th class="th-sm">Name</th>
 							<th class="th-sm">Company Name</th>
 							<th class="th-sm">Site Visited</th>
-							<th class="th-sm" style="display:none;">ID Type</th>
 							<%if(userType == null) { %>
 								<th class="th-sm" style="display:none;">ID Number</th>
 							<% 
@@ -124,7 +123,6 @@
 									<td><%=v.getName()%></td>
 									<td><%=v.getCompanyName()%></td>
 									<td><%=((v.getSite() == null) ? "" : v.getSite())%></td>
-									<td style="display:none;"><%=v.getIdType()%></td>
 									<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
 									<%if(userType == null) { %>
 										<td style="display:none;"><%=v.getIdNo()%></td>

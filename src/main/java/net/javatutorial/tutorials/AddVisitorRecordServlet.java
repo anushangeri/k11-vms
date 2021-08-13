@@ -48,7 +48,7 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		String name = request.getParameter("name").trim();
 		String companyName = request.getParameter("companyName").trim();
 		String site = request.getParameter("siteVisiting").trim();
-		String idType = request.getParameter("idType");
+		String idType = null;
 		String idNo = request.getParameter("idNo");
 		String mobileNo = request.getParameter("mobileNo");
 		String vehicleNo = request.getParameter("vehicleNo");

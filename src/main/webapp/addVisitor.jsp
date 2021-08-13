@@ -2,8 +2,6 @@
 <%@include file="loginVMSCSS.jsp"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="org.apache.commons.collections.IteratorUtils"%>
-<%@page import="com.google.gdata.data.spreadsheet.CellEntry"%>
-<%@page import="com.google.gdata.data.spreadsheet.Cell"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="net.javatutorial.entity.*"%>
@@ -13,12 +11,6 @@
 <%@page import="java.net.URL"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="com.google.gdata.client.spreadsheet.SpreadsheetService"%>
-<%@page
-	import="com.google.gdata.data.spreadsheet.CustomElementCollection"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListEntry"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListFeed"%>
-<%@page import="com.google.gdata.util.ServiceException"%>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -62,45 +54,6 @@ function showPassword() {
 </script>
 </head>
 <body onload="showOfficeDivOnLoad('officerLogin','visitPurpose')">
-	<%
-		ArrayList<String> visitPurpose = new ArrayList<String>();
-		ArrayList<String> idType = new ArrayList<String>();
-		SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
-		try {
-			//Dropdown for visitPurpose START
-			String visitPurposeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/13/public/values";
-			// Use this String as url
-			URL visitPurposeurl = new URL(visitPurposeUrl);
-
-			// Get Feed of Spreadsheet url
-			ListFeed visitPurpoself = service.getFeed(visitPurposeurl, ListFeed.class);
-
-			for (ListEntry le : visitPurpoself.getEntries()) {
-				CustomElementCollection cec = le.getCustomElements();
-				visitPurpose.add(cec.getValue("purpose").trim());
-			}
-			//Dropdown for visitPurpose END
-
-			//Dropdown for idType START
-			String idTypeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/3/public/values";
-			// Use this String as url
-			URL idTypeurl = new URL(idTypeUrl);
-
-			// Get Feed of Spreadsheet url
-			ListFeed idTypelf = service.getFeed(idTypeurl, ListFeed.class);
-
-			for (ListEntry le : idTypelf.getEntries()) {
-				CustomElementCollection cec = le.getCustomElements();
-				idType.add(cec.getValue("idtype").trim());
-			}
-			//Dropdown for idType END
-
-		} catch (Exception e) {
-	%>
-	<h1><%=e%></h1>
-	<%
-		}
-	%>
 	<div class="container body-content">
 		<div class="page-header">
 			<label class="heading"><%=((request.getAttribute("responseObj") != null) ? request.getAttribute("responseObj") : "")%></label>
@@ -111,12 +64,16 @@ function showPassword() {
  	String idNo = "SxxxxxxxJ";
 	String name = "";
  	Visitor v = null;
- 	ArrayList<Site> siteDropdown = null;
+ 	ArrayList<Site> siteDropdown = new ArrayList<Site>();
+ 	ArrayList<Dropdown> visitPurpose = new ArrayList<Dropdown>();
  	if (request.getAttribute("visitorLatRec") != null) {
  		v = (Visitor) request.getAttribute("visitorLatRec");
  	}
  	if (request.getAttribute("siteDropdown") != null) {
  		siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
+ 	}
+ 	if (request.getAttribute("visitPurpose") != null) {
+ 		visitPurpose = (ArrayList<Dropdown>) request.getAttribute("visitPurpose");
  	}
  	if (request.getSession(false).getAttribute("usertype") == null && request.getSession(false).getAttribute("idNo") != null) {
  		idNo = (String) request.getSession(false).getAttribute("idNo");
@@ -166,27 +123,6 @@ function showPassword() {
 								</select>
 							<%} %>
 						</div>
-						<div class="form-group col-md-4">
-							<label for="idType">ID Type: </label> 
-							<% if(v == null){%>
-								<select name="idType" class="form-control" required>
-									<%
-										for (int i = 0; i < idType.size(); i++) {
-									%>
-									<option value="<%=idType.get(i)%>">
-										<%=idType.get(i)%></option>
-									<%
-										}
-									%>
-								</select>
-							<% } 
-							else {%>
-								<input
-								type="text" class="form-control" name="idType"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getIdType())%>" readonly>
-							<%} %>
-						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
@@ -208,10 +144,10 @@ function showPassword() {
 								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
 									name="visitPurpose" class="form-control" required>
 									<%
-										for (int i = 0; i < visitPurpose.size(); i++) {
+										for (Dropdown d: visitPurpose) {
 									%>
-									<option value="<%=visitPurpose.get(i)%>">
-										<%=visitPurpose.get(i)%></option>
+									<option value="<%=d.getDropdownValue()%>">
+										<%=d.getDropdownValue()%></option>
 									<%
 										}
 									%>
@@ -221,10 +157,10 @@ function showPassword() {
 								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
 									name="visitPurpose" class="form-control" required>
 									<%
-										for (int i = 0; i < visitPurpose.size(); i++) {
+										for (Dropdown d: visitPurpose) {
 									%>
-									<option value="<%=visitPurpose.get(i)%>" <%=v.getVisitPurpose().equals(visitPurpose.get(i)) ? "selected" : "" %>>
-										<%=visitPurpose.get(i)%></option>
+									<option value="<%=d.getDropdownValue()%>" <%=v.getVisitPurpose().equals(d.getDropdownValue()) ? "selected" : "" %>>
+										<%=d.getDropdownValue()%></option>
 									<%
 										}
 									%>

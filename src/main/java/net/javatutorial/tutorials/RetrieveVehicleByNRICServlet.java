@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
+import net.javatutorial.DAO.DropdownListManagerDAO;
 import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.DAO.VehMSManagerDAO;
+import net.javatutorial.entity.Dropdown;
 import net.javatutorial.entity.Vehicle;
 
 /**
@@ -48,7 +50,14 @@ public class RetrieveVehicleByNRICServlet extends HttpServlet {
 				v = vList.get(0);
 			}
 		}
+		//getting all the dropdown
+		ArrayList<Dropdown> visitPurpose = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
+		ArrayList<Dropdown> containerSize = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
+		
 		request.setAttribute("vehicleLatRec", v);
+		request.setAttribute("containerSize", containerSize);
+		request.setAttribute("visitPurpose", visitPurpose);
+		
         RequestDispatcher rd = request.getRequestDispatcher("addVehicle.jsp");
         rd.forward(request, response);
 	}

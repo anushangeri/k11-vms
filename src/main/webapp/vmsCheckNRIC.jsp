@@ -3,12 +3,6 @@
 <%@page import="java.util.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
-<%@page import="com.google.gdata.client.spreadsheet.SpreadsheetService"%>
-<%@page
-	import="com.google.gdata.data.spreadsheet.CustomElementCollection"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListEntry"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListFeed"%>
-<%@page import="com.google.gdata.util.ServiceException"%>
 <%@page import="net.javatutorial.entity.*"%>
 <%@page import="net.javatutorial.DAO.*"%>
 <!DOCTYPE html>
@@ -51,21 +45,8 @@
 </head>
 <body>
 	<%
-		ArrayList<Dropdown> idType = new ArrayList<Dropdown>();
-		SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
-		try {
-			//Dropdown for idType START
-			idType = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
-			//Dropdown for idType END
-
-		} catch (Exception e) {
-	%>
-			<h1><%=e%></h1>
-	<%
-		}
 		session.removeAttribute("usertype");
 		session.removeAttribute("name");
-		session.removeAttribute("idType");
 	%>
 	<center>
 		<b>*Individuals are required to self-identify should they
@@ -79,19 +60,6 @@
 						class="form-control" name="name"
 						oninput="this.value = this.value.toUpperCase()" required>
 				</div>
-<!-- 				<div class="form-group col-md-4"> -->
-<!-- 					<label for="idType">ID Type: </label> <select name="idType" -->
-<!-- 						class="form-control" required> -->
-<%-- 						<% 
-// 						for (Dropdown d: idType) {
-<%-- 						%> --%>
-<%-- 						<option value="<%=d.getDropdownValue()%>"> --%>
-<%-- 							<%=d.getDropdownValue()%></option> --%>
-<%-- 						<% 
-// 						}
-<%-- 						%> --%>
-<!-- 					</select> -->
-<!-- 				</div> -->
 				<div class="form-group col-md-6">
 					<label for="idNo">ID Number: </label> <input type="text"
 						class="form-control" name="idNo" id="idNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"

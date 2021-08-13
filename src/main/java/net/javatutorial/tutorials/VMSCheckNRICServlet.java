@@ -31,7 +31,6 @@ public class VMSCheckNRICServlet extends HttpServlet {
 		RequestDispatcher rd = null;
 		
 		String name = request.getParameter("name").trim();
-		//String idType = request.getParameter("idType").trim();
 		String idNo = request.getParameter("idNo").trim();
 		String recordType = request.getParameter("recordType");
 		
@@ -50,7 +49,6 @@ public class VMSCheckNRICServlet extends HttpServlet {
 		if(!StringUtils.isEmpty(idNo)) {
 			loginsuccessful = true;
 			session.setAttribute("name", name);
-        	//session.setAttribute("idType", idType);
         	session.setAttribute("idNo", idNo);
 		}
 		if(loginsuccessful) {

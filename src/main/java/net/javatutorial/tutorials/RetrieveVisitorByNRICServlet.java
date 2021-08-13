@@ -27,9 +27,11 @@ import com.google.gdata.data.spreadsheet.CustomElementCollection;
 import com.google.gdata.data.spreadsheet.ListEntry;
 import com.google.gdata.data.spreadsheet.ListFeed;
 
+import net.javatutorial.DAO.DropdownListManagerDAO;
 import net.javatutorial.DAO.SiteManagerDAO;
 import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.entity.Visitor;
+import net.javatutorial.entity.Dropdown;
 import net.javatutorial.entity.Site;
 
 /**
@@ -55,21 +57,24 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 		
 		if(usertype == null) {
 			if(!StringUtils.isEmpty(idNo)) {
-				vList = VMSManagerDAO.retrieveByNameIDandType(idType, idNo);
+				vList = VMSManagerDAO.retrieveByNameIDPopulate(idNo);
 				if(vList != null && vList.size() > 0) {
 					v = vList.get(0);
 				}
 			}
 		}
 		else {
-			vList = VMSManagerDAO.retrieveByNameIDandType(idTypeFromClient, idNoFromClient);
+			vList = VMSManagerDAO.retrieveByNameIDPopulate(idNoFromClient);
 			if(vList != null && vList.size() > 0) {
 				v = vList.get(0);
 			}
 		}
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
+		ArrayList<Dropdown> visitPurpose = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
+		
 		request.setAttribute("visitorLatRec", v);
 		request.setAttribute("siteDropdown", siteDropdown);
+		request.setAttribute("visitPurpose", visitPurpose);
         RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
         rd.forward(request, response);
 	}
