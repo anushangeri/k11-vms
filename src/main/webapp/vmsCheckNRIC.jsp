@@ -79,19 +79,19 @@
 						class="form-control" name="name"
 						oninput="this.value = this.value.toUpperCase()" required>
 				</div>
-				<div class="form-group col-md-4">
-					<label for="idType">ID Type: </label> <select name="idType"
-						class="form-control" required>
-						<%
-						for (Dropdown d: idType) {
-						%>
-						<option value="<%=d.getDropdownValue()%>">
-							<%=d.getDropdownValue()%></option>
-						<%
-						}
-						%>
-					</select>
-				</div>
+<!-- 				<div class="form-group col-md-4"> -->
+<!-- 					<label for="idType">ID Type: </label> <select name="idType" -->
+<!-- 						class="form-control" required> -->
+<%-- 						<% --%>
+// 						for (Dropdown d: idType) {
+<%-- 						%> --%>
+<%-- 						<option value="<%=d.getDropdownValue()%>"> --%>
+<%-- 							<%=d.getDropdownValue()%></option> --%>
+<%-- 						<% --%>
+// 						}
+<%-- 						%> --%>
+<!-- 					</select> -->
+<!-- 				</div> -->
 				<div class="form-group col-md-6">
 					<label for="idNo">ID Number: </label> <input type="text"
 						class="form-control" name="idNo" id="idNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
