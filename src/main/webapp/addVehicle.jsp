@@ -46,13 +46,13 @@
  	String idNo = "SxxxxxxxJ";
     String name = "";			
 	Vehicle v = null;
-	ArrayList<Dropdown> visitPurpose = new ArrayList<Dropdown>();
+	ArrayList<Dropdown> vehiclePurpose = new ArrayList<Dropdown>();
  	ArrayList<Dropdown> containerSize = new ArrayList<Dropdown>();
  	if (request.getAttribute("vehicleLatRec") != null) {
  		v = (Vehicle) request.getAttribute("vehicleLatRec");
  	}
- 	if (request.getAttribute("visitPurpose") != null) {
- 		visitPurpose = (ArrayList<Dropdown>) request.getAttribute("visitPurpose");
+ 	if (request.getAttribute("vehiclePurpose") != null) {
+ 		vehiclePurpose = (ArrayList<Dropdown>) request.getAttribute("vehiclePurpose");
  	}
  	if (request.getAttribute("containerSize") != null) {
  		containerSize = (ArrayList<Dropdown>) request.getAttribute("containerSize");
@@ -98,7 +98,7 @@
 								<select
 									name="visitPurpose" class="form-control" required>
 									<%
-										for (Dropdown d: visitPurpose) {
+										for (Dropdown d: vehiclePurpose) {
 									%>
 									<option value="<%=d.getDropdownValue()%>">
 										<%=d.getDropdownValue()%></option>
@@ -111,7 +111,7 @@
 								<select
 									name="visitPurpose" class="form-control" required>
 									<%
-										for (Dropdown d: visitPurpose) {
+										for (Dropdown d: vehiclePurpose) {
 									%>
 									<option value="<%=d.getDropdownValue()%>" 
 										<%=v.getVisitPurpose().equals(d.getDropdownValue()) ? "selected" : "" %>>

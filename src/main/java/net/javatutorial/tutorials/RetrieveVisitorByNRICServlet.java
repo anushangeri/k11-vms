@@ -70,7 +70,7 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 			}
 		}
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
-		ArrayList<Dropdown> visitPurpose = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
+		ArrayList<Dropdown> visitPurpose = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
 		
 		request.setAttribute("visitorLatRec", v);
 		request.setAttribute("siteDropdown", siteDropdown);

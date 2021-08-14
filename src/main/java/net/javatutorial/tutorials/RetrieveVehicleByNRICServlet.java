@@ -51,12 +51,12 @@ public class RetrieveVehicleByNRICServlet extends HttpServlet {
 			}
 		}
 		//getting all the dropdown
-		ArrayList<Dropdown> visitPurpose = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
-		ArrayList<Dropdown> containerSize = DropdownListManagerDAO.retrieveByDropdownKey("IDTYPE");
+		ArrayList<Dropdown> vehiclePurpose = DropdownListManagerDAO.retrieveByDropdownKey("VEHICLE_PURPOSE");
+		ArrayList<Dropdown> containerSize = DropdownListManagerDAO.retrieveByDropdownKey("VEHICLE_SIZE");
 		
 		request.setAttribute("vehicleLatRec", v);
 		request.setAttribute("containerSize", containerSize);
-		request.setAttribute("visitPurpose", visitPurpose);
+		request.setAttribute("visitPurpose", vehiclePurpose);
 		
         RequestDispatcher rd = request.getRequestDispatcher("addVehicle.jsp");
         rd.forward(request, response);
