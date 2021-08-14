@@ -120,6 +120,8 @@
 	</div>
 		<div class="container body-content">
 			<center>
+				<a href="addDropdown.jsp" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Create Dropdown Record</a>
 				<a href="clientMain.jsp" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Back</a>
 			</center>
