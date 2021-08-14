@@ -182,7 +182,7 @@ public class DropdownListManagerDAO {
         	connection = Main.getConnection();
             String sql = "SELECT DROPDOWN_ID, DROPDOWN_KEY, DROPDOWN_VALUE, CREATED_DT, LAST_MODIFIED_DT \r\n" + 
             		"FROM DROPDOWN \r\n"
-            		+ " WHERE DROPDOWN_KEY ='" + dropdownKey + "' ORDER BY LAST_MODIFIED_DT DESC;";
+            		+ " WHERE DROPDOWN_KEY ='" + dropdownKey + "' ORDER BY DROPDOWN_VALUE ASC;";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
