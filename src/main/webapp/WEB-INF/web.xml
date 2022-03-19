@@ -270,6 +270,12 @@
 		<servlet-name>DeleteClientAccountServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.DeleteClientAccountServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>RetrieveDropdownForAddClientAccountFormServlet</display-name>
+		<servlet-name>RetrieveDropdownForAddClientAccountFormServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.RetrieveDropdownForAddClientAccountFormServlet</servlet-class>
+	</servlet>
 	<!-- Client Account END  -->
 	<!-- Site START  -->
 	<servlet>
@@ -508,6 +514,10 @@
 	<servlet-mapping>
 		<servlet-name>DeleteClientAccountServlet</servlet-name>
 		<url-pattern>/deleteClientRecord</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RetrieveDropdownForAddClientAccountFormServlet</servlet-name>
+		<url-pattern>/retrieveDropdownForClientForm</url-pattern>
 	</servlet-mapping>
 	<!-- Client Account END  -->
 	<!-- Site START  -->

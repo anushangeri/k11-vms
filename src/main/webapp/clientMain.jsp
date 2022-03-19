@@ -59,7 +59,7 @@
 			<%if (request.getSession(false).getAttribute("usertype") != null) {
 				String userInput = (String) request.getSession(false).getAttribute("usertype");
 				if (userInput.toUpperCase().equals("ADMIN")){ %>
-					<a href="addClientAccount.jsp" class="btn btn-warning btn-lg active"
+					<a href="/retrieveDropdownForClientForm" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Create Client Record</a>
 					<a href="/retrieveAllClientRecords" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Manage Client Records</a>

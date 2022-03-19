@@ -1,12 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="org.apache.commons.collections.IteratorUtils"%>
-<%@page import="com.google.gdata.data.spreadsheet.CellEntry"%>
-<%@page import="com.google.gdata.data.spreadsheet.Cell"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="net.javatutorial.entity.*"%>
-<%@page import="net.javatutorial.DAO.*"%>
 <%@include file="loginVMSCSS.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.time.*"%>
@@ -14,12 +11,6 @@
 <%@page import="java.net.URL"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="com.google.gdata.client.spreadsheet.SpreadsheetService"%>
-<%@page
-	import="com.google.gdata.data.spreadsheet.CustomElementCollection"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListEntry"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListFeed"%>
-<%@page import="com.google.gdata.util.ServiceException"%>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -102,47 +93,18 @@
 </head>
 <body>
 	<%
-		ArrayList<String> idType = new ArrayList<String>();
-		ArrayList<String> accessType = new ArrayList<String>();
-		SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
-		try {
-			//Dropdown for idType START
-			String idTypeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/3/public/values";
-			// Use this String as url
-			URL idTypeurl = new URL(idTypeUrl);
-
-			// Get Feed of Spreadsheet url
-			ListFeed idTypelf = service.getFeed(idTypeurl, ListFeed.class);
-
-			for (ListEntry le : idTypelf.getEntries()) {
-				CustomElementCollection cec = le.getCustomElements();
-				idType.add(cec.getValue("idtype").trim());
-			}
-			//Dropdown for idType END
-			
-			//Dropdown for accessType START
-			//REMEMBER TO ADD A SPACE FOR THE FIRST EMPTY ROW!
-			String accessTypeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/10/public/values";
-			// Use this String as url
-			URL accessTypeurl = new URL(accessTypeUrl);
-
-			// Get Feed of Spreadsheet url
-			ListFeed accessTypelf = service.getFeed(accessTypeurl, ListFeed.class);
-
-			for (ListEntry le : accessTypelf.getEntries()) {
-				CustomElementCollection cec = le.getCustomElements();
-				accessType.add(cec.getValue("accesstype").trim());
-				
-			}
-			//Dropdown for accessType END
-
-		} catch (Exception e) {
-	%>
-	<h1><%=e%></h1>
-	<%
-		}
-	 	
-	 	ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
+		ArrayList<Dropdown> idType = null;
+		ArrayList<Dropdown> accessType = null;
+		ArrayList<Site> siteDropdown = null;
+	 	if (request.getAttribute("siteDropdown") != null) {
+	 		siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
+	 	}
+	 	if (request.getAttribute("accessType") != null) {
+	 		accessType = (ArrayList<Dropdown>) request.getAttribute("accessType");
+	 	}
+	 	if (request.getAttribute("idType") != null) {
+	 		idType = (ArrayList<Dropdown>) request.getAttribute("idType");
+	 	}
 	%>
 	<div class="container body-content">
 		<div class="page-header">
@@ -160,12 +122,14 @@
 							<label for="idType">ID Type: </label> <select name="idType"
 								class="form-control" required>
 								<%
+								if (idType != null && idType.size() > 0) {
 									for (int i = 0; i < idType.size(); i++) {
 								%>
-								<option value="<%=idType.get(i)%>">
-									<%=idType.get(i)%></option>
+								<option value="<%=idType.get(i).getDropdownValue()%>">
+									<%=idType.get(i).getDropdownValue()%></option>
 								<%
 									}
+								}
 								%>
 							</select>
 						</div>
@@ -200,12 +164,14 @@
 							<label for="accessType">Access Type: </label> <select name="accessType"
 								class="form-control" required>
 								<%
-									for (int i = 0; i < accessType.size(); i++) {
+								if (accessType != null && accessType.size() > 0) {
+										for (int i = 0; i < accessType.size(); i++) {
 								%>
-								<option value="<%=accessType.get(i)%>">
-									<%=accessType.get(i)%></option>
+									<option value="<%=accessType.get(i).getDropdownValue()%>">
+										<%=accessType.get(i).getDropdownValue()%></option>
 								<%
-									}
+										}
+								}
 								%>
 							</select>
 						</div>
