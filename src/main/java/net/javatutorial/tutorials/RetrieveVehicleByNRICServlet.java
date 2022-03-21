@@ -56,7 +56,7 @@ public class RetrieveVehicleByNRICServlet extends HttpServlet {
 		
 		request.setAttribute("vehicleLatRec", v);
 		request.setAttribute("containerSize", containerSize);
-		request.setAttribute("visitPurpose", vehiclePurpose);
+		request.setAttribute("vehiclePurpose", vehiclePurpose);
 		
         RequestDispatcher rd = request.getRequestDispatcher("addVehicle.jsp");
         rd.forward(request, response);
