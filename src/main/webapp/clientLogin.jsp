@@ -67,8 +67,6 @@
 			<label class="heading"><%=responseObj%> </label><br>
 		<%} %>
 	<center>
-		<b>*Individuals are required to self-identify should they
-			experience any COVID-19 symptoms.</b>
 		<form name="verifyLogin" action="verifyLogin" method="post"
 			onsubmit="return validateForm()">
 			<div class="form-row">

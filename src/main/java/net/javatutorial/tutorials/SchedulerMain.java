@@ -15,11 +15,11 @@ public class SchedulerMain {
     	String line;
 		try 
 		{ 
-			URL url = new URL( "https://k11-vms.herokuapp.com/archiveVisitors" ); 
+			URL url = new URL( "https://k11-vms.herokuapp.com/archiveRecords" ); 
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream())); 
 			line = in.readLine(); 
 
-			System.out.println( "Visitor Records Moved: " + line );	
+			System.out.println( "Records Moved: " + line );	
 
 			in.close(); 
 		}

@@ -75,7 +75,6 @@
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
 		<label class="heading"><%=message%> </label><br>
-		<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b>
 	</center>
 		<% 
 			if (vList != null && vList.size() > 0) {
@@ -102,11 +101,9 @@
 							<th class="th-sm">Host Name</th>
 							<th class="th-sm" style="display:none;">Host Contact Number</th>
 							<th class="th-sm">Visitor Pass ID</th>
-							<th class="th-sm">Covid Declaration?</th>
 							<th class="th-sm">Remarks</th>
 							<th class="th-sm">Purpose of Visit</th>
 							<th class="th-sm">Approving Officer</th>
-							<th class="th-sm">Temperature</th>
 							<th class="th-sm">Time In</th>
 							<th class="th-sm">Time Out</th>
 						</tr>
@@ -138,7 +135,6 @@
 									<td><%=v.getHostName()%></td>
 									<td style="display:none;"><%=v.getHostNo()%></td>
 									<td><%=v.getVisitorCardId()%></td>
-									<td><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
 									<td>
 										<p><%=(v.getRemarks() != null ? v.getRemarks() : "No Remarks Yet")%></p>
 										<select id = "ddlRemarks" onchange="showDiv('dvRemarks<%=v.getVmsId()%>', this)">
@@ -157,7 +153,6 @@
 									</td>
 									<td><%=v.getVisitPurpose()%></td>
 									<td><%=((v.getApprovingOfficer() == null) ? "None" : v.getApprovingOfficer())%></td>
-									<td><%=v.getTemperature()%></td>
 									<td><%=sdf.format(v.getTimeInDt())%></td>
 									<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
 									<% if (v.getTimeOutDt() != null) { %>

@@ -147,9 +147,9 @@
 	</servlet>
 	<servlet>
 		<description />
-		<display-name>ArchiveVisitorRecordsServlet</display-name>
-		<servlet-name>ArchiveVisitorRecordsServlet</servlet-name>
-		<servlet-class>net.javatutorial.tutorials.ArchiveVisitorRecordsServlet</servlet-class>
+		<display-name>ArchiveRecordsServlet</display-name>
+		<servlet-name>ArchiveRecordsServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ArchiveRecordsServlet</servlet-class>
 	</servlet>
 	<!-- VMS Archived END  -->
 	
@@ -431,8 +431,8 @@
 		<url-pattern>/createVmsArchivedTbl</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>ArchiveVisitorRecordsServlet</servlet-name>
-		<url-pattern>/archiveVisitors</url-pattern>
+		<servlet-name>ArchiveRecordsServlet</servlet-name>
+		<url-pattern>/archiveRecords</url-pattern>
 	</servlet-mapping>
 	<!-- VMS Archived END  -->
 	

@@ -74,7 +74,6 @@
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
 		<label class="heading"><%=message%> </label><br>
-		<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b>
 	</center>
 		<% 
 			if (vList != null && vList.size() > 0) {
@@ -102,12 +101,10 @@
 							<th class="th-sm">Container No.</th>
 							<th class="th-sm">Container Size</th>
 							<th class="th-sm">Seal No.</th>
-							<th class="th-sm" style="display:none;">Covid Declaration?</th>
 							<th class="th-sm">Lorry Chet No.</th>
 							<th class="th-sm">Delivery Notice No.</th>
 							<th class="th-sm">Remarks</th>
 							<th class="th-sm">Purpose of Visit</th>
-							<th class="th-sm">Temperature</th>
 							<th class="th-sm">Time In</th>
 							<th class="th-sm">Time Out</th>
 						</tr>
@@ -138,7 +135,6 @@
 									<td><%=(v.getContainerNo() != null ? v.getContainerNo() : "")%></td>
 									<td><%=(v.getContainerSize() != null ? v.getContainerSize() : "")%></td>
 									<td><%=(v.getSealNo() != null ? v.getSealNo() : "")%></td>
-									<td style="display:none;" ><%=((v.getCovidDeclare().equals("null")) ? "No" : v.getCovidDeclare())%></td>
 									<% if (v.getLorryChetNumber() != null && !StringUtils.isEmpty(v.getLorryChetNumber())) { %>
 										<td><%=v.getLorryChetNumber()%></td>
 									<%
@@ -204,7 +200,6 @@
 										</div>
 									</td>
 									<td><%=v.getVisitPurpose()%></td>
-									<td><%=v.getTemperature()%></td>
 									<td><%=sdf.format(v.getTimeInDt())%></td>
 									<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
 									<% if (v.getTimeOutDt() != null) { %>

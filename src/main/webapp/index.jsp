@@ -30,8 +30,7 @@
 		session.removeAttribute("idNo");
 	%>
 	<center>
-		<b>*Individuals are required to self-identify should they
-			experience any COVID-19 symptoms.</b> <br> <br>
+		<br> <br>
 		<div class="container">
 			<form method="POST" action="vmsCheckNRIC.jsp">
 				<input type="hidden" id="recordType" name="recordType"

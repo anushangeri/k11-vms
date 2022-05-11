@@ -33,11 +33,11 @@ public class AddVehicleRecordServlet extends HttpServlet {
 		String primeMoverNo = request.getParameter("primeMoverNo");
 		String containerNo = request.getParameter("containerNo");
 		String loadedNoLoaded = request.getParameter("loadedNoLoaded");
-		String covidDec = request.getParameter("coviddeclaration");
+		//String covidDec = request.getParameter("coviddeclaration");
 		String lorryChetNumber = request.getParameter("lorryChetNumber");
 		String deliveryNoticeNumber = request.getParameter("deliveryNoticeNumber");
 		String visitPurpose = request.getParameter("visitPurpose");
-		String temperature = request.getParameter("temperature");
+		//String temperature = request.getParameter("temperature");
 		String sealNo = request.getParameter("sealNo");
 		String containerSize = request.getParameter("containerSize");
 		String remarks = request.getParameter("remarks");
@@ -45,8 +45,8 @@ public class AddVehicleRecordServlet extends HttpServlet {
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 
 		Vehicle v = new Vehicle( vehicleId,  name,  companyName, idType, idNo,  mobileNo,  primeMoverNo,
-				containerNo,  loadedNoLoaded, covidDec, lorryChetNumber, deliveryNoticeNumber,  
-				visitPurpose, temperature, sealNo, containerSize,  remarks , timestamp);
+				containerNo,  loadedNoLoaded, null, lorryChetNumber, deliveryNoticeNumber,  
+				visitPurpose, null, sealNo, containerSize,  remarks , timestamp);
 
 		String message = VehMSManagerDAO.addVisitor(v);
 		

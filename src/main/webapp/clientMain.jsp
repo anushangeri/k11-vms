@@ -18,9 +18,7 @@
 	rel="stylesheet">
 </head>
 <body>
-	<center>
-		<b>*Individuals are required to self-identify should they
-			experience any COVID-19 symptoms.</b> <br> <br>
+	<center> <br> <br>
 		<div class="container">
 			<form action="vms" method="get" >
 				<button type="submit" id="removeBackground">

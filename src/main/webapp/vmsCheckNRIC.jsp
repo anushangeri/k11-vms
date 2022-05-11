@@ -49,9 +49,6 @@
 		session.removeAttribute("name");
 	%>
 	<center>
-		<b>*Individuals are required to self-identify should they
-			experience any COVID-19 symptoms.</b>
-
 		<form name="checkNRIC" action="vmsCheckNRIC" method="post"
 			onsubmit="return validateForm()">
 			<div class="form-row">

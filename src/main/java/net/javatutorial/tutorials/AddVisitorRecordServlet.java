@@ -55,9 +55,9 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		String hostName = request.getParameter("hostName");
 		String hostNo = request.getParameter("hostNo");
 		String visitorCardId = request.getParameter("visitorCardId");
-		String covidDec = request.getParameter("coviddeclaration");
+		String covidDec = "";
 		String visitPurpose = request.getParameter("visitPurpose");
-		String temperature = request.getParameter("temperature");
+		String temperature = "";
 		String remarks = request.getParameter("remarks");
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());

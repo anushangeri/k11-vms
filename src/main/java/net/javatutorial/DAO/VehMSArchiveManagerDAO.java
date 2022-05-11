@@ -8,12 +8,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import net.javatutorial.entity.Visitor;
+import net.javatutorial.entity.Vehicle;
 import net.javatutorial.tutorials.Main;
-
-public class VMSArchiveManagerDAO {
+/*
+ * Archiving Logic: daily batch job will move data from main table to archive table, 
+ * so main table will have only 30 days worth of data.
+ * 
+ * Monthly batch job will run to retrieve all data in archive table and email to client 
+ * and delete data from archive table leaving only 30 days
+ */
+public class VehMSArchiveManagerDAO {
 	
-	public static String moveVisitor(){
+	public static String moveVehicle(){
 		Connection connection = null;
 		ResultSet rs = null;
 		Statement stmt = null;
@@ -22,16 +28,18 @@ public class VMSArchiveManagerDAO {
 			connection = Main.getConnection();
 			stmt = connection.createStatement();
 
-	        stmt.executeUpdate("INSERT INTO VMS_ARCHIVED "
-	        		+  "(VMS_ID, NAME, COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, VEHICLE_NO, HOST_NAME, HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, "
-	        		+ " REMARKS, VISIT_PURPOSE, TEMPERATURE, APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT, ARCHIVED_DT)" + 
-	        		"  SELECT VMS_ID, NAME, COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, VEHICLE_NO, HOST_NAME, HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, " + 
-	        		"	REMARKS, VISIT_PURPOSE, TEMPERATURE, APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT, NOW() "
-	        		+ " FROM VMS WHERE TIME_IN_DT <= (CURRENT_DATE - INTERVAL '30 days');"
-	        		+ " DELETE FROM VMS WHERE TIME_IN_DT <= (CURRENT_DATE - INTERVAL '30 days');");
-	        rs = stmt.executeQuery("SELECT NAME FROM VMS_ARCHIVED ORDER BY VMS_ID DESC LIMIT 1;");
+	        stmt.executeUpdate("INSERT INTO VEHMS_ARCHIVED "
+	        		+ "(VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, CONTAINER_NO, "
+	        		+ " LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO,"
+	        		+ " VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, TIME_IN_DT, TIME_OUT_DT, ARCHIVED_DT)" + 
+	        		"  SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, CONTAINER_NO, "
+	        		+ " LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO,"
+	        		+ " VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, TIME_IN_DT, TIME_OUT_DT, NOW() "
+	        		+ " FROM VEHMS WHERE TIME_IN_DT <= (CURRENT_DATE - INTERVAL '30 days');"
+	        		+ " DELETE FROM VEHMS WHERE TIME_IN_DT <= (CURRENT_DATE - INTERVAL '30 days');");
+	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM VEHMS_ARCHIVED;");
 	        while (rs.next()) {
-	        	message = "Archived visitor records successful : " + rs.getTimestamp("tick");
+	        	message = "Archived vehicle records successful : " + rs.getTimestamp("tick");
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -45,27 +53,27 @@ public class VMSArchiveManagerDAO {
 		finally {
         	Main.close(connection, stmt, rs);
         }
+		message = "successfull" ;
 		return message;
 	}
-	
-	public static ArrayList<Visitor> retrieveAll() {
+		
+	public static ArrayList<Vehicle> retrieveAll() {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
-        Visitor v = null;
-        ArrayList<Visitor> vList = new ArrayList<Visitor>();
+        Vehicle v = null;
+        ArrayList<Vehicle> vList = new ArrayList<Vehicle>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT VMS_ID, NAME,\r\n" + 
-            		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
-            		"              VEHICLE_NO, HOST_NAME,\r\n" + 
-            		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
-            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT FROM VMS_ARCHIVED ORDER BY TIME_IN_DT DESC; ";
+            String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, "
+            		+ "CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" 
+            		+ "VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, TIME_IN_DT, TIME_OUT_DT \r\n"
+            		+ "FROM VEHMS_ARCHIVED ORDER BY TIME_IN_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
-            	v = new Visitor(rs.getString(1), 
+            	v = new Vehicle(rs.getString(1), 
             			rs.getString(2),
             			rs.getString(3),
             			rs.getString(4),
@@ -81,8 +89,9 @@ public class VMSArchiveManagerDAO {
             			rs.getString(14),
             			rs.getString(15),
             			rs.getString(16),
-            			rs.getTimestamp(17),
-            			rs.getTimestamp(18));
+            			rs.getString(17),
+            			rs.getTimestamp(18),
+            			rs.getTimestamp(19));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -100,11 +109,11 @@ public class VMSArchiveManagerDAO {
         String message = "No message";
         try {
         	connection = Main.getConnection();
-            String sql = "DELETE FROM VMS_ARCHIVED WHERE TIME_IN_DT <= (CURRENT_DATE - INTERVAL '30 days');";
+            String sql = "DELETE FROM VEHMS_ARCHIVED WHERE TIME_IN_DT <= (CURRENT_DATE - INTERVAL '30 days');";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
-            message = "Delete visitor successful - only one month worth of records in DB";
+            message = "Delete vehicle successful - only one month worth of records in DB";
             
         } catch (Exception e) {
             e.printStackTrace();
