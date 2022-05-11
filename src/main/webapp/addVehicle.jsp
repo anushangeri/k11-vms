@@ -196,28 +196,28 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="temperature">Temperature: </label> <input type="text"
-								class="form-control" name="temperature" id="temperature"
-								placeholder="36.6" minlength="2" maxlength="4" required>
-						</div>
+<!-- 						<div class="form-group col-md-6"> -->
+<!-- 							<label for="temperature">Temperature: </label> <input type="text" -->
+<!-- 								class="form-control" name="temperature" id="temperature" -->
+<!-- 								placeholder="36.6" minlength="2" maxlength="4" required> -->
+<!-- 						</div> -->
 						<div class="form-group col-md-6">
 							<label for="remarks">Remarks: </label> <input type="text"
 								class="form-control" name="remarks" id="remarks">
 						</div>
 					</div>
-					<div class="form-row checkbox">
-						<input type="checkbox" id="coviddeclaration"
-							name="coviddeclaration" value="Yes" required> <label
-							for="coviddeclaration"> I confirm that I am NOT
-							experiencing any of the following symptoms: <br> • fever
-							(feeling hot to the touch, a temperature of 37.8 degrees Celsius
-							or higher)<br> • new onset of cough (continuous, more than
-							usual)<br> • difficulty breathing<br> <b>*Individuals
-								are required to self-identify should they experience any
-								COVID-19 symptoms.</b>
-						</label>
-					</div>
+<!-- 					<div class="form-row checkbox"> -->
+<!-- 						<input type="checkbox" id="coviddeclaration" -->
+<!-- 							name="coviddeclaration" value="Yes" required> <label -->
+<!-- 							for="coviddeclaration"> I confirm that I am NOT -->
+<!-- 							experiencing any of the following symptoms: <br> • fever -->
+<!-- 							(feeling hot to the touch, a temperature of 37.8 degrees Celsius -->
+<!-- 							or higher)<br> • new onset of cough (continuous, more than -->
+<!-- 							usual)<br> • difficulty breathing<br> <b>*Individuals -->
+<!-- 								are required to self-identify should they experience any -->
+<!-- 								COVID-19 symptoms.</b> -->
+<!-- 						</label> -->
+<!-- 					</div> -->
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active">Submit
 							Record</button>
