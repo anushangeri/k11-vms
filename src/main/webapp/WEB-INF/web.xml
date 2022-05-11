@@ -221,6 +221,16 @@
 		<servlet-class>net.javatutorial.tutorials.UpdateVehicleRemarksRecordServlet</servlet-class>
 	</servlet>
 	<!-- Vehicle Movement System END  -->
+	
+	<!-- VEHMS Archived START  -->
+	<servlet>
+		<description />
+		<display-name>CVehMSArchivedTblServlet</display-name>
+		<servlet-name>CVehMSArchivedTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CVehMSArchivedTblServlet</servlet-class>
+	</servlet>
+	<!-- VEHMS Archived END  -->
+	
 	<!-- Client Account START  -->
 	<servlet>
 		<description />
@@ -482,6 +492,14 @@
 		<url-pattern>/vehms</url-pattern>
 	</servlet-mapping>
 	<!-- Vehicle Movement System END  -->
+
+	<!-- VEHMS Archived START  -->
+	<servlet-mapping>
+		<servlet-name>CVehMSArchivedTblServlet</servlet-name>
+		<url-pattern>/createVehMSArchivedTbl</url-pattern>
+	</servlet-mapping>
+	<!-- VEHMS Archived END  -->
+	
 	<!-- Client Account START  -->
 	<servlet-mapping>
 		<servlet-name>CClientAccountTblServlet</servlet-name>
