@@ -127,7 +127,7 @@
           </td>
 	    </tr>
 	    <tr>
-	      <th scope="row">6</th>
+	      <th scope="row">7</th>
 	      <td>VehicleMS Archived</td>
 	      <td><form action="createVehMSArchivedTbl" method="post">
                   <button class="btn" type="submit">Create</button>
@@ -143,7 +143,7 @@
           </td>
 	    </tr>
 	    <tr>
-	      <th scope="row">7</th>
+	      <th scope="row">8</th>
 	      <td>Dropdown List</td>
 	      <td><form action="createDropdownTbl" method="post">
                   <button class="btn" type="submit">Create</button>
