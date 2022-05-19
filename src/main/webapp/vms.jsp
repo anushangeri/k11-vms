@@ -186,8 +186,7 @@
 	</div>
 		<div class="container body-content">
 			<center>
-				<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
-							aria-pressed="true">Back</a>
+				<button class="btn btn-warning btn-lg active" onclick="history.back()">Back</button>
 				
 				<a href="retrieveToPopulate" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Add Visitor Record</a>
