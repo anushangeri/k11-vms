@@ -233,13 +233,14 @@
 	</div>
 		<div class="container body-content">
 			<center>
-				<button class="btn btn-warning btn-lg active" onclick="history.back()">Back</button>
-		
 				<a href="retrieveVehToPopulate" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Add Vehicle Record</a>
 				
 				<!-- Delete all record function is for K11 Admin only -->
-				<%if (request.getSession(false).getAttribute("usertype") != null) {
+				<%if (request.getSession(false).getAttribute("usertype") != null) { %>
+					<a href="/clientMain.jsp" class="btn btn-warning btn-lg active" role="button"
+							aria-pressed="true">Back</a>
+					<% 
 					String userInput = (String) request.getSession(false).getAttribute("usertype");
 					if (userInput.toUpperCase().equals("ADMIN")){ %>
 						<a href="deleteAllVehicle" class="btn btn-warning btn-lg active"
@@ -253,7 +254,11 @@
 				%>
 				<% 
 				}
+				else { 
 				%>
+				<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
+							aria-pressed="true">Back</a>
+				<%}%>
 			</center>
 		</div>
 	<br>

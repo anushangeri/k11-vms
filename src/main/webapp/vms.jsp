@@ -186,13 +186,15 @@
 	</div>
 		<div class="container body-content">
 			<center>
-				<button class="btn btn-warning btn-lg active" onclick="history.back()">Back</button>
-				
 				<a href="retrieveToPopulate" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Add Visitor Record</a>
 				
 				<!-- Delete all record function is for K11 Admin only -->
-				<%if (request.getSession(false).getAttribute("usertype") != null) {
+				<%if (request.getSession(false).getAttribute("usertype") != null) { %>
+					<a href="/clientMain.jsp" class="btn btn-warning btn-lg active" role="button"
+					aria-pressed="true">Back</a>
+					
+					<% 
 					String usertype = (String) request.getSession(false).getAttribute("usertype");
 					if (usertype.toUpperCase().equals("ADMIN")){ %>
 						<a href="deleteAllVisitor" class="btn btn-warning btn-lg active"
@@ -206,7 +208,11 @@
 				%>
 				<% 
 				}
+				else { 
 				%>
+				<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
+							aria-pressed="true">Back</a>
+				<%}%>
 			</center>
 		</div>
 	<br>
