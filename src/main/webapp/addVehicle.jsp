@@ -83,8 +83,8 @@
 							<label for="idNo">Vehicle Driver ID Number: </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? idNo : v.getIdNo())%>"
-								minlength="4" maxlength="9" readonly>
+								value="<%=((v == null) ? "" : v.getIdNo())%>"
+								minlength="4" maxlength="9" <%=((v == null) ? "" : "readonly")%>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="mobileNo">Mobile: </label> <input type="text"
