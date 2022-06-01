@@ -43,45 +43,38 @@ function showOfficeDivOnLoad(officerLogin,visitPurpose)
     document.getElementById(officerLogin).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : document.getElementById("officerIdNo").removeAttribute("required");
     
 }
-function showPassword() {
-	  var x = document.getElementById("officerpsw");
-	  if (x.type === "password") {
-	    x.type = "text";
-	  } else {
-	    x.type = "password";
-	  }
-}
 </script>
 </head>
 <body onload="showOfficeDivOnLoad('officerLogin','visitPurpose')">
 	<div class="container body-content">
 		<div class="page-header">
 			<label class="heading"><%=((request.getAttribute("responseObj") != null) ? request.getAttribute("responseObj") : "")%></label>
-			<br>
-			<label class="heading">Visitor Management System</label> <br> <b>How
-				to use:</b> Please enter Visitor Details.
+			<br> <label class="heading">Visitor Management System</label> <br>
+			<b>How to use:</b> Please enter Visitor Details.
 			<%
- 	String idNo = "SxxxxxxxJ";
-	String name = "";
- 	Visitor v = null;
- 	ArrayList<Site> siteDropdown = new ArrayList<Site>();
- 	ArrayList<Dropdown> visitPurpose = new ArrayList<Dropdown>();
- 	if (request.getAttribute("visitorLatRec") != null) {
- 		v = (Visitor) request.getAttribute("visitorLatRec");
- 	}
- 	if (request.getAttribute("siteDropdown") != null) {
- 		siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
- 	}
- 	if (request.getAttribute("visitPurpose") != null) {
- 		visitPurpose = (ArrayList<Dropdown>) request.getAttribute("visitPurpose");
- 	}
- 	if (request.getSession(false).getAttribute("usertype") == null && request.getSession(false).getAttribute("idNo") != null) {
- 		idNo = (String) request.getSession(false).getAttribute("idNo");
- 		name = (String) request.getSession(false).getAttribute("name");
- 	}
- %>
+			String idNo = "SxxxxxxxJ";
+			String name = "";
+			Visitor v = null;
+			ArrayList<Site> siteDropdown = new ArrayList<Site>();
+			ArrayList<Dropdown> visitPurpose = new ArrayList<Dropdown>();
+			if (request.getAttribute("visitorLatRec") != null) {
+				v = (Visitor) request.getAttribute("visitorLatRec");
+			}
+			if (request.getAttribute("siteDropdown") != null) {
+				siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
+			}
+			if (request.getAttribute("visitPurpose") != null) {
+				visitPurpose = (ArrayList<Dropdown>) request.getAttribute("visitPurpose");
+			}
+			if (request.getSession(false).getAttribute("usertype") == null
+					&& request.getSession(false).getAttribute("idNo") != null) {
+				idNo = (String) request.getSession(false).getAttribute("idNo");
+				name = (String) request.getSession(false).getAttribute("name");
+			}
+			%>
 			<center>
-				<form action="addVisitor" method="post" name="addVisitor" onsubmit="return validateForm()">
+				<form action="addVisitor" method="post" name="addVisitor"
+					onsubmit="return validateForm()">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="name">Name: </label> <input type="text"
@@ -96,32 +89,37 @@ function showPassword() {
 								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="siteVisiting">Site You Are Visiting: </label> 
-							<% if(v == null){%>
-								<select name="siteVisiting" class="form-control" required>
-									<%
-										for (Site eachSite: siteDropdown) {
-									%>
-											<option value="<%=eachSite.getSiteName()%>">
-												<%=eachSite.getSiteName()%></option>
-									<%
-										}
-									%>
-								</select>
-							<% } 
-							else {%>
-								<select name="siteVisiting" class="form-control" required>
-									<%
-										for (Site eachSite: siteDropdown) {
-									%>
-											<option value="<%=eachSite.getSiteName()%>" 
-											<%=v.getSite()!= null && v.getSite().equals(eachSite.getSiteName()) ? "selected" : "" %>>
-												<%=eachSite.getSiteName()%></option>
-									<%
-										}
-									%>
-								</select>
-							<%} %>
+							<label for="siteVisiting">Site You Are Visiting: </label>
+							<%
+							if (v == null) {
+							%>
+							<select name="siteVisiting" class="form-control" required>
+								<%
+								for (Site eachSite : siteDropdown) {
+								%>
+								<option value="<%=eachSite.getSiteName()%>">
+									<%=eachSite.getSiteName()%></option>
+								<%
+								}
+								%>
+							</select>
+							<%
+							} else {
+							%>
+							<select name="siteVisiting" class="form-control" required>
+								<%
+								for (Site eachSite : siteDropdown) {
+								%>
+								<option value="<%=eachSite.getSiteName()%>"
+									<%=v.getSite() != null && v.getSite().equals(eachSite.getSiteName()) ? "selected" : ""%>>
+									<%=eachSite.getSiteName()%></option>
+								<%
+								}
+								%>
+							</select>
+							<%
+							}
+							%>
 						</div>
 					</div>
 					<div class="form-row">
@@ -129,8 +127,8 @@ function showPassword() {
 							<label for="idNo">ID Number: </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getIdNo())%>"
-								minlength="4" maxlength="9"  <%=((v == null) ? "" : "readonly")%>>
+								value="<%=((v == null) ? "" : v.getIdNo())%>" minlength="4"
+								maxlength="9" <%=((v == null) ? "" : "readonly")%>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="mobileNo">Mobile: </label> <input type="text"
@@ -139,33 +137,41 @@ function showPassword() {
 								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="visitPurpose">Visit Purpose: </label> 
-							<% if(v == null){%>
-								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
-									name="visitPurpose" class="form-control" required>
-									<%
-										for (Dropdown d: visitPurpose) {
-									%>
-									<option value="<%=d.getDropdownValue()%>">
-										<%=d.getDropdownValue()%></option>
-									<%
-										}
-									%>
-								</select>
-							<% } 
-							else {%>
-								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
-									name="visitPurpose" class="form-control" required>
-									<%
-										for (Dropdown d: visitPurpose) {
-									%>
-									<option value="<%=d.getDropdownValue()%>" <%=v.getVisitPurpose().equals(d.getDropdownValue()) ? "selected" : "" %>>
-										<%=d.getDropdownValue()%></option>
-									<%
-										}
-									%>
-								</select>
-							<%} %>
+							<label for="visitPurpose">Visit Purpose: </label>
+							<%
+							if (v == null) {
+							%>
+							<select id="visitPurpose"
+								onchange="showDiv('officerLogin', this)" name="visitPurpose"
+								class="form-control" required>
+								<%
+								for (Dropdown d : visitPurpose) {
+								%>
+								<option value="<%=d.getDropdownValue()%>">
+									<%=d.getDropdownValue()%></option>
+								<%
+								}
+								%>
+							</select>
+							<%
+							} else {
+							%>
+							<select id="visitPurpose"
+								onchange="showDiv('officerLogin', this)" name="visitPurpose"
+								class="form-control" required>
+								<%
+								for (Dropdown d : visitPurpose) {
+								%>
+								<option value="<%=d.getDropdownValue()%>"
+									<%=v.getVisitPurpose().equals(d.getDropdownValue()) ? "selected" : ""%>>
+									<%=d.getDropdownValue()%></option>
+								<%
+								}
+								%>
+							</select>
+							<%
+							}
+							%>
 						</div>
 					</div>
 					<div class="form-row">
@@ -193,47 +199,50 @@ function showPassword() {
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getVisitorCardId())%>" required>
 						</div>
-<!-- 						<div class="form-group col-md-6"> -->
-<!-- 							<label for="temperature">Temperature: </label> <input type="text" -->
-<!-- 								class="form-control" name="temperature" id="temperature" -->
-<!-- 								placeholder="36.6" minlength="2" maxlength="4" required> -->
-<!-- 						</div> -->
+						<!-- 						<div class="form-group col-md-6"> -->
+						<!-- 							<label for="temperature">Temperature: </label> <input type="text" -->
+						<!-- 								class="form-control" name="temperature" id="temperature" -->
+						<!-- 								placeholder="36.6" minlength="2" maxlength="4" required> -->
+						<!-- 						</div> -->
 						<div class="form-group col-md-6">
 							<label for="remarks">Remarks: </label> <input type="text"
 								class="form-control" name="remarks" id="remarks">
 						</div>
 					</div>
-<!-- 					<div class="form-row checkbox"> -->
-<!-- 						<input type="checkbox" id="coviddeclaration" -->
-<!-- 							name="coviddeclaration" value="Yes" required> <label -->
-<!-- 							for="coviddeclaration"> I confirm that I am NOT -->
-<!-- 							experiencing any of the following symptoms: <br> • fever -->
-<!-- 							(feeling hot to the touch, a temperature of 37.8 degrees Celsius -->
-<!-- 							or higher)<br> • new onset of cough (continuous, more than -->
-<!-- 							usual)<br> • difficulty breathing<br> <b>*Individuals -->
-<!-- 								are required to self-identify should they experience any -->
-<!-- 								COVID-19 symptoms.</b> -->
-<!-- 						</label> -->
-<!-- 					</div> -->
-					<br>
-					<br>
-					<div id = "officerLogin" class="form-row">
-					<i>Please aproach guard house and seek approval from security officer on duty.</i>
+					<!-- 					<div class="form-row checkbox"> -->
+					<!-- 						<input type="checkbox" id="coviddeclaration" -->
+					<!-- 							name="coviddeclaration" value="Yes" required> <label -->
+					<!-- 							for="coviddeclaration"> I confirm that I am NOT -->
+					<!-- 							experiencing any of the following symptoms: <br> • fever -->
+					<!-- 							(feeling hot to the touch, a temperature of 37.8 degrees Celsius -->
+					<!-- 							or higher)<br> • new onset of cough (continuous, more than -->
+					<!-- 							usual)<br> • difficulty breathing<br> <b>*Individuals -->
+					<!-- 								are required to self-identify should they experience any -->
+					<!-- 								COVID-19 symptoms.</b> -->
+					<!-- 						</label> -->
+					<!-- 					</div> -->
+					<br> <br>
+					<div id="officerLogin" class="form-row">
+						<i>Please aproach guard house and seek approval from security
+							officer on duty.</i>
 						<div class="form-group col-md-6">
-							<label for="officerIdNo">Approving Officer ID Number: </label> <input type="text"
-								class="form-control" name="officerIdNo" id="officerIdNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
-								minlength="4" maxlength="9">
-						</div>
-						<div class="form-group col-md-4">
-							<label for="officerpsw">Password</label> <input type="password" class="form-control" id="officerpsw"
-								name="officerpsw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-								><input type="checkbox" onclick="showPassword()">Show Password
+							<label for="officerIdNo">Approving Officer ID Number: </label> <input
+								type="text" class="form-control" name="officerIdNo"
+								id="officerIdNo" placeholder="xxxx"
+								oninput="this.value = this.value.toUpperCase()" minlength="4"
+								maxlength="9">
 						</div>
 					</div>
 					<div class="form-row">
+						<%
+						if (request.getAttribute("status") != null && !(request.getAttribute("status").equals("readonly"))) {
+						%>
 						<button type="submit" class="btn btn-primary btn-lg active">Submit
 							Record</button>
+						<%
+						}
+						%>
+
 						<a href="/vms" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
 					</div>

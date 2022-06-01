@@ -24,7 +24,7 @@ import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.entity.Visitor;
 
 /**
- * Servlet implementation class AddEmployeeServlet
+ * Servlet implementation class UpdateVisitorRecordServlet
  */
 public class UpdateVisitorRecordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;

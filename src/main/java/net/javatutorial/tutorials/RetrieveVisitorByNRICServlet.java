@@ -46,11 +46,10 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usertype = (String) request.getSession(false).getAttribute("usertype");
 		String idNo = (String) request.getSession(false).getAttribute("idNo");
-		String idType = (String) request.getSession(false).getAttribute("idType");
 		
 		//from client login view
-		String idNoFromClient = request.getParameter("idNo");
-		String idTypeFromClient = request.getParameter("idType");
+		String vmsId = request.getParameter("vmsId");
+		String status = request.getParameter("status");
 		
 		ArrayList<Visitor> vList = null;
 		Visitor v = null;
@@ -64,10 +63,8 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 			}
 		}
 		else {
-			vList = VMSManagerDAO.retrieveByNameIDPopulate(idNoFromClient);
-			if(vList != null && vList.size() > 0) {
-				v = vList.get(0);
-			}
+			v = VMSManagerDAO.retrieveByVmsId(vmsId);
+			
 		}
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		ArrayList<Dropdown> visitPurpose = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
@@ -75,6 +72,7 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 		request.setAttribute("visitorLatRec", v);
 		request.setAttribute("siteDropdown", siteDropdown);
 		request.setAttribute("visitPurpose", visitPurpose);
+		request.setAttribute("status", status);
         RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
         rd.forward(request, response);
 	}

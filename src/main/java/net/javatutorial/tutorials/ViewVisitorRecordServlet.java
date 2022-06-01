@@ -16,6 +16,8 @@ import net.javatutorial.entity.Visitor;
 
 /**
  * Servlet implementation class ViewVisitorRecordServlet - to view visitor records
+ * if Usertype is client, then client can only view visitor record for that site
+ * if management or admin, they can view all records
  */
 public class ViewVisitorRecordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;

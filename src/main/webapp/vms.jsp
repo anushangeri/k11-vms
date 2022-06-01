@@ -126,7 +126,7 @@
 									<% 
 									} else{
 									%>
-										 <td><a href="/retrieveToPopulate?idNo=<%=v.getIdNo()%>&idType=<%=v.getIdType()%>"><%=v.getIdNo()%></a></td>
+										 <td><a href="/retrieveToPopulate?vmsId=<%=v.getVmsId()%>&status=readonly"><%=v.getIdNo()%></a></td>
 									<%
 									}%>
 									
@@ -152,7 +152,7 @@
 										</div>
 									</td>
 									<td><%=v.getVisitPurpose()%></td>
-									<td><%=((v.getApprovingOfficer() == null) ? "None" : v.getApprovingOfficer())%></td>
+									<td><%=((v.getApprovingOfficer() == null) || (v.getApprovingOfficer() == "null") ? "None" : v.getApprovingOfficer())%></td>
 									<td><%=sdf.format(v.getTimeInDt())%></td>
 									<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
 									<% if (v.getTimeOutDt() != null) { %>
