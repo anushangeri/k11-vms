@@ -235,7 +235,7 @@ function showOfficeDivOnLoad(officerLogin,visitPurpose)
 					</div>
 					<div class="form-row">
 						<%
-						if (!(request.getAttribute("status").equals("readonly"))) {
+						if ((request.getAttribute("status") == null) || !(request.getAttribute("status").equals("readonly"))) {
 						%>
 						<button type="submit" class="btn btn-primary btn-lg active">Submit
 							Record</button>
