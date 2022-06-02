@@ -1,6 +1,5 @@
 package net.javatutorial.entity;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class ClientAccount {
@@ -14,6 +13,7 @@ public class ClientAccount {
     private String accessType;
     private Timestamp createdDt;
     private Timestamp modifiedDt;
+    
 	public ClientAccount(String accountId, String name, String site, String idType, String idNo, String password,
 			String salt, String accessType, Timestamp createdDt, Timestamp modifiedDt) {
 		super();

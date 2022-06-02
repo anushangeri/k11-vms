@@ -15,7 +15,7 @@ import net.javatutorial.entity.Visitor;
 /**
  * Servlet implementation class UpdateVisitorRecordServlet
  */
-public class UpdateVisitorRecordServlet extends HttpServlet {
+public class UpdateVisitorApprovingOfficerRecordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
@@ -26,8 +26,11 @@ public class UpdateVisitorRecordServlet extends HttpServlet {
 		if(vmsId != null && !StringUtils.isEmpty(vmsId)) {
 			//retrieve Visitor object
 			v = VMSManagerDAO.retrieveByVmsId(vmsId);
+			//retrieve approving officer ID from session
+			String idNo = (String) request.getSession(false).getAttribute("idNo");
+			v.setApprovingOfficer(idNo);
 			//update Visitor object with current system time as time out
-			message = VMSManagerDAO.updateVisitorTimeOut(v);
+			message = VMSManagerDAO.updateVisitorApprovingOfficer(v);
 			
 		}
 		request.setAttribute("message", message);

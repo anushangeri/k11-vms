@@ -152,7 +152,23 @@
 										</div>
 									</td>
 									<td><%=v.getVisitPurpose()%></td>
-									<td><%=((v.getApprovingOfficer() == null) || (v.getApprovingOfficer() == "null") ? "None" : v.getApprovingOfficer())%></td>
+									<% if (v.getApprovingOfficer() != null) { %>
+										<td><%=v.getApprovingOfficer()%></td>
+									<%
+										}
+										else if(userType != null && (userType.equalsIgnoreCase("OFFICER") || userType.toUpperCase().equals("ADMIN")) ){
+									%>
+										<td><form method="POST" action ="/approveVisitor">
+											<input type="hidden" id="vmsId" name="vmsId" value="<%=v.getVmsId()%>">
+											<input type="submit" name="Submit" value="Approve"></form></td>
+									<%
+										}
+										else {
+											%>
+											<td>None</td>
+											<%
+										}
+									%>
 									<td><%=sdf.format(v.getTimeInDt())%></td>
 									<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
 									<% if (v.getTimeOutDt() != null) { %>

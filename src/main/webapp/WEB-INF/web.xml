@@ -137,7 +137,12 @@
 		<servlet-name>UpdateVisitorRemarksRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.UpdateVisitorRemarksRecordServlet</servlet-class>
 	</servlet>
-	
+	<servlet>
+		<description />
+		<display-name>UpdateVisitorApprovingOfficerRecordServlet</display-name>
+		<servlet-name>UpdateVisitorApprovingOfficerRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateVisitorApprovingOfficerRecordServlet</servlet-class>
+	</servlet>
 	<!-- VMS Archived START  -->
 	<servlet>
 		<description />
@@ -429,6 +434,10 @@
 	<servlet-mapping>
 		<servlet-name>UpdateVisitorRemarksRecordServlet</servlet-name>
 		<url-pattern>/updateVisitorRemarks</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateVisitorApprovingOfficerRecordServlet</servlet-name>
+		<url-pattern>/approveVisitor</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DeleteAllVisitorRecordServlet</servlet-name>

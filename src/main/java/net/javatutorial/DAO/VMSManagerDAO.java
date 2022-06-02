@@ -65,7 +65,7 @@ public class VMSManagerDAO {
 	        		"   WHERE VMS_ID = '" + v.getVmsId() + "';");
 	        rs = stmt.executeQuery("SELECT LAST(FIRST_NAME) FROM VMS WHERE VMS_ID ='" + v.getVmsId() +"';");
 	        while (rs.next()) {
-	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        	message = "Successfully updated: " + rs.getTimestamp("tick");
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -79,7 +79,6 @@ public class VMSManagerDAO {
 		finally {
         	Main.close(connection, stmt, rs);
         }
-		message = "Successful";
 		return message;
 	}
 	public static String updateVisitorRemarks(Visitor v){
@@ -97,7 +96,7 @@ public class VMSManagerDAO {
 	        		+ "WHERE VMS_ID = '" + v.getVmsId() + "';");
 	        rs = stmt.executeQuery("SELECT LAST(FIRST_NAME) FROM VMS WHERE VMS_ID ='" + v.getVmsId() +"';");
 	        while (rs.next()) {
-	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        	message = "Successfully updated: " + rs.getTimestamp("tick");
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -111,7 +110,38 @@ public class VMSManagerDAO {
 		finally {
         	Main.close(connection, stmt, rs);
         }
-		message = "Successful";
+		return message;
+	}
+	public static String updateVisitorApprovingOfficer(Visitor v){
+		Connection connection = null;
+		ResultSet rs = null;
+		Statement stmt = null;
+		String message = "";
+		try {
+			connection = Main.getConnection();
+			stmt = connection.createStatement();
+
+	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
+	        		+ "UPDATE VMS "
+	        		+ "SET APPROVING_OFFICER = '" + v.getApprovingOfficer() + "' " 
+	        		+ "WHERE VMS_ID = '" + v.getVmsId() + "';");
+	        rs = stmt.executeQuery("SELECT LAST(FIRST_NAME) FROM VMS WHERE VMS_ID ='" + v.getVmsId() +"';");
+	        while (rs.next()) {
+	        	message = "Successfully updated: " + rs.getTimestamp("tick");
+	        }
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			message = "" + e;
+			//e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			message = "" + e;
+		}
+		finally {
+        	Main.close(connection, stmt, rs);
+        }
+		
 		return message;
 	}
 	public static int getNextVal(){
