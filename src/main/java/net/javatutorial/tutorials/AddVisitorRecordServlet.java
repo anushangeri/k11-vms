@@ -2,16 +2,9 @@ package net.javatutorial.tutorials;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.Locale;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,19 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.joda.time.format.DateTimeFormatter;
 
-import net.javatutorial.DAO.ClientAccountManagerDAO;
 import net.javatutorial.DAO.SiteManagerDAO;
 import net.javatutorial.DAO.VMSManagerDAO;
-import net.javatutorial.entity.ClientAccount;
 import net.javatutorial.entity.Site;
 import net.javatutorial.entity.Visitor;
-
-import java.util.Calendar;
-import java.util.Locale;
-import static java.util.Calendar.*;
-import java.util.Date;
 
 /**
  * Servlet implementation class AddEmployeeServlet
@@ -64,29 +49,14 @@ public class AddVisitorRecordServlet extends HttpServlet {
 
 		//Step 1: verify officer login (if parameters not empty) and visitPurpose = GovtAgency
 		String officerIdNo = request.getParameter("officerIdNo");
-		String officerpsw = request.getParameter("officerpsw");
 		
-		//retrieving the hashed password by DB based on idNo entered by user
-		ArrayList<ClientAccount> vList = ClientAccountManagerDAO.retrieveByID(officerIdNo);
-		boolean verified = false;
-		String key = " ";
-		String salt = " ";
-		ClientAccount c = null;
-		if(vList != null && vList.size() > 0 ) {
-			c = vList.get(0);
-			if(c != null) {
-				key = c.getPassword();
-				salt = c.getSalt();
-				verified = PasswordUtils.verifyPassword(officerpsw, key, salt);
-			}
-		}
 		Visitor v = null;
 		String message = "Something went wrong, please try again.";
-		if(verified && visitPurpose.equals("GOVERNMENT AGENCY")) {
+		if(officerIdNo != null && !StringUtils.isEmpty(officerIdNo) && visitPurpose.equals("GOVERNMENT AGENCY")) {
 			//Step 2: add visitor
 			v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
 					 hostName,  hostNo,  visitorCardId, covidDec, remarks, visitPurpose,  
-					 temperature, c.getName() , timestamp);
+					 temperature, officerIdNo , timestamp);
 			message = VMSManagerDAO.addVisitor(v);
 		}
 		else if(!visitPurpose.equals("GOVERNMENT AGENCY")) {
