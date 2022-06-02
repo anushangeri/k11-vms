@@ -152,7 +152,7 @@
 										</div>
 									</td>
 									<td><%=v.getVisitPurpose()%></td>
-									<% if (v.getApprovingOfficer() != null) { %>
+									<% if (v.getApprovingOfficer() != null && !v.getApprovingOfficer().equalsIgnoreCase("null")) { %>
 										<td><%=v.getApprovingOfficer()%></td>
 									<%
 										}
