@@ -67,7 +67,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 		// check to see if the given date really is the last day of this month
 		System.out.println( "check to see if the given date really is the last day of this month");
 		System.out.println( cal.get(Calendar.DAY_OF_MONTH) == lastDay);
-		if(cal.get(Calendar.DAY_OF_MONTH) == lastDay) {
+		if(cal.get(Calendar.DAY_OF_MONTH) != lastDay) {
 			System.out.println( "it is the last day of the month, so batch job will do archive db clean up and email results");
 			
 			try 
@@ -83,7 +83,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				System.out.println("retrieved vehicles successful");
 				
 				LocalDate localDate = LocalDate.now(ZoneId.of("GMT+08:00"));
-				String fileName = "vms_records_"+ localDate +".xls";
+				String fileName = "vms_records_dev"+ localDate +".xls";
 				
 				// workbook object
 				XSSFWorkbook workbook = new XSSFWorkbook();
@@ -222,7 +222,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 					MimeMessage message = new MimeMessage(session);
 					message.setFrom(new InternetAddress(user));
 					message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-					message.setSubject("K11 VMS Records");
+					message.setSubject("K11 VMS Records DEV ENV");
 
 					// Create the message part
 					BodyPart messageBodyPart = new MimeBodyPart();
