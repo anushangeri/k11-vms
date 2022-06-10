@@ -22,6 +22,7 @@ public class Vehicle {
     private String remarks;
     private Timestamp timeInDt;
     private Timestamp timeOutDt;
+    private Timestamp archivedDt;
     
 	public Vehicle(String vehicleId, String name, String companyName, String idType, String idNo, String mobileNo,
 			String primeMoverNo, String containerNo, String loadedNoLoaded, String covidDeclare, String lorryChetNumber,
@@ -71,6 +72,67 @@ public class Vehicle {
 		this.containerSize = containerSize;
 		this.remarks = remarks;
 		this.timeInDt = timeInDt;
+	}
+	
+	/**
+	 * @param vehicleId
+	 * @param name
+	 * @param companyName
+	 * @param idType
+	 * @param idNo
+	 * @param mobileNo
+	 * @param primeMoverNo
+	 * @param containerNo
+	 * @param loadedNoLoaded
+	 * @param covidDeclare
+	 * @param lorryChetNumber
+	 * @param deliveryNoticeNumber
+	 * @param visitPurpose
+	 * @param temperature
+	 * @param sealNo
+	 * @param containerSize
+	 * @param remarks
+	 * @param timeInDt
+	 * @param timeOutDt
+	 * @param archivedDt
+	 */
+	public Vehicle(String vehicleId, String name, String companyName, String idType, String idNo, String mobileNo,
+			String primeMoverNo, String containerNo, String loadedNoLoaded, String covidDeclare, String lorryChetNumber,
+			String deliveryNoticeNumber, String visitPurpose, String temperature, String sealNo, String containerSize,
+			String remarks, Timestamp timeInDt, Timestamp timeOutDt, Timestamp archivedDt) {
+		super();
+		this.vehicleId = vehicleId;
+		this.name = name;
+		this.companyName = companyName;
+		this.idType = idType;
+		this.idNo = idNo;
+		this.mobileNo = mobileNo;
+		this.primeMoverNo = primeMoverNo;
+		this.containerNo = containerNo;
+		this.loadedNoLoaded = loadedNoLoaded;
+		this.covidDeclare = covidDeclare;
+		this.lorryChetNumber = lorryChetNumber;
+		this.deliveryNoticeNumber = deliveryNoticeNumber;
+		this.visitPurpose = visitPurpose;
+		this.temperature = temperature;
+		this.sealNo = sealNo;
+		this.containerSize = containerSize;
+		this.remarks = remarks;
+		this.timeInDt = timeInDt;
+		this.timeOutDt = timeOutDt;
+		this.archivedDt = archivedDt;
+	}
+	/**
+	 * @return the archivedDt
+	 */
+	public Timestamp getArchivedDt() {
+		return archivedDt;
+	}
+	/**
+	 * @param archivedDt the archivedDt to set
+	 */
+	public void setArchivedDt(Timestamp archivedDt) {
+		this.archivedDt = archivedDt;
 	}
 	/**
 	 * @return the vehicleId

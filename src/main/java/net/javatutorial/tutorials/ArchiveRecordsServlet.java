@@ -1,10 +1,7 @@
 package net.javatutorial.tutorials;
 
-import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -111,6 +108,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				visitorheader.createCell(13).setCellValue("Approving Officer");
 				visitorheader.createCell(14).setCellValue("Time In Date");
 				visitorheader.createCell(15).setCellValue("Time Out Date");
+				visitorheader.createCell(16).setCellValue("Archived Date");
 
 				XSSFRow row;
 				int rowid = 1;
@@ -140,6 +138,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 					if (a.getTimeOutDt() != null) {
 						row.createCell(15).setCellValue(a.getTimeOutDt().toString());
 					}
+					row.createCell(16).setCellValue(a.getArchivedDt().toString());
 				}
 				
 				XSSFSheet vehiclespreadsheet = workbook.createSheet(" Vehicle Records ");
@@ -163,7 +162,8 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				vehicleheader.createCell(14).setCellValue("Remarks");
 				vehicleheader.createCell(15).setCellValue("Time In Date");
 				vehicleheader.createCell(16).setCellValue("Time Out Date");
-
+				vehicleheader.createCell(17).setCellValue("Archived Date");
+				
 				rowid = 1;
 
 				System.out.println("writing vehicle records...");
@@ -191,6 +191,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 					if (a.getTimeOutDt() != null) {
 						row.createCell(16).setCellValue(a.getTimeOutDt().toString());
 					}
+					row.createCell(17).setCellValue(a.getArchivedDt().toString());
 				}
 				System.out.println("writing finished, sending email ...");
 				// .xlsx is the format for Excel Sheets...

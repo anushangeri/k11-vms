@@ -67,7 +67,7 @@ public class VehMSArchiveManagerDAO {
         	connection = Main.getConnection();
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, "
             		+ "CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" 
-            		+ "VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, TIME_IN_DT, TIME_OUT_DT \r\n"
+            		+ "VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, TIME_IN_DT, TIME_OUT_DT, ARCHIVED_DT  \r\n"
             		+ "FROM VEHMS_ARCHIVED ORDER BY TIME_IN_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
@@ -91,7 +91,8 @@ public class VehMSArchiveManagerDAO {
             			rs.getString(16),
             			rs.getString(17),
             			rs.getTimestamp(18),
-            			rs.getTimestamp(19));
+            			rs.getTimestamp(19),
+            			rs.getTimestamp(20));
                 vList.add(v);
             }
         } catch (Exception e) {

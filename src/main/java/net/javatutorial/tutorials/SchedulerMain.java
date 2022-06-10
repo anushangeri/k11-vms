@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-import net.javatutorial.DAO.VMSArchiveManagerDAO;
-
 public class SchedulerMain {
 
     

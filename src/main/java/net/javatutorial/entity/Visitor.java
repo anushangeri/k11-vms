@@ -21,7 +21,7 @@ public class Visitor {
     private String approvingOfficer;
     private Timestamp timeInDt;
     private Timestamp timeOutDt;
-    
+    private Timestamp archivedDt;    
 
 	public Visitor(String vmsId, String name, String companyName, String site, String idType, String idNo,
 			String mobileNo, String vehicleNo, String hostName, String hostNo, String visitorCardId,
@@ -70,6 +70,67 @@ public class Visitor {
 		this.temperature = temperature;
 		this.approvingOfficer = approvingOfficer;
 		this.timeInDt = timeInDt;
+	}
+	
+	/**
+	 * @param vmsId
+	 * @param name
+	 * @param companyName
+	 * @param site
+	 * @param idType
+	 * @param idNo
+	 * @param mobileNo
+	 * @param vehicleNo
+	 * @param hostName
+	 * @param hostNo
+	 * @param visitorCardId
+	 * @param covidDeclare
+	 * @param remarks
+	 * @param visitPurpose
+	 * @param temperature
+	 * @param approvingOfficer
+	 * @param timeInDt
+	 * @param timeOutDt
+	 * @param archivedDt
+	 */
+	public Visitor(String vmsId, String name, String companyName, String site, String idType, String idNo,
+			String mobileNo, String vehicleNo, String hostName, String hostNo, String visitorCardId,
+			String covidDeclare, String remarks, String visitPurpose, String temperature, String approvingOfficer,
+			Timestamp timeInDt, Timestamp timeOutDt, Timestamp archivedDt) {
+		super();
+		this.vmsId = vmsId;
+		this.name = name;
+		this.companyName = companyName;
+		this.site = site;
+		this.idType = idType;
+		this.idNo = idNo;
+		this.mobileNo = mobileNo;
+		this.vehicleNo = vehicleNo;
+		this.hostName = hostName;
+		this.hostNo = hostNo;
+		this.visitorCardId = visitorCardId;
+		this.covidDeclare = covidDeclare;
+		this.remarks = remarks;
+		this.visitPurpose = visitPurpose;
+		this.temperature = temperature;
+		this.approvingOfficer = approvingOfficer;
+		this.timeInDt = timeInDt;
+		this.timeOutDt = timeOutDt;
+		this.archivedDt = archivedDt;
+	}
+
+	/**
+	 * @return the archivedDt
+	 */
+	public Timestamp getArchivedDt() {
+		return archivedDt;
+	}
+
+	/**
+	 * @param archivedDt the archivedDt to set
+	 */
+	public void setArchivedDt(Timestamp archivedDt) {
+		this.archivedDt = archivedDt;
 	}
 
 	/**

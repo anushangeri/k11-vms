@@ -60,7 +60,7 @@ public class VMSArchiveManagerDAO {
             		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
-            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT FROM VMS_ARCHIVED ORDER BY TIME_IN_DT DESC; ";
+            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT,ARCHIVED_DT  FROM VMS_ARCHIVED ORDER BY TIME_IN_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
@@ -82,7 +82,8 @@ public class VMSArchiveManagerDAO {
             			rs.getString(15),
             			rs.getString(16),
             			rs.getTimestamp(17),
-            			rs.getTimestamp(18));
+            			rs.getTimestamp(18),
+            			rs.getTimestamp(19));
                 vList.add(v);
             }
         } catch (Exception e) {
