@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
 
+import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -122,6 +123,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(user));
 			InternetAddress[] address = {new InternetAddress(to)};
+			message.setRecipients(Message.RecipientType.TO, address);
 			message.setSubject("OTP");
 			message.setText(otpGenerated + "");
 
