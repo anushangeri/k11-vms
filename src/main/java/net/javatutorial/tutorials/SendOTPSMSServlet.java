@@ -5,9 +5,24 @@ import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -90,80 +105,49 @@ public class SendOTPSMSServlet extends HttpServlet {
 		System.out.println("Servlet " + this.getServletName() + " has stopped");
 	}
 	public String sendSms(String mobileNo) {
-//		try {
-//			// Construct data
-//			String apiKey = "apikey=" + "NzY0ZDQ5NjczODU3NTI3NjRmNmI2MzY3NTY2MzZiNzI=";
-//			Random rand = new Random();
-//			int otpGenerated = rand.nextInt(999999);
-//			String message = "&message=" + "Hi visitor, your OTP is " + otpGenerated;
-//			String sender = "&sender=" + "K11 VMS";
-//			String numbers = "&numbers=" + mobileNo;
-//			
-//			// Send data
-//			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
-//			String data = apiKey + numbers + message + sender;
-//			conn.setDoOutput(true);
-//			conn.setRequestMethod("POST");
-//			conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
-//			conn.getOutputStream().write(data.getBytes("UTF-8"));
-//			final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-//			final StringBuffer stringBuffer = new StringBuffer();
-//			String line;
-//			while ((line = rd.readLine()) != null) {
-//				stringBuffer.append(line);
-//			}
-//			rd.close();
-//			System.out.println(stringBuffer.toString());
-//			return otpGenerated + "";
-//		} catch (Exception e) {
-//			System.out.println("Error SMS "+e);
-//			return "Error "+e;
-//		}
-		
-		try {
-			Scanner sc = new Scanner(System.in);
+		String to = "6476093381@txt.freedommobile.ca";// change accordingly
+		final String user = "Shangeri1994@k11.com.sg";// change accordingly
+		final String password = "EbSDkwr+Hvc7!U57";// change accordingly
 
-			
-			String host = "localhost";
-			int port = 9500;
-			String username = "admin";
-			String password = "abc123";
-			
-			/**
-			 * Connect to Ozeki NG SMS Gateway and logging in.
-			 */
-			
-			MyOzSmsClient osc = new MyOzSmsClient(host, port);
-			osc.login(username, password);		
-			System.out.println("SMS message:");
-			
-			/**
-			 * If logged in send "Text message" to number "+00112233"
-			 */
-			
-			if(osc.isLoggedIn()) {
-					
-				osc.sendMessage("+16476093381", "Test Message");				
-				
+		Properties properties = System.getProperties();
+		properties.setProperty("mail.smtp.host", "smtp.k11.com.sg");
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.smtp.port", "25");
+
+		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+			@Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(user, password);
 			}
-			
-			sc.nextLine();
-			osc.logout();
-			
-			/**
-			 * Receiving message:
-			 * 
-			 * If you want to receive messages you can use doOnMessageReceived in MyOzSmsClient.java
-			 * That's an event, which runs automatically when a message is received. 
-			 */
-			
-		} catch (IOException e) {
-			System.out.println(e.toString());
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			System.out.println(e.toString());
-			e.printStackTrace();
+		});
+		Random rand = new Random();
+		int otp = rand.nextInt();
+		try {
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(user));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			message.setSubject("TEST OTP");
+
+			// Create the message part
+			BodyPart messageBodyPart = new MimeBodyPart();
+
+			// Fill the message
+			messageBodyPart.setText(
+					"Your OTP is " + otp);
+
+			Multipart multipart = new MimeMultipart();
+			multipart.addBodyPart(messageBodyPart);
+
+			// 6) set the multiplart object to the message object
+			message.setContent(multipart);
+
+			// 7) send message
+			Transport.send(message);
+
+			System.out.println("email sent....");
+		} catch (MessagingException ex) {
+			ex.printStackTrace();
 		}
-		return mobileNo;
+		return otp + "";
 	}
 }
