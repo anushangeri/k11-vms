@@ -120,6 +120,5 @@ public class SendOTPSMSServlet extends HttpServlet {
 			return "Error "+e;
 		}
 		
-		return mobileNo;
 	}
 }

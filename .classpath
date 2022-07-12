@@ -24,7 +24,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="OzekiSmsClient.jar"/>
-	<classpathentry kind="lib" path="C:/Users/anush/Downloads/Ozeki-Sms-Client-v4/OzekiSmsClient.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
