@@ -97,7 +97,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 		System.out.println("Servlet " + this.getServletName() + " has stopped");
 	}
 	public String sendSms(String mobileNo) {
-		String to = "+16476093381@sms.k11.com.sg";// change accordingly
+		String to = "6476093381@sms.k11.com.sg";// change accordingly
 		final String user = "Shangeri1994@k11.com.sg";// change accordingly
 		final String password = "EbSDkwr+Hvc7!U57";// change accordingly
 		Transport myTransport = null;
