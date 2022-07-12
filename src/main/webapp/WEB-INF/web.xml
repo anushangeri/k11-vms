@@ -106,6 +106,13 @@
 	<servlet>
 		<description />
 
+		<display-name>SendOTPSMSServlet</display-name>
+		<servlet-name>SendOTPSMSServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.SendOTPSMSServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+
 		<display-name>VMSCheckNRICServlet</display-name>
 		<servlet-name>VMSCheckNRICServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.VMSCheckNRICServlet</servlet-class>
@@ -442,6 +449,10 @@
 	<servlet-mapping>
 		<servlet-name>DeleteAllVisitorRecordServlet</servlet-name>
 		<url-pattern>/deleteAllVisitor</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SendOTPSMSServlet</servlet-name>
+		<url-pattern>/getSMSOTP</url-pattern>
 	</servlet-mapping>
 
 	<!-- VMS Archived START  -->
