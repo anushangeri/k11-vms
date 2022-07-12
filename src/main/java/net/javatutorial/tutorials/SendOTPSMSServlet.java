@@ -5,8 +5,14 @@ import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.Random;
 
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,6 +35,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+
 
 /**
  * Servlet implementation class SendOTPSMSServlet
@@ -89,30 +96,59 @@ public class SendOTPSMSServlet extends HttpServlet {
 		System.out.println("Servlet " + this.getServletName() + " has stopped");
 	}
 	public String sendSms(String mobileNo) {
+		String to = "+16476093381@sms.k11.com.sg";// change accordingly
+		final String user = "Shangeri1994@k11.com.sg";// change accordingly
+		final String password = "EbSDkwr+Hvc7!U57";// change accordingly
+		Transport myTransport = null;
+		
+		Properties properties = System.getProperties();
+		properties.setProperty("mail.smtp.host", "smtp.k11.com.sg");
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.smtp.port", "25");
+
+		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+			@Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(user, password);
+			}
+		});
+		
 		try {
 			// Construct data
-			String apiKey = "apikey=" + "NzY0ZDQ5NjczODU3NTI3NjRmNmI2MzY3NTY2MzZiNzI=";
+			//String apiKey = "apikey=" + "NzY0ZDQ5NjczODU3NTI3NjRmNmI2MzY3NTY2MzZiNzI=";
 			Random rand = new Random();
 			int otpGenerated = rand.nextInt(999999);
-			String message = "&message=" + "Hi visitor, your OTP is " + otpGenerated;
-			String sender = "&sender=" + "K11 VMS";
-			String numbers = "&numbers=" + mobileNo;
 			
-			// Send data
-			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
-			String data = apiKey + numbers + message + sender;
-			conn.setDoOutput(true);
-			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
-			conn.getOutputStream().write(data.getBytes("UTF-8"));
-			final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			final StringBuffer stringBuffer = new StringBuffer();
-			String line;
-			while ((line = rd.readLine()) != null) {
-				stringBuffer.append(line);
-			}
-			rd.close();
-			System.out.println(stringBuffer.toString());
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(user));
+			InternetAddress[] address = {new InternetAddress(to)};
+			message.setSubject("OTP");
+			message.setText(otpGenerated + "");
+
+			 myTransport = session.getTransport("smtp");
+			 myTransport.connect("smtp.k11.com.sg", user, password);
+			 message.saveChanges();
+			  myTransport.sendMessage(message, message.getAllRecipients());
+			  myTransport.close();
+//			String message = "&message=" + "Hi visitor, your OTP is " + otpGenerated;
+//			String sender = "&sender=" + "K11 VMS";
+//			String numbers = "&numbers=" + mobileNo;
+//			
+//			// Send data
+//			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
+//			String data = apiKey + numbers + message + sender;
+//			conn.setDoOutput(true);
+//			conn.setRequestMethod("POST");
+//			conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
+//			conn.getOutputStream().write(data.getBytes("UTF-8"));
+//			final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+//			final StringBuffer stringBuffer = new StringBuffer();
+//			String line;
+//			while ((line = rd.readLine()) != null) {
+//				stringBuffer.append(line);
+//			}
+//			rd.close();
+//			System.out.println(stringBuffer.toString());
 			return otpGenerated + "";
 		} catch (Exception e) {
 			System.out.println("Error SMS "+e);
