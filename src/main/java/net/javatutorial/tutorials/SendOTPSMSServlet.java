@@ -51,7 +51,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		Process process = process = Runtime.getRuntime().exec(String.format("curl -X POST -d to=+16476093381&message=This is a test from Blower.io -H Accept: application/json https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages"));
+		Process process = process = Runtime.getRuntime().exec(String.format("curl -X POST -d to=+16476093381&message=Shangeri is a test from Blower.io -H Accept: application/json https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages"));
 		//sendSMS( "12345");
 		int nextVal = 1; // this value does not matter since we are not adding visitor yet
 
