@@ -76,7 +76,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		ArrayList<Dropdown> visitPurposes = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
  
-		URL url = new URL(System.getenv("BLOWERIO_URL") + "/messages");
+		URL url = new URL(System.getenv("BLOWERIO_URL") + "messages");
 		Map<String,Object> params = new LinkedHashMap<>();
         params.put("to", "+16476093381");
         params.put("+16476093381", "This is a test from Blower.io");
