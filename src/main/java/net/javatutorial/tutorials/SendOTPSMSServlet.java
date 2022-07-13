@@ -6,6 +6,8 @@ import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -27,6 +29,7 @@ import net.javatutorial.entity.Visitor;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -73,26 +76,35 @@ public class SendOTPSMSServlet extends HttpServlet {
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		ArrayList<Dropdown> visitPurposes = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
  
-		URL url = new URL(System.getenv("BLOWERIO_URL") + "/messages?to=+16476093381&message=This is a test from Blower.io");
-		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
-		httpConn.setRequestMethod("POST");
+		URL url = new URL(System.getenv("BLOWERIO_URL") + "/messages");
+		Map<String,Object> params = new LinkedHashMap<>();
+        params.put("to", "+16476093381");
+        params.put("+16476093381", "This is a test from Blower.io");
+        
+        StringBuilder postData = new StringBuilder();
+        for (Map.Entry<String,Object> param : params.entrySet()) {
+            if (postData.length() != 0) postData.append('&');
+            postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+            postData.append('=');
+            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+        }
+        byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+		
 
-		httpConn.setRequestProperty("Accept", "application/json");
-		httpConn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Accept", "application/json");
+        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+        conn.setDoOutput(true);
+        conn.getOutputStream().write(postDataBytes);
 
-		httpConn.setDoOutput(true);
-//		OutputStreamWriter writer = new OutputStreamWriter(httpConn.getOutputStream());
-//		writer.write("to=+16476093381&message=This is a test from Blower.io");
-//		writer.flush();
-//		writer.close();
-//		httpConn.getOutputStream().close();
+        Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
-		InputStream responseStream = httpConn.getResponseCode() / 100 == 2
-				? httpConn.getInputStream()
-				: httpConn.getErrorStream();
-		Scanner s = new Scanner(responseStream).useDelimiter("\\A");
-		String responses = s.hasNext() ? s.next() : "";
-		System.out.println(responses);
+        for (int c; (c = in.read()) >= 0;)
+            System.out.print((char)c);
+        
+
 		
          
          
@@ -100,7 +112,6 @@ public class SendOTPSMSServlet extends HttpServlet {
 		request.setAttribute("visitorLatRec", v);
 		request.setAttribute("siteDropdown", siteDropdown);
 		request.setAttribute("visitPurpose", visitPurposes);
-		request.setAttribute("otpGenerated", responses);
 		RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
         rd.forward(request, response);
 	}
