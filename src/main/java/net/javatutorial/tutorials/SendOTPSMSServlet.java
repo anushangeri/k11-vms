@@ -73,7 +73,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		ArrayList<Dropdown> visitPurposes = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
  
-		URL url = new URL(System.getenv("BLOWERIO_URL") + "/messages");
+		URL url = new URL(System.getenv("BLOWERIO_URL") + "/messages?to=+16476093381&message=This is a test from Blower.io");
 		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
 		httpConn.setRequestMethod("POST");
 
@@ -81,11 +81,11 @@ public class SendOTPSMSServlet extends HttpServlet {
 		httpConn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
 		httpConn.setDoOutput(true);
-		OutputStreamWriter writer = new OutputStreamWriter(httpConn.getOutputStream());
-		writer.write("to=+16476093381&message=This is a test from Blower.io");
-		writer.flush();
-		writer.close();
-		httpConn.getOutputStream().close();
+//		OutputStreamWriter writer = new OutputStreamWriter(httpConn.getOutputStream());
+//		writer.write("to=+16476093381&message=This is a test from Blower.io");
+//		writer.flush();
+//		writer.close();
+//		httpConn.getOutputStream().close();
 
 		InputStream responseStream = httpConn.getResponseCode() / 100 == 2
 				? httpConn.getInputStream()
