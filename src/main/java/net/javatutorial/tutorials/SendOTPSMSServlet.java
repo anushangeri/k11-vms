@@ -80,7 +80,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 		
 		Map<String,Object> params = new LinkedHashMap<>();
         params.put("to", "+16476093381");
-        params.put("+16476093381", "This is a test from Blower.io");
+        params.put("message", "This is a test from Blower.io");
         
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String,Object> param : params.entrySet()) {
