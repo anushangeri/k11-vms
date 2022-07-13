@@ -40,6 +40,7 @@ import java.net.URLEncoder;
 public class SendOTPSMSServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -76,31 +77,33 @@ public class SendOTPSMSServlet extends HttpServlet {
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		ArrayList<Dropdown> visitPurposes = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
  
-		URL url = new URL(System.getenv("BLOWERIO_URL") + "messages");
-		
-		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
-		httpConn.setRequestMethod("POST");
-
-		httpConn.setRequestProperty("Accept", "application/json");
-		httpConn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-
-		httpConn.setDoOutput(true);
-		OutputStreamWriter writer = new OutputStreamWriter(httpConn.getOutputStream());
-		writer.write("to=+14155550000&message=This is a test from Blower.io");
-		writer.flush();
-		writer.close();
-		httpConn.getOutputStream().close();
-
-		InputStream responseStream = httpConn.getResponseCode() / 100 == 2
-				? httpConn.getInputStream()
-				: httpConn.getErrorStream();
-		Scanner s = new Scanner(responseStream).useDelimiter("\\A");
-		String responsed = s.hasNext() ? s.next() : "";
-		System.out.println(responsed);
+//		URL url = new URL(System.getenv("BLOWERIO_URL") + "messages");
+//		
+//		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+//		httpConn.setRequestMethod("POST");
+//
+//		httpConn.setRequestProperty("Accept", "application/json");
+//		httpConn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+//
+//		httpConn.setDoOutput(true);
+//		OutputStreamWriter writer = new OutputStreamWriter(httpConn.getOutputStream());
+//		writer.write("to=+14155550000&message=This is a test from Blower.io");
+//		writer.flush();
+//		writer.close();
+//		httpConn.getOutputStream().close();
+//
+//		InputStream responseStream = httpConn.getResponseCode() / 100 == 2
+//				? httpConn.getInputStream()
+//				: httpConn.getErrorStream();
+//		Scanner s = new Scanner(responseStream).useDelimiter("\\A");
+//		String responsed = s.hasNext() ? s.next() : "";
+//		System.out.println(responsed);
         
-
+		String command = "curl -X POST https://postman-echo.com/post --data to=+16476093381&message=Your OTP is 65736";
+		Process process = Runtime.getRuntime().exec(command);
 		
-         
+		process.getInputStream();
+		process.destroy();
          
          
 		request.setAttribute("visitorLatRec", v);
