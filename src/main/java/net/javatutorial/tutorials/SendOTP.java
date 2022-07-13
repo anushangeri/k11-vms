@@ -15,6 +15,7 @@ public class SendOTP {
     public static void main(String[] args) throws Exception {
     	URL url = new URL(System.getenv("BLOWERIO_URL") + "messages");
 		
+    	
 		Map<String,Object> params = new LinkedHashMap<>();
         params.put("to", "+16476093381");
         params.put("message", "This is a test from Blower.io");
