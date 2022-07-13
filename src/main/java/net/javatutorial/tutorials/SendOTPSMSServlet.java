@@ -82,7 +82,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 
 		httpConn.setDoOutput(true);
 		OutputStreamWriter writer = new OutputStreamWriter(httpConn.getOutputStream());
-		writer.write("to=+16476093381&message=This is a test from Blower.io");
+		writer.write("to=+14155550000&message=This is a test from Blower.io");
 		writer.flush();
 		writer.close();
 		httpConn.getOutputStream().close();
