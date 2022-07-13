@@ -30,7 +30,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-
 /**
  * Servlet implementation class SendOTPSMSServlet
  */
@@ -72,11 +71,53 @@ public class SendOTPSMSServlet extends HttpServlet {
 		
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		ArrayList<Dropdown> visitPurposes = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
+        HttpURLConnection conn=null;
+        BufferedReader reader=null;
+        StringBuilder strBuf = new StringBuilder();  
+		try {
+			 URL url = new URL("https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages?to=+14155550000&message=This is a test from Blower.io");  
+			 conn = (HttpURLConnection) url.openConnection();  
+			 conn.setRequestMethod("POST");
+			 conn.setRequestProperty("Accept", "application/json");
+			 if (conn.getResponseCode() != 200) {
+			        throw new RuntimeException("HTTP GET Request Failed with Error code : "
+			                  + conn.getResponseCode());
+			}
+			
+			//Read the content from the defined connection
+			//Using IO Stream with Buffer raise highly the efficiency of IO
+			reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf-8"));
+			    String output = null;  
+			    while ((output = reader.readLine()) != null)  
+			        strBuf.append(output);  
+			}catch(IOException e){  
+			    e.printStackTrace();   
+			}
+			finally
+			{
+			    if(reader!=null)
+			    {
+			        try {
+			            reader.close();
+			        } catch (IOException e) {
+			            e.printStackTrace();
+			        }
+			    }
+			    if(conn!=null)
+			    {
+			        conn.disconnect();
+			    }
+			}
+			
+		System.out.println( strBuf.toString());  
 		
+         
+         
+         
 		request.setAttribute("visitorLatRec", v);
 		request.setAttribute("siteDropdown", siteDropdown);
 		request.setAttribute("visitPurpose", visitPurposes);
-		request.setAttribute("otpGenerated", otpGenerated);
+		request.setAttribute("otpGenerated", strBuf.toString());
 		RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
         rd.forward(request, response);
 	}
