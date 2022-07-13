@@ -100,6 +100,7 @@ public class SendOTPSMSServlet extends HttpServlet {
         conn.setDoOutput(true);
         conn.getOutputStream().write(postDataBytes);
 
+        System.out.println(conn.toString());
         Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
         for (int c; (c = in.read()) >= 0;)
