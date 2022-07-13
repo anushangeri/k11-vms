@@ -1,6 +1,7 @@
 package net.javatutorial.tutorials;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -63,7 +64,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 
 		String officerIdNo = request.getParameter("officerIdNo");
 		
-		String otpGenerated = sendSms(mobileNo);
+		//String otpGenerated = sendSms(mobileNo);
 		
 		Visitor v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
 				 hostName,  hostNo,  visitorCardId, covidDec, remarks, visitPurpose,  
@@ -71,45 +72,27 @@ public class SendOTPSMSServlet extends HttpServlet {
 		
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		ArrayList<Dropdown> visitPurposes = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
-        HttpURLConnection conn=null;
-        BufferedReader reader=null;
-        StringBuilder strBuf = new StringBuilder();  
-		try {
-			 URL url = new URL("https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages?to=+16476093381&message=This is a test from Blower.io");  
-			 conn = (HttpURLConnection) url.openConnection();  
-			 conn.setRequestMethod("POST");
-			 conn.setRequestProperty("Accept", "application/json");
-			 if (conn.getResponseCode() != 200) {
-			        throw new RuntimeException("HTTP GET Request Failed with Error code : "
-			                  + conn.getResponseCode());
-			}
-			
-			//Read the content from the defined connection
-			//Using IO Stream with Buffer raise highly the efficiency of IO
-			reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf-8"));
-			    String output = null;  
-			    while ((output = reader.readLine()) != null)  
-			        strBuf.append(output);  
-			}catch(IOException e){  
-			    e.printStackTrace();   
-			}
-			finally
-			{
-			    if(reader!=null)
-			    {
-			        try {
-			            reader.close();
-			        } catch (IOException e) {
-			            e.printStackTrace();
-			        }
-			    }
-			    if(conn!=null)
-			    {
-			        conn.disconnect();
-			    }
-			}
-			
-		System.out.println( strBuf.toString());  
+ 
+		URL url = new URL("https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages");
+		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+		httpConn.setRequestMethod("POST");
+
+		httpConn.setRequestProperty("Accept", "application/json");
+		httpConn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
+		httpConn.setDoOutput(true);
+		OutputStreamWriter writer = new OutputStreamWriter(httpConn.getOutputStream());
+		writer.write("to=+16476093381&message=This is a test from Blower.io");
+		writer.flush();
+		writer.close();
+		httpConn.getOutputStream().close();
+
+		InputStream responseStream = httpConn.getResponseCode() / 100 == 2
+				? httpConn.getInputStream()
+				: httpConn.getErrorStream();
+		Scanner s = new Scanner(responseStream).useDelimiter("\\A");
+		String responses = s.hasNext() ? s.next() : "";
+		System.out.println(responses);
 		
          
          
@@ -117,7 +100,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 		request.setAttribute("visitorLatRec", v);
 		request.setAttribute("siteDropdown", siteDropdown);
 		request.setAttribute("visitPurpose", visitPurposes);
-		request.setAttribute("otpGenerated", strBuf.toString());
+		request.setAttribute("otpGenerated", responses);
 		RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
         rd.forward(request, response);
 	}
