@@ -99,10 +99,11 @@ public class SendOTPSMSServlet extends HttpServlet {
 //		String responsed = s.hasNext() ? s.next() : "";
 //		System.out.println(responsed);
         
-		String command = "curl -X POST https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages -H Accept: application/json -d to=+16476093381&message=Your OTP is 65736";
+		String command = "curl -X POST https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages --data to=+16476093381&message=Your OTP is 65736";
 		Process process = Runtime.getRuntime().exec(command);
 		
 		process.getInputStream();
+		System.out.println(process.getInputStream().toString());
 		process.destroy();
          
          
