@@ -45,14 +45,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-//		try {
-//			SendOTP.main(null);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		Process process = process = Runtime.getRuntime().exec(String.format("curl -X POST -d to=+16476093381&message=Shangeri is a test from Blower.io -H Accept: application/json https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages"));
-		//sendSMS( "12345");
+
 		int nextVal = 1; // this value does not matter since we are not adding visitor yet
 
 		String vmsId = "" + nextVal;
@@ -75,7 +68,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 
 		String officerIdNo = request.getParameter("officerIdNo");
 
-		// String otpGenerated = sendSms(mobileNo);
+		//sendOTP(mobileNo);
 
 		Visitor v = new Visitor(vmsId, name, companyName, site, idType, idNo, mobileNo, vehicleNo, hostName, hostNo,
 				visitorCardId, covidDec, remarks, visitPurpose, temperature, officerIdNo, timestamp);
@@ -100,31 +93,11 @@ public class SendOTPSMSServlet extends HttpServlet {
 		System.out.println("Servlet " + this.getServletName() + " has stopped");
 	}
 
-	public static void sendSMS(String otpStr) {
+	public static void sendOTP(String otpStr) {
 		try {
+			Process process = process = Runtime.getRuntime().exec(String.format("curl -X POST -d to=+16476093381&message=Shangeri is a test from Blower.io -H Accept: application/json https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages"));
 
-			String apiKey = "apiKey=" + "NzY0ZDQ5NjczODU3NTI3NjRmNmI2MzY3NTY2MzZiNzI=";
-
-			String message = "&message=" + URLEncoder.encode("Your OTP is " + otpStr, "UTF-8");
-
-			String numbers = "&numbers=" + "+";
-
-			String apiURL = "https://api.textlocal.in/send/?" + apiKey + message + numbers;
-
-			URL url = new URL(apiURL);
-			URLConnection connection = url.openConnection();
-			connection.setDoOutput(true);
-
-			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-			String line = "";
-			StringBuilder sb = new StringBuilder();
-
-			while ((line = reader.readLine()) != null) {
-				sb.append(line).append("\n");
-			}
-
-			System.out.println(sb.toString());
+			System.out.println("OTP send");
 
 		} catch (Exception e) {
 			e.printStackTrace();
