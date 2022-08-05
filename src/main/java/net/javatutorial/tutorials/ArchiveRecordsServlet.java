@@ -48,6 +48,8 @@ import net.javatutorial.entity.Visitor;
  * 
  * Monthly batch job will run to retrieve all data in archive table and email to client 
  * and delete data from archive table leaving only 30 days
+ * Monthly batch job will run to retrieve all data in main table and email to client 
+ * so client will have previous month and current month data
  *
  */
 public class ArchiveRecordsServlet extends HttpServlet {
@@ -71,7 +73,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 		// check to see if the given date really is the last day of this month
 		System.out.println( "check to see if the given date really is the last day of this month");
 		System.out.println( cal.get(Calendar.DAY_OF_MONTH) == lastDay);
-		//if(cal.get(Calendar.DAY_OF_MONTH) == lastDay) {
+		if(cal.get(Calendar.DAY_OF_MONTH) == lastDay) {
 			System.out.println( "it is the last day of the month, so batch job will do archive db clean up and email results");
 			
 			try 
@@ -386,7 +388,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 			{ 
 				e.printStackTrace(); 
 			} 
-		//}
+		}
 		
 
 		
