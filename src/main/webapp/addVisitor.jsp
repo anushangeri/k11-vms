@@ -270,6 +270,7 @@ function showPassword() {
 //the HTML input we're targeting.
 $(document).ready(function() {
 var phoneInputID = "#mobileNo";
+console.log(phoneInput.getNumber());
 var input = document.querySelector(phoneInputID);
 var iti = window.intlTelInput(input, {
  // allowDropdown: false,
@@ -322,7 +323,7 @@ $(phoneInputID).on("countrychange", function(event) {
 iti.promise.then(function() {
  $(phoneInputID).trigger("countrychange");
 });
-document.forms["addVisitor"]["newMobileNo"].value = phoneInput.getNumber();
+
 });
  
 $(document).ready(function() {
