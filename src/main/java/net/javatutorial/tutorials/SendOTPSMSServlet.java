@@ -22,6 +22,11 @@ import net.javatutorial.DAO.SiteManagerDAO;
 import net.javatutorial.entity.Dropdown;
 import net.javatutorial.entity.Site;
 import net.javatutorial.entity.Visitor;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * Servlet implementation class SendOTPSMSServlet
@@ -91,23 +96,39 @@ public class SendOTPSMSServlet extends HttpServlet {
 	@SuppressWarnings({ "unused", "deprecation" })
 	public static void sendOTP(String mobileNo, String otp) {
 		try {
-			URL url = new URL("https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages");
-			HttpURLConnection http = (HttpURLConnection)url.openConnection();
-			http.setRequestProperty("Authorization","Bearer b98d1f54-768f-4907-af63-9bb610effe0d");
-			http.setRequestMethod("POST");
-			http.setDoOutput(true);
-			http.setRequestProperty("Content-Type", "application/json");
-			http.setRequestProperty("Accept", "application/json");
+			
+			OkHttpClient client = new OkHttpClient();
+			RequestBody formBody = new FormBody.Builder()
+				      .add("to", "+16476093381")
+				      .add("message", "Sahngeri Test")
+				      .build();
+		    Request request = new Request.Builder()
+		            .url("https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages")
+		            .addHeader("Authorization", String.format("Bearer ", "b98d1f54-768f-4907-af63-9bb610effe0d"))
+		            .post(formBody)
+		            .build();
 
-			String data = "{to: +16476093381, message: Shangeri test SMS}";
+		        Response response = client.newCall(request).execute();
 
-			byte[] out = data.getBytes(StandardCharsets.UTF_8);
-
-			OutputStream stream = http.getOutputStream();
-			stream.write(out);
-
-			System.out.println(http.getResponseCode() + " " + http.getResponseMessage());
-			http.disconnect();
+			
+			
+//			URL url = new URL("https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages");
+//			HttpURLConnection http = (HttpURLConnection)url.openConnection();
+//			http.setRequestProperty("Authorization","Bearer b98d1f54-768f-4907-af63-9bb610effe0d");
+//			http.setRequestMethod("POST");
+//			http.setDoOutput(true);
+//			http.setRequestProperty("Content-Type", "application/json");
+//			http.setRequestProperty("Accept", "application/json");
+//
+//			String data = "{to: +16476093381, message: Shangeri test SMS}";
+//
+//			byte[] out = data.getBytes(StandardCharsets.UTF_8);
+//
+//			OutputStream stream = http.getOutputStream();
+//			stream.write(out);
+//
+//			System.out.println(http.getResponseCode() + " " + http.getResponseMessage());
+//			http.disconnect();
 			System.out.println("OTP send");
 
 		} catch (Exception e) {
