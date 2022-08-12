@@ -189,7 +189,7 @@ function showPassword() {
 						</div>
 						<div class="form-group col-md-6">
 							<label for="hostNo">Host No.: </label> <input type="tel" id="hostNo" name="hostNo" onchange="processHostNo(event)"/>
-							<input type="hidden" id="processedHostNo" name="processedHostNo"/>
+							<input type="text" id="processedHostNo" name="processedHostNo"/>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="visitorCardId">Visitor Card ID: </label> <input
@@ -254,49 +254,35 @@ function showPassword() {
 		</div>
 	</div>
 </body>
- <script>
- const phoneInputField = document.querySelector("#mobileNo");
- const phoneInput = window.intlTelInput(phoneInputField, {
+<script>
+const phoneInputField = document.querySelector("#mobileNo");
+const phoneInput = window.intlTelInput(phoneInputField, {
 	 preferredCountries: ['sg', 'my'],	
 	 utilsScript:
      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
  });
 processMobileNo = document.querySelector("#processedMobileNo");
- function processMobileNo(event) {
+function processMobileNo(event) {
 	 event.preventDefault();
 	 const phoneNumber = phoneInput.getNumber();
 	 processMobileNo.value = phoneNumber;
-	}
+}
 </script>
 <script>
- const phoneInputFieldHostNo = document.querySelector("#hostNo");
- const phoneInputHostNo = window.intlTelInput(phoneInputFieldHostNo, {
-	 preferredCountries: ['sg', 'my'],	
-	 utilsScript:
-     "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
- });
- processHostNo = document.querySelector("#processedHostNo");
- function processHostNo(event) {
-	 event.preventDefault();
+const phoneInputFieldHostNo = document.querySelector("#hostNo");
+const phoneInputHostNo = window.intlTelInput(phoneInputFieldHostNo, {
+ preferredCountries: ['sg', 'my'],	
+ utilsScript:
+    "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
+processHostNo = document.querySelector("#processedHostNo");
+function processHostNo(event) {
+ event.preventDefault();
 
-	 const phoneNumberHostNo = phoneInputHostNo.getNumber();
-	 processHostNo.value = phoneNumberHostNo;
-	}
- 
- 
- function getSMSOTP()
- {
-     var processedMobileNo =  document.querySelector("#processedMobileNo").value
-     $.ajax({
-         type: "POST",
-         url: "../getSMSOTP",
-         data: "processedMobileNo="+processedMobileNo,
-         success: function(result){
-         	alert("OTP sent successfully, check SMS");
-         }
-     });
-     
- }
+ const phoneNumberHostNo = phoneInputHostNo.getNumber();
+ processHostNo.value = phoneNumberHostNo;
+}
+
 </script>
 
 </html>
