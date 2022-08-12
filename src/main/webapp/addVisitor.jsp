@@ -284,7 +284,7 @@ function fullMobileNo() {
 	 const phoneNumber = phoneInput.getNumber();
 
 	 info.style.display = "";
-	 info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
+	 info.innerHTML = 'Phone number in E.164 format: <strong>${phoneNumber}</strong>';
 	}
  </script>
 <footer>
