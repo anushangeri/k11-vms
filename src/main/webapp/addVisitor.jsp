@@ -48,19 +48,7 @@ function showOfficeDivOnLoad(officerLogin,visitPurpose)
     document.getElementById(officerLogin).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : document.getElementById("officerIdNo").removeAttribute("required");
     
 }
-function getSMSOTP()
-{
-    var processedMobileNo =  document.querySelector("#processedMobileNo").value
-    $.ajax({
-        type: "POST",
-        url: "../getSMSOTP",
-        data: "processedMobileNo="+processedMobileNo,
-        success: function(result){
-        	alert("OTP sent successfully, check SMS");
-        }
-    });
-    
-}
+
 function showPassword() {
 	  var x = document.getElementById("officerpsw");
 	  if (x.type === "password") {
@@ -294,6 +282,21 @@ processMobileNo = document.querySelector("#processedMobileNo");
 	 const phoneNumberHostNo = phoneInputHostNo.getNumber();
 	 processHostNo.value = phoneNumberHostNo;
 	}
+ 
+ 
+ function getSMSOTP()
+ {
+     var processedMobileNo =  document.querySelector("#processedMobileNo").value
+     $.ajax({
+         type: "POST",
+         url: "../getSMSOTP",
+         data: "processedMobileNo="+processedMobileNo,
+         success: function(result){
+         	alert("OTP sent successfully, check SMS");
+         }
+     });
+     
+ }
 </script>
 
 </html>
