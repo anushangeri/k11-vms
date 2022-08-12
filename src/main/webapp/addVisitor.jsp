@@ -22,6 +22,8 @@
 <style type="text/css"></style>
 <script type="text/javascript"
 	src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/8.4.6/js/utils.js"></script>
 <script>
 function validateForm() {
 	var tempAsStr = document.forms["addVisitor"]["temperature"].value;
@@ -160,8 +162,8 @@ $("input").intlTelInput({
 								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
 						</div>
 						<div class="input-group">
-						    <input type="tel" class="form-control">
-						    <span class="input-group-addon">Tel</span>
+						    <label for="tel">telephone: </label> <input type="tel" class="form-control">
+						    <span class="input-group-addon"></span>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
