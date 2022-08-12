@@ -3,6 +3,7 @@ package net.javatutorial.tutorials;
 import java.io.IOException;
 import java.util.Random;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -58,9 +59,9 @@ public class SendOTPSMSServlet extends HttpServlet {
 //		request.setAttribute("siteDropdown", siteDropdown);
 //		request.setAttribute("visitPurpose", visitPurposes);
 		request.setAttribute("otpGenerated", otp);
-		//RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
-		//rd.forward(request, response);
-		request.getRequestDispatcher("addVisitor.jsp").forward(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
+		rd.forward(request, response);
+		//request.getRequestDispatcher("addVisitor.jsp").forward(request, response);
 	}
 
 	@Override
