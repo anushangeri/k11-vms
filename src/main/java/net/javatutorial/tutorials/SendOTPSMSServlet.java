@@ -104,7 +104,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 				      .build();
 		    Request request = new Request.Builder()
 		            .url("https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages")
-		            .addHeader("Authorization", "Bearer 217cc322-8549-4882-a149-56809b7e2dc6"))
+		            .addHeader("Authorization", "Bearer 217cc322-8549-4882-a149-56809b7e2dc6")
 		            .post(formBody)
 		            .build();
 
