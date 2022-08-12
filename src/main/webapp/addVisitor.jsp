@@ -50,7 +50,7 @@ function showOfficeDivOnLoad(officerLogin,visitPurpose)
 }
 function getSMSOTP()
 {
-    var mobileNo = document.forms["addVisitor"]["processedMobileNo"].value
+    var processedMobileNo = document.forms["addVisitor"]["processedMobileNo"].value
     $.ajax({
         type: "POST",
         url: "../getSMSOTP",
