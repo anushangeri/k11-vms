@@ -151,7 +151,7 @@ function showPassword() {
 								minlength="4" maxlength="9"  <%=((v == null) ? "" : "readonly")%>>
 						</div>
 						<div class="form-group col-md-6">
-						    <label for="mobileNo">Mobile No.: </label> <input type="tel" id="mobileNo" name="mobileNo" />
+						    <label for="mobileNo">Mobile No.: </label> <input type="tel" id="mobileNo" name="mobileNo" onchange="process(event)"/>
 						    <input type="text" id="newMobileNo"/>
 						</div>
 						<div class="form-group col-md-4">
@@ -270,7 +270,6 @@ function showPassword() {
 //the HTML input we're targeting.
 $(document).ready(function() {
 var phoneInputID = "#mobileNo";
-console.log(phoneInput.getNumber());
 var input = document.querySelector(phoneInputID);
 var iti = window.intlTelInput(input, {
  // allowDropdown: false,
@@ -325,7 +324,13 @@ iti.promise.then(function() {
 });
 
 });
- 
+function process(event) {
+	 event.preventDefault();
+
+	 const phoneNumber = phoneInput.getNumber();
+
+	 document.forms["addVisitor"]["newMobileNo"].value = phoneNumber;
+	} 
 $(document).ready(function() {
 	var phoneInputID = "#hostNo";
 	var input = document.querySelector(phoneInputID);
