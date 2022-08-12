@@ -44,6 +44,20 @@ function showOfficeDivOnLoad(officerLogin,visitPurpose)
     document.getElementById(officerLogin).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : document.getElementById("officerIdNo").removeAttribute("required");
     
 }
+function getSMSOTP()
+{
+    var mobileNo = document.getElementById(mobileNo).value
+    document.location.href="/getSMSOTP?mobileNo="mobileNo;
+    $.ajax({
+        type: "POST",
+        url: "../getSMSOTP",
+        data: "mobileNo="+mobileNo,
+        success: function(result){
+        	document.getElementById(otpGenerated).value = result
+        }
+    });
+    
+}
 function showPassword() {
 	  var x = document.getElementById("officerpsw");
 	  if (x.type === "password") {
@@ -52,7 +66,9 @@ function showPassword() {
 	    x.type = "password";
 	  }
 }
-
+$("input").intlTelInput({
+	  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/8.4.6/js/utils.js"
+});
 
 </script>
 </head>
@@ -86,7 +102,7 @@ function showPassword() {
  	}
  %>
 			<center>
-				<form action="getSMSOTP" method="post" name="getSMSOTP">
+				<form action="addVisitor" method="post" name="addVisitor">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="name">Name: </label> <input type="text"
@@ -142,6 +158,10 @@ function showPassword() {
 								class="form-control" name="mobileNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
+						</div>
+						<div class="input-group">
+						    <input type="tel" class="form-control">
+						    <span class="input-group-addon">Tel</span>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
@@ -236,26 +256,26 @@ function showPassword() {
 								><input type="checkbox" onclick="showPassword()">Show Password
 						</div>
 					</div>
+					
+					<br> <br>
 					<div class="form-row">
-						<button type="submit" class="btn btn-primary btn-lg active">Get SMS OTP</button>
+						<button type="submit" class="btn btn-primary btn-lg active" onclick=getSMSOTP()>Get OTP</button>
 					</div>
 					<br> <br>
-				</form>
-				<form action="addVisitor" method="post" name="addVisitor">
-					<div class="form-row">
-						<div class="form-group col-md-6">
+					
+					<label for="otp">Test OTP 1: </label> <input type=text id="otpGenerated" name="otpGenerated">
+					<label for="otp">Test OTP 2: </label>  <input type=text id="testotp" name="testotp">${requestScope.otpGenerated}
+					<div class="form-group col-md-6">
 							<label for="otp">Enter SMS OTP received: </label> <input
 								type="text" class="form-control" name="otp">
-						</div>
-						<input type="hidden" id="otpGenerated" name="otpGenerated" value="<%=otpGenerated%>">
 					</div>
 					<div class="form-row">
-						<button type="submit" class="btn btn-primary btn-lg active">Verify and Submit</button>
+						<button type="submit" class="btn btn-primary btn-lg active">Submit</button>
 						<a href="/vms" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
 					</div>
-					<br> <br>
 				</form>
+				
 			</center>
 		</div>
 	</div>
