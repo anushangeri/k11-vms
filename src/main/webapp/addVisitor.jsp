@@ -54,7 +54,7 @@ function getSMSOTP()
         url: "../getSMSOTP",
         data: "mobileNo="+mobileNo,
         success: function(result){
-        	document.forms["addVisitor"]["otpGenerated"].value = result
+        	alert("OTP sent successfully, check SMS");
         }
     });
     
@@ -257,8 +257,7 @@ function showPassword() {
 					</div>
 					<br> <br>
 					
-					<label for="otp">Test OTP 1: </label> <input type=text id="otpGenerated" name="otpGenerated">
-					<label for="otp">Test OTP 2: </label>  <input type=text id="testotp" name="testotp">${requestScope.otpGenerated}
+					<label for="otp">Test OTP 2: </label>  <input type=text id="testotp" name="testotp" value="${requestScope.otpGenerated}">
 					<div class="form-group col-md-6">
 							<label for="otp">Enter SMS OTP received: </label> <input
 								type="text" class="form-control" name="otp">
