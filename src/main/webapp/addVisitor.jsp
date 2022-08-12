@@ -57,6 +57,25 @@ function showPassword() {
 	    x.type = "password";
 	  }
 } 
+
+function getSMSOTP()
+{
+	Random random = new Random();
+    int num = random.nextInt(100000);
+    String otp = String.format("%05d", num);
+    
+    var processedMobileNo =  document.querySelector("#processedMobileNo").value;
+    document.querySelector("#otpGenerated").value = otp;
+    $.ajax({
+        type: "POST",
+        url: "../getSMSOTP",
+        data: "processedMobileNo="+processedMobileNo+"&otpGenerated="+otp,
+        success: function(result){
+        	alert("OTP sent successfully, check SMS");
+        }
+    });
+    
+}
 </script>
 </head>
 <body onload="showOfficeDivOnLoad('officerLogin','visitPurpose')">
@@ -282,24 +301,7 @@ function processHostNo(event) {
  const phoneNumberHostNo = phoneInputHostNo.getNumber();
  processedHostNo.value = phoneNumberHostNo;
 }
-function getSMSOTP()
-{
-	Random random = new Random();
-    int num = random.nextInt(100000);
-    String otp = String.format("%05d", num);
-    
-    var processedMobileNo =  document.querySelector("#processedMobileNo").value;
-    document.querySelector("#otpGenerated").value = otp;
-    $.ajax({
-        type: "POST",
-        url: "../getSMSOTP",
-        data: "processedMobileNo="+processedMobileNo+"&otpGenerated="+otp,
-        success: function(result){
-        	alert("OTP sent successfully, check SMS");
-        }
-    });
-    
-}
+
 </script>
 
 </html>
