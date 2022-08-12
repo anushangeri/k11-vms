@@ -93,7 +93,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 		try {
 			URL url = new URL("https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages");
 			HttpURLConnection http = (HttpURLConnection)url.openConnection();
-			http.setRequestProperty("Authorization","Bearer d22f654f-3297-4afe-a2d1-ca1c3b9d9fc8");
+			http.setRequestProperty("Authorization","Bearer b98d1f54-768f-4907-af63-9bb610effe0d");
 			http.setRequestMethod("POST");
 			http.setDoOutput(true);
 			http.setRequestProperty("Content-Type", "application/json");
