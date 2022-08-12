@@ -17,13 +17,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-<style type="text/css"></style>
-<script type="text/javascript"
-	src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/8.4.6/js/utils.js"></script>
+<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css" rel="stylesheet" />
+
 <script>
 function validateForm() {
 	var tempAsStr = document.forms["addVisitor"]["temperature"].value;
@@ -68,10 +68,6 @@ function showPassword() {
 	    x.type = "password";
 	  }
 }
-$("input").intlTelInput({
-	  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/8.4.6/js/utils.js"
-});
-
 </script>
 </head>
 <body onload="showOfficeDivOnLoad('officerLogin','visitPurpose')">
@@ -161,9 +157,8 @@ $("input").intlTelInput({
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
 						</div>
-						<div class="input-group">
-						    <label for="tel">telephone: </label> <input type="tel" class="form-control">
-						    <span class="input-group-addon"></span>
+						<div class="form-group col-md-6">
+						    <label for="tel">telephone: </label> <input type="tel" id="phone" name="phone" />
 						</div>
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
@@ -282,4 +277,67 @@ $("input").intlTelInput({
 		</div>
 	</div>
 </body>
+<footer>
+<script>
+//Make sure to place this snippet in the footer or at least after
+//the HTML input we're targeting.
+
+$(document).ready(function() {
+var phoneInputID = "#phone";
+var input = document.querySelector(phoneInputID);
+var iti = window.intlTelInput(input, {
+ // allowDropdown: false,
+ // autoHideDialCode: false,
+ // autoPlaceholder: "off",
+ // dropdownContainer: document.body,
+ // excludeCountries: ["us"],
+ formatOnDisplay: true,
+ // geoIpLookup: function(callback) {
+ //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+ //     var countryCode = (resp && resp.country) ? resp.country : "";
+ //     callback(countryCode);
+ //   });
+ // },
+ hiddenInput: "full_number",
+ // initialCountry: "auto",
+ // localizedCountries: { 'de': 'Deutschland' },
+ // nationalMode: false,
+ // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+ // placeholderNumberType: "MOBILE",
+ preferredCountries: ['es'],
+ // separateDialCode: true,
+ utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/utils.js"
+});
+
+
+$(phoneInputID).on("countrychange", function(event) {
+
+ // Get the selected country data to know which country is selected.
+ var selectedCountryData = iti.getSelectedCountryData();
+
+ // Get an example number for the selected country to use as placeholder.
+ newPlaceholder = intlTelInputUtils.getExampleNumber(selectedCountryData.iso2, true, intlTelInputUtils.numberFormat.INTERNATIONAL),
+
+   // Reset the phone number input.
+   iti.setNumber("");
+
+ // Convert placeholder as exploitable mask by replacing all 1-9 numbers with 0s
+ mask = newPlaceholder.replace(/[1-9]/g, "0");
+
+ // Apply the new mask for the input
+ $(this).mask(mask);
+});
+
+
+// When the plugin loads for the first time, we have to trigger the "countrychange" event manually, 
+// but after making sure that the plugin is fully loaded by associating handler to the promise of the 
+// plugin instance.
+
+iti.promise.then(function() {
+ $(phoneInputID).trigger("countrychange");
+});
+
+});
+</script>
+</footer>
 </html>
