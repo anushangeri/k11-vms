@@ -255,7 +255,7 @@ function showPassword() {
 					
 					<br> <br>
 					<div class="form-row">
-						<input type="button" class="btn btn-primary btn-lg active" onclick=getSMSOTP()>Get OTP</input>
+						<input type="button" class="btn btn-primary btn-lg active" onclick="getSMSOTP()" value="Get OTP">
 					</div>
 					<br> <br>
 					
