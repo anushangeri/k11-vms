@@ -24,7 +24,50 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css" rel="stylesheet" />
 
-
+<script>
+function validateForm() {
+	var tempAsStr = document.forms["addVisitor"]["temperature"].value;
+	var tempAsInt = parseFloat(tempAsStr);
+	if (isNaN(tempAsInt) || tempAsInt < 36 || tempAsInt > 37.5)  {
+		alert("COVID Alert: Invalid temperature or temperature is high. Please go home if you are sick.");
+		return false;
+	}
+	//remember to add  onsubmit="return validateForm()" in the form to use this function
+}
+function showDiv(divId, element)
+{
+    document.getElementById(divId).style.display = element.value == "GOVERNMENT AGENCY" ? 'block' : 'none';
+    document.getElementById(divId).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : document.getElementById("officerIdNo").removeAttribute("required");
+    
+}
+function showOfficeDivOnLoad(officerLogin,visitPurpose)
+{
+    document.getElementById(officerLogin).style.display = document.getElementById(visitPurpose).value == "GOVERNMENT AGENCY" ? 'block' : 'none';
+    document.getElementById(officerLogin).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : document.getElementById("officerIdNo").removeAttribute("required");
+    
+}
+function getSMSOTP()
+{
+    var mobileNo = document.getElementById(mobileNo).value
+    $.ajax({
+        type: "POST",
+        url: "../getSMSOTP",
+        data: "mobileNo="+mobileNo,
+        success: function(result){
+        	document.getElementById(otpGenerated).value = result
+        }
+    });
+    
+}
+function showPassword() {
+	  var x = document.getElementById("officerpsw");
+	  if (x.type === "password") {
+	    x.type = "text";
+	  } else {
+	    x.type = "password";
+	  }
+}
+</script>
 </head>
 <body onload="showOfficeDivOnLoad('officerLogin','visitPurpose')">
 	<div class="container body-content">
@@ -195,7 +238,7 @@
 <!-- 					</div> -->
 					<br>
 					<br>
-					<div id ="officerLogin" class="form-row">
+					<div id = "officerLogin" class="form-row">
 					<i>Please aproach guard house and seek approval from security officer on duty.</i>
 						<div class="form-group col-md-6">
 							<label for="officerIdNo">Approving Officer ID Number: </label> <input type="text"
@@ -211,6 +254,11 @@
 					</div>
 					
 					<br> <br>
+					<div class="form-row">
+						<input type="button" class="btn btn-primary btn-lg active" onclick=getSMSOTP()>Get OTP</input>
+					</div>
+					<br> <br>
+					
 					<label for="otp">Test OTP 1: </label> <input type=text id="otpGenerated" name="otpGenerated">
 					<label for="otp">Test OTP 2: </label>  <input type=text id="testotp" name="testotp">${requestScope.otpGenerated}
 					<div class="form-group col-md-6">
@@ -224,9 +272,6 @@
 					</div>
 				</form>
 				
-					<div class="form-row">
-						<button class="btn btn-primary btn-lg active" onclick=getSMSOTP()>Get OTP</button>
-					</div>
 			</center>
 		</div>
 	</div>
@@ -235,7 +280,6 @@
 <script>
 //Make sure to place this snippet in the footer or at least after
 //the HTML input we're targeting.
-
 $(document).ready(function() {
 var phoneInputID = "#phone";
 var input = document.querySelector(phoneInputID);
@@ -292,51 +336,6 @@ iti.promise.then(function() {
 });
 
 });
-</script>
-<script>
-function validateForm() {
-	var tempAsStr = document.forms["addVisitor"]["temperature"].value;
-	var tempAsInt = parseFloat(tempAsStr);
-	if (isNaN(tempAsInt) || tempAsInt < 36 || tempAsInt > 37.5)  {
-		alert("COVID Alert: Invalid temperature or temperature is high. Please go home if you are sick.");
-		return false;
-	}
-	//remember to add  onsubmit="return validateForm()" in the form to use this function
-}
-function showDiv(divId, element)
-{
-    document.getElementById(divId).style.display = element.value == "GOVERNMENT AGENCY" ? 'block' : 'none';
-    document.getElementById(divId).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : document.getElementById("officerIdNo").removeAttribute("required");
-    
-}
-function showOfficeDivOnLoad(officerLogin,visitPurpose)
-{
-    document.getElementById(officerLogin).style.display = document.getElementById(visitPurpose).value == "GOVERNMENT AGENCY" ? 'block' : 'none';
-    document.getElementById(officerLogin).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : document.getElementById("officerIdNo").removeAttribute("required");
-    
-}
-function getSMSOTP()
-{
-    var mobileNo = document.getElementById(mobileNo).value
-    document.location.href="/getSMSOTP?mobileNo="mobileNo;
-    $.ajax({
-        type: "POST",
-        url: "../getSMSOTP",
-        data: "mobileNo="+mobileNo,
-        success: function(result){
-        	document.getElementById(otpGenerated).value = result
-        }
-    });
-    
-}
-function showPassword() {
-	  var x = document.getElementById("officerpsw");
-	  if (x.type === "password") {
-	    x.type = "text";
-	  } else {
-	    x.type = "password";
-	  }
-}
 </script>
 </footer>
 </html>
