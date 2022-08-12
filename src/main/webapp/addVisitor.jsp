@@ -282,7 +282,19 @@ function processHostNo(event) {
  const phoneNumberHostNo = phoneInputHostNo.getNumber();
  processedHostNo.value = phoneNumberHostNo;
 }
-
+function getSMSOTP()
+{
+    var processedMobileNo =  document.querySelector("#processedMobileNo").value
+    $.ajax({
+        type: "POST",
+        url: "../getSMSOTP",
+        data: "processedMobileNo="+processedMobileNo,
+        success: function(result){
+        	alert("OTP sent successfully, check SMS");
+        }
+    });
+    
+}
 </script>
 
 </html>
