@@ -23,6 +23,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
 <script>
 function validateForm() {
@@ -67,6 +69,11 @@ function showPassword() {
 	    x.type = "password";
 	  }
 }
+function fullMobileNo() {
+	 const phoneNumber = phoneInput.getNumber();
+
+	 document.forms["addVisitor"]["newMobileNo"].value = phoneNumber;
+} 
 </script>
 </head>
 <body onload="showOfficeDivOnLoad('officerLogin','visitPurpose')">
@@ -152,7 +159,7 @@ function showPassword() {
 						</div>
 						<div class="form-group col-md-6">
 						    <label for="mobileNo">Mobile No.: </label> <input type="tel" id="mobileNo" name="mobileNo" onchange="process(event)"/>
-						    <input type="text" id="newMobileNo"/>
+						    
 						</div>
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
@@ -259,78 +266,29 @@ function showPassword() {
 							aria-pressed="true">Back</a>
 					</div>
 				</form>
-				
+				 <div class="alert alert-info" style="display: none;"></div>
 			</center>
 		</div>
 	</div>
 </body>
-<footer>
-<script>
- //Make sure to place this snippet in the footer or at least after
-//the HTML input we're targeting.
-$(document).ready(function() {
-var phoneInputID = "#mobileNo";
-var input = document.querySelector(phoneInputID);
-var iti = window.intlTelInput(input, {
- // allowDropdown: false,
- // autoHideDialCode: false,
- // autoPlaceholder: "off",
- // dropdownContainer: document.body,
- // excludeCountries: ["us"],
- formatOnDisplay: true,
- // geoIpLookup: function(callback) {
- //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
- //     var countryCode = (resp && resp.country) ? resp.country : "";
- //     callback(countryCode);
- //   });
- // },
- hiddenInput: "full_number",
- // initialCountry: "auto",
- // localizedCountries: { 'de': 'Deutschland' },
- // nationalMode: false,
- // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
- // placeholderNumberType: "MOBILE",
- preferredCountries: ['sg', 'my'],
- // separateDialCode: true,
- utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/utils.js"
-});
-
-
-$(phoneInputID).on("countrychange", function(event) {
-
- // Get the selected country data to know which country is selected.
- var selectedCountryData = iti.getSelectedCountryData();
-
- // Get an example number for the selected country to use as placeholder.
- newPlaceholder = intlTelInputUtils.getExampleNumber(selectedCountryData.iso2, true, intlTelInputUtils.numberFormat.INTERNATIONAL),
-
-   // Reset the phone number input.
-   iti.setNumber("");
-
- // Convert placeholder as exploitable mask by replacing all 1-9 numbers with 0s
- mask = newPlaceholder.replace(/[1-9]/g, "0");
-
- // Apply the new mask for the input
- $(this).mask(mask);
-});
-
-
-// When the plugin loads for the first time, we have to trigger the "countrychange" event manually, 
-// but after making sure that the plugin is fully loaded by associating handler to the promise of the 
-// plugin instance.
-
-iti.promise.then(function() {
- $(phoneInputID).trigger("countrychange");
-});
-
-});
-function process(event) {
+ <script>
+ const phoneInputField = document.querySelector("#mobileNo");
+ const phoneInput = window.intlTelInput(phoneInputField, {
+   utilsScript:
+     "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+ });
+ const info = document.querySelector(".alert-info");
+ function process(event) {
 	 event.preventDefault();
 
 	 const phoneNumber = phoneInput.getNumber();
 
-	 document.forms["addVisitor"]["newMobileNo"].value = phoneNumber;
-	} 
+	 info.style.display = "";
+	 info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
+	}
+ </script>
+<footer>
+<script>
 $(document).ready(function() {
 	var phoneInputID = "#hostNo";
 	var input = document.querySelector(phoneInputID);
