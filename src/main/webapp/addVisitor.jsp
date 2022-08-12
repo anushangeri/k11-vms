@@ -54,6 +54,7 @@ function getSMSOTP()
         url: "../getSMSOTP",
         data: "mobileNo="+mobileNo,
         success: function(result){
+        	console.log(result);
         	alert("OTP sent successfully, check SMS");
         }
     });

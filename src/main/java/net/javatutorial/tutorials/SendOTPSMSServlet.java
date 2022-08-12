@@ -61,7 +61,6 @@ public class SendOTPSMSServlet extends HttpServlet {
 		request.setAttribute("otpGenerated", otp);
 		RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
 		rd.forward(request, response);
-		//request.getRequestDispatcher("addVisitor.jsp").forward(request, response);
 	}
 
 	@Override
