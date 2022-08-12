@@ -17,21 +17,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-<script type="text/javascript"
-	src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css"
-	rel="stylesheet" />
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css" rel="stylesheet" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
 <script>
 function validateForm() {
@@ -87,31 +80,31 @@ function fullMobileNo() {
 	<div class="container body-content">
 		<div class="page-header">
 			<label class="heading"><%=((request.getAttribute("responseObj") != null) ? request.getAttribute("responseObj") : "")%></label>
-			<br> <label class="heading">Visitor Management System</label> <br>
-			<b>How to use:</b> Please enter Visitor Details.
+			<br>
+			<label class="heading">Visitor Management System</label> <br> <b>How
+				to use:</b> Please enter Visitor Details.
 			<%
-			String idNo = "SxxxxxxxJ";
-			String name = "";
-			String otpGenerated = "";
-			Visitor v = null;
-			ArrayList<Site> siteDropdown = new ArrayList<Site>();
-			ArrayList<Dropdown> visitPurpose = new ArrayList<Dropdown>();
-			if (request.getAttribute("visitorLatRec") != null) {
-				v = (Visitor) request.getAttribute("visitorLatRec");
-				otpGenerated = (String) request.getAttribute("otpGenerated");
-			}
-			if (request.getAttribute("siteDropdown") != null) {
-				siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
-			}
-			if (request.getAttribute("visitPurpose") != null) {
-				visitPurpose = (ArrayList<Dropdown>) request.getAttribute("visitPurpose");
-			}
-			if (request.getSession(false).getAttribute("usertype") == null
-					&& request.getSession(false).getAttribute("idNo") != null) {
-				idNo = (String) request.getSession(false).getAttribute("idNo");
-				name = (String) request.getSession(false).getAttribute("name");
-			}
-			%>
+ 	String idNo = "SxxxxxxxJ";
+	String name = "";
+	String otpGenerated = "";
+ 	Visitor v = null;
+ 	ArrayList<Site> siteDropdown = new ArrayList<Site>();
+ 	ArrayList<Dropdown> visitPurpose = new ArrayList<Dropdown>();
+ 	if (request.getAttribute("visitorLatRec") != null) {
+ 		v = (Visitor) request.getAttribute("visitorLatRec");
+ 		otpGenerated = (String) request.getAttribute("otpGenerated");
+ 	}
+ 	if (request.getAttribute("siteDropdown") != null) {
+ 		siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
+ 	}
+ 	if (request.getAttribute("visitPurpose") != null) {
+ 		visitPurpose = (ArrayList<Dropdown>) request.getAttribute("visitPurpose");
+ 	}
+ 	if (request.getSession(false).getAttribute("usertype") == null && request.getSession(false).getAttribute("idNo") != null) {
+ 		idNo = (String) request.getSession(false).getAttribute("idNo");
+ 		name = (String) request.getSession(false).getAttribute("name");
+ 	}
+ %>
 			<center>
 				<form action="addVisitor" method="post" name="addVisitor">
 					<div class="form-row">
@@ -128,37 +121,32 @@ function fullMobileNo() {
 								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="siteVisiting">Site You Are Visiting: </label>
-							<%
-							if (v == null) {
-							%>
-							<select name="siteVisiting" class="form-control" required>
-								<%
-								for (Site eachSite : siteDropdown) {
-								%>
-								<option value="<%=eachSite.getSiteName()%>">
-									<%=eachSite.getSiteName()%></option>
-								<%
-								}
-								%>
-							</select>
-							<%
-							} else {
-							%>
-							<select name="siteVisiting" class="form-control" required>
-								<%
-								for (Site eachSite : siteDropdown) {
-								%>
-								<option value="<%=eachSite.getSiteName()%>"
-									<%=v.getSite() != null && v.getSite().equals(eachSite.getSiteName()) ? "selected" : ""%>>
-									<%=eachSite.getSiteName()%></option>
-								<%
-								}
-								%>
-							</select>
-							<%
-							}
-							%>
+							<label for="siteVisiting">Site You Are Visiting: </label> 
+							<% if(v == null){%>
+								<select name="siteVisiting" class="form-control" required>
+									<%
+										for (Site eachSite: siteDropdown) {
+									%>
+											<option value="<%=eachSite.getSiteName()%>">
+												<%=eachSite.getSiteName()%></option>
+									<%
+										}
+									%>
+								</select>
+							<% } 
+							else {%>
+								<select name="siteVisiting" class="form-control" required>
+									<%
+										for (Site eachSite: siteDropdown) {
+									%>
+											<option value="<%=eachSite.getSiteName()%>" 
+											<%=v.getSite()!= null && v.getSite().equals(eachSite.getSiteName()) ? "selected" : "" %>>
+												<%=eachSite.getSiteName()%></option>
+									<%
+										}
+									%>
+								</select>
+							<%} %>
 						</div>
 					</div>
 					<div class="form-row">
@@ -166,50 +154,41 @@ function fullMobileNo() {
 							<label for="idNo">ID Number: </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getIdNo())%>" minlength="4"
-								maxlength="9" <%=((v == null) ? "" : "readonly")%>>
+								value="<%=((v == null) ? "" : v.getIdNo())%>"
+								minlength="4" maxlength="9"  <%=((v == null) ? "" : "readonly")%>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="mobileNo">Mobile No.: </label> <input type="tel"
-								id="mobileNo" name="mobileNo" onchange="process(event)" />
-
+						    <label for="mobileNo">Mobile No.: </label> <input type="tel" id="mobileNo" name="mobileNo" onchange="process(event)"/>
+						    
 						</div>
 						<div class="form-group col-md-4">
-							<label for="visitPurpose">Visit Purpose: </label>
-							<%
-							if (v == null) {
-							%>
-							<select id="visitPurpose"
-								onchange="showDiv('officerLogin', this)" name="visitPurpose"
-								class="form-control" required>
-								<%
-								for (Dropdown d : visitPurpose) {
-								%>
-								<option value="<%=d.getDropdownValue()%>">
-									<%=d.getDropdownValue()%></option>
-								<%
-								}
-								%>
-							</select>
-							<%
-							} else {
-							%>
-							<select id="visitPurpose"
-								onchange="showDiv('officerLogin', this)" name="visitPurpose"
-								class="form-control" required>
-								<%
-								for (Dropdown d : visitPurpose) {
-								%>
-								<option value="<%=d.getDropdownValue()%>"
-									<%=v.getVisitPurpose().equals(d.getDropdownValue()) ? "selected" : ""%>>
-									<%=d.getDropdownValue()%></option>
-								<%
-								}
-								%>
-							</select>
-							<%
-							}
-							%>
+							<label for="visitPurpose">Visit Purpose: </label> 
+							<% if(v == null){%>
+								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
+									name="visitPurpose" class="form-control" required>
+									<%
+										for (Dropdown d: visitPurpose) {
+									%>
+									<option value="<%=d.getDropdownValue()%>">
+										<%=d.getDropdownValue()%></option>
+									<%
+										}
+									%>
+								</select>
+							<% } 
+							else {%>
+								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
+									name="visitPurpose" class="form-control" required>
+									<%
+										for (Dropdown d: visitPurpose) {
+									%>
+									<option value="<%=d.getDropdownValue()%>" <%=v.getVisitPurpose().equals(d.getDropdownValue()) ? "selected" : "" %>>
+										<%=d.getDropdownValue()%></option>
+									<%
+										}
+									%>
+								</select>
+							<%} %>
 						</div>
 					</div>
 					<div class="form-row">
@@ -226,8 +205,7 @@ function fullMobileNo() {
 								value="<%=((v == null) ? "" : v.getHostName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="hostNo">Host No.: </label> <input type="tel"
-								id="hostNo" name="hostNo" />
+							<label for="hostNo">Host No.: </label> <input type="tel" id="hostNo" name="hostNo"/>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="visitorCardId">Visitor Card ID: </label> <input
@@ -235,57 +213,52 @@ function fullMobileNo() {
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getVisitorCardId())%>" required>
 						</div>
-						<!-- 						<div class="form-group col-md-6"> -->
-						<!-- 							<label for="temperature">Temperature: </label> <input type="text" -->
-						<!-- 								class="form-control" name="temperature" id="temperature" -->
-						<!-- 								placeholder="36.6" minlength="2" maxlength="4" required> -->
-						<!-- 						</div> -->
+<!-- 						<div class="form-group col-md-6"> -->
+<!-- 							<label for="temperature">Temperature: </label> <input type="text" -->
+<!-- 								class="form-control" name="temperature" id="temperature" -->
+<!-- 								placeholder="36.6" minlength="2" maxlength="4" required> -->
+<!-- 						</div> -->
 						<div class="form-group col-md-6">
 							<label for="remarks">Remarks: </label> <input type="text"
 								class="form-control" name="remarks" id="remarks">
 						</div>
 					</div>
-					<!-- 					<div class="form-row checkbox"> -->
-					<!-- 						<input type="checkbox" id="coviddeclaration" -->
-					<!-- 							name="coviddeclaration" value="Yes" required> <label -->
-					<!-- 							for="coviddeclaration"> I confirm that I am NOT -->
-					<!-- 							experiencing any of the following symptoms: <br> • fever -->
-					<!-- 							(feeling hot to the touch, a temperature of 37.8 degrees Celsius -->
-					<!-- 							or higher)<br> • new onset of cough (continuous, more than -->
-					<!-- 							usual)<br> • difficulty breathing<br> <b>*Individuals -->
-					<!-- 								are required to self-identify should they experience any -->
-					<!-- 								COVID-19 symptoms.</b> -->
-					<!-- 						</label> -->
-					<!-- 					</div> -->
-					<br> <br>
-					<div id="officerLogin" class="form-row">
-						<i>Please aproach guard house and seek approval from security
-							officer on duty.</i>
+<!-- 					<div class="form-row checkbox"> -->
+<!-- 						<input type="checkbox" id="coviddeclaration" -->
+<!-- 							name="coviddeclaration" value="Yes" required> <label -->
+<!-- 							for="coviddeclaration"> I confirm that I am NOT -->
+<!-- 							experiencing any of the following symptoms: <br> • fever -->
+<!-- 							(feeling hot to the touch, a temperature of 37.8 degrees Celsius -->
+<!-- 							or higher)<br> • new onset of cough (continuous, more than -->
+<!-- 							usual)<br> • difficulty breathing<br> <b>*Individuals -->
+<!-- 								are required to self-identify should they experience any -->
+<!-- 								COVID-19 symptoms.</b> -->
+<!-- 						</label> -->
+<!-- 					</div> -->
+					<br>
+					<br>
+					<div id = "officerLogin" class="form-row">
+					<i>Please aproach guard house and seek approval from security officer on duty.</i>
 						<div class="form-group col-md-6">
-							<label for="officerIdNo">Approving Officer ID Number: </label> <input
-								type="text" class="form-control" name="officerIdNo"
-								id="officerIdNo" placeholder="xxxx"
-								oninput="this.value = this.value.toUpperCase()" minlength="4"
-								maxlength="9">
+							<label for="officerIdNo">Approving Officer ID Number: </label> <input type="text"
+								class="form-control" name="officerIdNo" id="officerIdNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
+								minlength="4" maxlength="9">
 						</div>
 						<div class="form-group col-md-4">
-							<label for="officerpsw">Password</label> <input type="password"
-								class="form-control" id="officerpsw" name="officerpsw"
-								pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"><input
-								type="checkbox" onclick="showPassword()">Show Password
+							<label for="officerpsw">Password</label> <input type="password" class="form-control" id="officerpsw"
+								name="officerpsw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+								><input type="checkbox" onclick="showPassword()">Show Password
 						</div>
 					</div>
 					<div class="form-row">
-						<input type="button" class="btn btn-primary btn-lg active"
-							onclick="getSMSOTP()" value="Get OTP">
-					</div>
-					<br> <br> <input type="hidden" name="otpGenerated"
-						id="otpGenerated" value="${requestScope.otpGenerated}">
+						<input type="button" class="btn btn-primary btn-lg active" onclick="getSMSOTP()" value="Get OTP">
+					</div> 
+					<br> <br>
+					<input type="hidden" name="otpGenerated" id="otpGenerated" value="${requestScope.otpGenerated}">
 					<div class="form-group col-md-6">
-						<label for="otpEntered">Enter SMS OTP received: </label> <input
-							type="text" class="form-control" name="otpEntered"
-							id="otpEntered">
+							<label for="otpEntered">Enter SMS OTP received: </label> <input
+								type="text" class="form-control" name="otpEntered" id="otpEntered">
 					</div>
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active">Submit</button>
@@ -293,29 +266,29 @@ function fullMobileNo() {
 							aria-pressed="true">Back</a>
 					</div>
 				</form>
-				<div class="alert alert-info" style="display: none;"></div>
+				 <div class="alert alert-info" style="display: none;"></div>
 			</center>
 		</div>
 	</div>
 </body>
-<script>
+ <script>
  const phoneInputField = document.querySelector("#mobileNo");
- const phoneInputVal = window.intlTelInput(phoneInputField, {
-	preferredCountries: ["sg", "my"],
-	utilsScript:
+ const phoneInput = window.intlTelInput(phoneInputField, {
+   utilsScript:
      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
  });
  const info = document.querySelector(".alert-info");
  function process(event) {
 	 event.preventDefault();
 
-	 const phoneNumber = phoneInputVal.getNumber();
+	 const phoneNumber = phoneInput.getNumber();
+
 	 info.style.display = "";
-	 info.innerHTML = "Phone number in E.164 format: <strong>"+${phoneNumber}+"</strong>";
+	 info.innerHTML = phoneNumber;
 	}
  </script>
 <footer>
-	<script>
+<script>
 $(document).ready(function() {
 	var phoneInputID = "#hostNo";
 	var input = document.querySelector(phoneInputID);
