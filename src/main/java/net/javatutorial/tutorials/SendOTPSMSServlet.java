@@ -104,12 +104,12 @@ public class SendOTPSMSServlet extends HttpServlet {
 				      .build();
 		    Request request = new Request.Builder()
 		            .url("https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages")
-		            .addHeader("Authorization", String.format("Bearer ", "b98d1f54-768f-4907-af63-9bb610effe0d"))
+		            .addHeader("Authorization", String.format("Bearer %s", "b98d1f54-768f-4907-af63-9bb610effe0d"))
 		            .post(formBody)
 		            .build();
 
-		        Response response = client.newCall(request).execute();
-
+		    Response response = client.newCall(request).execute();
+		    System.out.println(response.body().string());
 			
 			
 //			URL url = new URL("https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages");
