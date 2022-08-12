@@ -57,14 +57,6 @@ function showPassword() {
 	    x.type = "password";
 	  }
 } 
-
-processedHostNo = document.querySelector("#processedHostNo");
-function processHostNo(event) {
- event.preventDefault();
-
- const phoneNumberHostNo = phoneInputHostNo.getNumber();
- processedHostNo.value = phoneNumberHostNo;
-}
 </script>
 </head>
 <body onload="showOfficeDivOnLoad('officerLogin','visitPurpose')">
@@ -283,7 +275,13 @@ const phoneInputHostNo = window.intlTelInput(phoneInputFieldHostNo, {
  utilsScript:
     "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
 });
+processedHostNo = document.querySelector("#processedHostNo");
+function processHostNo(event) {
+ event.preventDefault();
 
+ const phoneNumberHostNo = phoneInputHostNo.getNumber();
+ processedHostNo.value = phoneNumberHostNo;
+}
 
 </script>
 
