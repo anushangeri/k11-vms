@@ -84,9 +84,11 @@ public class SendOTPSMSServlet extends HttpServlet {
 		System.out.println("Servlet " + this.getServletName() + " has stopped");
 	}
 
+	@SuppressWarnings({ "unused", "deprecation" })
 	public static void sendOTP(String mobileNo, String otp) {
 		try {
-			Process process = process = Runtime.getRuntime().exec(String.format("curl -X POST -d to=+16476093381&message=K11 VMS OTP: "+otp+" -H Accept: application/json https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages"));
+			String sendOTP = "curl -X POST -d to=+"+mobileNo+"&message=K11 VMS OTP: "+otp+" -H Accept: application/json https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages";
+			Process process = Runtime.getRuntime().exec(String.format(sendOTP));
 
 			System.out.println("OTP send");
 
