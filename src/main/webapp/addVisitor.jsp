@@ -239,7 +239,7 @@ function showPassword() {
 <!-- 					</div> -->
 					<br>
 					<br>
-					<div id = "officerLogin" class="form-row">
+					<div id ="officerLogin" class="form-row">
 					<i>Please aproach guard house and seek approval from security officer on duty.</i>
 						<div class="form-group col-md-6">
 							<label for="officerIdNo">Approving Officer ID Number: </label> <input type="text"
@@ -256,7 +256,7 @@ function showPassword() {
 					
 					<br> <br>
 					<div class="form-row">
-						<button type="submit" class="btn btn-primary btn-lg active" onclick=getSMSOTP()>Get OTP</button>
+						<button class="btn btn-primary btn-lg active" onclick=getSMSOTP()>Get OTP</button>
 					</div>
 					<br> <br>
 					
@@ -304,7 +304,7 @@ var iti = window.intlTelInput(input, {
  // nationalMode: false,
  // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
  // placeholderNumberType: "MOBILE",
- preferredCountries: ['es'],
+ preferredCountries: ['sg', 'my'],
  // separateDialCode: true,
  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/utils.js"
 });
