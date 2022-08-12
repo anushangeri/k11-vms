@@ -257,7 +257,7 @@ function showPassword() {
 						<input type="button" class="btn btn-primary btn-lg active" onclick="getSMSOTP()" value="Get OTP">
 					</div>
 					<br> <br>
-					<p>Test attribute value: ${param.otpGenerated}
+					<p>Test attribute value: ${requestScope.otpGenerated}
 					
 					<div class="form-group col-md-6">
 							<label for="otp">Enter SMS OTP received: </label> <input
