@@ -278,13 +278,13 @@ function fullMobileNo() {
 	 utilsScript:
      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
  });
- const processMobileNo = document.querySelector("#processedMobileNo");
+processMobileNo = document.querySelector("#processedMobileNo");
  function processMobileNo(event) {
 	 event.preventDefault();
 	 const phoneNumber = phoneInput.getNumber();
 	 processMobileNo.value = phoneNumber;
 	}
- </script>
+</script>
 <script>
  const phoneInputFieldHostNo = document.querySelector("#hostNo");
  const phoneInputHostNo = window.intlTelInput(phoneInputFieldHostNo, {
@@ -292,7 +292,7 @@ function fullMobileNo() {
 	 utilsScript:
      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
  });
- const processHostNo = document.querySelector("#processedHostNo");
+ processHostNo = document.querySelector("#processedHostNo");
  function processHostNo(event) {
 	 event.preventDefault();
 
