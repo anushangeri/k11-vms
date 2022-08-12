@@ -203,9 +203,8 @@ function showPassword() {
 								value="<%=((v == null) ? "" : v.getHostName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="hostNo">Host Number: </label> <input type="text"
-								class="form-control" name="hostNo"
-								oninput="this.value = this.value.toUpperCase()"
+							<label for="hostNo">Host Number: </label> <input type="tel"
+								class="form-control" name="hostNo" id="phone"
 								value="<%=((v == null) ? "" : v.getHostNo())%>" required>
 						</div>
 						<div class="form-group col-md-6">
