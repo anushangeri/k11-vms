@@ -29,6 +29,7 @@ public class AddVisitorRecordServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int nextVal = VMSManagerDAO.getNextVal();
 		
+		System.out.println(request.getParameter("otpGenerated") + " : " + request.getParameter("otpEntered"));
 		String vmsId = "" + nextVal;
 		String name = request.getParameter("name").trim();
 		String companyName = request.getParameter("companyName").trim();

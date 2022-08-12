@@ -58,6 +58,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 //		request.setAttribute("visitorLatRec", v);
 //		request.setAttribute("siteDropdown", siteDropdown);
 //		request.setAttribute("visitPurpose", visitPurposes);
+		request.removeAttribute("otpGenerated");
 		request.setAttribute("otpGenerated", otp);
 		RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
 		rd.forward(request, response);
