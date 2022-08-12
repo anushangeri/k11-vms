@@ -203,9 +203,7 @@ function showPassword() {
 								value="<%=((v == null) ? "" : v.getHostName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="hostNo">Host Number: </label> <input type="tel"
-								class="form-control" name="hostNo" id="phone"
-								value="<%=((v == null) ? "" : v.getHostNo())%>" required>
+							<label for="tel">Host Number: </label> <input type="tel" name="hostNo" id="phone" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="visitorCardId">Visitor Card ID: </label> <input
