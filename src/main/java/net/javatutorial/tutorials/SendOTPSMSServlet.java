@@ -1,32 +1,12 @@
 package net.javatutorial.tutorials;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.sql.Timestamp;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.Random;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import net.javatutorial.DAO.DropdownListManagerDAO;
-import net.javatutorial.DAO.SiteManagerDAO;
-import net.javatutorial.entity.Dropdown;
-import net.javatutorial.entity.Site;
-import net.javatutorial.entity.Visitor;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  * Servlet implementation class SendOTPSMSServlet
@@ -97,38 +77,8 @@ public class SendOTPSMSServlet extends HttpServlet {
 	public static void sendOTP(String mobileNo, String otp) {
 		try {
 			
-			OkHttpClient client = new OkHttpClient();
-			RequestBody formBody = new FormBody.Builder()
-				      .add("to", "+16476093381")
-				      .add("message", "Sahngeri Test")
-				      .build();
-		    Request request = new Request.Builder()
-		            .url("https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages")
-		            .addHeader("Authorization", "Bearer 217cc322-8549-4882-a149-56809b7e2dc6")
-		            .post(formBody)
-		            .build();
-
-		    Response response = client.newCall(request).execute();
-		    System.out.println(response.body().string());
-			
-			
-//			URL url = new URL("https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages");
-//			HttpURLConnection http = (HttpURLConnection)url.openConnection();
-//			http.setRequestProperty("Authorization","Bearer b98d1f54-768f-4907-af63-9bb610effe0d");
-//			http.setRequestMethod("POST");
-//			http.setDoOutput(true);
-//			http.setRequestProperty("Content-Type", "application/json");
-//			http.setRequestProperty("Accept", "application/json");
-//
-//			String data = "{to: +16476093381, message: Shangeri test SMS}";
-//
-//			byte[] out = data.getBytes(StandardCharsets.UTF_8);
-//
-//			OutputStream stream = http.getOutputStream();
-//			stream.write(out);
-//
-//			System.out.println(http.getResponseCode() + " " + http.getResponseMessage());
-//			http.disconnect();
+			String command = "curl -X POST -d \"to=+"+mobileNo+"&message=This is a test from Blower.io\" -H \"Accept: application/json\" https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages";
+			Process process = Runtime.getRuntime().exec(command);
 			System.out.println("OTP send");
 
 		} catch (Exception e) {
