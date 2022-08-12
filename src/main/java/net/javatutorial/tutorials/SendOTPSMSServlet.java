@@ -88,7 +88,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 	public static void sendOTP(String mobileNo, String otp) {
 		try {
 			
-			String command = "curl -X POST -d \"to=+"+mobileNo+ "&message=This%is%a%test%from%Blower.io\" -H \"Accept: application/json\" https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages";
+			String command = "curl -X POST -d to=+"+mobileNo+"&message=This%is%a%test%from%Blower.io -H \"Accept: application/json\" https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages";
 //			ProcessBuilder processBuilder = new ProcessBuilder();
 //			processBuilder.command(
 //					  new String[]{"curl", "-X", "POST", "-d", "to=+", mobileNo, "+&message=K11 VMS OTP: ", otp, "-H", "Accept: application/json",  "https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages"});
