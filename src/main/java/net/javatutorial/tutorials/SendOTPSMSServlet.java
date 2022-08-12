@@ -1,6 +1,10 @@
 package net.javatutorial.tutorials;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -87,13 +91,23 @@ public class SendOTPSMSServlet extends HttpServlet {
 	@SuppressWarnings({ "unused", "deprecation" })
 	public static void sendOTP(String mobileNo, String otp) {
 		try {
-			
-			String command = "curl -X POST -d to=+"+mobileNo+"&message=This%is%a%test%from%Blower.io -H \"Accept: application/json\" https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages";
-//			ProcessBuilder processBuilder = new ProcessBuilder();
-//			processBuilder.command(
-//					  new String[]{"curl", "-X", "POST", "-d", "to=+", mobileNo, "+&message=K11 VMS OTP: ", otp, "-H", "Accept: application/json",  "https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages"});
-//			Process process = processBuilder.start();
-			Process process = Runtime.getRuntime().exec(command);
+			URL url = new URL("https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages");
+			HttpURLConnection http = (HttpURLConnection)url.openConnection();
+			http.setRequestProperty("Authorization","Bearer "+"d22f654f-3297-4afe-a2d1-ca1c3b9d9fc8");
+			http.setRequestMethod("POST");
+			http.setDoOutput(true);
+			http.setRequestProperty("Content-Type", "application/json");
+			http.setRequestProperty("Accept", "application/json");
+
+			String data = "{to: +16476093381, message: Shangeri test SMS}";
+
+			byte[] out = data.getBytes(StandardCharsets.UTF_8);
+
+			OutputStream stream = http.getOutputStream();
+			stream.write(out);
+
+			System.out.println(http.getResponseCode() + " " + http.getResponseMessage());
+			http.disconnect();
 			System.out.println("OTP send");
 
 		} catch (Exception e) {
