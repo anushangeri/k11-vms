@@ -151,13 +151,7 @@ function showPassword() {
 								minlength="4" maxlength="9"  <%=((v == null) ? "" : "readonly")%>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="mobileNo">Mobile: </label> <input type="text"
-								class="form-control" name="mobileNo"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
-						</div>
-						<div class="form-group col-md-6">
-						    <label for="tel">telephone: </label> <input type="tel" id="phone" name="phone" />
+						    <label for="mobileNo">Mobile No.: </label> <input type="tel" id="mobileNo" name="mobileNo" />
 						</div>
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
@@ -203,7 +197,7 @@ function showPassword() {
 								value="<%=((v == null) ? "" : v.getHostName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="hostNo">Host Number: </label> <input type="tel" id="hostNo" name="hostNo"/>
+							<label for="hostNo">Host No.: </label> <input type="tel" id="hostNo" name="hostNo"/>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="visitorCardId">Visitor Card ID: </label> <input
@@ -274,7 +268,7 @@ function showPassword() {
  //Make sure to place this snippet in the footer or at least after
 //the HTML input we're targeting.
 $(document).ready(function() {
-var phoneInputID = "#phone";
+var phoneInputID = "#mobileNo";
 var input = document.querySelector(phoneInputID);
 var iti = window.intlTelInput(input, {
  // allowDropdown: false,

@@ -50,6 +50,7 @@ public class AddVisitorRecordServlet extends HttpServlet {
 
 		//Step 1: verify officer login (if parameters not empty) and visitPurpose = GovtAgency
 		String officerIdNo = request.getParameter("officerIdNo");
+		System.out.println(request.getParameter("otpGenerated"));
 		
 		Visitor v = null;
 		String message = "Something went wrong, please try again.";
