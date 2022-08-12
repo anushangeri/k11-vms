@@ -50,7 +50,7 @@ function showOfficeDivOnLoad(officerLogin,visitPurpose)
 }
 function getSMSOTP()
 {
-    var processedMobileNo = document.forms["addVisitor"]["processedMobileNo"].value
+    var processedMobileNo =  document.querySelector("#processedMobileNo").value
     $.ajax({
         type: "POST",
         url: "../getSMSOTP",
@@ -68,11 +68,6 @@ function showPassword() {
 	  } else {
 	    x.type = "password";
 	  }
-}
-function fullMobileNo() {
-	 const phoneNumber = phoneInput.getNumber();
-
-	 document.forms["addVisitor"]["newMobileNo"].value = phoneNumber;
 } 
 </script>
 </head>
@@ -159,7 +154,7 @@ function fullMobileNo() {
 						</div>
 						<div class="form-group col-md-6">
 						    <label for="mobileNo">Mobile No.: </label> <input type="tel" id="mobileNo" name="mobileNo" onchange="processMobileNo(event)"/>
-						    <input type="hidden" id="processedMobileNo" name="processedMobileNo"/>
+						    <input type="text" id="processedMobileNo" name="processedMobileNo"/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
