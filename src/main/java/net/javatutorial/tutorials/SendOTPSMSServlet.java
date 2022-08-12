@@ -1,7 +1,6 @@
 package net.javatutorial.tutorials;
 
 import java.io.IOException;
-import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,12 +40,9 @@ public class SendOTPSMSServlet extends HttpServlet {
 //		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 //
 //		String officerIdNo = request.getParameter("officerIdNo");
-		System.out.println("MobileNo from javascript: " +mobileNo);
-		Random random = new Random();
-        int num = random.nextInt(100000);
-        String otp = String.format("%05d", num);
-		
-		
+
+		String otp = request.getParameter("otp");
+		System.out.println("otp generate first: " + otp);
 		sendOTP(mobileNo, otp);
 
 //		Visitor v = new Visitor(vmsId, name, companyName, site, idType, idNo, mobileNo, vehicleNo, hostName, hostNo,
@@ -77,7 +73,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 	public static void sendOTP(String mobileNo, String otp) {
 		try {
 			
-			String command = "curl -X POST -d to="+mobileNo+"&message=K11-VMS-OTP:"+otp+" -H Accept: application/json https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages";
+			String command = "curl -X POST -d to=+"+mobileNo+"&message=K11-VMS-OTP:"+otp+" -H Accept: application/json https://d5f0629a-0abd-400f-9059-7a996b7da98a:QKnJYGZLd7Rrx2UQyzrqvg@api.blower.io/messages";
 			System.out.println(command);
 			Process process = Runtime.getRuntime().exec(command);
 			System.out.println("OTP send");

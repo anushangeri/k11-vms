@@ -142,7 +142,7 @@ function showPassword() {
 						</div>
 						<div class="form-group col-md-6">
 						    <label for="mobileNo">Mobile No.: </label> <input type="tel" id="mobileNo" name="mobileNo" onchange="processMobileNo(event)"/>
-						    <input type="text" id="processedMobileNo" name="processedMobileNo"/>
+						    <input type="hidden" id="processedMobileNo" name="processedMobileNo"/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
@@ -189,7 +189,7 @@ function showPassword() {
 						</div>
 						<div class="form-group col-md-6">
 							<label for="hostNo">Host No.: </label> <input type="tel" id="hostNo" name="hostNo" onchange="processHostNo(event)"/>
-							<input type="text" id="processedHostNo" name="processedHostNo"/>
+							<input type="hidden" id="processedHostNo" name="processedHostNo"/>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="visitorCardId">Visitor Card ID: </label> <input
@@ -239,7 +239,7 @@ function showPassword() {
 						<input type="button" class="btn btn-primary btn-lg active" onclick="getSMSOTP()" value="Get OTP">
 					</div> 
 					<br> <br>
-					<input type="hidden" name="otpGenerated" id="otpGenerated" value="${requestScope.otpGenerated}">
+					<input type="hidden" name="otpGenerated" id="otpGenerated">
 					<div class="form-group col-md-6">
 							<label for="otpEntered">Enter SMS OTP received: </label> <input
 								type="text" class="form-control" name="otpEntered" id="otpEntered">
@@ -284,11 +284,16 @@ function processHostNo(event) {
 }
 function getSMSOTP()
 {
-    var processedMobileNo =  document.querySelector("#processedMobileNo").value
+	Random random = new Random();
+    int num = random.nextInt(100000);
+    String otp = String.format("%05d", num);
+    
+    var processedMobileNo =  document.querySelector("#processedMobileNo").value;
+    document.querySelector("#otpGenerated").value = otp;
     $.ajax({
         type: "POST",
         url: "../getSMSOTP",
-        data: "processedMobileNo="+processedMobileNo,
+        data: "processedMobileNo="+processedMobileNo+"&otpGenerated="+otp,
         success: function(result){
         	alert("OTP sent successfully, check SMS");
         }
