@@ -158,8 +158,8 @@ function fullMobileNo() {
 								minlength="4" maxlength="9"  <%=((v == null) ? "" : "readonly")%>>
 						</div>
 						<div class="form-group col-md-6">
-						    <label for="mobileNo">Mobile No.: </label> <input type="tel" id="mobileNo" name="mobileNo" onchange="process(event)"/>
-						    <input type="text" id="processedMobileNo" name="processedMobileNo"/>
+						    <label for="mobileNo">Mobile No.: </label> <input type="tel" id="mobileNo" name="mobileNo" onchange="processMobileNo(event)"/>
+						    <input type="hidden" id="processedMobileNo" name="processedMobileNo"/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
@@ -205,7 +205,8 @@ function fullMobileNo() {
 								value="<%=((v == null) ? "" : v.getHostName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="hostNo">Host No.: </label> <input type="tel" id="hostNo" name="hostNo"/>
+							<label for="hostNo">Host No.: </label> <input type="tel" id="hostNo" name="hostNo" onchange="processHostNo(event)"/>
+							<input type="hidden" id="processedHostNo" name="processedHostNo"/>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="visitorCardId">Visitor Card ID: </label> <input
@@ -266,7 +267,6 @@ function fullMobileNo() {
 							aria-pressed="true">Back</a>
 					</div>
 				</form>
-				 <div class="alert alert-info" style="display: none;"></div>
 			</center>
 		</div>
 	</div>
@@ -278,76 +278,27 @@ function fullMobileNo() {
 	 utilsScript:
      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
  });
- const info = document.querySelector(".alert-info");
  const processMobileNo = document.querySelector("#processedMobileNo");
- function process(event) {
+ function processMobileNo(event) {
 	 event.preventDefault();
-
 	 const phoneNumber = phoneInput.getNumber();
-
-	 info.style.display = "";
-	 info.innerHTML = phoneNumber;
 	 processMobileNo.value = phoneNumber;
 	}
  </script>
-<footer>
 <script>
-$(document).ready(function() {
-	var phoneInputID = "#hostNo";
-	var input = document.querySelector(phoneInputID);
-	var iti = window.intlTelInput(input, {
-	 // allowDropdown: false,
-	 // autoHideDialCode: false,
-	 // autoPlaceholder: "off",
-	 // dropdownContainer: document.body,
-	 // excludeCountries: ["us"],
-	 formatOnDisplay: true,
-	 // geoIpLookup: function(callback) {
-	 //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
-	 //     var countryCode = (resp && resp.country) ? resp.country : "";
-	 //     callback(countryCode);
-	 //   });
-	 // },
-	 hiddenInput: "full_number",
-	 // initialCountry: "auto",
-	 // localizedCountries: { 'de': 'Deutschland' },
-	 // nationalMode: false,
-	 // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-	 // placeholderNumberType: "MOBILE",
-	 preferredCountries: ['sg', 'my'],
-	 // separateDialCode: true,
-	 utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/utils.js"
-	});
+ const phoneInputFieldHostNo = document.querySelector("#hostNo");
+ const phoneInputHostNo = window.intlTelInput(phoneInputFieldHostNo, {
+	 preferredCountries: ['sg', 'my'],	
+	 utilsScript:
+     "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+ });
+ const processHostNo = document.querySelector("#processedHostNo");
+ function processHostNo(event) {
+	 event.preventDefault();
 
-
-	$(phoneInputID).on("countrychange", function(event) {
-
-	 // Get the selected country data to know which country is selected.
-	 var selectedCountryData = iti.getSelectedCountryData();
-
-	 // Get an example number for the selected country to use as placeholder.
-	 newPlaceholder = intlTelInputUtils.getExampleNumber(selectedCountryData.iso2, true, intlTelInputUtils.numberFormat.INTERNATIONAL),
-
-	   // Reset the phone number input.
-	   iti.setNumber("");
-
-	 // Convert placeholder as exploitable mask by replacing all 1-9 numbers with 0s
-	 mask = newPlaceholder.replace(/[1-9]/g, "0");
-
-	 // Apply the new mask for the input
-	 $(this).mask(mask);
-	});
-
-
-	// When the plugin loads for the first time, we have to trigger the "countrychange" event manually, 
-	// but after making sure that the plugin is fully loaded by associating handler to the promise of the 
-	// plugin instance.
-
-	iti.promise.then(function() {
-	 $(phoneInputID).trigger("countrychange");
-	});
-
-	});
+	 const phoneNumberHostNo = phoneInputHostNo.getNumber();
+	 processHostNo.value = phoneNumberHostNo;
+	}
 </script>
-</footer>
+
 </html>

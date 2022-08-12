@@ -36,10 +36,10 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		String site = request.getParameter("siteVisiting").trim();
 		String idType = null;
 		String idNo = request.getParameter("idNo");
-		String mobileNo = request.getParameter("mobileNo");
+		String mobileNo = request.getParameter("processedMobileNo");
 		String vehicleNo = request.getParameter("vehicleNo");
 		String hostName = request.getParameter("hostName");
-		String hostNo = request.getParameter("hostNo");
+		String hostNo = request.getParameter("processedHostNo");
 		String visitorCardId = request.getParameter("visitorCardId");
 		String covidDec = "";
 		String visitPurpose = request.getParameter("visitPurpose");
