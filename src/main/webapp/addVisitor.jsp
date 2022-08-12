@@ -301,7 +301,7 @@ function fullMobileNo() {
 <script>
  const phoneInputField = document.querySelector("#mobileNo");
  const phoneInputVal = window.intlTelInput(phoneInputField, {
-	preferredCountries: ['sg', 'my'],
+	preferredCountries: ["sg", "my"],
 	utilsScript:
      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
  });
@@ -311,7 +311,7 @@ function fullMobileNo() {
 
 	 const phoneNumber = phoneInputVal.getNumber();
 	 info.style.display = "";
-	 info.innerHTML = 'Phone number in E.164 format: <strong>'+${phoneNumber}+'</strong>';
+	 info.innerHTML = "Phone number in E.164 format: <strong>"+${phoneNumber}+"</strong>";
 	}
  </script>
 <footer>
