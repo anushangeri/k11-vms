@@ -23,7 +23,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
 <script>
@@ -273,7 +272,7 @@ function fullMobileNo() {
 </body>
  <script>
  const phoneInputField = document.querySelector("#mobileNo");
- const phoneInput = window.intlTelInput(phoneInputField, {
+ const phoneInputVal = window.intlTelInput(phoneInputField, {
    utilsScript:
      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
  });
@@ -281,10 +280,10 @@ function fullMobileNo() {
  function process(event) {
 	 event.preventDefault();
 
-	 const phoneNumber = phoneInput.getNumber();
-
+	 const phoneNumber = phoneInputVal.getNumber();
+	 console.log(phoneNumber);
 	 info.style.display = "";
-	 info.innerHTML = 'Phone number in E.164 format: <strong>${phoneNumber}</strong>';
+	 info.innerHTML = 'Phone number in E.164 format: <strong>'+${phoneNumber}+'</strong>';
 	}
  </script>
 <footer>
