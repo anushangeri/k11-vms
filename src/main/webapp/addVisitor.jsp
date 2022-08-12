@@ -152,6 +152,7 @@ function showPassword() {
 						</div>
 						<div class="form-group col-md-6">
 						    <label for="mobileNo">Mobile No.: </label> <input type="tel" id="mobileNo" name="mobileNo" />
+						    <input type="text" id="newMobileNo"/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
@@ -321,7 +322,7 @@ $(phoneInputID).on("countrychange", function(event) {
 iti.promise.then(function() {
  $(phoneInputID).trigger("countrychange");
 });
-
+document.forms["addVisitor"]["newMobileNo"].value = phoneInput.getNumber();
 });
  
 $(document).ready(function() {
