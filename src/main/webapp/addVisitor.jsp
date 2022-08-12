@@ -159,7 +159,7 @@ function fullMobileNo() {
 						</div>
 						<div class="form-group col-md-6">
 						    <label for="mobileNo">Mobile No.: </label> <input type="tel" id="mobileNo" name="mobileNo" onchange="process(event)"/>
-						    
+						    <input type="text" id="processedMobileNo" name="processedMobileNo"/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
@@ -274,10 +274,12 @@ function fullMobileNo() {
  <script>
  const phoneInputField = document.querySelector("#mobileNo");
  const phoneInput = window.intlTelInput(phoneInputField, {
-   utilsScript:
+	 preferredCountries: ['sg', 'my'],	
+	 utilsScript:
      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
  });
  const info = document.querySelector(".alert-info");
+ const processMobileNo = document.querySelector("#processedMobileNo");
  function process(event) {
 	 event.preventDefault();
 
@@ -285,6 +287,7 @@ function fullMobileNo() {
 
 	 info.style.display = "";
 	 info.innerHTML = phoneNumber;
+	 processMobileNo.value = phoneNumber;
 	}
  </script>
 <footer>
