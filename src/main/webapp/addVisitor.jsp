@@ -17,8 +17,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
@@ -48,13 +48,13 @@ function showOfficeDivOnLoad(officerLogin,visitPurpose)
 }
 function getSMSOTP()
 {
-    var mobileNo = document.getElementById(mobileNo).value
+    var mobileNo = document.forms["addVisitor"]["mobileNo"].value
     $.ajax({
         type: "POST",
         url: "../getSMSOTP",
         data: "mobileNo="+mobileNo,
         success: function(result){
-        	document.getElementById(otpGenerated).value = result
+        	document.forms["addVisitor"]["otpGenerated"].value = result
         }
     });
     
@@ -252,8 +252,6 @@ function showPassword() {
 								><input type="checkbox" onclick="showPassword()">Show Password
 						</div>
 					</div>
-					
-					<br> <br>
 					<div class="form-row">
 						<input type="button" class="btn btn-primary btn-lg active" onclick="getSMSOTP()" value="Get OTP">
 					</div>
