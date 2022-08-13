@@ -29,7 +29,6 @@ public class AddVisitorRecordServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int nextVal = VMSManagerDAO.getNextVal();
 		
-		System.out.println(request.getParameter("otpGenerated") + " : " + request.getParameter("otpEntered"));
 		String vmsId = "" + nextVal;
 		String name = request.getParameter("name").trim();
 		String companyName = request.getParameter("companyName").trim();
@@ -50,34 +49,39 @@ public class AddVisitorRecordServlet extends HttpServlet {
 
 		//Step 1: verify officer login (if parameters not empty) and visitPurpose = GovtAgency
 		String officerIdNo = request.getParameter("officerIdNo");
-		System.out.println("OTP GENERATED IS " + request.getParameter("otpGenerated"));
 		
+		String otpGenerated = request.getParameter("otpGenerated");
+		String otpEntered = request.getParameter("otpEntered"); 
 		Visitor v = null;
-		String message = "Something went wrong, please try again.";
-		if(officerIdNo != null && !StringUtils.isEmpty(officerIdNo) && visitPurpose.equals("GOVERNMENT AGENCY")) {
-			//Step 2: add visitor
-			v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
-					 hostName,  hostNo,  visitorCardId, covidDec, remarks, visitPurpose,  
-					 temperature, officerIdNo , timestamp);
-			message = VMSManagerDAO.addVisitor(v);
+		String message = "Something went wrong or OTP was wrong, please try again.";
+		if(otpGenerated != null && !StringUtils.isEmpty(otpGenerated) && otpEntered != null 
+				&& !StringUtils.isEmpty(otpEntered) && otpGenerated.equals(otpEntered)) {
+			if(officerIdNo != null && !StringUtils.isEmpty(officerIdNo) && visitPurpose.equals("GOVERNMENT AGENCY")) {
+				//Step 2: add visitor
+				v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
+						 hostName,  hostNo,  visitorCardId, covidDec, remarks, visitPurpose,  
+						 temperature, officerIdNo , timestamp);
+				message = VMSManagerDAO.addVisitor(v);
+			}
+			else if(!visitPurpose.equals("GOVERNMENT AGENCY")) {
+				//Step 2: add visitor if not GOVT AGENCY
+				v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
+						 hostName,  hostNo,  visitorCardId, covidDec, remarks, visitPurpose,  
+						 temperature, null , timestamp);
+				message = VMSManagerDAO.addVisitor(v);
+			}
+			else {
+				//Step 1a: if verify fail, return to add page, populate parameters
+				ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
+				request.setAttribute("responseObj", message);
+				request.setAttribute("visitorLatRec", v);
+				request.setAttribute("siteDropdown", siteDropdown);
+				RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
+				rd.forward(request, response);
+			}
+			
 		}
-		else if(!visitPurpose.equals("GOVERNMENT AGENCY")) {
-			//Step 2: add visitor if not GOVT AGENCY
-			v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
-					 hostName,  hostNo,  visitorCardId, covidDec, remarks, visitPurpose,  
-					 temperature, null , timestamp);
-			message = VMSManagerDAO.addVisitor(v);
-		}
-		else {
-			//Step 1a: if verify fail, return to add page, populate parameters
-			ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
-			request.setAttribute("responseObj", message);
-			request.setAttribute("visitorLatRec", v);
-			request.setAttribute("siteDropdown", siteDropdown);
-			RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
-			rd.forward(request, response);
-		}
-		
+
 		ArrayList<String> responseObj = new ArrayList<String>();
 		responseObj.add(message + " " + name);
 		request.setAttribute("responseObj", responseObj);

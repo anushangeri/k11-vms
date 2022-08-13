@@ -41,9 +41,8 @@ public class SendOTPSMSServlet extends HttpServlet {
 //
 //		String officerIdNo = request.getParameter("officerIdNo");
 
-		String otp = request.getParameter("otp");
-		System.out.println("otp generate first: " + otp);
-		sendOTP(mobileNo, otp);
+		String otpGenerated = request.getParameter("otpGenerated");
+		sendOTP(mobileNo, otpGenerated);
 
 //		Visitor v = new Visitor(vmsId, name, companyName, site, idType, idNo, mobileNo, vehicleNo, hostName, hostNo,
 //				visitorCardId, covidDec, remarks, visitPurpose, temperature, officerIdNo, timestamp);
@@ -54,7 +53,7 @@ public class SendOTPSMSServlet extends HttpServlet {
 //		request.setAttribute("visitorLatRec", v);
 //		request.setAttribute("siteDropdown", siteDropdown);
 //		request.setAttribute("visitPurpose", visitPurposes);
-		request.setAttribute("otpGenerated", otp);
+		request.setAttribute("otpGenerated", otpGenerated);
 		RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
 		rd.forward(request, response);
 	}
