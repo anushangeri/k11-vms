@@ -81,6 +81,15 @@ public class AddVisitorRecordServlet extends HttpServlet {
 			}
 			
 		}
+		else {
+			//if OTP verify fail, return to add page, populate parameters
+			ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
+			request.setAttribute("responseObj", message);
+			request.setAttribute("visitorLatRec", v);
+			request.setAttribute("siteDropdown", siteDropdown);
+			RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
+			rd.forward(request, response);
+		}
 		request.setAttribute("message", message);
 		// Redirect to view visitor servlet to query all the visitors again.
 		response.sendRedirect("/vms");

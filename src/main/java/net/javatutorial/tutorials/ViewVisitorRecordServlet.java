@@ -30,34 +30,32 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 		String name = (String) request.getSession(false).getAttribute("name");
 		String siteInCharge = (String) request.getSession(false).getAttribute("siteInCharge");
 
-		String message = request.getAttribute("message") != null || !StringUtils.isEmpty((String) request.getAttribute("message")) ? (String) request.getAttribute("message") : "" ;
-		
-		message = message + " No visitor records available for: " + name;
+		String message = "No visitor records available for: " + name;
 		ArrayList<Visitor> vList = null;
 		if (!StringUtils.isEmpty(idNo)) {
 			if (!StringUtils.isEmpty(usertype) && usertype != null
 					&& !(usertype.equals("CLIENT") || usertype.equals("OFFICER"))) {
 				vList = VMSManagerDAO.retrieveAll();
-				message =  message + " List of visitor records";
+				message = "List of visitor records";
 				request.setAttribute("vList", vList);
 				if (vList == null && vList.size() == 0) {
-					message = message + " No visitor records available";
+					message = "No visitor records available";
 				}
 			} else if (!StringUtils.isEmpty(usertype) && usertype != null
 					&& (usertype.equals("CLIENT") || usertype.equals("OFFICER"))
 					&& !StringUtils.isEmpty(siteInCharge)) {
 				vList = VMSManagerDAO.retrieveBySite(siteInCharge);
-				message =  message + " List of visitor records";
+				message = "List of visitor records";
 				request.setAttribute("vList", vList);
 				if (vList == null && vList.size() == 0) {
-					message =  message + " No visitor records available";
+					message = "No visitor records available";
 				}
 			} else {
 				vList = VMSManagerDAO.retrieveByNRIC(idNo);
-				message =  message + " List of visitor records for " + name;
+				message = "List of visitor records for " + name;
 				request.setAttribute("vList", vList);
 				if (vList == null && vList.size() == 0) {
-					message =  message + " No visitor records available for " + name;
+					message = "No visitor records available for " + name;
 				}
 			}
 		}
