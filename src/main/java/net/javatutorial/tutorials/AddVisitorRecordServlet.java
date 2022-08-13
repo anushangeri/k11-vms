@@ -81,10 +81,7 @@ public class AddVisitorRecordServlet extends HttpServlet {
 			}
 			
 		}
-
-		ArrayList<String> responseObj = new ArrayList<String>();
-		responseObj.add(message + " " + name);
-		request.setAttribute("responseObj", responseObj);
+		request.setAttribute("message", message);
 		// Redirect to view visitor servlet to query all the visitors again.
 		response.sendRedirect("/vms");
 	}

@@ -30,7 +30,9 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 		String name = (String) request.getSession(false).getAttribute("name");
 		String siteInCharge = (String) request.getSession(false).getAttribute("siteInCharge");
 
-		String message = "No visitor records available for: " + name;
+		String message = request.getAttribute("message") != null || !StringUtils.isEmpty((String) request.getAttribute("message")) ? (String) request.getAttribute("message") : "" ;
+		
+		message = message + " No visitor records available for: " + name;
 		ArrayList<Visitor> vList = null;
 		if (!StringUtils.isEmpty(idNo)) {
 			if (!StringUtils.isEmpty(usertype) && usertype != null
@@ -59,7 +61,6 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 				}
 			}
 		}
-
 		request.setAttribute("message", message);
 		RequestDispatcher rd = request.getRequestDispatcher("vms.jsp");
 		rd.forward(request, response);
