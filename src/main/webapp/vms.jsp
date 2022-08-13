@@ -65,12 +65,19 @@
 	<%
 		ArrayList<Visitor> vList = (ArrayList<Visitor>) request.getAttribute("vList");
 		String message = (String) request.getAttribute("message");
+		String responseObj = (String) request.getAttribute("responseObj");
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 		String idNo = "SxxxxxxxJ";
 		String userType = "";
 	 	if (request.getSession(false).getAttribute("idNo") != null) {
 	 		idNo = (String) request.getSession(false).getAttribute("idNo");
 	 		userType = (String) request.getSession(false).getAttribute("usertype");
+	 	}
+	 	if (responseObj != null && !StringUtils.isEmpty(responseObj)) {
+	 	%>
+	 		<label class="heading"><%=responseObj%> </label><br>
+
+	 	<%	
 	 	}
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
