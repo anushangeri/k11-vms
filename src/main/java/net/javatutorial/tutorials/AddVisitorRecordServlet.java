@@ -72,18 +72,9 @@ public class AddVisitorRecordServlet extends HttpServlet {
 						 temperature, null , timestamp);
 				message = VMSManagerDAO.addVisitor(v);
 			}
-			else {
-				//Step 1a: if verify fail, return to add page, populate parameters
-				ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
-				ArrayList<Dropdown> visitPurposes = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
-				request.setAttribute("responseObj", message);
-				request.setAttribute("visitorLatRec", v);
-				request.setAttribute("siteDropdown", siteDropdown);
-				request.setAttribute("visitPurpose", visitPurposes);
-				RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
-				rd.forward(request, response);
-			}
-			
+			request.setAttribute("message", message);
+			// Redirect to view visitor servlet to query all the visitors again.
+			response.sendRedirect("/vms");
 		}
 		else {
 			//if OTP verify fail, return to add page, populate parameters
@@ -92,12 +83,11 @@ public class AddVisitorRecordServlet extends HttpServlet {
 			request.setAttribute("responseObj", message);
 			request.setAttribute("visitorLatRec", v);
 			request.setAttribute("siteDropdown", siteDropdown);
+			request.setAttribute("visitPurpose", visitPurposes);
 			RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
 			rd.forward(request, response);
 		}
-		request.setAttribute("message", message);
-		// Redirect to view visitor servlet to query all the visitors again.
-		response.sendRedirect("/vms");
+		
 	}
 	@Override
 	public void init() throws ServletException {
