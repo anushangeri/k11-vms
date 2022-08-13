@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 
+import net.javatutorial.DAO.DropdownListManagerDAO;
 import net.javatutorial.DAO.SiteManagerDAO;
 import net.javatutorial.DAO.VMSManagerDAO;
+import net.javatutorial.entity.Dropdown;
 import net.javatutorial.entity.Site;
 import net.javatutorial.entity.Visitor;
 
@@ -73,9 +75,11 @@ public class AddVisitorRecordServlet extends HttpServlet {
 			else {
 				//Step 1a: if verify fail, return to add page, populate parameters
 				ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
+				ArrayList<Dropdown> visitPurposes = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
 				request.setAttribute("responseObj", message);
 				request.setAttribute("visitorLatRec", v);
 				request.setAttribute("siteDropdown", siteDropdown);
+				request.setAttribute("visitPurpose", visitPurposes);
 				RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
 				rd.forward(request, response);
 			}
@@ -84,6 +88,7 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		else {
 			//if OTP verify fail, return to add page, populate parameters
 			ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
+			ArrayList<Dropdown> visitPurposes = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
 			request.setAttribute("responseObj", message);
 			request.setAttribute("visitorLatRec", v);
 			request.setAttribute("siteDropdown", siteDropdown);
