@@ -60,9 +60,8 @@ function showPassword() {
 
 function getSMSOTP()
 {
-	Random random = new Random();
-    int num = random.nextInt(100000);
-    String otp = String.format("%05d", num);
+	
+    var otp = Math.floor((Math.random() * 1000000) + 1);
     
     var processedMobileNo =  document.querySelector("#processedMobileNo").value;
     document.querySelector("#otpGenerated").value = otp;
