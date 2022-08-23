@@ -1,3 +1,4 @@
+<%@page import="com.google.gdata.util.common.base.StringUtil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="loginVMSCSS.jsp"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
@@ -102,6 +103,7 @@ function getSMSOTP()
  	if (request.getAttribute("visitPurpose") != null) {
  		visitPurpose = (ArrayList<Dropdown>) request.getAttribute("visitPurpose");
  	}
+ 	// is not admin or officer, means is it a normal visitor
  	if (request.getSession(false).getAttribute("usertype") == null && request.getSession(false).getAttribute("idNo") != null) {
  		idNo = (String) request.getSession(false).getAttribute("idNo");
  		name = (String) request.getSession(false).getAttribute("name");
@@ -259,17 +261,19 @@ function getSMSOTP()
 								><input type="checkbox" onclick="showPassword()">Show Password
 						</div>
 					</div>
-					<div class="form-row">
-						<input type="button" class="btn btn-primary btn-lg active" onclick="getSMSOTP()" value="Get OTP">
-					</div> 
-					<br> <br>
-					<input type="hidden" name="otpGenerated" id="otpGenerated">
-					<div class="form-group col-md-6">
+					<% if(readOnlyStatus != null && readOnlyStatus.equalsIgnoreCase("required")){ %>
+						<div class="form-row">
+							<input type="button" class="btn btn-primary btn-lg active" onclick="getSMSOTP()" value="Get OTP">
+						</div> 
+						<br> <br>
+						<input type="hidden" name="otpGenerated" id="otpGenerated">
+						<div class="form-group col-md-6">
 							<label for="otpEntered">Enter SMS OTP received: </label> <input
 								type="text" class="form-control" name="otpEntered" id="otpEntered">
-					</div>
+							<button type="submit" class="btn btn-primary btn-lg active">Submit</button>
+						</div>
+					<%} %>
 					<div class="form-row">
-						<button type="submit" class="btn btn-primary btn-lg active">Submit</button>
 						<a href="/vms" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
 					</div>
