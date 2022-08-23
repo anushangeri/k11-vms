@@ -128,7 +128,7 @@ function getSMSOTP()
 						<div class="form-group col-md-6">
 							<label for="siteVisiting">Site You Are Visiting: </label> 
 							<% if(v == null){%>
-								<select name="siteVisiting" class="form-control" required>
+								<select name="siteVisiting" class="form-control" <%=readOnlyStatus %>>
 									<%
 										for (Site eachSite: siteDropdown) {
 									%>
@@ -140,7 +140,7 @@ function getSMSOTP()
 								</select>
 							<% } 
 							else {%>
-								<select name="siteVisiting" class="form-control" required>
+								<select name="siteVisiting" class="form-control" <%=readOnlyStatus %>>
 									<%
 										for (Site eachSite: siteDropdown) {
 									%>
@@ -163,14 +163,15 @@ function getSMSOTP()
 								minlength="4" maxlength="9"  <%=((v == null) ? "" : "readonly")%>>
 						</div>
 						<div class="form-group col-md-6">
-						    <label for="mobileNo">Mobile No.: </label> <input type="tel" id="mobileNo" name="mobileNo" onchange="processMobileNo(event)"/>
+						    <label for="mobileNo">Mobile No.: </label> <input type="tel" id="mobileNo" name="mobileNo"
+						    onchange="processMobileNo(event)" value="<%=((v == null) ? "" : v.getMobileNo())%>" <%=readOnlyStatus %>/>
 						    <input type="hidden" id="processedMobileNo" name="processedMobileNo"/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
 							<% if(v == null){%>
 								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
-									name="visitPurpose" class="form-control" required>
+									name="visitPurpose" class="form-control" <%=readOnlyStatus %>>
 									<%
 										for (Dropdown d: visitPurpose) {
 									%>
@@ -183,7 +184,7 @@ function getSMSOTP()
 							<% } 
 							else {%>
 								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
-									name="visitPurpose" class="form-control" required>
+									name="visitPurpose" class="form-control" <%=readOnlyStatus %>>
 									<%
 										for (Dropdown d: visitPurpose) {
 									%>
@@ -201,13 +202,13 @@ function getSMSOTP()
 							<label for="vehicleNo">Vehicle Number: </label> <input
 								type="text" class="form-control" name="vehicleNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getVehicleNo())%>" required>
+								value="<%=((v == null) ? "" : v.getVehicleNo())%>" <%=readOnlyStatus %>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="hostName">Host Name: </label> <input type="text"
 								class="form-control" name="hostName"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getHostName())%>" required>
+								value="<%=((v == null) ? "" : v.getHostName())%>" <%=readOnlyStatus %>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="hostNo">Host No.: </label> <input type="tel" id="hostNo" name="hostNo" onchange="processHostNo(event)"/>
@@ -217,7 +218,7 @@ function getSMSOTP()
 							<label for="visitorCardId">Visitor Card ID: </label> <input
 								type="text" class="form-control" name="visitorCardId"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getVisitorCardId())%>" required>
+								value="<%=((v == null) ? "" : v.getVisitorCardId())%>" <%=readOnlyStatus %>>
 						</div>
 <!-- 						<div class="form-group col-md-6"> -->
 <!-- 							<label for="temperature">Temperature: </label> <input type="text" -->
@@ -226,7 +227,8 @@ function getSMSOTP()
 <!-- 						</div> -->
 						<div class="form-group col-md-6">
 							<label for="remarks">Remarks: </label> <input type="text"
-								class="form-control" name="remarks" id="remarks">
+								class="form-control" name="remarks" id="remarks" 
+								value="<%=((v == null) ? "" : v.getRemarks())%>" <%=readOnlyStatus %>>
 						</div>
 					</div>
 <!-- 					<div class="form-row checkbox"> -->
