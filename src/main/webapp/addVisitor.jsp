@@ -263,16 +263,18 @@ function getSMSOTP()
 					</div>
 					<% if(readOnlyStatus != null && readOnlyStatus.equalsIgnoreCase("required")){ %>
 						<div class="form-row">
-							<div class="form-group col-md-3">
-								<input type="button" class="btn btn-primary btn-lg active" onclick="getSMSOTP()" value="Get OTP">
-							</div>	
-							<br> <br>
+								<div class="form-group col-md-6">
+									<input type="button" class="btn btn-primary btn-lg active" onclick="getSMSOTP()" value="Get OTP">
+								</div>	
+						</div>
+						<div class="form-row">
+							<br>
 							<input type="hidden" name="otpGenerated" id="otpGenerated">
-							<div class="form-group col-md-4">
+							<div class="form-group col-md-6">
 								<label for="otpEntered">Enter SMS OTP received: </label> <input
 									type="text" class="form-control" name="otpEntered" id="otpEntered">
 							</div>
-							<div class="form-group col-md-3">
+							<div class="form-group col-md-6">
 								<button type="submit" class="btn btn-primary btn-lg active">Submit</button>
 							</div>
 						</div> 
@@ -281,6 +283,7 @@ function getSMSOTP()
 					<div class="form-row">
 						<a href="/vms" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
+							<br>
 					</div>
 				</form>
 			</center>
