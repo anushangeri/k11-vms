@@ -1,11 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="org.apache.commons.collections.IteratorUtils"%>
-<%@page import="com.google.gdata.data.spreadsheet.CellEntry"%>
-<%@page import="com.google.gdata.data.spreadsheet.Cell"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="net.javatutorial.entity.*"%>
+<%@page import="net.javatutorial.DAO.DropdownListManagerDAO"%>
 <%@include file="loginVMSCSS.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.time.*"%>
@@ -13,12 +12,7 @@
 <%@page import="java.net.URL"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="com.google.gdata.client.spreadsheet.SpreadsheetService"%>
-<%@page
-	import="com.google.gdata.data.spreadsheet.CustomElementCollection"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListEntry"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListFeed"%>
-<%@page import="com.google.gdata.util.ServiceException"%>
+
 <%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -107,45 +101,10 @@
 </head>
 <body>
 	<%
-		ArrayList<String> idType = new ArrayList<String>();
-		ArrayList<String> accessType = new ArrayList<String>();
-		SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
-		try {
-			//Dropdown for idType START
-			String idTypeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/3/public/values";
-			// Use this String as url
-			URL idTypeurl = new URL(idTypeUrl);
-
-			// Get Feed of Spreadsheet url
-			ListFeed idTypelf = service.getFeed(idTypeurl, ListFeed.class);
-
-			for (ListEntry le : idTypelf.getEntries()) {
-				CustomElementCollection cec = le.getCustomElements();
-				idType.add(cec.getValue("idtype").trim());
-			}
-			//Dropdown for idType END
-			
-			//Dropdown for accessType START
-			//REMEMBER TO ADD A SPACE FOR THE FIRST EMPTY ROW!
-			String accessTypeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/10/public/values";
-			// Use this String as url
-			URL accessTypeurl = new URL(accessTypeUrl);
-
-			// Get Feed of Spreadsheet url
-			ListFeed accessTypelf = service.getFeed(accessTypeurl, ListFeed.class);
-
-			for (ListEntry le : accessTypelf.getEntries()) {
-				CustomElementCollection cec = le.getCustomElements();
-				accessType.add(cec.getValue("accesstype").trim());
-				
-			}
-			//Dropdown for accessType END
-
-		} catch (Exception e) {
-	%>
-	<h1><%=e%></h1>
-	<%
-		}
+		ArrayList<Dropdown> idType = null;
+	 	if (request.getAttribute("idType") != null) {
+	 		idType = DropdownListManagerDAO.retrieveByDropdownKey("ID_TYPE");
+	 	}
 	%>
 	<div class="container body-content">
 		<div class="page-header">

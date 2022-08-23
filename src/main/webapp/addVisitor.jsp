@@ -91,6 +91,7 @@ function getSMSOTP()
  	Visitor v = null;
  	ArrayList<Site> siteDropdown = new ArrayList<Site>();
  	ArrayList<Dropdown> visitPurpose = new ArrayList<Dropdown>();
+ 	String readOnlyStatus = "required"; //this is to set the status to readonly for view function only else it is a required field
  	if (request.getAttribute("visitorLatRec") != null) {
  		v = (Visitor) request.getAttribute("visitorLatRec");
  		otpGenerated = (String) request.getAttribute("otpGenerated");
@@ -105,6 +106,9 @@ function getSMSOTP()
  		idNo = (String) request.getSession(false).getAttribute("idNo");
  		name = (String) request.getSession(false).getAttribute("name");
  	}
+ 	if (request.getAttribute("status") != null) {
+ 		readOnlyStatus = (String) request.getAttribute("status");
+ 	}
  %>
 			<center>
 				<form action="addVisitor" method="post" name="addVisitor">
@@ -113,13 +117,13 @@ function getSMSOTP()
 							<label for="name">Name: </label> <input type="text"
 								class="form-control" name="name"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? name : v.getName())%>" required>
+								value="<%=((v == null) ? name : v.getName())%>" <%=readOnlyStatus %>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="companyName">Company Name: </label> <input
 								type="text" class="form-control" name="companyName"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
+								value="<%=((v == null) ? "" : v.getCompanyName())%>" <%=readOnlyStatus %>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="siteVisiting">Site You Are Visiting: </label> 
