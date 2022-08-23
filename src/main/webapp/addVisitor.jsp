@@ -164,9 +164,9 @@ function getSMSOTP()
 								value="<%=((v == null) ? "" : v.getIdNo())%>"
 								minlength="4" maxlength="9"  <%=((v == null) ? "" : "readonly")%>>
 						</div>
-						<div class="form-group col-md-6">
+						<div class="form-group col-md-4">
 						    <label for="mobileNo">Mobile No.: </label> <input type="tel" class="form-control" id="mobileNo" name="mobileNo"
-						    onchange="processMobileNo(event)" value="<%=((v == null) ? "" : v.getMobileNo())%>" <%=readOnlyStatus %>/>
+						    onchange="processMobileNo(event)" value="<%=((v == null) ? "" : v.getMobileNo())%>" <%=readOnlyStatus %>>
 						    <input type="hidden" id="processedMobileNo" name="processedMobileNo"/>
 						</div>
 						<div class="form-group col-md-4">
@@ -212,7 +212,7 @@ function getSMSOTP()
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getHostName())%>" <%=readOnlyStatus %>>
 						</div>
-						<div class="form-group col-md-6">
+						<div class="form-group col-md-4">
 							<label for="hostNo">Host No.: </label> <input type="tel" class="form-control" id="hostNo" name="hostNo" onchange="processHostNo(event)"/>
 							<input type="hidden" id="processedHostNo" name="processedHostNo"/>
 						</div>
@@ -246,7 +246,6 @@ function getSMSOTP()
 <!-- 						</label> -->
 <!-- 					</div> -->
 					<br>
-					<br>
 					<div id = "officerLogin" class="form-row">
 					<i>Please aproach guard house and seek approval from security officer on duty.</i>
 						<div class="form-group col-md-6">
@@ -255,7 +254,7 @@ function getSMSOTP()
 								minlength="4" maxlength="9">
 						</div>
 						<div class="form-group col-md-4">
-							<label for="officerpsw">Password</label> <input type="password" class="form-control" id="officerpsw"
+							<label for="officerpsw">Password:</label> <input type="password" class="form-control" id="officerpsw"
 								name="officerpsw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
 								><input type="checkbox" onclick="showPassword()">Show Password
