@@ -165,7 +165,7 @@ function getSMSOTP()
 								minlength="4" maxlength="9"  <%=((v == null) ? "" : "readonly")%>>
 						</div>
 						<div class="form-group col-md-6">
-						    <label for="mobileNo">Mobile No.: </label> <input type="tel" id="mobileNo" name="mobileNo"
+						    <label for="mobileNo">Mobile No.: </label> <input type="tel" class="form-control" id="mobileNo" name="mobileNo"
 						    onchange="processMobileNo(event)" value="<%=((v == null) ? "" : v.getMobileNo())%>" <%=readOnlyStatus %>/>
 						    <input type="hidden" id="processedMobileNo" name="processedMobileNo"/>
 						</div>
@@ -213,7 +213,7 @@ function getSMSOTP()
 								value="<%=((v == null) ? "" : v.getHostName())%>" <%=readOnlyStatus %>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="hostNo">Host No.: </label> <input type="tel" id="hostNo" name="hostNo" onchange="processHostNo(event)"/>
+							<label for="hostNo">Host No.: </label> <input type="tel" class="form-control" id="hostNo" name="hostNo" onchange="processHostNo(event)"/>
 							<input type="hidden" id="processedHostNo" name="processedHostNo"/>
 						</div>
 						<div class="form-group col-md-6">
@@ -263,18 +263,17 @@ function getSMSOTP()
 					</div>
 					<% if(readOnlyStatus != null && readOnlyStatus.equalsIgnoreCase("required")){ %>
 						<div class="form-row">
-								<div class="form-group col-md-6">
-									<input type="button" class="btn btn-primary btn-lg active" onclick="getSMSOTP()" value="Get OTP">
-								</div>	
+							<div class="form-group col-md-6">
+								<input type="button" class="btn btn-primary btn-lg active" onclick="getSMSOTP()" value="Get OTP">
+							</div>	
 						</div>
 						<div class="form-row">
-							<br>
 							<input type="hidden" name="otpGenerated" id="otpGenerated">
 							<div class="form-group col-md-6">
 								<label for="otpEntered">Enter SMS OTP received: </label> <input
 									type="text" class="form-control" name="otpEntered" id="otpEntered">
 							</div>
-							<div class="form-group col-md-6">
+							<div class="form-inline form-group col-md-6">
 								<button type="submit" class="btn btn-primary btn-lg active">Submit</button>
 							</div>
 						</div> 
