@@ -42,7 +42,9 @@ public class ProcessPasswordServlet extends HttpServlet {
 				verified = PasswordUtils.verifyPassword(password, key, salt);
 			}
 		}
-		if(verified) {
+		//if access type is not a warehouse user
+		if(verified &&
+				(c.getAccessType() != null && !StringUtils.isEmpty(c.getAccessType()) && !(c.getAccessType().equals("WAREHOUSE")))) {
 			session.setAttribute("idNo", c.getIdNo());
 			session.setAttribute("name", c.getName());
 			session.setAttribute("usertype", c.getAccessType());
