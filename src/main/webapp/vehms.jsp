@@ -181,7 +181,7 @@
 				%>
 				<tr>
 					<td><%=v.getVehicleId()%></td>
-					<td><form method="POST" action="/retrieveVehToPopulate">
+					<td><form method="GET" action="/retrieveVehToPopulate">
 							<input type="hidden" id="vehicleId" name="vehicleId"
 								value="<%=v.getVehicleId()%>"> <input type="hidden"
 								id="status" name="status" value="readonly"> <input
