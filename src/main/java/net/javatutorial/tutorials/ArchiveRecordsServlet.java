@@ -238,7 +238,6 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				visitorCurrMonthheader.createCell(13).setCellValue("Approving Officer");
 				visitorCurrMonthheader.createCell(14).setCellValue("Time In Date");
 				visitorCurrMonthheader.createCell(15).setCellValue("Time Out Date");
-				visitorCurrMonthheader.createCell(16).setCellValue("Archived Date");
 
 				rowid = 1;
 
@@ -266,7 +265,6 @@ public class ArchiveRecordsServlet extends HttpServlet {
 					if (a.getTimeOutDt() != null) {
 						row.createCell(15).setCellValue(a.getTimeOutDt().toString());
 					}
-					row.createCell(16).setCellValue(a.getArchivedDt().toString());
 				}
 				
 				XSSFSheet vehicleCurrMonthspreadsheet = workbook.createSheet(" Vehicle Records " + monthFormat.format(cal.getTime()) + "_" + yearFormat.format(cal.getTime()));
@@ -293,7 +291,6 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				vehicleCurrMonthheader.createCell(17).setCellValue("Warehouse Approver");
 				vehicleCurrMonthheader.createCell(18).setCellValue("Time In Date");
 				vehicleCurrMonthheader.createCell(19).setCellValue("Time Out Date");
-				vehicleCurrMonthheader.createCell(20).setCellValue("Archived Date");
 				
 				rowid = 1;
 
@@ -325,7 +322,6 @@ public class ArchiveRecordsServlet extends HttpServlet {
 					if (a.getTimeOutDt() != null) {
 						row.createCell(19).setCellValue(a.getTimeOutDt().toString());
 					}
-					row.createCell(20).setCellValue(a.getArchivedDt().toString());
 				}
 				
 				
