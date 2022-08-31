@@ -145,6 +145,10 @@
 					<th class="th-sm">Warehouse Approver</th>
 					<%
 					}
+					else{ %>
+						<th class="th-sm" style="display: none;">Warehouse Approver</th>
+					<% 
+					}
 					%>
 					<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
 					<%
@@ -200,7 +204,12 @@
 								<%=(userType != null && userType.equals("WAREHOUSE")) ? "" : "disabled"%>>
 						</form>
 					</td>
-					<%}%>
+					<%} else {
+					%>
+					<td style="display: none;">Approval function disable for this user</td>
+					<%
+					}
+					%>
 					<td><%=v.getName()%></td>
 					<td><%=v.getCompanyName()%></td>
 					<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
