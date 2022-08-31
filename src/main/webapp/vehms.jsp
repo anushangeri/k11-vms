@@ -197,7 +197,7 @@
 								value="<%=v.getVehicleId()%>"> <input type="hidden"
 								id="approverId" name="approverId" value="<%=idNo%>"> <input
 								type="submit" name="Submit" value="Approve"
-								disabled=<%=(userType != null && userType.equals("WAREHOUSE")) ? "" : "disabled"%>>
+								<%=(userType != null && userType.equals("WAREHOUSE")) ? "" : "disabled"%>>
 						</form>
 					</td>
 					<%}%>

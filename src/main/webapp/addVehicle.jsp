@@ -21,10 +21,10 @@
 <html>
 <head>
 <link rel="stylesheet"
-	href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+	href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
 <style type="text/css"></style>
 <script type="text/javascript"
-	src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+	src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
 <script>
 	function validateForm() {
@@ -195,7 +195,7 @@
 						</div>
 						<div class="form-group col-md-4">
 							<input type="checkbox" id="loadedNoLoaded" name="loadedNoLoaded"
-								value="Yes" checked=<%=v.getLoadedNoLoaded().equals("Yes") ? "checked" : ""%> disabled=<%=status.equals("readonly") ? "disabled" : ""%>> <label
+								value="Yes" <%=v.getLoadedNoLoaded().equals("Yes") ? "checked" : ""%> <%=status.equals("readonly") ? "disabled" : ""%>> <label
 								for="loadedNoLoaded"> Select if container is loaded. </label>
 						</div>
 					</div>
