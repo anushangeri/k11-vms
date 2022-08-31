@@ -184,7 +184,7 @@
 							<label for="primeMoverNo">Vehicle/Primemover Number (车号):
 							</label> <input type="text" class="form-control" name="primeMoverNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getPrimeMoverNo())%>" required>
+								value="<%=((v == null) ? "" : v.getPrimeMoverNo())%>" <%=status%>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="containerNo">Container Number: </label> <input
@@ -195,9 +195,7 @@
 						</div>
 						<div class="form-group col-md-4">
 							<input type="checkbox" id="loadedNoLoaded" name="loadedNoLoaded"
-								value="Yes"
-								<%=v.getLoadedNoLoaded().equals("Yes") ? "checked" : ""%>
-								<%=status.equals("readonly") ? status : ""%>> <label
+								value="Yes" checked=<%=v.getLoadedNoLoaded().equals("Yes") ? "checked" : ""%> disabled=<%=status.equals("readonly") ? "disabled" : ""%>> <label
 								for="loadedNoLoaded"> Select if container is loaded. </label>
 						</div>
 					</div>
@@ -288,7 +286,7 @@
 					<!-- 						</label> -->
 					<!-- 					</div> -->
 					<div class="form-row">
-						<button type="submit" class="btn btn-primary btn-lg active">Submit
+						<button type="submit" class="btn btn-primary btn-lg active" <%=status.equals("readonly") ? "disabled" : ""%>>Submit
 							Record</button>
 						<a href="/vehms" class="btn btn-warning btn-lg active"
 							role="button" aria-pressed="true">Back</a>
