@@ -246,6 +246,12 @@
 		<servlet-name>CVehMSArchivedTblServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.CVehMSArchivedTblServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>UVehMSArchiveTblServlet</display-name>
+		<servlet-name>UVehMSArchiveTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UVehMSArchiveTblServlet</servlet-class>
+	</servlet>
 	<!-- VEHMS Archived END  -->
 	
 	<!-- Client Account START  -->
@@ -527,6 +533,10 @@
 		<servlet-name>CVehMSArchivedTblServlet</servlet-name>
 		<url-pattern>/createVehMSArchivedTbl</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UVehMSArchiveTblServlet</servlet-name>
+		<url-pattern>/updateVehmsArchivedTbl</url-pattern>
+	</servlet-mapping>	
 	<!-- VEHMS Archived END  -->
 	
 	<!-- Client Account START  -->
