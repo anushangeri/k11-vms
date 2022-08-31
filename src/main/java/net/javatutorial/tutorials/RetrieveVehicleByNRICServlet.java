@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 
 import net.javatutorial.DAO.DropdownListManagerDAO;
-import net.javatutorial.DAO.VMSManagerDAO;
+import net.javatutorial.DAO.SiteManagerDAO;
 import net.javatutorial.DAO.VehMSManagerDAO;
 import net.javatutorial.entity.Dropdown;
+import net.javatutorial.entity.Site;
 import net.javatutorial.entity.Vehicle;
 
 /**
@@ -53,10 +54,12 @@ public class RetrieveVehicleByNRICServlet extends HttpServlet {
 		//getting all the dropdown
 		ArrayList<Dropdown> vehiclePurpose = DropdownListManagerDAO.retrieveByDropdownKey("VEHICLE_PURPOSE");
 		ArrayList<Dropdown> containerSize = DropdownListManagerDAO.retrieveByDropdownKey("VEHICLE_SIZE");
+		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		
 		request.setAttribute("vehicleLatRec", v);
 		request.setAttribute("containerSize", containerSize);
 		request.setAttribute("vehiclePurpose", vehiclePurpose);
+		request.setAttribute("siteDropdown", siteDropdown);
 		
         RequestDispatcher rd = request.getRequestDispatcher("addVehicle.jsp");
         rd.forward(request, response);

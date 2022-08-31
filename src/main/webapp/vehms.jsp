@@ -95,7 +95,7 @@
 								 <th class="th-sm">ID Number</th>
 							<%
 							}%>
-							<th class="th-sm">Visitor Contact Number</th>
+							<th class="th-sm">Driver Contact Number</th>
 							<th class="th-sm">Vehicle No./Primemover No.</th>
 							<th class="th-sm">Loaded/Not Loaded</th>
 							<th class="th-sm">Container No.</th>

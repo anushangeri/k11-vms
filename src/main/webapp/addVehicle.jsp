@@ -40,14 +40,15 @@
 <body>
 	<div class="container body-content">
 		<div class="page-header">
-			<label class="heading">Vehicle Management System</label> <br> <b>How
-				to use:</b> Please enter Visitor Details.
+			<label class="heading">Vehicle Management System - Gate Pass</label> <br> <b>How
+				to use:</b> Please enter Vehicle Details where relevant
 			<%
  	String idNo = "SxxxxxxxJ";
     String name = "";			
 	Vehicle v = null;
 	ArrayList<Dropdown> vehiclePurpose = new ArrayList<Dropdown>();
  	ArrayList<Dropdown> containerSize = new ArrayList<Dropdown>();
+ 	ArrayList<Site> siteDropdown = new ArrayList<Site>();
  	if (request.getAttribute("vehicleLatRec") != null) {
  		v = (Vehicle) request.getAttribute("vehicleLatRec");
  	}
@@ -56,6 +57,9 @@
  	}
  	if (request.getAttribute("containerSize") != null) {
  		containerSize = (ArrayList<Dropdown>) request.getAttribute("containerSize");
+ 	}
+ 	if (request.getAttribute("siteDropdown") != null) {
+ 		siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
  	}
  	if (request.getSession(false).getAttribute("usertype") == null && request.getSession(false).getAttribute("idNo") != null) {
  		idNo = (String) request.getSession(false).getAttribute("idNo");
@@ -66,28 +70,63 @@
 				<form action="addVehicle" method="post" name="addVehicle" onsubmit="return validateForm()">
 					<div class="form-row"> 
 						<div class="form-group col-md-6">
-							<label for="name">Vehicle Driver Name: </label> <input type="text"
+							<label for="name">Vehicle Driver Name(司机姓名): </label> <input type="text"
 								class="form-control" name="name"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? name : v.getName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="companyName">Company Name: </label> <input
+							<label for="companyName">Company Name (你的公司): </label> <input
 								type="text" class="form-control" name="companyName"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
 						</div>
+						<div class="form-group col-md-6">
+							<label for="warehouseLevel">Warehouse Level (仓库层): </label> <input
+								type="int" class="form-control" name="warehouseLevel"
+								value="<%=((v == null) ? 0 : v.getWarehouseLevel())%>" required>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="site">Site/Warehouse Name (仓库名称): </label> 
+							<% if(v == null){%>
+								<select
+									name="site" class="form-control" required>
+									<%
+										for (Site d: siteDropdown) {
+									%>
+									<option value="<%=d.getSiteName()%>">
+										<%=d.getSiteName()%></option>
+									<%
+										}
+									%>
+								</select>
+							<% } 
+							else {%>
+								<select
+									name="site" class="form-control" required>
+									<%
+										for (Site d: siteDropdown) {
+									%>
+									<option value="<%=d.getSiteName()%>" 
+										<%=v.getSite().equals(d.getSiteName()) ? "selected" : "" %>>
+										<%=d.getSiteName()%></option>
+									<%
+										}
+									%>
+								</select>
+							<%} %>
+						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="idNo">Vehicle Driver ID Number: </label> <input type="text"
+							<label for="idNo">Driver ID Number: </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getIdNo())%>"
 								minlength="4" maxlength="9" <%=((v == null) ? "" : "readonly")%>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="mobileNo">Mobile: </label> <input type="text"
+							<label for="mobileNo">Mobile Number (手机号码): </label> <input type="text"
 								class="form-control" name="mobileNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
@@ -96,7 +135,7 @@
 							<label for="visitPurpose">Visit Purpose: </label> 
 							<% if(v == null){%>
 								<select
-									name="visitPurpose" class="form-control" required>
+									name="visitPurpose" class="form-control">
 									<%
 										for (Dropdown d: vehiclePurpose) {
 									%>
@@ -109,7 +148,7 @@
 							<% } 
 							else {%>
 								<select
-									name="visitPurpose" class="form-control" required>
+									name="visitPurpose" class="form-control">
 									<%
 										for (Dropdown d: vehiclePurpose) {
 									%>
@@ -125,10 +164,10 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="primeMoverNo">Vehicle/Primemover Number: </label> <input
+							<label for="primeMoverNo">Vehicle/Primemover Number (车号): </label> <input
 								type="text" class="form-control" name="primeMoverNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getPrimeMoverNo())%>">
+								value="<%=((v == null) ? "" : v.getPrimeMoverNo())%>" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="containerNo">Container Number: </label> <input type="text"

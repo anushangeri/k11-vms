@@ -5,12 +5,12 @@ import java.sql.Timestamp;
 public class ClientAccount {
 	private String accountId;
     private String name;
-    private String site;
+    private String site; //essentially this is the site name in the site module, site name is also considered a warehouse name
     private String idType;
-    private String idNo;
+    private String idNo; // also can be generic username
     private String password;
     private String salt;
-    private String accessType;
+    private String accessType; //ADMIN, MANAGEMENT, OFFICER, WAREHOUSE (can be added via dropdown module)
     private Timestamp createdDt;
     private Timestamp modifiedDt;
     
