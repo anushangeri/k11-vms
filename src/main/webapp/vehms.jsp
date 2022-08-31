@@ -194,12 +194,13 @@
 						//if access type is a warehouse user then they can approve, all other usertype cannot approve
 					%>
 					<td>
+						<%=v.getWarehouseApprover()%>
 						<form method="POST" action="/updateVehAprrove">
 							<input type="hidden" id="vehicleId" name="vehicleId"
 								value="<%=v.getVehicleId()%>"> <input type="hidden"
 								id="approverId" name="approverId" value="<%=idNo%>"> <input
 								type="submit" name="Submit" value="Approve"
-								<%=(userType != null && userType.equals("WAREHOUSE")) ? "" : "disabled"%>>
+								<%=(userType != null && userType.equals("WAREHOUSE") && v.getWarehouseApprover() == null) ? "" : "disabled"%>>
 						</form>
 					</td>
 					<%}

@@ -27,33 +27,33 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 		String name = (String) request.getSession(false).getAttribute("name");
 		String siteInCharge = (String) request.getSession(false).getAttribute("siteInCharge");
 		
-		String message = "No vehicle records available for: " + name;
+		String message = "No vehicle / gate pass records available for: " + name;
 		ArrayList<Vehicle> vList = null;
 		if(!StringUtils.isEmpty(idNo)) {
 			if(!StringUtils.isEmpty(usertype) && usertype != null
 					&& (usertype.equals("ADMIN") || usertype.equals("MANAGEMENT"))) {
 				vList = VehMSManagerDAO.retrieveAll();
-				message = "List of vehicle records";
+				message = "List of vehicle / gate pass records";
 				request.setAttribute("vList", vList);
 				if(vList == null && vList.size() == 0) {
-					message = "No vehicle records available";
+					message = "No vehicle / gate pass records available";
 				}
 			}
 			else if(!StringUtils.isEmpty(usertype) && usertype != null && !StringUtils.isEmpty(siteInCharge) && siteInCharge != null
 					&& (usertype.equals("CLIENT") || usertype.equals("OFFICER") || usertype.equals("WAREHOUSE"))) {
 				vList = VehMSManagerDAO.retrieveBySite(siteInCharge);
-				message = "List of vehicle records";
+				message = "List of vehicle / gate pass records";
 				request.setAttribute("vList", vList);
 				if(vList == null && vList.size() == 0) {
-					message = "No vehicle records available";
+					message = "No vehicle / gate pass records available";
 				}
 			}
 			else{
 				vList = VehMSManagerDAO.retrieveByNRIC(idNo);
-				message = "List of vehicle records for " + name;
+				message = "List of vehicle / gate pass records for " + name;
 				request.setAttribute("vList", vList);
 				if(vList == null && vList.size() == 0) {
-					message = "No vehicle records available for " + name;
+					message = "No vehicle / gate pass records available for " + name;
 				}
 			}
 		}

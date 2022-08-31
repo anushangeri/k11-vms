@@ -56,6 +56,7 @@
 					<div class="card bg-warning text-white">
 						<div class="card-body font-size-percent">
 							Are you one of the following? <br> 
+							• gate pass <br> 
 							• commercial vehicle <br>
 							• container <br> 
 							Select this.

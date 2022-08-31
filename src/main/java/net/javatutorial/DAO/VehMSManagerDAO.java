@@ -566,7 +566,7 @@ public class VehMSManagerDAO {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
-        String message = "All records deleted - No vehicle records available";
+        String message = "All records deleted - No vehicle / gate pass records available";
         try {
         	connection = Main.getConnection();
             String sql = "DELETE FROM VEHMS WHERE TIME_IN_DT <= GETDATE() - 30;";
