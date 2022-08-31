@@ -34,7 +34,8 @@ public class VehMSArchiveManagerDAO {
 	        		+ " VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, TIME_IN_DT, TIME_OUT_DT, ARCHIVED_DT)" + 
 	        		"  SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, CONTAINER_NO, "
 	        		+ " LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO,"
-	        		+ " VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, TIME_IN_DT, TIME_OUT_DT, NOW() "
+	        		+ " VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, "
+	        		+ " TIME_IN_DT, TIME_OUT_DT, NOW() "
 	        		+ " FROM VEHMS WHERE TIME_IN_DT <= (CURRENT_DATE - INTERVAL '30 days');"
 	        		+ " DELETE FROM VEHMS WHERE TIME_IN_DT <= (CURRENT_DATE - INTERVAL '30 days');");
 	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM VEHMS_ARCHIVED;");
@@ -67,7 +68,8 @@ public class VehMSArchiveManagerDAO {
         	connection = Main.getConnection();
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, "
             		+ "CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" 
-            		+ "VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, TIME_IN_DT, TIME_OUT_DT, ARCHIVED_DT  \r\n"
+            		+ "VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER,"
+            		+ "TIME_IN_DT, TIME_OUT_DT, ARCHIVED_DT  \r\n"
             		+ "FROM VEHMS_ARCHIVED ORDER BY TIME_IN_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
@@ -90,9 +92,12 @@ public class VehMSArchiveManagerDAO {
             			rs.getString(15),
             			rs.getString(16),
             			rs.getString(17),
-            			rs.getTimestamp(18),
-            			rs.getTimestamp(19),
-            			rs.getTimestamp(20));
+            			rs.getInt(18),
+            			rs.getString(19),
+            			rs.getString(20),
+            			rs.getTimestamp(21),
+            			rs.getTimestamp(22),
+            			rs.getTimestamp(23));
                 vList.add(v);
             }
         } catch (Exception e) {
