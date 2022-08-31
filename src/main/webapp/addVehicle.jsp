@@ -25,7 +25,7 @@
 <style type="text/css"></style>
 <script type="text/javascript"
 	src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-	
+
 <script>
 	function validateForm() {
 		var tempAsStr = document.forms["addVehicle"]["temperature"].value;
@@ -35,86 +35,98 @@
 			return false;
 		}
 	}
-</script>	
+</script>
 </head>
 <body>
 	<div class="container body-content">
 		<div class="page-header">
-			<label class="heading">Vehicle Management System - Gate Pass</label> <br> <b>How
-				to use:</b> Please enter Vehicle Details where relevant
+			<label class="heading">Vehicle Management System - Gate Pass</label>
+			<br> <b>How to use:</b> Please enter Vehicle Details where
+			relevant
 			<%
- 	String idNo = "SxxxxxxxJ";
-    String name = "";			
-	Vehicle v = null;
-	ArrayList<Dropdown> vehiclePurpose = new ArrayList<Dropdown>();
- 	ArrayList<Dropdown> containerSize = new ArrayList<Dropdown>();
- 	ArrayList<Site> siteDropdown = new ArrayList<Site>();
- 	if (request.getAttribute("vehicleLatRec") != null) {
- 		v = (Vehicle) request.getAttribute("vehicleLatRec");
- 	}
- 	if (request.getAttribute("vehiclePurpose") != null) {
- 		vehiclePurpose = (ArrayList<Dropdown>) request.getAttribute("vehiclePurpose");
- 	}
- 	if (request.getAttribute("containerSize") != null) {
- 		containerSize = (ArrayList<Dropdown>) request.getAttribute("containerSize");
- 	}
- 	if (request.getAttribute("siteDropdown") != null) {
- 		siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
- 	}
- 	if (request.getSession(false).getAttribute("usertype") == null && request.getSession(false).getAttribute("idNo") != null) {
- 		idNo = (String) request.getSession(false).getAttribute("idNo");
- 		name = (String) request.getSession(false).getAttribute("name");
- 	}
+ String idNo = "SxxxxxxxJ";
+ String name = "";
+ String status = "required";
+ Vehicle v = null;
+ ArrayList<Dropdown> vehiclePurpose = new ArrayList<Dropdown>();
+ ArrayList<Dropdown> containerSize = new ArrayList<Dropdown>();
+ ArrayList<Site> siteDropdown = new ArrayList<Site>();
+ if (request.getAttribute("vehicleLatRec") != null) {
+ 	v = (Vehicle) request.getAttribute("vehicleLatRec");
+ }
+ if (request.getAttribute("status") != null) {
+ 	status = (String) request.getAttribute("status");
+ }
+ if (request.getAttribute("vehiclePurpose") != null) {
+ 	vehiclePurpose = (ArrayList<Dropdown>) request.getAttribute("vehiclePurpose");
+ }
+ if (request.getAttribute("containerSize") != null) {
+ 	containerSize = (ArrayList<Dropdown>) request.getAttribute("containerSize");
+ }
+ if (request.getAttribute("siteDropdown") != null) {
+ 	siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
+ }
+ if (request.getSession(false).getAttribute("usertype") == null
+ 		&& request.getSession(false).getAttribute("idNo") != null) {
+ 	idNo = (String) request.getSession(false).getAttribute("idNo");
+ 	name = (String) request.getSession(false).getAttribute("name");
+ }
  %>
 			<center>
-				<form action="addVehicle" method="post" name="addVehicle" onsubmit="return validateForm()">
-					<div class="form-row"> 
+				<form action="addVehicle" method="post" name="addVehicle"
+					onsubmit="return validateForm()">
+					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="name">Vehicle Driver Name(司机姓名): </label> <input type="text"
-								class="form-control" name="name"
+							<label for="name">Vehicle Driver Name(司机姓名): </label> <input
+								type="text" class="form-control" name="name"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? name : v.getName())%>" required>
+								value="<%=((v == null) ? name : v.getName())%>" <%=status%>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="companyName">Company Name (你的公司): </label> <input
 								type="text" class="form-control" name="companyName"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
+								value="<%=((v == null) ? "" : v.getCompanyName())%>"
+								<%=status%>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="warehouseLevel">Warehouse Level (仓库层): </label> <input
 								type="number" class="form-control" name="warehouseLevel"
-								value="<%=((v == null) ? 0 : v.getWarehouseLevel())%>" required>
+								value="<%=((v == null) ? 0 : v.getWarehouseLevel())%>"
+								<%=status%>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="site">Site/Warehouse Name (仓库名称): </label> 
-							<% if(v == null){%>
-								<select
-									name="site" class="form-control" required>
-									<%
-										for (Site d: siteDropdown) {
-									%>
-									<option value="<%=d.getSiteName()%>">
-										<%=d.getSiteName()%></option>
-									<%
-										}
-									%>
-								</select>
-							<% } 
-							else {%>
-								<select
-									name="site" class="form-control" required>
-									<%
-										for (Site d: siteDropdown) {
-									%>
-									<option value="<%=d.getSiteName()%>" 
-										<%=v.getSite().equals(d.getSiteName()) ? "selected" : "" %>>
-										<%=d.getSiteName()%></option>
-									<%
-										}
-									%>
-								</select>
-							<%} %>
+							<label for="site">Site/Warehouse Name (仓库名称): </label>
+							<%
+							if (v == null) {
+							%>
+							<select name="site" class="form-control" <%=status%>>
+								<%
+								for (Site d : siteDropdown) {
+								%>
+								<option value="<%=d.getSiteName()%>">
+									<%=d.getSiteName()%></option>
+								<%
+								}
+								%>
+							</select>
+							<%
+							} else {
+							%>
+							<select name="site" class="form-control" <%=status%>>
+								<%
+								for (Site d : siteDropdown) {
+								%>
+								<option value="<%=d.getSiteName()%>"
+									<%=v.getSite().equals(d.getSiteName()) ? "selected" : ""%>>
+									<%=d.getSiteName()%></option>
+								<%
+								}
+								%>
+							</select>
+							<%
+							}
+							%>
 						</div>
 					</div>
 					<div class="form-row">
@@ -122,64 +134,71 @@
 							<label for="idNo">Driver ID Number: </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getIdNo())%>"
-								minlength="4" maxlength="9" <%=((v == null) ? "" : "readonly")%>>
+								value="<%=((v == null) ? idNo : v.getIdNo())%>" minlength="4"
+								maxlength="9" <%=status%>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="mobileNo">Mobile Number (手机号码): </label> <input type="text"
-								class="form-control" name="mobileNo"
+							<label for="mobileNo">Mobile Number (手机号码): </label> <input
+								type="text" class="form-control" name="mobileNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
+								value="<%=((v == null) ? "" : v.getMobileNo())%>" <%=status%>>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="visitPurpose">Visit Purpose: </label> 
-							<% if(v == null){%>
-								<select
-									name="visitPurpose" class="form-control">
-									<%
-										for (Dropdown d: vehiclePurpose) {
-									%>
-									<option value="<%=d.getDropdownValue()%>">
-										<%=d.getDropdownValue()%></option>
-									<%
-										}
-									%>
-								</select>
-							<% } 
-							else {%>
-								<select
-									name="visitPurpose" class="form-control">
-									<%
-										for (Dropdown d: vehiclePurpose) {
-									%>
-									<option value="<%=d.getDropdownValue()%>" 
-										<%=v.getVisitPurpose().equals(d.getDropdownValue()) ? "selected" : "" %>>
-										<%=d.getDropdownValue()%></option>
-									<%
-										}
-									%>
-								</select>
-							<%} %>
+							<label for="visitPurpose">Visit Purpose: </label>
+							<%
+							if (v == null) {
+							%>
+							<select name="visitPurpose" class="form-control"
+								<%=status.equals("readonly") ? status : ""%>>
+								<%
+								for (Dropdown d : vehiclePurpose) {
+								%>
+								<option value="<%=d.getDropdownValue()%>">
+									<%=d.getDropdownValue()%></option>
+								<%
+								}
+								%>
+							</select>
+							<%
+							} else {
+							%>
+							<select name="visitPurpose" class="form-control"
+								<%=status.equals("readonly") ? status : ""%>>
+								<%
+								for (Dropdown d : vehiclePurpose) {
+								%>
+								<option value="<%=d.getDropdownValue()%>"
+									<%=v.getVisitPurpose().equals(d.getDropdownValue()) ? "selected" : ""%>>
+									<%=d.getDropdownValue()%></option>
+								<%
+								}
+								%>
+							</select>
+							<%
+							}
+							%>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="primeMoverNo">Vehicle/Primemover Number (车号): </label> <input
-								type="text" class="form-control" name="primeMoverNo"
+							<label for="primeMoverNo">Vehicle/Primemover Number (车号):
+							</label> <input type="text" class="form-control" name="primeMoverNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getPrimeMoverNo())%>" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="containerNo">Container Number: </label> <input type="text"
-								class="form-control" name="containerNo"
+							<label for="containerNo">Container Number: </label> <input
+								type="text" class="form-control" name="containerNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getContainerNo())%>">
+								value="<%=((v == null) ? "" : v.getContainerNo())%>"
+								<%=status.equals("readonly") ? status : ""%>>
 						</div>
 						<div class="form-group col-md-4">
-							<input type="checkbox" id="loadedNoLoaded"
-								name="loadedNoLoaded" value="Yes" > <label
-								for="loadedNoLoaded"> Select if container is loaded.
-						</label>
+							<input type="checkbox" id="loadedNoLoaded" name="loadedNoLoaded"
+								value="Yes"
+								<%=v.getLoadedNoLoaded().equals("Yes") ? "checked" : ""%>
+								<%=status.equals("readonly") ? status : ""%>> <label
+								for="loadedNoLoaded"> Select if container is loaded. </label>
 						</div>
 					</div>
 					<div class="form-row">
@@ -187,37 +206,43 @@
 							<label for="sealNo">Seal No: </label> <input type="text"
 								class="form-control" name="sealNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getSealNo())%>">
+								value="<%=((v == null) ? "" : v.getSealNo())%>"
+								<%=status.equals("readonly") ? status : ""%>>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="containerSize">Container Size: </label> 
-							<% if(v == null || v.getContainerSize() == null || StringUtils.isEmpty(v.getContainerSize())){%>
-								<select
-									name="containerSize" class="form-control">
-									<%
-										for (Dropdown d: containerSize) {
-									%>
-									<option value="<%=d.getDropdownValue()%>" >
-										<%=d.getDropdownValue()%></option>
-									<%
-										}
-									%>
-								</select>
-							<% } 
-							else {%>
-								<select
-									name="containerSize" class="form-control">
-									<%
-										for (Dropdown d: containerSize) {
-									%>
-									<option value="<%=d.getDropdownValue()%>" 
-										<%=v.getContainerSize().equals(d.getDropdownValue()) ? "selected" : "" %>>
-										<%=d.getDropdownValue()%></option>
-									<%
-										}
-									%>
-								</select>
-							<%} %>
+							<label for="containerSize">Container Size: </label>
+							<%
+							if (v == null || v.getContainerSize() == null || StringUtils.isEmpty(v.getContainerSize())) {
+							%>
+							<select name="containerSize" class="form-control"
+								<%=status.equals("readonly") ? status : ""%>>
+								<%
+								for (Dropdown d : containerSize) {
+								%>
+								<option value="<%=d.getDropdownValue()%>">
+									<%=d.getDropdownValue()%></option>
+								<%
+								}
+								%>
+							</select>
+							<%
+							} else {
+							%>
+							<select name="containerSize" class="form-control"
+								<%=status.equals("readonly") ? status : ""%>>
+								<%
+								for (Dropdown d : containerSize) {
+								%>
+								<option value="<%=d.getDropdownValue()%>"
+									<%=v.getContainerSize().equals(d.getDropdownValue()) ? "selected" : ""%>>
+									<%=d.getDropdownValue()%></option>
+								<%
+								}
+								%>
+							</select>
+							<%
+							}
+							%>
 						</div>
 					</div>
 					<div class="form-row">
@@ -225,43 +250,48 @@
 							<label for="lorryChetNumber">Lorry Chet Number: </label> <input
 								type="text" class="form-control" name="lorryChetNumber"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getLorryChetNumber())%>">
+								value="<%=((v == null) ? "" : v.getLorryChetNumber())%>"
+								<%=status.equals("readonly") ? status : ""%>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="deliveryNoticeNumber">Delivery Notice Number: </label> <input type="text"
-								class="form-control" name="deliveryNoticeNumber"
+							<label for="deliveryNoticeNumber">Delivery Notice Number:
+							</label> <input type="text" class="form-control"
+								name="deliveryNoticeNumber"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getDeliveryNoticeNumber())%>">
+								value="<%=((v == null) ? "" : v.getDeliveryNoticeNumber())%>"
+								<%=status.equals("readonly") ? status : ""%>>
 						</div>
 					</div>
 					<div class="form-row">
-<!-- 						<div class="form-group col-md-6"> -->
-<!-- 							<label for="temperature">Temperature: </label> <input type="text" -->
-<!-- 								class="form-control" name="temperature" id="temperature" -->
-<!-- 								placeholder="36.6" minlength="2" maxlength="4" required> -->
-<!-- 						</div> -->
+						<!-- 						<div class="form-group col-md-6"> -->
+						<!-- 							<label for="temperature">Temperature: </label> <input type="text" -->
+						<!-- 								class="form-control" name="temperature" id="temperature" -->
+						<!-- 								placeholder="36.6" minlength="2" maxlength="4" required> -->
+						<!-- 						</div> -->
 						<div class="form-group col-md-6">
 							<label for="remarks">Remarks: </label> <input type="text"
-								class="form-control" name="remarks" id="remarks">
+								class="form-control" name="remarks" id="remarks"
+								value="<%=((v == null) ? "" : v.getRemarks())%>"
+								<%=status.equals("readonly") ? status : ""%>>
 						</div>
 					</div>
-<!-- 					<div class="form-row checkbox"> -->
-<!-- 						<input type="checkbox" id="coviddeclaration" -->
-<!-- 							name="coviddeclaration" value="Yes" required> <label -->
-<!-- 							for="coviddeclaration"> I confirm that I am NOT -->
-<!-- 							experiencing any of the following symptoms: <br> • fever -->
-<!-- 							(feeling hot to the touch, a temperature of 37.8 degrees Celsius -->
-<!-- 							or higher)<br> • new onset of cough (continuous, more than -->
-<!-- 							usual)<br> • difficulty breathing<br> <b>*Individuals -->
-<!-- 								are required to self-identify should they experience any -->
-<!-- 								COVID-19 symptoms.</b> -->
-<!-- 						</label> -->
-<!-- 					</div> -->
+					<!-- 					<div class="form-row checkbox"> -->
+					<!-- 						<input type="checkbox" id="coviddeclaration" -->
+					<!-- 							name="coviddeclaration" value="Yes" required> <label -->
+					<!-- 							for="coviddeclaration"> I confirm that I am NOT -->
+					<!-- 							experiencing any of the following symptoms: <br> • fever -->
+					<!-- 							(feeling hot to the touch, a temperature of 37.8 degrees Celsius -->
+					<!-- 							or higher)<br> • new onset of cough (continuous, more than -->
+					<!-- 							usual)<br> • difficulty breathing<br> <b>*Individuals -->
+					<!-- 								are required to self-identify should they experience any -->
+					<!-- 								COVID-19 symptoms.</b> -->
+					<!-- 						</label> -->
+					<!-- 					</div> -->
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active">Submit
 							Record</button>
-						<a href="/vehms" class="btn btn-warning btn-lg active" role="button"
-							aria-pressed="true">Back</a>
+						<a href="/vehms" class="btn btn-warning btn-lg active"
+							role="button" aria-pressed="true">Back</a>
 					</div>
 					<br> <br>
 				</form>

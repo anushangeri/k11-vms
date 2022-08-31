@@ -221,6 +221,12 @@
 	</servlet>
 	<servlet>
 		<description />
+		<display-name>UpdateVehicleApprovalRecordServlet</display-name>
+		<servlet-name>UpdateVehicleApprovalRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateVehicleApprovalRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
 		<display-name>ViewVehicleRecordServlet</display-name>
 		<servlet-name>ViewVehicleRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.ViewVehicleRecordServlet</servlet-class>
@@ -505,6 +511,10 @@
 	<servlet-mapping>
 		<servlet-name>UpdateVehicleRemarksRecordServlet</servlet-name>
 		<url-pattern>/updateVehRemarks</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateVehicleApprovalRecordServlet</servlet-name>
+		<url-pattern>/updateVehAprrove</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ViewVehicleRecordServlet</servlet-name>

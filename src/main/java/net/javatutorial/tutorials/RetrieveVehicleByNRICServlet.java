@@ -33,7 +33,11 @@ public class RetrieveVehicleByNRICServlet extends HttpServlet {
 
 		//from client login view
 		String idNoFromClient = request.getParameter("idNo");
-				
+		
+		//from client login view but this is just to view a record
+		String vehicleId = request.getParameter("vehicleId");
+		String status = request.getParameter("status");
+		
 		ArrayList<Vehicle> vList = null;
 		Vehicle v = null;
 		
@@ -44,6 +48,10 @@ public class RetrieveVehicleByNRICServlet extends HttpServlet {
 					v = vList.get(0);
 				}
 			}
+		}
+		else if(vehicleId != null && status != null && status.equals("readonly")){
+			v = VehMSManagerDAO.retrieveByVehicleId(vehicleId);
+			
 		}
 		else {
 			vList = VehMSManagerDAO.retrieveByNameIDPopulate(idNoFromClient);
@@ -56,6 +64,7 @@ public class RetrieveVehicleByNRICServlet extends HttpServlet {
 		ArrayList<Dropdown> containerSize = DropdownListManagerDAO.retrieveByDropdownKey("VEHICLE_SIZE");
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		
+		request.setAttribute("status", status);
 		request.setAttribute("vehicleLatRec", v);
 		request.setAttribute("containerSize", containerSize);
 		request.setAttribute("vehiclePurpose", vehiclePurpose);
