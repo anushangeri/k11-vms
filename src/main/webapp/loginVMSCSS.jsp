@@ -103,7 +103,7 @@ body {
 	<div class="dropdown">
 		<button class="btn btn-secondary dropdown-toggle" type="button"
 			id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="false">Client Options</button>
+			aria-expanded="false">Management Options</button>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			<a class="dropdown-item" href="/clientLogin.jsp">Login</a> 
 			<a class="dropdown-item" href="/resetPassword.jsp">Reset Password</a> 

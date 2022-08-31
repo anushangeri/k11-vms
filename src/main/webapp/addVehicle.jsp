@@ -83,7 +83,7 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label for="warehouseLevel">Warehouse Level (仓库层): </label> <input
-								type="int" class="form-control" name="warehouseLevel"
+								type="number" class="form-control" name="warehouseLevel"
 								value="<%=((v == null) ? 0 : v.getWarehouseLevel())%>" required>
 						</div>
 						<div class="form-group col-md-6">
