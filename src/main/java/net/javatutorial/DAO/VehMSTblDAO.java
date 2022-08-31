@@ -33,9 +33,9 @@ public class VehMSTblDAO {
 	        		"   VISIT_PURPOSE  VARCHAR (100) NULL,\r\n" + 
 	        		"   TEMPERATURE  VARCHAR (100) NULL,\r\n" + 
 	        		"   REMARKS  VARCHAR (100) NULL,\r\n" + 
-	        		"   WAREHOUSELEVEL  INT  NULL,\r\n" + 	        
+	        		"   WAREHOUSE_LEVEL  INT  NULL,\r\n" + 	        
 	        		"   SITE  VARCHAR (100) NULL,\r\n" + 	
-	        		"   WAREHOUSEAPPROVER  VARCHAR (100) NULL,\r\n" + 	        		
+	        		"   WAREHOUSE_APPROVER  VARCHAR (100) NULL,\r\n" + 	        		
 	        		"   TIME_IN_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
 	        		"   TIME_OUT_DT TIMESTAMP   NULL \r\n" + 
 	        		");");
@@ -78,9 +78,9 @@ public class VehMSTblDAO {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
 	        stmt.executeUpdate("ALTER TABLE VEHMS\r\n" + 
-	        		"ADD COLUMN WAREHOUSELEVEL  INT  NULL,\r\n" + 	        
+	        		"ADD COLUMN WAREHOUSE_LEVEL  INT  NULL,\r\n" + 	        
 	        		"ADD COLUMN SITE  VARCHAR (100) NULL,\r\n" + 	
-	        		"ADD COLUMN WAREHOUSEAPPROVER  VARCHAR (100) NULL);");
+	        		"ADD COLUMN WAREHOUSE_APPROVER  VARCHAR (100) NULL;");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;

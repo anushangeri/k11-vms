@@ -25,7 +25,7 @@ public class VehMSManagerDAO {
 	        stmt.executeUpdate("INSERT INTO VEHMS "
 	        		+ "(VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, CONTAINER_NO, "
 	        		+ " LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO,"
-	        		+ " VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, WAREHOUSELEVEL, SITE, TIME_IN_DT)" + 
+	        		+ " VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, WAREHOUSE_LEVEL, SITE, TIME_IN_DT)" + 
 	        		"  VALUES ('" +v.getVehicleId()+ "','" +v.getName()+ "','" +v.getCompanyName()+ "','" +v.getIdType()+ "','" 
 	        		+v.getIdNo()+ "','" +v.getMobileNo()+ "','" +v.getPrimeMoverNo()+ "','" +v.getContainerNo()+ "','" 
 	        		+v.getLoadedNoLoaded()+ "','" +v.getCovidDeclare()+ "','" +v.getLorryChetNumber()+ "','" 
@@ -257,7 +257,7 @@ public class VehMSManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("UPDATE VEHMS "
-	        		+  "SET WAREHOUSEAPPROVER = '" + v.getWarehouseApprover() + "'" 
+	        		+  "SET WAREHOUSE_APPROVER = '" + v.getWarehouseApprover() + "'" 
 	        		+ "   WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
@@ -322,7 +322,7 @@ public class VehMSManagerDAO {
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, "
             		+ "CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" 
             		+ "VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, "
-            		+ "WAREHOUSELEVEL, SITE, WAREHOUSEAPPROVER, TIME_IN_DT, TIME_OUT_DT \r\n"
+            		+ "WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT \r\n"
             		+ "FROM VEHMS ORDER BY TIME_IN_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
@@ -371,7 +371,7 @@ public class VehMSManagerDAO {
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, \r\n" + 
             		" CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" + 
             		" VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, "
-            		+ "WAREHOUSELEVEL, SITE, WAREHOUSEAPPROVER, TIME_IN_DT, TIME_OUT_DT \r\n"
+            		+ "WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT \r\n"
             		+ " FROM VEHMS WHERE ID_NO ='" + idNo + "' ORDER BY TIME_IN_DT DESC LIMIT 5;";
             pstmt = connection.prepareStatement(sql);
 
@@ -421,7 +421,7 @@ public class VehMSManagerDAO {
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, \r\n" + 
             		"CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" + 
             		"VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, "
-            		+ "WAREHOUSELEVEL, SITE, WAREHOUSEAPPROVER, TIME_IN_DT, TIME_OUT_DT \r\n"
+            		+ "WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT \r\n"
             		+ " FROM VEHMS"
             		+ " WHERE ID_NO ='" + idNo + "'"
     				+ " ORDER BY TIME_IN_DT DESC";
@@ -472,7 +472,7 @@ public class VehMSManagerDAO {
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, \r\n" + 
             		"CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" + 
             		"VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, "
-            		+ " WAREHOUSELEVEL, SITE, WAREHOUSEAPPROVER, TIME_IN_DT, TIME_OUT_DT \r\n"
+            		+ " WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT \r\n"
             		+ " FROM VEHMS \r\n"
             		+ " WHERE VEHICLE_ID ='" + vehicleId + "' ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
