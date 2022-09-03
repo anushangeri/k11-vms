@@ -34,7 +34,7 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 		ArrayList<Visitor> vList = null;
 		if (!StringUtils.isEmpty(idNo)) {
 			if (!StringUtils.isEmpty(usertype) && usertype != null
-					&& !(usertype.equals("CLIENT") || usertype.equals("OFFICER"))) {
+					&& !(usertype.equals("CLIENT") || usertype.equals("OFFICER") || usertype.equals("WAREHOUSE"))) {
 				vList = VMSManagerDAO.retrieveAll();
 				message = "List of visitor records";
 				request.setAttribute("vList", vList);
