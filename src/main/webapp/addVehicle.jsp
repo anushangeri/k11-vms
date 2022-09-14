@@ -195,7 +195,7 @@
 						</div>
 						<div class="form-group col-md-4">
 							<input type="checkbox" id="loadedNoLoaded" name="loadedNoLoaded"
-								value="Yes" <%=(v == null) && v.getLoadedNoLoaded().equals("Yes") ? "checked" : ""%> <%=status.equals("readonly") ? "disabled" : ""%>> <label
+								value="Yes" <%=(v != null) && v.getLoadedNoLoaded().equals("Yes") ? "checked" : ""%> <%=status.equals("readonly") ? "disabled" : ""%>> <label
 								for="loadedNoLoaded"> Select if container is loaded. </label>
 						</div>
 					</div>
