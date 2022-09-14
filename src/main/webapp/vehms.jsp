@@ -139,13 +139,7 @@
 				<tr>
 					<th class="th-sm">S/N</th>
 					<th class="th-sm">View</th>
-					<%
-					if (userType != null) {
-					%>
 					<th class="th-sm">Warehouse Approver</th>
-					<%
-					}
-					%>
 					<th class="th-sm">Driver Name</th>
 					<th class="th-sm">Company Name</th>
 					<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
@@ -205,14 +199,17 @@
 						<%}
 						else{
 						%>
-							<td><%=v.getWarehouseApprover()%></td>
+							<td><%=v.getWarehouseApprover()%></td> 
 						<%
 						}
 						%>
 						
 					
 					<%}
+					else{
 					%>
+						<td>Not Approved Yet</td>
+					<%} %>
 					<td><%=v.getName()%></td>
 					<td><%=v.getCompanyName()%></td>
 					<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
