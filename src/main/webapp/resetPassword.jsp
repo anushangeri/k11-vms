@@ -101,35 +101,22 @@
 </head>
 <body>
 	<%
-		ArrayList<Dropdown> idType = DropdownListManagerDAO.retrieveByDropdownKey("ID_TYPE");
+	String idNo = "";
+	if (request.getSession(false).getAttribute("usertype") == null 
+			&& request.getSession(false).getAttribute("idNo") != null) {
+	 	idNo = (String) request.getSession(false).getAttribute("idNo");
+	 }
 	%>
 	<div class="container body-content">
 		<div class="page-header">
-			<label class="heading">Visitor/Vehicle Management System</label> <br>
-			<b>How to use:</b> Please enter Client Details.
+			<label class="heading">Change Password</label> <br>
+			<b>How to use:</b> Please enter old and new password. Make sure to login first.
 			<center>
 				<form action="resetPassword" method="post" onsubmit="return validateForm()">
 					<div class="form-row">
-						<div class="form-group col-md-4">
-							<label for="idType">ID Type: </label> <select name="idType"
-								class="form-control" required>
-								<%
-									for (int i = 0; i < idType.size(); i++) {
-								%>
-								<option value="<%=idType.get(i)%>">
-									<%=idType.get(i)%></option>
-								<%
-									}
-								%>
-							</select>
-						</div>
-					</div>
-					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="idNo">ID Number: </label> <input type="text"
-								class="form-control" name="idNo"
-								oninput="this.value = this.value.toUpperCase()" minlength="4"
-								maxlength="9">
+								class="form-control" name="idNo" value="<%=idNo %>" readonly required>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="oldpassword">Old Password</label> <input type="password" class="form-control" id="oldpassword"

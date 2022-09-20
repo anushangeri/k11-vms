@@ -245,7 +245,7 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="lorryChetNumber">Lorry Chet Number: </label> <input
+							<label for="lorryChetNumber">Lorry Chit Number: </label> <input
 								type="text" class="form-control" name="lorryChetNumber"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getLorryChetNumber())%>"

@@ -162,7 +162,7 @@
 						<th class="th-sm">Container No.</th>
 						<th class="th-sm">Container Size</th>
 						<th class="th-sm">Seal No.</th>
-						<th class="th-sm">Lorry Chet No.</th>
+						<th class="th-sm">Lorry Chit No.</th>
 						<th class="th-sm">Delivery Notice No.</th>
 						<th class="th-sm">Remarks</th>
 						<th class="th-sm">Purpose of Visit</th>

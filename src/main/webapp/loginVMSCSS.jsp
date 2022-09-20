@@ -106,7 +106,7 @@ body {
 			aria-expanded="false">Management Options</button>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			<a class="dropdown-item" href="/clientLogin.jsp">Login</a> 
-			<a class="dropdown-item" href="/resetPassword.jsp">Reset Password</a> 
+			<a class="dropdown-item" href="/resetPassword.jsp">Change Password</a> 
 		</div>
 	</div>
 </div>
