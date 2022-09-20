@@ -48,6 +48,8 @@
 <script
 	src="https://cdn.datatables.net/plug-ins/1.10.24/sorting/datetime-moment.js"
 	type="text/javascript"></script>
+	
+<%@include file="loginVMSCSS.jsp"%>	
 <script type="text/javascript">
 	$(document)
 			.ready(
@@ -113,7 +115,7 @@
 				: 'none';
 	}
 </script>
-<%@include file="loginVMSCSS.jsp"%>
+
 </head>
 <body>
 	<center>
