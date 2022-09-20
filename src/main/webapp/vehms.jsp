@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="loginVMSCSS.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
@@ -114,6 +113,7 @@
 				: 'none';
 	}
 </script>
+<%@include file="loginVMSCSS.jsp"%>
 </head>
 <body>
 	<center>

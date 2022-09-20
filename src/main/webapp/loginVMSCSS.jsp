@@ -1,9 +1,3 @@
-<%-- 
-    Document   : loginCSS
-    Created on : Sep 19, 2014, 5:58:46 PM
-    Author     : Wei Fa
---%>
-
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
