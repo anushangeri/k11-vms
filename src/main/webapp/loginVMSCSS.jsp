@@ -13,6 +13,12 @@
 <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="all">
 <link rel="stylesheet" href="css/styles.css" media="all">
 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
+	type="text/javascript"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
 <style type="text/css">
 .navbar-default {
 	background-color: #9b59b6;
@@ -105,12 +111,6 @@ body {
 	</div>
 </div>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
-	type="text/javascript"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
 <title>K11 VMS</title>
 </head>
 <body>

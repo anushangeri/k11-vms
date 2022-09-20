@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
+<%@include file="loginVMSCSS.jsp"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -113,7 +114,7 @@
 				: 'none';
 	}
 </script>
-<%@include file="loginVMSCSS.jsp"%>
+
 </head>
 <body>
 	<center>
