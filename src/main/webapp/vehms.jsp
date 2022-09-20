@@ -57,8 +57,6 @@
 						$(document)
 								.ready(
 										function() {
-											$.fn.dataTable
-													.moment('DD/MM/YYYY hh:mm:ss A');
 											$('table')
 													.DataTable(
 															{
