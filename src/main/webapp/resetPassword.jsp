@@ -101,10 +101,7 @@
 </head>
 <body>
 	<%
-		ArrayList<Dropdown> idType = null;
-	 	if (request.getAttribute("idType") != null) {
-	 		idType = DropdownListManagerDAO.retrieveByDropdownKey("ID_TYPE");
-	 	}
+		ArrayList<Dropdown> idType = DropdownListManagerDAO.retrieveByDropdownKey("ID_TYPE");
 	%>
 	<div class="container body-content">
 		<div class="page-header">

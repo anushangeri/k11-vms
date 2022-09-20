@@ -142,6 +142,7 @@
 					<th class="th-sm">Warehouse Approver</th>
 					<th class="th-sm">Vehicle No./Primemover No.</th>
 					<%if(userType == null || !userType.equals("WAREHOUSE")){ %>
+						<th class="th-sm">Site/Warehouse Name</th>
 						<th class="th-sm">Driver Name</th>
 						<th class="th-sm">Company Name</th>
 						<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
@@ -214,6 +215,7 @@
 					<%} %>
 					<td><%=(v.getPrimeMoverNo() != null ? v.getPrimeMoverNo() : "")%></td>
 					<%if(userType == null || !userType.equals("WAREHOUSE")){ %>
+						<td><%=v.getSite()%></td>
 						<td><%=v.getName()%></td>
 						<td><%=v.getCompanyName()%></td>
 						<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
