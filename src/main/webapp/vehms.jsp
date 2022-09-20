@@ -88,7 +88,7 @@
 																				15,
 																				16,
 																				17,
-																				18],
+																				18 ],
 																		format : {
 																			header : function(
 																					data,
@@ -144,34 +144,38 @@
 					<th class="th-sm">View</th>
 					<th class="th-sm">Warehouse Approver</th>
 					<th class="th-sm">Vehicle No./Primemover No.</th>
-					<%if(userType == null || !userType.equals("WAREHOUSE")){ %>
-						<th class="th-sm">Site/Warehouse Name</th>
-						<th class="th-sm">Driver Name</th>
-						<th class="th-sm">Company Name</th>
-						<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
-						<%
-						if (userType == null) {
-						%>
-						<th class="th-sm" style="display: none;">ID Number</th>
-						<%
-						} else {
-						%>
-						<th class="th-sm">ID Number <i>(Click to Add New Record)</i></th>
-						<%
-						}
-						%>
-						<th class="th-sm">Driver Contact Number</th>
-						<th class="th-sm">Loaded/Not Loaded</th>
-						<th class="th-sm">Container No.</th>
-						<th class="th-sm">Container Size</th>
-						<th class="th-sm">Seal No.</th>
-						<th class="th-sm">Lorry Chit No.</th>
-						<th class="th-sm">Delivery Notice No.</th>
-						<th class="th-sm">Remarks</th>
-						<th class="th-sm">Purpose of Visit</th>
-						<th class="th-sm">Time In</th>
-						<th class="th-sm">Time Out</th>
-					<%} %>
+					<%
+					if (userType == null || !userType.equals("WAREHOUSE")) {
+					%>
+					<th class="th-sm">Site/Warehouse Name</th>
+					<th class="th-sm">Driver Name</th>
+					<th class="th-sm">Company Name</th>
+					<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
+					<%
+					if (userType == null) {
+					%>
+					<th class="th-sm" style="display: none;">ID Number</th>
+					<%
+					} else {
+					%>
+					<th class="th-sm">ID Number <i>(Click to Add New Record)</i></th>
+					<%
+					}
+					%>
+					<th class="th-sm">Driver Contact Number</th>
+					<th class="th-sm">Loaded/Not Loaded</th>
+					<th class="th-sm">Container No.</th>
+					<th class="th-sm">Container Size</th>
+					<th class="th-sm">Seal No.</th>
+					<th class="th-sm">Lorry Chit No.</th>
+					<th class="th-sm">Delivery Notice No.</th>
+					<th class="th-sm">Remarks</th>
+					<th class="th-sm">Purpose of Visit</th>
+					<th class="th-sm">Time In</th>
+					<th class="th-sm">Time Out</th>
+					<%
+					}
+					%>
 				</tr>
 			</thead>
 			<tbody>
@@ -192,137 +196,142 @@
 					<%
 					if (userType != null) {
 						//if access type is a warehouse user then they can approve, all other usertype cannot approve
-						if(v.getWarehouseApprover() == null) {%>
-							<td>
-								<form method="POST" action="/updateVehAprrove">
-									<input type="hidden" id="vehicleId" name="vehicleId"
-										value="<%=v.getVehicleId()%>"> <input type="hidden"
-										id="approverId" name="approverId" value="<%=idNo%>"> <input
-										type="submit" name="Submit" value="Approve"
-										<%=(userType != null && userType.equals("WAREHOUSE")) ? "" : "disabled"%>>
-								</form>
-							</td>
-						<%}
-						else{
-						%>
-							<td><%=v.getWarehouseApprover()%></td> 
-						<%
-						}
-						%>
-						
-					
-					<%}
-					else{
+						if (v.getWarehouseApprover() == null) {
 					%>
-						<td>Not Approved Yet</td>
-					<%} %>
+					<td>
+						<form method="POST" action="/updateVehAprrove">
+							<input type="hidden" id="vehicleId" name="vehicleId"
+								value="<%=v.getVehicleId()%>"> <input type="hidden"
+								id="approverId" name="approverId" value="<%=idNo%>"> <input
+								type="submit" name="Submit" value="Approve"
+								<%=(userType != null && userType.equals("WAREHOUSE")) ? "" : "disabled"%>>
+						</form>
+					</td>
+					<%
+					} else {
+					%>
+					<td><%=v.getWarehouseApprover()%></td>
+					<%
+					}
+					%>
+
+
+					<%
+					} else {
+					%>
+					<td>Not Approved Yet</td>
+					<%
+					}
+					%>
 					<td><%=(v.getPrimeMoverNo() != null ? v.getPrimeMoverNo() : "")%></td>
-					<%if(userType == null || !userType.equals("WAREHOUSE")){ %>
-						<td><%=v.getSite()%></td>
-						<td><%=v.getName()%></td>
-						<td><%=v.getCompanyName()%></td>
-						<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
-						<%
-						if (userType == null) {
-						%>
-						<td style="display: none;"><%=v.getIdNo()%></td>
-						<%
-						} else {
-						%>
-						<td><a href="/retrieveVehToPopulate?idNo=<%=v.getIdNo()%>"><%=v.getIdNo()%></a></td>
-						<%
-						}
-						%>
-						<td><%=(v.getMobileNo() != null ? v.getMobileNo() : "")%></td>
-						<td><%=(v.getLoadedNoLoaded().equals("null") ? "Not Loaded" : "Loaded")%></td>
-						<td><%=(v.getContainerNo() != null ? v.getContainerNo() : "")%></td>
-						<td><%=(v.getContainerSize() != null ? v.getContainerSize() : "")%></td>
-						<td><%=(v.getSealNo() != null ? v.getSealNo() : "")%></td>
-						<%
-						if (v.getLorryChetNumber() != null && !StringUtils.isEmpty(v.getLorryChetNumber())) {
-						%>
-						<td><%=v.getLorryChetNumber()%></td>
-						<%
-						} else {
-						%>
-						<td><select id="ddlLorryChet"
-							onchange="showDiv('dvLorryChet<%=v.getVehicleId()%>', this)">
-								<option value="N">No</option>
-								<option value="Y">Yes</option>
-						</select>
-							<hr />
-							<div id="dvLorryChet<%=v.getVehicleId()%>" style="display: none">
-								<form method="POST" action="/updateVehLorryChet">
-									<input type="hidden" id="vehicleId" name="vehicleId"
-										value="<%=v.getVehicleId()%>"> <input type="text"
-										class="form-control" name="lorryChetNumber"
-										oninput="this.value = this.value.toUpperCase()"> <input
-										type="submit" name="Submit" value="Update">
-								</form>
-							</div></td>
-						<%
-						}
-						%>
-						<%
-						if (v.getDeliveryNoticeNumber() != null && !StringUtils.isEmpty(v.getDeliveryNoticeNumber())) {
-						%>
-						<td><%=v.getDeliveryNoticeNumber()%></td>
-						<%
-						} else {
-						%>
-						<td><select id="ddlDelNotice"
-							onchange="showDiv('dvDelNotice<%=v.getVehicleId()%>', this)">
-								<option value="N">No</option>
-								<option value="Y">Yes</option>
-						</select>
-							<hr />
-							<div id="dvDelNotice<%=v.getVehicleId()%>" style="display: none">
-								<form method="POST" action="/updateVehDeliveryNotice">
-									<input type="hidden" id="vehicleId" name="vehicleId"
-										value="<%=v.getVehicleId()%>"> <input type="text"
-										class="form-control" name="deliveryNoticeNumber"
-										oninput="this.value = this.value.toUpperCase()"> <input
-										type="submit" name="Submit" value="Update">
-								</form>
-							</div></td>
-						<%
-						}
-						%>
-						<td>
-							<p><%=(v.getRemarks() != null ? v.getRemarks() : "No Remarks Yet")%></p>
-							<select id="ddlRemarks"
-							onchange="showDiv('dvRemarks<%=v.getVehicleId()%>', this)">
-								<option value="N">No Edit Remarks</option>
-								<option value="Y">Yes Edit Remarks</option>
-						</select>
-							<hr />
-							<div id="dvRemarks<%=v.getVehicleId()%>" style="display: none">
-								<form method="POST" action="/updateVehRemarks">
-									<input type="hidden" id="vehicleId" name="vehicleId"
-										value="<%=v.getVehicleId()%>"> <input type="text"
-										class="form-control" name="remarks"
-										oninput="this.value = this.value.toUpperCase()"> <input
-										type="submit" name="Submit" value="Update">
-								</form>
-							</div>
-						</td>
-						<td><%=v.getVisitPurpose()%></td>
-						<td><%=sdf.format(v.getTimeInDt())%></td>
-						<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
-						<%
-						if (v.getTimeOutDt() != null) {
-						%>
-						<td><%=sdf.format(v.getTimeOutDt())%></td>
-						<%
-						} else {
-						%>
-						<td><form method="POST" action="/updateVehTimeOut">
+					<%
+					if (userType == null || !userType.equals("WAREHOUSE")) {
+					%>
+					<td><%=v.getSite()%></td>
+					<td><%=v.getName()%></td>
+					<td><%=v.getCompanyName()%></td>
+					<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
+					<%
+					if (userType == null) {
+					%>
+					<td style="display: none;"><%=v.getIdNo()%></td>
+					<%
+					} else {
+					%>
+					<td><a href="/retrieveVehToPopulate?idNo=<%=v.getIdNo()%>"><%=v.getIdNo()%></a></td>
+					<%
+					}
+					%>
+					<td><%=(v.getMobileNo() != null ? v.getMobileNo() : "")%></td>
+					<td><%=(v.getLoadedNoLoaded().equals("null") ? "Not Loaded" : "Loaded")%></td>
+					<td><%=(v.getContainerNo() != null ? v.getContainerNo() : "")%></td>
+					<td><%=(v.getContainerSize() != null ? v.getContainerSize() : "")%></td>
+					<td><%=(v.getSealNo() != null ? v.getSealNo() : "")%></td>
+					<%
+					if (v.getLorryChetNumber() != null && !StringUtils.isEmpty(v.getLorryChetNumber())) {
+					%>
+					<td><%=v.getLorryChetNumber()%></td>
+					<%
+					} else {
+					%>
+					<td><select id="ddlLorryChet"
+						onchange="showDiv('dvLorryChet<%=v.getVehicleId()%>', this)">
+							<option value="N">No</option>
+							<option value="Y">Yes</option>
+					</select>
+						<hr />
+						<div id="dvLorryChet<%=v.getVehicleId()%>" style="display: none">
+							<form method="POST" action="/updateVehLorryChet">
 								<input type="hidden" id="vehicleId" name="vehicleId"
-									value="<%=v.getVehicleId()%>"> <input type="submit"
-									name="Submit" value="Update">
-							</form></td>
-						<%
-						}
+									value="<%=v.getVehicleId()%>"> <input type="text"
+									class="form-control" name="lorryChetNumber"
+									oninput="this.value = this.value.toUpperCase()"> <input
+									type="submit" name="Submit" value="Update">
+							</form>
+						</div></td>
+					<%
+					}
+					%>
+					<%
+					if (v.getDeliveryNoticeNumber() != null && !StringUtils.isEmpty(v.getDeliveryNoticeNumber())) {
+					%>
+					<td><%=v.getDeliveryNoticeNumber()%></td>
+					<%
+					} else {
+					%>
+					<td><select id="ddlDelNotice"
+						onchange="showDiv('dvDelNotice<%=v.getVehicleId()%>', this)">
+							<option value="N">No</option>
+							<option value="Y">Yes</option>
+					</select>
+						<hr />
+						<div id="dvDelNotice<%=v.getVehicleId()%>" style="display: none">
+							<form method="POST" action="/updateVehDeliveryNotice">
+								<input type="hidden" id="vehicleId" name="vehicleId"
+									value="<%=v.getVehicleId()%>"> <input type="text"
+									class="form-control" name="deliveryNoticeNumber"
+									oninput="this.value = this.value.toUpperCase()"> <input
+									type="submit" name="Submit" value="Update">
+							</form>
+						</div></td>
+					<%
+					}
+					%>
+					<td>
+						<p><%=(v.getRemarks() != null ? v.getRemarks() : "No Remarks Yet")%></p>
+						<select id="ddlRemarks"
+						onchange="showDiv('dvRemarks<%=v.getVehicleId()%>', this)">
+							<option value="N">No Edit Remarks</option>
+							<option value="Y">Yes Edit Remarks</option>
+					</select>
+						<hr />
+						<div id="dvRemarks<%=v.getVehicleId()%>" style="display: none">
+							<form method="POST" action="/updateVehRemarks">
+								<input type="hidden" id="vehicleId" name="vehicleId"
+									value="<%=v.getVehicleId()%>"> <input type="text"
+									class="form-control" name="remarks"
+									oninput="this.value = this.value.toUpperCase()"> <input
+									type="submit" name="Submit" value="Update">
+							</form>
+						</div>
+					</td>
+					<td><%=v.getVisitPurpose()%></td>
+					<td><%=sdf.format(v.getTimeInDt())%></td>
+					<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
+					<%
+					if (v.getTimeOutDt() != null) {
+					%>
+					<td><%=sdf.format(v.getTimeOutDt())%></td>
+					<%
+					} else {
+					%>
+					<td><form method="POST" action="/updateVehTimeOut">
+							<input type="hidden" id="vehicleId" name="vehicleId"
+								value="<%=v.getVehicleId()%>"> <input type="submit"
+								name="Submit" value="Update">
+						</form></td>
+					<%
+					}
 					}
 					%>
 				</tr>
@@ -349,28 +358,36 @@
 
 			<!-- Delete all record function is for K11 Admin only -->
 			<%
-			if (request.getSession(false).getAttribute("usertype") != null && !userType.equals("WAREHOUSE")) {
+			if (request.getSession(false).getAttribute("usertype") != null) {
 			%>
-			<a href="/clientMain.jsp" class="btn btn-warning btn-lg active"
-				role="button" aria-pressed="true">Back</a>
-			<%
-				String userInput = (String) request.getSession(false).getAttribute("usertype");
-				if (userInput.toUpperCase().equals("ADMIN")) {
+
+			<a href="/resetPassword.jsp" class="btn btn-warning btn-lg active"
+				role="button" aria-pressed="true">Change Password</a>
+				<%
+				if (!userType.equals("WAREHOUSE")) {
 				%>
-				<a href="deleteAllVehicle" class="btn btn-warning btn-lg active"
-					role="button" aria-pressed="true">Delete Vehicle Record</a> <a
-					href="managedatabase.jsp" class="btn btn-warning btn-lg active"
-					role="button" aria-pressed="true">Manage Vehicle Database</a>
+				<a href="/clientMain.jsp" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Back</a>
+				<%
+				String userInput = (String) request.getSession(false).getAttribute("usertype");
+					if (userInput.toUpperCase().equals("ADMIN")) {
+					%>
+					<a href="deleteAllVehicle" class="btn btn-warning btn-lg active"
+						role="button" aria-pressed="true">Delete Vehicle Record</a> <a
+						href="managedatabase.jsp" class="btn btn-warning btn-lg active"
+						role="button" aria-pressed="true">Manage Vehicle Database</a>
+					<%
+					}
+					%>
 				<%
 				}
 				%>
+
 			<%
 			} else {
 			%>
-			<a href="/resetPassword.jsp" class="btn btn-warning btn-lg active"
-				role="button" aria-pressed="true">Reset Password</a>
-			<a href="/index.jsp" class="btn btn-warning btn-lg active"
-				role="button" aria-pressed="true">Back</a>
+				<a href="/index.jsp" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Back</a>
 			<%
 			}
 			%>

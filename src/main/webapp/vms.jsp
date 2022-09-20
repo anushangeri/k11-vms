@@ -206,28 +206,31 @@
 				role="button" aria-pressed="true">Add Visitor Record</a>
 				
 				<!-- Delete all record function is for K11 Admin only -->
-				<%if (request.getSession(false).getAttribute("usertype") != null && !userType.equals("WAREHOUSE")) { %>
-					<a href="/clientMain.jsp" class="btn btn-warning btn-lg active" role="button"
-					aria-pressed="true">Back</a>
+				<%if (request.getSession(false).getAttribute("usertype") != null) { %>
+					<a href="/resetPassword.jsp" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Change Password</a>
 					
-					<% 
-					String usertype = (String) request.getSession(false).getAttribute("usertype");
-					if (usertype.toUpperCase().equals("ADMIN")){ %>
-						<a href="deleteAllVisitor" class="btn btn-warning btn-lg active"
-						role="button" aria-pressed="true">Delete Visitor Record</a>
-						
-						<a href="managedatabase.jsp" class="btn btn-warning btn-lg active"
-						role="button" aria-pressed="true">Manage Visitor Database</a>
-					<%	
+					<% if(!userType.equals("WAREHOUSE")){  %>
+						<a href="/clientMain.jsp" class="btn btn-warning btn-lg active" role="button"
+						aria-pressed="true">Back</a>
+					
+						<% 
+						String usertype = (String) request.getSession(false).getAttribute("usertype");
+						if (usertype.toUpperCase().equals("ADMIN")){ %>
+							<a href="deleteAllVisitor" class="btn btn-warning btn-lg active"
+							role="button" aria-pressed="true">Delete Visitor Record</a>
+							
+							<a href="managedatabase.jsp" class="btn btn-warning btn-lg active"
+							role="button" aria-pressed="true">Manage Visitor Database</a>
+						<%	
+						}
 					}
-					
 				%>
 				<% 
 				}
 				else { 
 				%>
-				<a href="/resetPassword.jsp" class="btn btn-warning btn-lg active"
-				role="button" aria-pressed="true">Reset Password</a>
+				
 				<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
 				<%}%>
