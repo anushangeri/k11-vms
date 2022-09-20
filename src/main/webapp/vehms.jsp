@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="loginVMSCSS.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
@@ -48,8 +49,6 @@
 <script
 	src="https://cdn.datatables.net/plug-ins/1.10.24/sorting/datetime-moment.js"
 	type="text/javascript"></script>
-	
-<%@include file="loginVMSCSS.jsp"%>	
 <script type="text/javascript">
 	$(document)
 			.ready(
@@ -57,6 +56,8 @@
 						$(document)
 								.ready(
 										function() {
+											$.fn.dataTable
+													.moment('DD/MM/YYYY hh:mm:ss A');
 											$('table')
 													.DataTable(
 															{
@@ -113,7 +114,6 @@
 				: 'none';
 	}
 </script>
-
 </head>
 <body>
 	<center>
@@ -367,6 +367,8 @@
 			<%
 			} else {
 			%>
+			<a href="/resetPassword.jsp" class="btn btn-warning btn-lg active"
+				role="button" aria-pressed="true">Reset Password</a>
 			<a href="/index.jsp" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Back</a>
 			<%

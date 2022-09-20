@@ -206,7 +206,7 @@
 				role="button" aria-pressed="true">Add Visitor Record</a>
 				
 				<!-- Delete all record function is for K11 Admin only -->
-				<%if (request.getSession(false).getAttribute("usertype") != null) { %>
+				<%if (request.getSession(false).getAttribute("usertype") != null && !userType.equals("WAREHOUSE")) { %>
 					<a href="/clientMain.jsp" class="btn btn-warning btn-lg active" role="button"
 					aria-pressed="true">Back</a>
 					
@@ -226,6 +226,8 @@
 				}
 				else { 
 				%>
+				<a href="/resetPassword.jsp" class="btn btn-warning btn-lg active"
+				role="button" aria-pressed="true">Reset Password</a>
 				<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
 				<%}%>
