@@ -102,8 +102,7 @@
 <body>
 	<%
 	String idNo = "";
-	if (request.getSession(false).getAttribute("usertype") == null 
-			&& request.getSession(false).getAttribute("idNo") != null) {
+	if (request.getSession(false).getAttribute("idNo") != null) {
 	 	idNo = (String) request.getSession(false).getAttribute("idNo");
 	 }
 	%>
