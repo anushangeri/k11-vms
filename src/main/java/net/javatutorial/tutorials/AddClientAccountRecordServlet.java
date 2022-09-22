@@ -37,7 +37,7 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 
 		ArrayList<ClientAccount> vList = ClientAccountManagerDAO.retrieveByID(idNo);
 		String message = "This user already exists. Please verify.";
-		if(vList == null && vList.size() == 0 ) {
+		if(vList.size() == 0 ) {
 			//hashing the password
 			String salt = PasswordUtils.generateSalt(512).get();
 			String hashedPassword = PasswordUtils.hashPassword(password, salt).get();
