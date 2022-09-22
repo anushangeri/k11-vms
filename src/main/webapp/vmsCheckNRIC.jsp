@@ -17,31 +17,7 @@
 <link
 	href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
 	rel="stylesheet">
-<script>
-	function validateForm() {
-		var idNo = document.forms["checkNRIC"]["idNo"].value;
-		var idType = document.forms["checkNRIC"]["idType"].value;
-		var first = idNo.charAt(0);
-		var isDigitFirst = (first >= '0' && first <= '9');
-		var second = idNo.charAt(1);
-		var isDigitSecond = (second >= '0' && second <= '9');
-		var third = idNo.charAt(2);
-		var isDigitThird = (third >= '0' && third <= '9');
-		var forth = idNo.charAt(3);
-		var isDigitForth = (forth >= '0' && forth <= '9');
-		var n = idNo.length;
-		if (idNo != "K11ADMIN" && (idType == "NRIC" || idType == "FIN") && (!(n >= 4) ||
-				!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth))  {
-			alert("PDPA Compliance: Enter ONLY last 3 digit and letter of ID Number. E.g. 409J ");
-			return false;
-		}
-		if (idNo != "K11ADMIN" && (idType == "PASSPORT NO.") && (!(n >= 4) ||
-				!isDigitFirst || !isDigitSecond || !isDigitThird || !isDigitForth))  {
-			alert("PDPA Compliance: Enter ONLY last 4 digit of Passport No. E.g. 4456");
-			return false;
-		}
-	}
-</script>
+
 </head>
 <body>
 	<%
@@ -49,8 +25,7 @@
 		session.removeAttribute("name");
 	%>
 	<center>
-		<form name="checkNRIC" action="vmsCheckNRIC" method="post"
-			onsubmit="return validateForm()">
+		<form name="checkNRIC" action="vmsCheckNRIC" method="post">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="name">Visitor or Vehicle Driver Name: </label> <input type="text"
@@ -60,7 +35,7 @@
 				<div class="form-group col-md-6">
 					<label for="idNo">ID Number: </label> <input type="text"
 						class="form-control" name="idNo" id="idNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
-						minlength="4" maxlength="9" required>
+						minlength="4" maxlength="15" required>
 				</div>
 				<input type="hidden" id="recordType" name="recordType" value=<%=request.getParameter("recordType")%>>
 				<button type="submit" class="btn btn-primary">Check NRIC</button>

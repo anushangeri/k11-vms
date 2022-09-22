@@ -135,7 +135,7 @@
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? idNo : v.getIdNo())%>" minlength="4"
-								maxlength="9" <%=status%>>
+								maxlength="15" <%=status%>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="mobileNo">Mobile Number (手机号码): </label> <input

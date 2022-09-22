@@ -59,28 +59,29 @@
 }
 </style>
 <script>
-	function validateForm() {
-		var idNo = document.forms["checkNRIC"]["idNo"].value;
-		var first = idNo.charAt(0);
-		var isDigitFirst = (first >= '0' && first <= '9');
-		var second = idNo.charAt(1);
-		var isDigitSecond = (second >= '0' && second <= '9');
-		var third = idNo.charAt(2);
-		var isDigitThird = (third >= '0' && third <= '9');
-		var forth = idNo.charAt(3);
-		var isDigitForth = (forth >= '0' && forth <= '9');
-		var n = idNo.length;
-		if (idNo != "K11ADMIN" && (!(n >= 4) ||
-				!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth))  {
-			alert("PDPA Compliance: Enter ONLY last 3 digit and letter of ID Number. E.g. 409J ");
-			return false;
-		}
-		if (idNo != "K11ADMIN" && (!(n >= 4) ||
-				!isDigitFirst || !isDigitSecond || !isDigitThird || !isDigitForth))  {
-			alert("PDPA Compliance: Enter ONLY last 4 digit of Passport No. E.g. 4456");
-			return false;
-		}
+function validateForm() {
+	var idNo = document.forms["checkNRIC"]["idNo"].value;
+	var idType = document.forms["checkNRIC"]["idType"].value;
+	var first = idNo.charAt(0);
+	var isDigitFirst = (first >= '0' && first <= '9');
+	var second = idNo.charAt(1);
+	var isDigitSecond = (second >= '0' && second <= '9');
+	var third = idNo.charAt(2);
+	var isDigitThird = (third >= '0' && third <= '9');
+	var forth = idNo.charAt(3);
+	var isDigitForth = (forth >= '0' && forth <= '9');
+	var n = idNo.length;
+	if (idNo != "K11ADMIN" && (idType == "NRIC" || idType == "FIN") && (!(n >= 4) ||
+			!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth))  {
+		alert("PDPA Compliance: Enter ONLY last 3 digit and letter of ID Number. E.g. 409J ");
+		return false;
 	}
+	if (idNo != "K11ADMIN" && (idType == "PASSPORT NO.") && (!(n >= 4) ||
+			!isDigitFirst || !isDigitSecond || !isDigitThird || !isDigitForth))  {
+		alert("PDPA Compliance: Enter ONLY last 4 digit of Passport No. E.g. 4456");
+		return false;
+	}
+}
 	function showPassword() {
 		  var x = document.getElementById("psw");
 		  if (x.type === "password") {
@@ -111,7 +112,7 @@
 			<label class="heading">Visitor/Vehicle Management System</label> <br>
 			<b>How to use:</b> Please enter Client Details.
 			<center>
-				<form action="addClientAccount" method="post" onsubmit="return validateForm()">
+				<form action="addClientAccount" method="post" name="checkNRIC" onsubmit="return validateForm()" >
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="name">Name: </label> <input type="text"
@@ -152,7 +153,7 @@
 							<label for="idNo">ID Number: </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()" minlength="4"
-								maxlength="9">
+								maxlength="15">
 						</div>
 						<div class="form-group col-md-4">
 							<label for="psw">Password</label> <input type="password" class="form-control" id="psw"

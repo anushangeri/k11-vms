@@ -162,7 +162,7 @@ function getSMSOTP()
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getIdNo())%>"
-								minlength="4" maxlength="9"  <%=((v == null) ? "" : "readonly")%>>
+								minlength="4" maxlength="15"  <%=((v == null) ? "" : "readonly")%>>
 						</div>
 						<div class="form-group col-md-4">
 						    <label for="mobileNo">Mobile No.: </label> <input type="tel" class="form-control" id="mobileNo" name="mobileNo"
