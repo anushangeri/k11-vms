@@ -381,9 +381,13 @@
 					%>
 				<%
 				}
+				 else {
 				%>
+				<a href="/index.jsp" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Back</a>
 
 			<%
+				 }//for warehouse usertype
 			} else {
 			%>
 				<a href="/index.jsp" class="btn btn-warning btn-lg active"
