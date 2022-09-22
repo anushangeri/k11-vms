@@ -379,7 +379,13 @@
 		<servlet-name>RetrieveDropdownByKeyServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.RetrieveDropdownByKeyServlet</servlet-class>
 	</servlet>
-	<!-- Site END  -->
+	<servlet>
+		<description />
+		<display-name>DeleteDropdownbyDropdownIdServlet</display-name>
+		<servlet-name>DeleteDropdownbyDropdownIdServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteDropdownbyDropdownIdServlet</servlet-class>
+	</servlet>	
+	<!--  Dropdown List END  -->
 	
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>
@@ -623,6 +629,10 @@
 	<servlet-mapping>
 		<servlet-name>RetrieveDropdownByKeyServlet</servlet-name>
 		<url-pattern>/getDropdownList</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteDropdownbyDropdownIdServlet</servlet-name>
+		<url-pattern>/deleteDropdownbyDropdownId</url-pattern>
 	</servlet-mapping>
 	<!-- Dropdown END  -->
 	

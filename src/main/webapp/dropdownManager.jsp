@@ -85,6 +85,7 @@
 							<th class="th-sm">Dropdown Value</th>
 							<th class="th-sm">Created Date</th>
 							<th class="th-sm">Modified Date</th>
+							<th class="th-sm">Delete</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -100,6 +101,13 @@
 									<td><%=v.getDropdownValue()%></td>
 									<td><%=v.getCreatedDt()%></td>
 									<td><%=v.getLastModifiedDt()%></td>
+									<td>
+										<form method="POST" action="/deleteDropdownbyDropdownId">
+											<input type="hidden" id="dropdownId" name="dropdownId"
+												value="<%=v.getDropdownId()%>"> 
+											<input type="submit" name="Submit" value="Delete">
+										</form>
+									</td>
 								</tr>
 							<%
 								}
