@@ -50,7 +50,7 @@
 				<div class="form-group col-md-6">
 					<label for="idNo">ID Number: </label> <input type="text"
 						class="form-control" name="idNo" id="idNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
-						minlength="4" maxlength="9" required>
+						minlength="4" maxlength="15" required>
 				</div>
 				<div class="form-group col-md-4">
 					<label for="psw">Password</label> <input type="password" class="form-control" id="psw"
