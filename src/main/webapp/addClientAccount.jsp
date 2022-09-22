@@ -81,6 +81,7 @@ function validateForm() {
 		alert("PDPA Compliance: Enter ONLY last 4 digit of Passport No. E.g. 4456");
 		return false;
 	}
+	return true;
 }
 	function showPassword() {
 		  var x = document.getElementById("psw");
