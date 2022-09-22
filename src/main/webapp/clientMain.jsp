@@ -19,7 +19,7 @@
 </head>
 <body>
 	<% 
-	String message = (String) request.getAttribute("message");
+	String message = (String) request.getAttribute("responseObj");
 	if (message != null && !StringUtils.isEmpty(message)) {
 	%>
 	<label class="heading"><%=message%> </label><br>
