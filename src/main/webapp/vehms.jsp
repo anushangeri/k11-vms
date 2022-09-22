@@ -383,7 +383,7 @@
 				}
 				 else {
 				%>
-				<a href="/index.jsp" class="btn btn-warning btn-lg active"
+				<a href="/clientLogin.jsp" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Back</a>
 
 			<%
