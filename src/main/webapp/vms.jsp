@@ -38,7 +38,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -50,7 +50,7 @@
 						var sheet = xlsx.xl.worksheets['sheet1.xml'];
 					}
 				} ],
-				"order": [[13, 'desc']]
+				"order": [[14, 'desc']]
 			});
 		});
 	});
@@ -85,17 +85,22 @@
 					<thead>
 						<tr>
 							<th class="th-sm">S/N</th>
+							<th class="th-sm">View</th>
 							<th class="th-sm">Name</th>
 							<th class="th-sm">Company Name</th>
 							<th class="th-sm">Site Visited</th>
-							<%if(userType == null) { %>
-								<th class="th-sm" style="display:none;">ID Number</th>
-							<% 
-							} else{
-							%>
-								 <th class="th-sm">ID Number <i>(Click to Add New Record)</i></th>
+							<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
 							<%
-							}%>
+							if (userType == null) {
+							%>
+							<th class="th-sm" style="display: none;">ID Number</th>
+							<%
+							} else {
+							%>
+							<th class="th-sm">ID Number <i>(Click to Add New Record)</i></th>
+							<%
+							}
+							%>
 							<th class="th-sm">Visitor Contact Number</th>
 							<th class="th-sm">Vehicle Number</th>
 							<th class="th-sm">Host Name</th>
@@ -117,19 +122,27 @@
 						%>
 								<tr>
 									<td><%=v.getVmsId()%></td>
+									<td><form method="GET" action="/retrieveToPopulate">
+										<input type="hidden" id="vmsId" name="vmsId"
+											value="<%=v.getVmsId()%>"> <input type="hidden"
+											id="status" name="status" value="readonly"> <input
+											type="submit" name="Submit" value="View">
+									</form></td>
 									<td><%=v.getName()%></td>
 									<td><%=v.getCompanyName()%></td>
 									<td><%=((v.getSite() == null) ? "" : v.getSite())%></td>
 									<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
-									<%if(userType == null) { %>
-										<td style="display:none;"><%=v.getIdNo()%></td>
-									<% 
-									} else{
-									%>
-										 <td><a href="/retrieveToPopulate?vmsId=<%=v.getVmsId()%>&status=readonly"><%=v.getIdNo()%></a></td>
 									<%
-									}%>
-									
+									if (userType == null) {
+									%>
+										<td style="display: none;"><%=v.getIdNo()%></td>
+									<%
+									} else {
+									%>
+										<td><a href="/retrieveToPopulate?idNo=<%=v.getIdNo()%>"><%=v.getIdNo()%></a></td>
+									<%
+									}
+									%>
 									<td><%=v.getMobileNo()%></td>
 									<td><%=v.getVehicleNo()%></td>
 									<td><%=v.getHostName()%></td>

@@ -161,7 +161,7 @@ function getSMSOTP()
 							<label for="idNo">ID Number: </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getIdNo())%>"
+								value="<%=((v == null) ? idNo : v.getIdNo())%>"
 								minlength="4" maxlength="15"  <%=((v == null) ? "" : "readonly")%>>
 						</div>
 						<div class="form-group col-md-4">

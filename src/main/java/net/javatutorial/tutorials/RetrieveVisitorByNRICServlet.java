@@ -32,13 +32,16 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 		String idNo = (String) request.getSession(false).getAttribute("idNo");
 		
 		//from client login view
+		String idNoFromClient = request.getParameter("idNo");
+				
+		//from client login view
 		String vmsId = request.getParameter("vmsId");
 		String status = request.getParameter("status");
 		
 		ArrayList<Visitor> vList = null;
 		Visitor v = null;
 		
-		if(usertype == null) {
+		if(usertype == null && vmsId == null) {
 			if(!StringUtils.isEmpty(idNo)) {
 				vList = VMSManagerDAO.retrieveByNameIDPopulate(idNo);
 				if(vList != null && vList.size() > 0) {
@@ -46,8 +49,15 @@ public class RetrieveVisitorByNRICServlet extends HttpServlet {
 				}
 			}
 		}
-		else {
+		else if(vmsId != null && status != null && status.equals("readonly")){
 			v = VMSManagerDAO.retrieveByVmsId(vmsId);
+			
+		}
+		else {
+			vList = VMSManagerDAO.retrieveByNameIDPopulate(idNoFromClient);
+			if(vList != null && vList.size() > 0) {
+				v = vList.get(0);
+			}
 			
 		}
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();

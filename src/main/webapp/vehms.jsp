@@ -158,7 +158,7 @@
 					<%
 					} else {
 					%>
-					<th class="th-sm">ID Number <i>(Click to Add New Record)</i></th>
+					<th class="th-sm">ID Number</th>
 					<%
 					}
 					%>

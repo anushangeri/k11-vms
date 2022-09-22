@@ -90,12 +90,6 @@
 								<%=status%>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="warehouseLevel">Warehouse Level (仓库层): </label> <input
-								type="number" class="form-control" name="warehouseLevel"
-								value="<%=((v == null) ? 0 : v.getWarehouseLevel())%>"
-								<%=status%>>
-						</div>
-						<div class="form-group col-md-6">
 							<label for="site">Site/Warehouse Name (仓库名称): </label>
 							<%
 							if (v == null) {

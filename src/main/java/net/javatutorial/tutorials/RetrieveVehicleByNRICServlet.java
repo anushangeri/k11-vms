@@ -34,14 +34,14 @@ public class RetrieveVehicleByNRICServlet extends HttpServlet {
 		//from client login view
 		String idNoFromClient = request.getParameter("idNo");
 		
-		//from client login view but this is just to view a record
+		//from view button - this is just to view a record
 		String vehicleId = request.getParameter("vehicleId");
 		String status = request.getParameter("status");
 		
 		ArrayList<Vehicle> vList = null;
 		Vehicle v = null;
 		
-		if(usertype == null) {
+		if(usertype == null && vehicleId == null) {
 			if(!StringUtils.isEmpty(idNo)) {
 				vList = VehMSManagerDAO.retrieveByNameIDPopulate(idNo);
 				if(vList != null && vList.size() > 0) {
