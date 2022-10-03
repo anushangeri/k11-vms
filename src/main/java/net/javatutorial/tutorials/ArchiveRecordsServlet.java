@@ -336,7 +336,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 
 				String to = "k11.sivalingam@gmail.com";// change accordingly
 				final String user = "Shangeri1994@k11.com.sg";// change accordingly
-				final String password = "EbSDkwr+Hvc7!U57";// change accordingly
+				final String password = "Sh@ngeri94";// change accordingly
 
 				Properties properties = System.getProperties();
 				properties.setProperty("mail.smtp.host", "smtp.k11.com.sg");
