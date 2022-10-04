@@ -203,7 +203,7 @@
 								value="<%=((v == null) ? "" : v.getSealNo())%>"
 								<%=status.equals("readonly") ? status : ""%>>
 						</div>
-						<div class="form-group col-md-4">
+						<div class="form-group col-md-6">
 							<label for="containerSize">Container Size (集装箱测村): </label>
 							<%
 							if (v == null || v.getContainerSize() == null || StringUtils.isEmpty(v.getContainerSize())) {
