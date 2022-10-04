@@ -42,7 +42,6 @@
 							• staff <br> 
 							• government agency <br> 
 							Select this.
-
 						</div>
 					</div>
 				</button>
@@ -66,7 +65,7 @@
 				<button type="submit" id="removeBackground">
 					<div class="card bg-primary text-white">
 						<div class="card-body font-size-percent">
-							Warehouse Personnel 
+							Warehouse Personnel. 
 							Select this.
 						</div>
 					</div>
