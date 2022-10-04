@@ -187,12 +187,14 @@
 								value="<%=((v == null) ? "" : v.getContainerNo())%>"
 								<%=status.equals("readonly") ? status : ""%>>
 						</div>
-						<div class="form-group col-md-4">
-							<input type="checkbox" id="loadedNoLoaded" name="loadedNoLoaded"
-								value="Yes" <%=(v != null) && v.getLoadedNoLoaded().equals("Yes") ? "checked" : ""%> <%=status.equals("readonly") ? "disabled" : ""%>> <label
-								for="loadedNoLoaded"> Select if container is loaded. (选择若集装箱已满.) </label>
-						</div>
 					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+								<input type="checkbox" id="loadedNoLoaded" name="loadedNoLoaded"
+									value="Yes" <%=(v != null) && v.getLoadedNoLoaded().equals("Yes") ? "checked" : ""%> <%=status.equals("readonly") ? "disabled" : ""%>> <label
+									for="loadedNoLoaded"> Select if container is loaded. (选择若集装箱已满.) </label>
+						</div>
+					<div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="sealNo">Seal No (密封号): </label> <input type="text"
