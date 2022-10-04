@@ -125,7 +125,7 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="idNo">Driver ID Number: </label> <input type="text"
+							<label for="idNo">Driver ID Number (司机ID号码): </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? idNo : v.getIdNo())%>" minlength="4"
@@ -138,7 +138,7 @@
 								value="<%=((v == null) ? "" : v.getMobileNo())%>" <%=status%>>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="visitPurpose">Visit Purpose: </label>
+							<label for="visitPurpose">Visit Purpose (访问目的): </label>
 							<%
 							if (v == null) {
 							%>
@@ -181,7 +181,7 @@
 								value="<%=((v == null) ? "" : v.getPrimeMoverNo())%>" <%=status%>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="containerNo">Container Number: </label> <input
+							<label for="containerNo">Container Number (集装箱号): </label> <input
 								type="text" class="form-control" name="containerNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getContainerNo())%>"
@@ -190,19 +190,19 @@
 						<div class="form-group col-md-4">
 							<input type="checkbox" id="loadedNoLoaded" name="loadedNoLoaded"
 								value="Yes" <%=(v != null) && v.getLoadedNoLoaded().equals("Yes") ? "checked" : ""%> <%=status.equals("readonly") ? "disabled" : ""%>> <label
-								for="loadedNoLoaded"> Select if container is loaded. </label>
+								for="loadedNoLoaded"> Select if container is loaded. (选择若集装箱已满.) </label>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="sealNo">Seal No: </label> <input type="text"
+							<label for="sealNo">Seal No (密封号): </label> <input type="text"
 								class="form-control" name="sealNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getSealNo())%>"
 								<%=status.equals("readonly") ? status : ""%>>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="containerSize">Container Size: </label>
+							<label for="containerSize">Container Size (集装箱测村): </label>
 							<%
 							if (v == null || v.getContainerSize() == null || StringUtils.isEmpty(v.getContainerSize())) {
 							%>
@@ -239,14 +239,14 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="lorryChetNumber">Lorry Chit Number: </label> <input
+							<label for="lorryChetNumber">Lorry Chit Number (货车车牌号): </label> <input
 								type="text" class="form-control" name="lorryChetNumber"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getLorryChetNumber())%>"
 								<%=status.equals("readonly") ? status : ""%>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="deliveryNoticeNumber">Delivery Notice Number:
+							<label for="deliveryNoticeNumber">Delivery Notice Number (送货通知号):
 							</label> <input type="text" class="form-control"
 								name="deliveryNoticeNumber"
 								oninput="this.value = this.value.toUpperCase()"
@@ -261,7 +261,7 @@
 						<!-- 								placeholder="36.6" minlength="2" maxlength="4" required> -->
 						<!-- 						</div> -->
 						<div class="form-group col-md-6">
-							<label for="remarks">Remarks: </label> <input type="text"
+							<label for="remarks">Remarks (其他): </label> <input type="text"
 								class="form-control" name="remarks" id="remarks"
 								value="<%=((v == null) ? "" : v.getRemarks())%>"
 								<%=status.equals("readonly") ? status : ""%>>

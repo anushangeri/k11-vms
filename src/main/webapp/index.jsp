@@ -65,6 +65,16 @@
 				</button>
 			</form>
 			<br>
+			<form method="POST" action="clientLogin.jsp">
+				<button type="submit" id="removeBackground">
+					<div class="card bg-primary text-white">
+						<div class="card-body font-size-percent">
+							Warehouse Personnel 
+							Select this.
+						</div>
+					</div>
+				</button>
+			</form>
 		</div>
 	</center>
 </body>

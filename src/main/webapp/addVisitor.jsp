@@ -116,19 +116,19 @@ function getSMSOTP()
 				<form action="addVisitor" method="post" name="addVisitor">
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="name">Name: </label> <input type="text"
+							<label for="name">Name (姓名): </label> <input type="text"
 								class="form-control" name="name"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? name : v.getName())%>" <%=readOnlyStatus %>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="companyName">Company Name: </label> <input
+							<label for="companyName">Company Name (公司名称): </label> <input
 								type="text" class="form-control" name="companyName"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getCompanyName())%>" <%=readOnlyStatus %>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="siteVisiting">Site You Are Visiting: </label> 
+							<label for="siteVisiting">Site You Are Visiting (访问地点): </label> 
 							<% if(v == null){%>
 								<select name="siteVisiting" class="form-control" <%=readOnlyStatus %>>
 									<%
@@ -158,19 +158,19 @@ function getSMSOTP()
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="idNo">ID Number: </label> <input type="text"
+							<label for="idNo">ID Number (ID号码): </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? idNo : v.getIdNo())%>"
 								minlength="4" maxlength="15"  <%=((v == null) ? "" : "readonly")%>>
 						</div>
 						<div class="form-group col-md-4">
-						    <label for="mobileNo">Mobile No.: </label> <input type="tel" class="form-control" id="mobileNo" name="mobileNo"
+						    <label for="mobileNo">Mobile No. (手机号码): </label> <input type="tel" class="form-control" id="mobileNo" name="mobileNo"
 						    onchange="processMobileNo(event)" value="<%=((v == null) ? "" : v.getMobileNo())%>" <%=readOnlyStatus %>>
 						    <input type="hidden" id="processedMobileNo" name="processedMobileNo"/>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="visitPurpose">Visit Purpose: </label> 
+							<label for="visitPurpose">Visit Purpose (访问目的): </label> 
 							<% if(v == null){%>
 								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
 									name="visitPurpose" class="form-control" <%=readOnlyStatus %>>
@@ -201,23 +201,23 @@ function getSMSOTP()
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="vehicleNo">Vehicle Number: </label> <input
+							<label for="vehicleNo">Vehicle Number (车牌号码): </label> <input
 								type="text" class="form-control" name="vehicleNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getVehicleNo())%>" <%=readOnlyStatus %>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="hostName">Host Name: </label> <input type="text"
+							<label for="hostName">Host Name (接待人): </label> <input type="text"
 								class="form-control" name="hostName"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getHostName())%>" <%=readOnlyStatus %>>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="hostNo">Host No.: </label> <input type="tel" class="form-control" id="hostNo" name="hostNo" onchange="processHostNo(event)"/>
+							<label for="hostNo">Host No. (接待人电话号码): </label> <input type="tel" class="form-control" id="hostNo" name="hostNo" onchange="processHostNo(event)"/>
 							<input type="hidden" id="processedHostNo" name="processedHostNo"/>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="visitorCardId">Visitor Card ID: </label> <input
+							<label for="visitorCardId">Visitor Card ID (访问卡号码): </label> <input
 								type="text" class="form-control" name="visitorCardId"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getVisitorCardId())%>" <%=readOnlyStatus %>>
@@ -228,7 +228,7 @@ function getSMSOTP()
 <!-- 								placeholder="36.6" minlength="2" maxlength="4" required> -->
 <!-- 						</div> -->
 						<div class="form-group col-md-6">
-							<label for="remarks">Remarks: </label> <input type="text"
+							<label for="remarks">Remarks (其他): </label> <input type="text"
 								class="form-control" name="remarks" id="remarks" 
 								value="<%=((v == null) ? "" : v.getRemarks())%>" <%=readOnlyStatus %>>
 						</div>
@@ -269,7 +269,7 @@ function getSMSOTP()
 						<div class="form-row">
 							<input type="hidden" name="otpGenerated" id="otpGenerated">
 							<div class="form-group col-md-6">
-								<label for="otpEntered">Enter SMS OTP received: </label> <input
+								<label for="otpEntered">Enter SMS OTP received (请输入验证码): </label> <input
 									type="text" class="form-control" name="otpEntered" id="otpEntered">
 							</div>
 							<div class="form-inline form-group col-md-6">
