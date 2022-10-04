@@ -30,7 +30,6 @@
 		session.removeAttribute("idNo");
 	%>
 	<center>
-		<br> <br>
 		<div class="container">
 			<form method="POST" action="vmsCheckNRIC.jsp">
 				<input type="hidden" id="recordType" name="recordType"
@@ -48,7 +47,6 @@
 					</div>
 				</button>
 			</form>
-			<br>
 			<form method="POST" action="vmsCheckNRIC.jsp">
 				<input type="hidden" id="recordType" name="recordType"
 					value="vehicleRecord">
@@ -64,7 +62,6 @@
 					</div>
 				</button>
 			</form>
-			<br>
 			<form method="POST" action="clientLogin.jsp">
 				<button type="submit" id="removeBackground">
 					<div class="card bg-primary text-white">
