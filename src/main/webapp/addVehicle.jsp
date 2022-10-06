@@ -92,7 +92,7 @@
 						<div class="form-group col-md-6">
 							<label for="site">Site/Warehouse Name (仓库名称): </label>
 							<%
-							if (v == null) {
+							if (v == null || v.getSite() == null) {
 							%>
 							<select name="site" class="form-control" <%=status%>>
 								<%

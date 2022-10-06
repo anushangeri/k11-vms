@@ -129,7 +129,7 @@ function getSMSOTP()
 						</div>
 						<div class="form-group col-md-6">
 							<label for="siteVisiting">Site You Are Visiting (访问地点): </label> 
-							<% if(v == null){%>
+							<% if(v == null || v.getSite() == null){%>
 								<select name="siteVisiting" class="form-control" <%=readOnlyStatus %>>
 									<%
 										for (Site eachSite: siteDropdown) {
