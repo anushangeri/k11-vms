@@ -77,13 +77,13 @@
 					onsubmit="return validateForm()">
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="name">Vehicle Driver Name(司机姓名): </label> <input
+							<label for="name">Vehicle Driver Name (司机姓名): </label> <input
 								type="text" class="form-control" name="name"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? name : v.getName())%>" <%=status%>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="companyName">Company Name (你的公司): </label> <input
+							<label for="companyName">Company Name (公司名称): </label> <input
 								type="text" class="form-control" name="companyName"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getCompanyName())%>"
@@ -125,7 +125,7 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="idNo">Driver ID Number (司机ID号码): </label> <input type="text"
+							<label for="idNo">Driver ID Number (身份证号码): </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? idNo : v.getIdNo())%>" minlength="4"
@@ -138,7 +138,7 @@
 								value="<%=((v == null) ? "" : v.getMobileNo())%>" <%=status%>>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="visitPurpose">Visit Purpose (访问目的): </label>
+							<label for="visitPurpose">Visit Purpose (目的): </label>
 							<%
 							if (v == null) {
 							%>
@@ -197,7 +197,7 @@
 					<div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="sealNo">Seal No (密封号): </label> <input type="text"
+							<label for="sealNo">Seal No (印章号码): </label> <input type="text"
 								class="form-control" name="sealNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getSealNo())%>"
