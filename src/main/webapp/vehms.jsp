@@ -175,11 +175,11 @@
 					<th class="th-sm">Purpose of Visit</th>
 					<th class="th-sm">Time In</th>
 					<th class="th-sm">Time Out</th>
-					<th class="th-sm">Created By</th>
-					<th class="th-sm">Last Modified By</th>
 					<%
 					}
 					%>
+					<th class="th-sm">Created By</th>
+					<th class="th-sm">Last Modified By</th>
 				</tr>
 			</thead>
 			<tbody>

@@ -197,7 +197,7 @@ public class VMSManagerDAO {
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT,"
-            		+ " CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT "
+            		+ " CREATED_BY,CREATED_BY_DT,  LAST_MODIFIED_BY, LAST_MODIFIED_BY_DT "
             		+ " FROM VMS ORDER BY TIME_IN_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
@@ -248,7 +248,7 @@ public class VMSManagerDAO {
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT, "
-            		+ " CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT "
+            		+ " CREATED_BY,CREATED_BY_DT,  LAST_MODIFIED_BY, LAST_MODIFIED_BY_DT "
             		+ " FROM VMS WHERE SITE ='" + site + "' ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
 
@@ -300,7 +300,7 @@ public class VMSManagerDAO {
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT, "
-            		+ " CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT "
+            		+ " CREATED_BY,CREATED_BY_DT,  LAST_MODIFIED_BY, LAST_MODIFIED_BY_DT "
             		+ " FROM VMS WHERE ID_NO ='" + idNo + "' ORDER BY TIME_IN_DT DESC LIMIT 5;";
             pstmt = connection.prepareStatement(sql);
 
@@ -351,7 +351,7 @@ public class VMSManagerDAO {
             		"              VEHICLE_NO, HOST_NAME, \r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT, "
-            		+ " CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT "
+            		+ " CREATED_BY, CREATED_BY_DT,  LAST_MODIFIED_BY, LAST_MODIFIED_BY_DT "
             		+ " FROM VMS "
             		+ " WHERE ID_NO ='" + idNo + "'"
     				+ " ORDER BY TIME_IN_DT DESC";
@@ -403,7 +403,7 @@ public class VMSManagerDAO {
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT, "
-            		+ " CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT "
+            		+ " CREATED_BY, CREATED_BY_DT,  LAST_MODIFIED_BY, LAST_MODIFIED_BY_DT "
             		+ " FROM VMS WHERE VMS_ID ='" + vmsId + "' ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
 
