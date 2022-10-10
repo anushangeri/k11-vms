@@ -395,7 +395,7 @@ public class VehMSManagerDAO {
             		" VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, "
             		+ "WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT, "
             		+ "CREATED_BY,CREATED_BY_DT, LAST_MODIFIED_BY,  LAST_MODIFIED_BY_DT \r\n"
-            		+ " FROM VEHMS WHERE ID_NO ='" + idNo + "' ORDER BY TIME_IN_DT DESC LIMIT 5;";
+            		+ " FROM VEHMS WHERE ID_NO ='" + idNo + "' ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
