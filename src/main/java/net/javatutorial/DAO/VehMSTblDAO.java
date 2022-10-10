@@ -41,7 +41,7 @@ public class VehMSTblDAO {
 	        		"   CREATED_BY  VARCHAR (100) NULL,\r\n" + 
 	        		"   LAST_MODIFIED_BY  VARCHAR (100) NULL,\r\n" + 
 	        		"   CREATED_BY_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
-	        		"   LAST_MODIFIED_BY_DT TIMESTAMP  NOT NULL NOW() \r\n" + 
+	        		"   LAST_MODIFIED_BY_DT TIMESTAMP  NOT NULL DEFAULT NOW() \r\n" + 
 	        		");");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -77,7 +77,7 @@ public class VehMSTblDAO {
 	
 	public static String updateVehmsTbl(){
 		Connection connection;
-		String message = "";
+		String message = "Successful";
 		try {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
@@ -85,7 +85,7 @@ public class VehMSTblDAO {
 	        		"ADD COLUMN CREATED_BY  VARCHAR (100) NULL, \r\n" + 
 	        		"ADD COLUMN LAST_MODIFIED_BY  VARCHAR (100) NULL, \r\n" + 
 	        		"ADD COLUMN CREATED_BY_DT TIMESTAMP  NOT NULL DEFAULT NOW(), \r\n" + 
-	        		"ADD COLUMN LAST_MODIFIED_BY_DT TIMESTAMP  NOT NULL NOW() \r\n" + 
+	        		"ADD COLUMN LAST_MODIFIED_BY_DT TIMESTAMP  NOT NULL DEFAULT NOW() \r\n" + 
 	        		 ";");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -96,7 +96,6 @@ public class VehMSTblDAO {
 			//e.printStackTrace();
 			message = "" + e;
 		}
-		message = "Successful";
 		return message;
 	}
 }

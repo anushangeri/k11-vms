@@ -39,7 +39,7 @@ public class VMSArchiveTblDAO {
 	        		"   CREATED_BY  VARCHAR (100) NULL,\r\n" + 
 	        		"   LAST_MODIFIED_BY  VARCHAR (100) NULL,\r\n" + 
 	        		"   CREATED_BY_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
-	        		"   LAST_MODIFIED_BY_DT TIMESTAMP  NOT NULL NOW() \r\n" + 
+	        		"   LAST_MODIFIED_BY_DT TIMESTAMP  NOT NULL DEFAULT NOW() \r\n" + 
 	        		");");
 //	        stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
 //	        ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
@@ -86,7 +86,7 @@ public class VMSArchiveTblDAO {
 	
 	public static String updateVmsArchivedTbl(){
 		Connection connection;
-		String message = "";
+		String message = "Successful";
 		try {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
@@ -95,7 +95,7 @@ public class VMSArchiveTblDAO {
 	        		"ADD COLUMN CREATED_BY  VARCHAR (100) NULL, \r\n" + 
 	        		"ADD COLUMN LAST_MODIFIED_BY  VARCHAR (100) NULL, \r\n" + 
 	        		"ADD COLUMN CREATED_BY_DT TIMESTAMP  NOT NULL DEFAULT NOW(), \r\n" + 
-	        		"ADD COLUMN LAST_MODIFIED_BY_DT TIMESTAMP  NOT NULL NOW() \r\n" + 
+	        		"ADD COLUMN LAST_MODIFIED_BY_DT TIMESTAMP  NOT NULL DEFAULT NOW() \r\n" + 
 	        		 ";");
 //	        stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
 //	        ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
@@ -111,7 +111,6 @@ public class VMSArchiveTblDAO {
 			//e.printStackTrace();
 			message = "" + e;
 		}
-		message = "Successful";
 		return message;
 	}
 }
