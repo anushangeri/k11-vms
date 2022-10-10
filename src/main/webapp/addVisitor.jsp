@@ -230,7 +230,7 @@ function getSMSOTP()
 						<div class="form-group col-md-6">
 							<label for="remarks">Remarks (其他): </label> <input type="text"
 								class="form-control" name="remarks" id="remarks" 
-								value="<%=((v == null) ? "" : v.getRemarks())%>" <%=readOnlyStatus %>>
+								value="<%=((v == null) ? "" : v.getRemarks())%>" <%=readOnlyStatus.equals("readonly") ? status : ""%>>
 						</div>
 					</div>
 <!-- 					<div class="form-row checkbox"> -->
