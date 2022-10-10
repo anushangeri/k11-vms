@@ -2,23 +2,15 @@ package net.javatutorial.tutorials;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.Locale;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.joda.time.format.DateTimeFormatter;
 
 import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.entity.Visitor;
@@ -31,6 +23,11 @@ public class UpdateVisitorRemarksRecordServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String lastModifiedBy = (String) request.getSession(false).getAttribute("idNo");
+		
+		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
+		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
+		
 		String vmsId = (String) request.getParameter("vmsId");
 		String remarks = request.getParameter("remarks");
 		Visitor v = null;
@@ -39,6 +36,8 @@ public class UpdateVisitorRemarksRecordServlet extends HttpServlet {
 			//retrieve Visitor object
 			v = VMSManagerDAO.retrieveByVmsId(vmsId);
 			v.setRemarks(remarks);
+			v.setLastModifiedBy(lastModifiedBy);
+			v.setLastModifiedByDt(timestamp);
 			//update Visitor object with remarks
 			message = VMSManagerDAO.updateVisitorRemarks(v);
 			

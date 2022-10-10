@@ -1,6 +1,9 @@
 package net.javatutorial.tutorials;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +24,11 @@ public class UpdateVehicleApprovalRecordServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String lastModifiedBy = (String) request.getSession(false).getAttribute("idNo");
+		
+		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
+		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
+		
 		String vehicleId = (String) request.getParameter("vehicleId");
 		String approverId = (String) request.getParameter("approverId");
 		Vehicle v = null;
@@ -30,6 +38,8 @@ public class UpdateVehicleApprovalRecordServlet extends HttpServlet {
 			v = VehMSManagerDAO.retrieveByVehicleId(vehicleId);
 			//update Vehicle object with approver id
 			v.setWarehouseApprover(approverId);
+			v.setLastModifiedBy(lastModifiedBy);
+			v.setLastModifiedByDt(timestamp);
 			message = VehMSManagerDAO.updateVehicleApprover(v);
 			
 		}

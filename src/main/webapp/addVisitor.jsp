@@ -278,6 +278,34 @@ function getSMSOTP()
 						</div> 
 						
 					<%} %>
+					<%if(readOnlyStatus.equals("readonly")){ %>
+						<div class="form-row">
+							<div class="form-group col-md-3">
+								<label for="createdBy">Created By: </label> <input
+									type="text" class="form-control" name="createdBy"
+									oninput="this.value = this.value.toUpperCase()"
+									value="<%=((v == null) ? "" : v.getCreatedBy())%>" readonly>
+							</div>
+							<div class="form-group col-md-3">
+								<label for="createdByDt">Created By Date:
+								</label> <input type="text" class="form-control"
+									name="createdByDt"
+									value="<%=((v == null) ? "" : v.getCreatedByDt())%>" readonly>
+							</div>
+							<div class="form-group col-md-3">
+								<label for="lastModifiedBy">Last Modified By: </label> <input
+									type="text" class="form-control" name="lastModifiedBy"
+									oninput="this.value = this.value.toUpperCase()"
+									value="<%=((v == null) ? "" : v.getLastModifiedBy())%>" readonly>
+							</div>
+							<div class="form-group col-md-3">
+								<label for="lastModifiedByDt">Last Modified By Date:
+								</label> <input type="text" class="form-control"
+									name="lastModifiedByDt"
+									value="<%=((v == null) ? "" : v.getLastModifiedByDt())%>" readonly>
+							</div>
+						</div>
+					<%} %>
 					<div class="form-row">
 						<a href="/vms" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>

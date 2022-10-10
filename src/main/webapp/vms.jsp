@@ -38,7 +38,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -111,6 +111,8 @@
 							<th class="th-sm">Approving Officer</th>
 							<th class="th-sm">Time In</th>
 							<th class="th-sm">Time Out</th>
+							<th class="th-sm">Created By</th>
+							<th class="th-sm">Last Modified By</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -196,6 +198,8 @@
 									<%
 										}
 									%>
+									<td><%=(v.getCreatedBy() != null ? v.getCreatedBy() : "")%></td>
+									<td><%=(v.getLastModifiedBy() != null ? v.getLastModifiedBy() : "")%></td>
 								</tr>
 							<%
 								}

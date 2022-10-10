@@ -34,7 +34,11 @@ public class VMSTblDAO {
 	        		"   REMARKS  VARCHAR (100) NULL,\r\n" + 
 	        		"   APPROVING_OFFICER  VARCHAR (100) NULL,\r\n" + 
 	        		"   TIME_IN_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
-	        		"   TIME_OUT_DT TIMESTAMP   NULL \r\n" + 
+	        		"   TIME_OUT_DT TIMESTAMP   NULL, \r\n" + 
+	        		"   CREATED_BY  VARCHAR (100) NULL,\r\n" + 
+	        		"   LAST_MODIFIED_BY  VARCHAR (100) NULL,\r\n" + 
+	        		"   CREATED_BY_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
+	        		"   LAST_MODIFIED_BY_DT TIMESTAMP  NOT NULL NOW() \r\n" + 
 	        		");");
 //	        stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
 //	        ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
@@ -86,8 +90,12 @@ public class VMSTblDAO {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
 //	        stmt.executeUpdate("DROP TABLE IF EXISTS ticks");
-	        stmt.executeUpdate("ALTER TABLE VMS\r\n" + 
-	        		"ADD COLUMN APPROVING_OFFICER VARCHAR (100)  NULL;");
+	        stmt.executeUpdate("ALTER TABLE VMS \r\n" + 
+	        		"ADD COLUMN CREATED_BY  VARCHAR (100) NULL, \r\n" + 
+	        		"ADD COLUMN LAST_MODIFIED_BY  VARCHAR (100) NULL, \r\n" + 
+	        		"ADD COLUMN CREATED_BY_DT TIMESTAMP  NOT NULL DEFAULT NOW(), \r\n" + 
+	        		"ADD COLUMN LAST_MODIFIED_BY_DT TIMESTAMP  NOT NULL NOW() \r\n" + 
+	        		 ";");
 //	        stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
 //	        ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
 //	        while (rs.next()) {

@@ -2,23 +2,15 @@ package net.javatutorial.tutorials;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.Locale;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.joda.time.format.DateTimeFormatter;
 
 import net.javatutorial.DAO.VehMSManagerDAO;
 import net.javatutorial.entity.Vehicle;
@@ -32,6 +24,11 @@ public class UpdateVehicleLorryChetRecordServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String lastModifiedBy = (String) request.getSession(false).getAttribute("idNo");
+		
+		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
+		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
+		
 		String vehicleId = (String) request.getParameter("vehicleId");
 		String lorryChetNumber = request.getParameter("lorryChetNumber");
 		Vehicle v = null;
@@ -40,7 +37,8 @@ public class UpdateVehicleLorryChetRecordServlet extends HttpServlet {
 			//retrieve Vehicle object
 			v = VehMSManagerDAO.retrieveByVehicleId(vehicleId);
 			v.setLorryChetNumber(lorryChetNumber);
-			//update Vehicle object with current system time as time out
+			v.setLastModifiedBy(lastModifiedBy);
+			v.setLastModifiedByDt(timestamp);
 			message = VehMSManagerDAO.updateVehicleLorryChet(v);
 			
 		}

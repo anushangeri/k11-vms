@@ -1,6 +1,9 @@
 package net.javatutorial.tutorials;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,12 +23,19 @@ public class UpdateVisitorRecordServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String lastModifiedBy = (String) request.getSession(false).getAttribute("idNo");
+		
+		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
+		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
+		
 		String vmsId = (String) request.getParameter("vmsId");
 		Visitor v = null;
 		String message = "VMS ID of visitor is unavailable, please add visitor record.";
 		if(vmsId != null && !StringUtils.isEmpty(vmsId)) {
 			//retrieve Visitor object
 			v = VMSManagerDAO.retrieveByVmsId(vmsId);
+			v.setLastModifiedBy(lastModifiedBy);
+			v.setLastModifiedByDt(timestamp);
 			//update Visitor object with current system time as time out
 			message = VMSManagerDAO.updateVisitorTimeOut(v);
 			

@@ -24,13 +24,15 @@ public class VMSManagerDAO {
 
 	        stmt.executeUpdate("INSERT INTO VMS "
 	        		+  "(VMS_ID, NAME, COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, VEHICLE_NO, HOST_NAME, HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, "
-	        		+ "REMARKS, VISIT_PURPOSE, TEMPERATURE, APPROVING_OFFICER, TIME_IN_DT)" + 
+	        		+ " REMARKS, VISIT_PURPOSE, TEMPERATURE, APPROVING_OFFICER, TIME_IN_DT, "
+	        		+ " CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT)" + 
 	        		"   VALUES ('" +v.getVmsId()+ "','" +v.getName()+ "','" +v.getCompanyName()+ "','" 
 	        		+v.getSite()+ "','" +v.getIdType()+ "','" 
 	        		+v.getIdNo()+ "','" +v.getMobileNo()+ "','" +v.getVehicleNo()+ "','" +v.getHostName()+ "','" 
 	        		+v.getHostNo()+ "','" +v.getVisitorCardId()+ "','" +v.getCovidDeclare()+ "','" +v.getRemarks()+ "','" 
-	        		+v.getVisitPurpose()+ "','" +v.getTemperature()+ "','" 
-	        		+v.getApprovingOfficer()+ "','" +v.getTimeInDt()+ "')");
+	        		+v.getVisitPurpose()+ "','" +v.getTemperature()+ "','" +v.getApprovingOfficer()+ "','" +v.getTimeInDt()+ "','"
+	        		+v.getCreatedBy()+ "','" +v.getLastModifiedBy()+ "','" +v.getCreatedByDt()+ "','" +v.getLastModifiedByDt()+ "'"
+	        		+ ");");
 	        rs = stmt.executeQuery("SELECT LAST(FIRST_NAME) FROM VMS;");
 	        while (rs.next()) {
 	        	message = "Read from DB: " + rs.getTimestamp("tick");
@@ -61,8 +63,10 @@ public class VMSManagerDAO {
 
 	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
 	        		+ "UPDATE VMS "
-	        		+  "SET TIME_OUT_DT = NOW()" +
-	        		"   WHERE VMS_ID = '" + v.getVmsId() + "';");
+	        		+  "SET TIME_OUT_DT = NOW(), " 
+	        		+ "LAST_MODIFIED_BY = '" + v.getLastModifiedBy() + "',"
+	    	    	+ "LAST_MODIFIED_BY_DT = '" + v.getLastModifiedByDt() + "'"	 
+	        		+ "   WHERE VMS_ID = '" + v.getVmsId() + "';");
 	        rs = stmt.executeQuery("SELECT LAST(FIRST_NAME) FROM VMS WHERE VMS_ID ='" + v.getVmsId() +"';");
 	        while (rs.next()) {
 	        	message = "Successfully updated: " + rs.getTimestamp("tick");
@@ -92,7 +96,9 @@ public class VMSManagerDAO {
 
 	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
 	        		+ "UPDATE VMS "
-	        		+ "SET REMARKS = '" + v.getRemarks() + "' " 
+	        		+ "SET REMARKS = '" + v.getRemarks() + "' ," 
+	        		+ "LAST_MODIFIED_BY = '" + v.getLastModifiedBy() + "',"
+	    	    	+ "LAST_MODIFIED_BY_DT = '" + v.getLastModifiedByDt() + "'"	 
 	        		+ "WHERE VMS_ID = '" + v.getVmsId() + "';");
 	        rs = stmt.executeQuery("SELECT LAST(FIRST_NAME) FROM VMS WHERE VMS_ID ='" + v.getVmsId() +"';");
 	        while (rs.next()) {
@@ -123,7 +129,9 @@ public class VMSManagerDAO {
 
 	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
 	        		+ "UPDATE VMS "
-	        		+ "SET APPROVING_OFFICER = '" + v.getApprovingOfficer() + "' " 
+	        		+ "SET APPROVING_OFFICER = '" + v.getApprovingOfficer() + "', " 
+	        		+ "LAST_MODIFIED_BY = '" + v.getLastModifiedBy() + "',"
+	    	    	+ "LAST_MODIFIED_BY_DT = '" + v.getLastModifiedByDt() + "'"	 
 	        		+ "WHERE VMS_ID = '" + v.getVmsId() + "';");
 	        rs = stmt.executeQuery("SELECT LAST(FIRST_NAME) FROM VMS WHERE VMS_ID ='" + v.getVmsId() +"';");
 	        while (rs.next()) {
@@ -188,7 +196,9 @@ public class VMSManagerDAO {
             		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
-            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT FROM VMS ORDER BY TIME_IN_DT DESC; ";
+            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT,"
+            		+ " CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT "
+            		+ " FROM VMS ORDER BY TIME_IN_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
@@ -210,7 +220,11 @@ public class VMSManagerDAO {
             			rs.getString(15),
             			rs.getString(16),
             			rs.getTimestamp(17),
-            			rs.getTimestamp(18));
+            			rs.getTimestamp(18),
+            			rs.getString(19),
+            			rs.getTimestamp(20),
+            			rs.getString(21),
+            			rs.getTimestamp(22));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -233,7 +247,9 @@ public class VMSManagerDAO {
             		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
-            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE SITE ='" + site + "' ORDER BY TIME_IN_DT DESC;";
+            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT, "
+            		+ " CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT "
+            		+ " FROM VMS WHERE SITE ='" + site + "' ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
@@ -255,7 +271,11 @@ public class VMSManagerDAO {
             			rs.getString(15),
             			rs.getString(16),
             			rs.getTimestamp(17),
-            			rs.getTimestamp(18));
+            			rs.getTimestamp(18),
+            			rs.getString(19),
+            			rs.getTimestamp(20),
+            			rs.getString(21),
+            			rs.getTimestamp(22));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -279,7 +299,9 @@ public class VMSManagerDAO {
             		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
-            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE ID_NO ='" + idNo + "' ORDER BY TIME_IN_DT DESC LIMIT 5;";
+            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT, "
+            		+ " CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT "
+            		+ " FROM VMS WHERE ID_NO ='" + idNo + "' ORDER BY TIME_IN_DT DESC LIMIT 5;";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
@@ -301,7 +323,11 @@ public class VMSManagerDAO {
             			rs.getString(15),
             			rs.getString(16),
             			rs.getTimestamp(17),
-            			rs.getTimestamp(18));
+            			rs.getTimestamp(18),
+            			rs.getString(19),
+            			rs.getTimestamp(20),
+            			rs.getString(21),
+            			rs.getTimestamp(22));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -324,7 +350,8 @@ public class VMSManagerDAO {
             		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME, \r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
-            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT "
+            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT, "
+            		+ " CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT "
             		+ " FROM VMS "
             		+ " WHERE ID_NO ='" + idNo + "'"
     				+ " ORDER BY TIME_IN_DT DESC";
@@ -349,7 +376,11 @@ public class VMSManagerDAO {
             			rs.getString(15),
             			rs.getString(16),
             			rs.getTimestamp(17),
-            			rs.getTimestamp(18));
+            			rs.getTimestamp(18),
+            			rs.getString(19),
+            			rs.getTimestamp(20),
+            			rs.getString(21),
+            			rs.getTimestamp(22));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -371,7 +402,9 @@ public class VMSManagerDAO {
             		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
-            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT FROM VMS WHERE VMS_ID ='" + vmsId + "' ORDER BY TIME_IN_DT DESC;";
+            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT, "
+            		+ " CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT "
+            		+ " FROM VMS WHERE VMS_ID ='" + vmsId + "' ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
@@ -393,7 +426,11 @@ public class VMSManagerDAO {
             			rs.getString(15),
             			rs.getString(16),
             			rs.getTimestamp(17),
-            			rs.getTimestamp(18));
+            			rs.getTimestamp(18),
+            			rs.getString(19),
+            			rs.getTimestamp(20),
+            			rs.getString(21),
+            			rs.getTimestamp(22));
             }
         } catch (Exception e) {
             e.printStackTrace();

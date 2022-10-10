@@ -117,7 +117,7 @@
                   <button class="btn" type="submit">Create</button>
               </form>
           </td>
-	      <td><form action="-" method="post">
+	      <td><form action="updateVmsArchivedTbl" method="post">
                   <button class="btn" type="submit">Update</button>
               </form>
           </td>

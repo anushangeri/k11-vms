@@ -25,13 +25,16 @@ public class VehMSManagerDAO {
 	        stmt.executeUpdate("INSERT INTO VEHMS "
 	        		+ "(VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, CONTAINER_NO, "
 	        		+ " LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO,"
-	        		+ " VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, WAREHOUSE_LEVEL, SITE, TIME_IN_DT)" + 
+	        		+ " VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, WAREHOUSE_LEVEL, SITE, TIME_IN_DT, "
+	        		+ " CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT)" + 
 	        		"  VALUES ('" +v.getVehicleId()+ "','" +v.getName()+ "','" +v.getCompanyName()+ "','" +v.getIdType()+ "','" 
 	        		+v.getIdNo()+ "','" +v.getMobileNo()+ "','" +v.getPrimeMoverNo()+ "','" +v.getContainerNo()+ "','" 
 	        		+v.getLoadedNoLoaded()+ "','" +v.getCovidDeclare()+ "','" +v.getLorryChetNumber()+ "','" 
 	        		+v.getDeliveryNoticeNumber()+ "','" +v.getVisitPurpose()+ "','" 
 	        		+v.getTemperature()+ "','" +v.getSealNo()+ "','" +v.getContainerSize()+ "','"
-	        		+v.getRemarks()+ "','" +v.getWarehouseLevel()+ "','" +v.getSite()+ "','" +v.getTimeInDt()+ "');");
+	        		+v.getRemarks()+ "','" +v.getWarehouseLevel()+ "','" +v.getSite()+ "','" +v.getTimeInDt()+ "','"
+	        		+v.getCreatedBy()+ "','" +v.getLastModifiedBy()+ "','" +v.getCreatedByDt()+ "','" +v.getLastModifiedByDt()+ "'"
+	        		+ ");");
 	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM VEHMS;");
 	        while (rs.next()) {
 	        	message = "Read from DB: " + rs.getTimestamp("tick");
@@ -63,8 +66,10 @@ public class VehMSManagerDAO {
 
 	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
 	        		+ "UPDATE VEHMS "
-	        		+  "SET TIME_OUT_DT = NOW()" +
-	        		"   WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
+	        		+ "SET TIME_OUT_DT = NOW() , "
+	        		+ "LAST_MODIFIED_BY = '" + v.getLastModifiedBy() + "',"
+	        		+ "LAST_MODIFIED_BY_DT = '" + v.getLastModifiedByDt() + "'"
+	        		+ " WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
 	        	message = "Read from DB: " + rs.getTimestamp("tick");
@@ -96,7 +101,9 @@ public class VehMSManagerDAO {
 
 	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
 	        		+ "UPDATE VEHMS "
-	        		+ "SET TIME_OUT_DT = '" + v.getTimeOutDt() + "' "
+	        		+ "SET TIME_OUT_DT = '" + v.getTimeOutDt() + "',"
+	        		+ "LAST_MODIFIED_BY = '" + v.getLastModifiedBy() + "',"
+	    	        + "LAST_MODIFIED_BY_DT = '" + v.getLastModifiedByDt() + "'"
 	        		+ "WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
@@ -129,7 +136,9 @@ public class VehMSManagerDAO {
 
 	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
 	        		+ "UPDATE VEHMS "
-	        		+ "SET TIME_OUT_DT = '" + v.getTimeInDt() + "' "
+	        		+ "SET TIME_OUT_DT = '" + v.getTimeInDt() + "',"
+	        		+ "LAST_MODIFIED_BY = '" + v.getLastModifiedBy() + "',"
+	    	        + "LAST_MODIFIED_BY_DT = '" + v.getLastModifiedByDt() + "'"
 	        		+ "WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
@@ -161,7 +170,9 @@ public class VehMSManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("UPDATE VEHMS "
-	        		+  "SET LORRY_CHET_NO = '" + v.getLorryChetNumber() + "'" 
+	        		+  "SET LORRY_CHET_NO = '" + v.getLorryChetNumber() + "'," 
+	    	        + "LAST_MODIFIED_BY = '" + v.getLastModifiedBy() + "',"
+	    	    	+ "LAST_MODIFIED_BY_DT = '" + v.getLastModifiedByDt() + "'"	        		
 	        		+ "   WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
@@ -193,7 +204,9 @@ public class VehMSManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("UPDATE VEHMS "
-	        		+  "SET DELIVERY_NOTICE_NO = '" + v.getDeliveryNoticeNumber() + "'" 
+	        		+  "SET DELIVERY_NOTICE_NO = '" + v.getDeliveryNoticeNumber() + "'," 
+	        		+ "LAST_MODIFIED_BY = '" + v.getLastModifiedBy() + "',"
+	    	    	+ "LAST_MODIFIED_BY_DT = '" + v.getLastModifiedByDt() + "'"	 
 	        		+ "   WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
@@ -225,7 +238,9 @@ public class VehMSManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("UPDATE VEHMS "
-	        		+  "SET REMARKS = '" + v.getRemarks() + "'" 
+	        		+  "SET REMARKS = '" + v.getRemarks() + "'," 
+	        		+ "LAST_MODIFIED_BY = '" + v.getLastModifiedBy() + "',"
+	    	    	+ "LAST_MODIFIED_BY_DT = '" + v.getLastModifiedByDt() + "'"	 
 	        		+ "   WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
@@ -257,7 +272,9 @@ public class VehMSManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("UPDATE VEHMS "
-	        		+  "SET WAREHOUSE_APPROVER = '" + v.getWarehouseApprover() + "'" 
+	        		+  "SET WAREHOUSE_APPROVER = '" + v.getWarehouseApprover() + "'," 
+	    	        + "LAST_MODIFIED_BY = '" + v.getLastModifiedBy() + "',"
+	    	    	+ "LAST_MODIFIED_BY_DT = '" + v.getLastModifiedByDt() + "'"	 
 	        		+ "   WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
@@ -322,7 +339,8 @@ public class VehMSManagerDAO {
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, "
             		+ "CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" 
             		+ "VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, "
-            		+ "WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT \r\n"
+            		+ "WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT,"
+            		+ "CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT \r\n"
             		+ "FROM VEHMS ORDER BY TIME_IN_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
@@ -349,7 +367,11 @@ public class VehMSManagerDAO {
             			rs.getString(19),
             			rs.getString(20),
             			rs.getTimestamp(21),
-            			rs.getTimestamp(22));
+            			rs.getTimestamp(22),
+            			rs.getString(23),
+            			rs.getTimestamp(24),
+            			rs.getString(25),
+            			rs.getTimestamp(26));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -371,7 +393,8 @@ public class VehMSManagerDAO {
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, \r\n" + 
             		" CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" + 
             		" VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, "
-            		+ "WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT \r\n"
+            		+ "WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT, "
+            		+ "CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT \r\n"
             		+ " FROM VEHMS WHERE ID_NO ='" + idNo + "' ORDER BY TIME_IN_DT DESC LIMIT 5;";
             pstmt = connection.prepareStatement(sql);
 
@@ -398,7 +421,11 @@ public class VehMSManagerDAO {
             			rs.getString(19),
             			rs.getString(20),
             			rs.getTimestamp(21),
-            			rs.getTimestamp(22));
+            			rs.getTimestamp(22),
+            			rs.getString(23),
+            			rs.getTimestamp(24),
+            			rs.getString(25),
+            			rs.getTimestamp(26));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -421,7 +448,8 @@ public class VehMSManagerDAO {
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, \r\n" + 
             		"CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" + 
             		"VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, "
-            		+ "WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT \r\n"
+            		+ "WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT, "
+            		+ "CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT \r\n"
             		+ " FROM VEHMS"
             		+ " WHERE ID_NO ='" + idNo + "'"
     				+ " ORDER BY TIME_IN_DT DESC";
@@ -450,7 +478,11 @@ public class VehMSManagerDAO {
             			rs.getString(19),
             			rs.getString(20),
             			rs.getTimestamp(21),
-            			rs.getTimestamp(22));
+            			rs.getTimestamp(22),
+            			rs.getString(23),
+            			rs.getTimestamp(24),
+            			rs.getString(25),
+            			rs.getTimestamp(26));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -472,7 +504,8 @@ public class VehMSManagerDAO {
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, \r\n" + 
             		"CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" + 
             		"VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, "
-            		+ " WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT \r\n"
+            		+ " WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT, "
+            		+ "CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT \r\n"
             		+ " FROM VEHMS \r\n"
             		+ " WHERE VEHICLE_ID ='" + vehicleId + "' ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
@@ -500,7 +533,11 @@ public class VehMSManagerDAO {
             			rs.getString(19),
             			rs.getString(20),
             			rs.getTimestamp(21),
-            			rs.getTimestamp(22));
+            			rs.getTimestamp(22),
+            			rs.getString(23),
+            			rs.getTimestamp(24),
+            			rs.getString(25),
+            			rs.getTimestamp(26));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -522,7 +559,8 @@ public class VehMSManagerDAO {
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, \r\n" + 
             		"CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" + 
             		"VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, "
-            		+ " WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT \r\n"
+            		+ " WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT, "
+            		+ "CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT \r\n"
             		+ " FROM VEHMS \r\n"
             		+ " WHERE SITE ='" + site + "' ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
@@ -550,7 +588,11 @@ public class VehMSManagerDAO {
             			rs.getString(19),
             			rs.getString(20),
             			rs.getTimestamp(21),
-            			rs.getTimestamp(22));
+            			rs.getTimestamp(22),
+            			rs.getString(23),
+            			rs.getTimestamp(24),
+            			rs.getString(25),
+            			rs.getTimestamp(26));
                 vList.add(v);
             }
         } catch (Exception e) {

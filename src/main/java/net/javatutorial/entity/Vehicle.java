@@ -26,157 +26,10 @@ public class Vehicle {
     private Timestamp timeInDt;
     private Timestamp timeOutDt;
     private Timestamp archivedDt;
-    
-	public Vehicle(String vehicleId, String name, String companyName, String idType, String idNo, String mobileNo,
-			String primeMoverNo, String containerNo, String loadedNoLoaded, String covidDeclare, String lorryChetNumber,
-			String deliveryNoticeNumber, String visitPurpose, String temperature, String sealNo, String containerSize,
-			String remarks, Timestamp timeInDt, Timestamp timeOutDt) {
-		super();
-		this.vehicleId = vehicleId;
-		this.name = name;
-		this.companyName = companyName;
-		this.idType = idType;
-		this.idNo = idNo;
-		this.mobileNo = mobileNo;
-		this.primeMoverNo = primeMoverNo;
-		this.containerNo = containerNo;
-		this.loadedNoLoaded = loadedNoLoaded;
-		this.covidDeclare = covidDeclare;
-		this.lorryChetNumber = lorryChetNumber;
-		this.deliveryNoticeNumber = deliveryNoticeNumber;
-		this.visitPurpose = visitPurpose;
-		this.temperature = temperature;
-		this.sealNo = sealNo;
-		this.containerSize = containerSize;
-		this.remarks = remarks;
-		this.timeInDt = timeInDt;
-		this.timeOutDt = timeOutDt;
-	}
-	public Vehicle(String vehicleId, String name, String companyName, String idType, String idNo, String mobileNo,
-			String primeMoverNo, String containerNo, String loadedNoLoaded, String covidDeclare, String lorryChetNumber,
-			String deliveryNoticeNumber, String visitPurpose, String temperature, String sealNo, String containerSize,
-			String remarks, Timestamp timeInDt) {
-		super();
-		this.vehicleId = vehicleId;
-		this.name = name;
-		this.companyName = companyName;
-		this.idType = idType;
-		this.idNo = idNo;
-		this.mobileNo = mobileNo;
-		this.primeMoverNo = primeMoverNo;
-		this.containerNo = containerNo;
-		this.loadedNoLoaded = loadedNoLoaded;
-		this.covidDeclare = covidDeclare;
-		this.lorryChetNumber = lorryChetNumber;
-		this.deliveryNoticeNumber = deliveryNoticeNumber;
-		this.visitPurpose = visitPurpose;
-		this.temperature = temperature;
-		this.sealNo = sealNo;
-		this.containerSize = containerSize;
-		this.remarks = remarks;
-		this.timeInDt = timeInDt;
-	}
-	
-	/**
-	 * @param vehicleId
-	 * @param name
-	 * @param companyName
-	 * @param idType
-	 * @param idNo
-	 * @param mobileNo
-	 * @param primeMoverNo
-	 * @param containerNo
-	 * @param loadedNoLoaded
-	 * @param covidDeclare
-	 * @param lorryChetNumber
-	 * @param deliveryNoticeNumber
-	 * @param visitPurpose
-	 * @param temperature
-	 * @param sealNo
-	 * @param containerSize
-	 * @param remarks
-	 * @param timeInDt
-	 * @param timeOutDt
-	 * @param archivedDt
-	 */
-	public Vehicle(String vehicleId, String name, String companyName, String idType, String idNo, String mobileNo,
-			String primeMoverNo, String containerNo, String loadedNoLoaded, String covidDeclare, String lorryChetNumber,
-			String deliveryNoticeNumber, String visitPurpose, String temperature, String sealNo, String containerSize,
-			String remarks, Timestamp timeInDt, Timestamp timeOutDt, Timestamp archivedDt) {
-		super();
-		this.vehicleId = vehicleId;
-		this.name = name;
-		this.companyName = companyName;
-		this.idType = idType;
-		this.idNo = idNo;
-		this.mobileNo = mobileNo;
-		this.primeMoverNo = primeMoverNo;
-		this.containerNo = containerNo;
-		this.loadedNoLoaded = loadedNoLoaded;
-		this.covidDeclare = covidDeclare;
-		this.lorryChetNumber = lorryChetNumber;
-		this.deliveryNoticeNumber = deliveryNoticeNumber;
-		this.visitPurpose = visitPurpose;
-		this.temperature = temperature;
-		this.sealNo = sealNo;
-		this.containerSize = containerSize;
-		this.remarks = remarks;
-		this.timeInDt = timeInDt;
-		this.timeOutDt = timeOutDt;
-		this.archivedDt = archivedDt;
-	}
-	
-	
-	/**
-	 * @param vehicleId
-	 * @param name
-	 * @param companyName
-	 * @param idType
-	 * @param idNo
-	 * @param mobileNo
-	 * @param primeMoverNo
-	 * @param containerNo
-	 * @param loadedNoLoaded
-	 * @param covidDeclare
-	 * @param lorryChetNumber
-	 * @param deliveryNoticeNumber
-	 * @param visitPurpose
-	 * @param temperature
-	 * @param sealNo
-	 * @param containerSize
-	 * @param remarks
-	 * @param warehouseLevel
-	 * @param site
-	 * @param timeInDt
-	 */
-	public Vehicle(String vehicleId, String name, String companyName, String idType, String idNo, String mobileNo,
-			String primeMoverNo, String containerNo, String loadedNoLoaded, String covidDeclare, String lorryChetNumber,
-			String deliveryNoticeNumber, String visitPurpose, String temperature, String sealNo, String containerSize,
-			String remarks, Integer warehouseLevel, String site, Timestamp timeInDt) {
-		super();
-		this.vehicleId = vehicleId;
-		this.name = name;
-		this.companyName = companyName;
-		this.idType = idType;
-		this.idNo = idNo;
-		this.mobileNo = mobileNo;
-		this.primeMoverNo = primeMoverNo;
-		this.containerNo = containerNo;
-		this.loadedNoLoaded = loadedNoLoaded;
-		this.covidDeclare = covidDeclare;
-		this.lorryChetNumber = lorryChetNumber;
-		this.deliveryNoticeNumber = deliveryNoticeNumber;
-		this.visitPurpose = visitPurpose;
-		this.temperature = temperature;
-		this.sealNo = sealNo;
-		this.containerSize = containerSize;
-		this.remarks = remarks;
-		this.warehouseLevel = warehouseLevel;
-		this.site = site;
-		this.timeInDt = timeInDt;
-	}
-	
-	
+    private String createdBy;
+    private Timestamp createdByDt;
+    private String lastModifiedBy;
+    private Timestamp lastModifiedByDt;
 	/**
 	 * @param vehicleId
 	 * @param name
@@ -199,65 +52,77 @@ public class Vehicle {
 	 * @param site
 	 * @param warehouseApprover
 	 * @param timeInDt
-	 */
-	public Vehicle(String vehicleId, String name, String companyName, String idType, String idNo, String mobileNo,
-			String primeMoverNo, String containerNo, String loadedNoLoaded, String covidDeclare, String lorryChetNumber,
-			String deliveryNoticeNumber, String visitPurpose, String temperature, String sealNo, String containerSize,
-			String remarks, Integer warehouseLevel, String site, String warehouseApprover, Timestamp timeInDt) {
-		super();
-		this.vehicleId = vehicleId;
-		this.name = name;
-		this.companyName = companyName;
-		this.idType = idType;
-		this.idNo = idNo;
-		this.mobileNo = mobileNo;
-		this.primeMoverNo = primeMoverNo;
-		this.containerNo = containerNo;
-		this.loadedNoLoaded = loadedNoLoaded;
-		this.covidDeclare = covidDeclare;
-		this.lorryChetNumber = lorryChetNumber;
-		this.deliveryNoticeNumber = deliveryNoticeNumber;
-		this.visitPurpose = visitPurpose;
-		this.temperature = temperature;
-		this.sealNo = sealNo;
-		this.containerSize = containerSize;
-		this.remarks = remarks;
-		this.warehouseLevel = warehouseLevel;
-		this.site = site;
-		this.warehouseApprover = warehouseApprover;
-		this.timeInDt = timeInDt;
-	}
-	
-	
-	/**
-	 * @param vehicleId
-	 * @param name
-	 * @param companyName
-	 * @param idType
-	 * @param idNo
-	 * @param mobileNo
-	 * @param primeMoverNo
-	 * @param containerNo
-	 * @param loadedNoLoaded
-	 * @param covidDeclare
-	 * @param lorryChetNumber
-	 * @param deliveryNoticeNumber
-	 * @param visitPurpose
-	 * @param temperature
-	 * @param sealNo
-	 * @param containerSize
-	 * @param remarks
-	 * @param warehouseLevel
-	 * @param site
-	 * @param warehouseApprover
-	 * @param timeInDt
-	 * @param timeOutDt
+	 * @param createdBy
+	 * @param createdByDt
+	 * @param lastModifiedBy
+	 * @param lastModifiedByDt
 	 */
 	public Vehicle(String vehicleId, String name, String companyName, String idType, String idNo, String mobileNo,
 			String primeMoverNo, String containerNo, String loadedNoLoaded, String covidDeclare, String lorryChetNumber,
 			String deliveryNoticeNumber, String visitPurpose, String temperature, String sealNo, String containerSize,
 			String remarks, Integer warehouseLevel, String site, String warehouseApprover, Timestamp timeInDt,
-			Timestamp timeOutDt) {
+			String createdBy, Timestamp createdByDt, String lastModifiedBy, Timestamp lastModifiedByDt) {
+		super();
+		this.vehicleId = vehicleId;
+		this.name = name;
+		this.companyName = companyName;
+		this.idType = idType;
+		this.idNo = idNo;
+		this.mobileNo = mobileNo;
+		this.primeMoverNo = primeMoverNo;
+		this.containerNo = containerNo;
+		this.loadedNoLoaded = loadedNoLoaded;
+		this.covidDeclare = covidDeclare;
+		this.lorryChetNumber = lorryChetNumber;
+		this.deliveryNoticeNumber = deliveryNoticeNumber;
+		this.visitPurpose = visitPurpose;
+		this.temperature = temperature;
+		this.sealNo = sealNo;
+		this.containerSize = containerSize;
+		this.remarks = remarks;
+		this.warehouseLevel = warehouseLevel;
+		this.site = site;
+		this.warehouseApprover = warehouseApprover;
+		this.timeInDt = timeInDt;
+		this.createdBy = createdBy;
+		this.createdByDt = createdByDt;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedByDt = lastModifiedByDt;
+	}
+	/**
+	 * @param vehicleId
+	 * @param name
+	 * @param companyName
+	 * @param idType
+	 * @param idNo
+	 * @param mobileNo
+	 * @param primeMoverNo
+	 * @param containerNo
+	 * @param loadedNoLoaded
+	 * @param covidDeclare
+	 * @param lorryChetNumber
+	 * @param deliveryNoticeNumber
+	 * @param visitPurpose
+	 * @param temperature
+	 * @param sealNo
+	 * @param containerSize
+	 * @param remarks
+	 * @param warehouseLevel
+	 * @param site
+	 * @param warehouseApprover
+	 * @param timeInDt
+	 * @param timeOutDt
+	 * @param createdBy
+	 * @param createdByDt
+	 * @param lastModifiedBy
+	 * @param lastModifiedByDt
+	 */
+	public Vehicle(String vehicleId, String name, String companyName, String idType, String idNo, String mobileNo,
+			String primeMoverNo, String containerNo, String loadedNoLoaded, String covidDeclare, String lorryChetNumber,
+			String deliveryNoticeNumber, String visitPurpose, String temperature, String sealNo, String containerSize,
+			String remarks, Integer warehouseLevel, String site, String warehouseApprover, Timestamp timeInDt,
+			Timestamp timeOutDt, String createdBy, Timestamp createdByDt, String lastModifiedBy,
+			Timestamp lastModifiedByDt) {
 		super();
 		this.vehicleId = vehicleId;
 		this.name = name;
@@ -281,8 +146,11 @@ public class Vehicle {
 		this.warehouseApprover = warehouseApprover;
 		this.timeInDt = timeInDt;
 		this.timeOutDt = timeOutDt;
+		this.createdBy = createdBy;
+		this.createdByDt = createdByDt;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedByDt = lastModifiedByDt;
 	}
-	
 	/**
 	 * @param vehicleId
 	 * @param name
@@ -307,12 +175,17 @@ public class Vehicle {
 	 * @param timeInDt
 	 * @param timeOutDt
 	 * @param archivedDt
+	 * @param createdBy
+	 * @param createdByDt
+	 * @param lastModifiedBy
+	 * @param lastModifiedByDt
 	 */
 	public Vehicle(String vehicleId, String name, String companyName, String idType, String idNo, String mobileNo,
 			String primeMoverNo, String containerNo, String loadedNoLoaded, String covidDeclare, String lorryChetNumber,
 			String deliveryNoticeNumber, String visitPurpose, String temperature, String sealNo, String containerSize,
 			String remarks, Integer warehouseLevel, String site, String warehouseApprover, Timestamp timeInDt,
-			Timestamp timeOutDt, Timestamp archivedDt) {
+			Timestamp timeOutDt, Timestamp archivedDt, String createdBy, Timestamp createdByDt, String lastModifiedBy,
+			Timestamp lastModifiedByDt) {
 		super();
 		this.vehicleId = vehicleId;
 		this.name = name;
@@ -337,18 +210,69 @@ public class Vehicle {
 		this.timeInDt = timeInDt;
 		this.timeOutDt = timeOutDt;
 		this.archivedDt = archivedDt;
+		this.createdBy = createdBy;
+		this.createdByDt = createdByDt;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedByDt = lastModifiedByDt;
 	}
+	
+	
 	/**
-	 * @return the archivedDt
+	 * @param vehicleId
+	 * @param name
+	 * @param companyName
+	 * @param idType
+	 * @param idNo
+	 * @param mobileNo
+	 * @param primeMoverNo
+	 * @param containerNo
+	 * @param loadedNoLoaded
+	 * @param covidDeclare
+	 * @param lorryChetNumber
+	 * @param deliveryNoticeNumber
+	 * @param visitPurpose
+	 * @param temperature
+	 * @param sealNo
+	 * @param containerSize
+	 * @param remarks
+	 * @param warehouseLevel
+	 * @param site
+	 * @param timeInDt
+	 * @param createdBy
+	 * @param createdByDt
+	 * @param lastModifiedBy
+	 * @param lastModifiedByDt
 	 */
-	public Timestamp getArchivedDt() {
-		return archivedDt;
-	}
-	/**
-	 * @param archivedDt the archivedDt to set
-	 */
-	public void setArchivedDt(Timestamp archivedDt) {
-		this.archivedDt = archivedDt;
+	public Vehicle(String vehicleId, String name, String companyName, String idType, String idNo, String mobileNo,
+			String primeMoverNo, String containerNo, String loadedNoLoaded, String covidDeclare, String lorryChetNumber,
+			String deliveryNoticeNumber, String visitPurpose, String temperature, String sealNo, String containerSize,
+			String remarks, Integer warehouseLevel, String site, Timestamp timeInDt, String createdBy,
+			Timestamp createdByDt, String lastModifiedBy, Timestamp lastModifiedByDt) {
+		super();
+		this.vehicleId = vehicleId;
+		this.name = name;
+		this.companyName = companyName;
+		this.idType = idType;
+		this.idNo = idNo;
+		this.mobileNo = mobileNo;
+		this.primeMoverNo = primeMoverNo;
+		this.containerNo = containerNo;
+		this.loadedNoLoaded = loadedNoLoaded;
+		this.covidDeclare = covidDeclare;
+		this.lorryChetNumber = lorryChetNumber;
+		this.deliveryNoticeNumber = deliveryNoticeNumber;
+		this.visitPurpose = visitPurpose;
+		this.temperature = temperature;
+		this.sealNo = sealNo;
+		this.containerSize = containerSize;
+		this.remarks = remarks;
+		this.warehouseLevel = warehouseLevel;
+		this.site = site;
+		this.timeInDt = timeInDt;
+		this.createdBy = createdBy;
+		this.createdByDt = createdByDt;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedByDt = lastModifiedByDt;
 	}
 	/**
 	 * @return the vehicleId
@@ -555,28 +479,16 @@ public class Vehicle {
 		this.remarks = remarks;
 	}
 	/**
-	 * @return the timeInDt
+	 * @return the warehouseLevel
 	 */
-	public Timestamp getTimeInDt() {
-		return timeInDt;
+	public Integer getWarehouseLevel() {
+		return warehouseLevel;
 	}
 	/**
-	 * @param timeInDt the timeInDt to set
+	 * @param warehouseLevel the warehouseLevel to set
 	 */
-	public void setTimeInDt(Timestamp timeInDt) {
-		this.timeInDt = timeInDt;
-	}
-	/**
-	 * @return the timeOutDt
-	 */
-	public Timestamp getTimeOutDt() {
-		return timeOutDt;
-	}
-	/**
-	 * @param timeOutDt the timeOutDt to set
-	 */
-	public void setTimeOutDt(Timestamp timeOutDt) {
-		this.timeOutDt = timeOutDt;
+	public void setWarehouseLevel(Integer warehouseLevel) {
+		this.warehouseLevel = warehouseLevel;
 	}
 	/**
 	 * @return the site
@@ -603,16 +515,88 @@ public class Vehicle {
 		this.warehouseApprover = warehouseApprover;
 	}
 	/**
-	 * @return the warehouseLevel
+	 * @return the timeInDt
 	 */
-	public Integer getWarehouseLevel() {
-		return warehouseLevel;
+	public Timestamp getTimeInDt() {
+		return timeInDt;
 	}
 	/**
-	 * @param warehouseLevel the warehouseLevel to set
+	 * @param timeInDt the timeInDt to set
 	 */
-	public void setWarehouseLevel(Integer warehouseLevel) {
-		this.warehouseLevel = warehouseLevel;
+	public void setTimeInDt(Timestamp timeInDt) {
+		this.timeInDt = timeInDt;
+	}
+	/**
+	 * @return the timeOutDt
+	 */
+	public Timestamp getTimeOutDt() {
+		return timeOutDt;
+	}
+	/**
+	 * @param timeOutDt the timeOutDt to set
+	 */
+	public void setTimeOutDt(Timestamp timeOutDt) {
+		this.timeOutDt = timeOutDt;
+	}
+	/**
+	 * @return the archivedDt
+	 */
+	public Timestamp getArchivedDt() {
+		return archivedDt;
+	}
+	/**
+	 * @param archivedDt the archivedDt to set
+	 */
+	public void setArchivedDt(Timestamp archivedDt) {
+		this.archivedDt = archivedDt;
+	}
+	/**
+	 * @return the createdBy
+	 */
+	public String getCreatedBy() {
+		return createdBy;
+	}
+	/**
+	 * @param createdBy the createdBy to set
+	 */
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+	/**
+	 * @return the createdByDt
+	 */
+	public Timestamp getCreatedByDt() {
+		return createdByDt;
+	}
+	/**
+	 * @param createdByDt the createdByDt to set
+	 */
+	public void setCreatedByDt(Timestamp createdByDt) {
+		this.createdByDt = createdByDt;
+	}
+	/**
+	 * @return the lastModifiedBy
+	 */
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+	/**
+	 * @param lastModifiedBy the lastModifiedBy to set
+	 */
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+	/**
+	 * @return the lastModifiedByDt
+	 */
+	public Timestamp getLastModifiedByDt() {
+		return lastModifiedByDt;
+	}
+	/**
+	 * @param lastModifiedByDt the lastModifiedByDt to set
+	 */
+	public void setLastModifiedByDt(Timestamp lastModifiedByDt) {
+		this.lastModifiedByDt = lastModifiedByDt;
 	}
 	@Override
 	public String toString() {
@@ -623,7 +607,9 @@ public class Vehicle {
 				+ deliveryNoticeNumber + ", visitPurpose=" + visitPurpose + ", temperature=" + temperature + ", sealNo="
 				+ sealNo + ", containerSize=" + containerSize + ", remarks=" + remarks + ", warehouseLevel="
 				+ warehouseLevel + ", site=" + site + ", warehouseApprover=" + warehouseApprover + ", timeInDt="
-				+ timeInDt + ", timeOutDt=" + timeOutDt + ", archivedDt=" + archivedDt + "]";
+				+ timeInDt + ", timeOutDt=" + timeOutDt + ", archivedDt=" + archivedDt + ", createdBy=" + createdBy
+				+ ", createdByDt=" + createdByDt + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedByDt="
+				+ lastModifiedByDt + "]";
 	}
-	
+
 }

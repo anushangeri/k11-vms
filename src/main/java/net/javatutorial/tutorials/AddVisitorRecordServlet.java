@@ -49,6 +49,8 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 
+		String createdBy = (String) request.getSession(false).getAttribute("idNo");
+		
 		//Step 1: verify officer login (if parameters not empty) and visitPurpose = GovtAgency
 		String officerIdNo = request.getParameter("officerIdNo");
 		
@@ -62,14 +64,14 @@ public class AddVisitorRecordServlet extends HttpServlet {
 				//Step 2: add visitor
 				v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
 						 hostName,  hostNo,  visitorCardId, covidDec, remarks, visitPurpose,  
-						 temperature, officerIdNo , timestamp);
+						 temperature, officerIdNo , timestamp, createdBy, timestamp, createdBy, timestamp);
 				message = VMSManagerDAO.addVisitor(v);
 			}
 			else if(!visitPurpose.equals("GOVERNMENT AGENCY")) {
 				//Step 2: add visitor if not GOVT AGENCY
 				v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
 						 hostName,  hostNo,  visitorCardId, covidDec, remarks, visitPurpose,  
-						 temperature, null , timestamp);
+						 temperature, null , timestamp, createdBy, timestamp, createdBy, timestamp);
 				message = VMSManagerDAO.addVisitor(v);
 			}
 			request.setAttribute("message", message);

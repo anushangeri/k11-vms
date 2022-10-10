@@ -125,7 +125,11 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				visitorheader.createCell(14).setCellValue("Time In Date");
 				visitorheader.createCell(15).setCellValue("Time Out Date");
 				visitorheader.createCell(16).setCellValue("Archived Date");
-
+				visitorheader.createCell(17).setCellValue("Created By");
+				visitorheader.createCell(18).setCellValue("Created By Date");
+				visitorheader.createCell(19).setCellValue("Last Modified By");
+				visitorheader.createCell(20).setCellValue("Last Modified By Date");
+				
 				XSSFRow row;
 				int rowid = 1;
 
@@ -155,6 +159,10 @@ public class ArchiveRecordsServlet extends HttpServlet {
 						row.createCell(15).setCellValue(a.getTimeOutDt().toString());
 					}
 					row.createCell(16).setCellValue(a.getArchivedDt().toString());
+					row.createCell(17).setCellValue(a.getCreatedBy());
+					row.createCell(18).setCellValue(a.getCreatedByDt().toString());
+					row.createCell(19).setCellValue(a.getLastModifiedBy());
+					row.createCell(20).setCellValue(a.getLastModifiedByDt().toString());
 				}
 				
 				XSSFSheet vehiclespreadsheet = workbook.createSheet(" Vehicle Records " + monthFormat.format(calPreviousMonth.getTime()) + "_" + yearFormat.format(calPreviousMonth.getTime()));
@@ -183,6 +191,10 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				vehicleheader.createCell(18).setCellValue("Time In Date");
 				vehicleheader.createCell(19).setCellValue("Time Out Date");
 				vehicleheader.createCell(20).setCellValue("Archived Date");
+				vehicleheader.createCell(21).setCellValue("Created By");
+				vehicleheader.createCell(22).setCellValue("Created By Date");
+				vehicleheader.createCell(23).setCellValue("Last Modified By");
+				vehicleheader.createCell(24).setCellValue("Last Modified By Date");
 				
 				rowid = 1;
 
@@ -215,6 +227,10 @@ public class ArchiveRecordsServlet extends HttpServlet {
 						row.createCell(19).setCellValue(a.getTimeOutDt().toString());
 					}
 					row.createCell(20).setCellValue(a.getArchivedDt().toString());
+					row.createCell(21).setCellValue(a.getCreatedBy());
+					row.createCell(22).setCellValue(a.getCreatedByDt().toString());
+					row.createCell(23).setCellValue(a.getLastModifiedBy());
+					row.createCell(24).setCellValue(a.getLastModifiedByDt().toString());
 				}
 				
 				// spreadsheet object
@@ -238,7 +254,11 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				visitorCurrMonthheader.createCell(13).setCellValue("Approving Officer");
 				visitorCurrMonthheader.createCell(14).setCellValue("Time In Date");
 				visitorCurrMonthheader.createCell(15).setCellValue("Time Out Date");
-
+				visitorCurrMonthheader.createCell(16).setCellValue("Created By");
+				visitorCurrMonthheader.createCell(17).setCellValue("Created By Date");
+				visitorCurrMonthheader.createCell(18).setCellValue("Last Modified By");
+				visitorCurrMonthheader.createCell(19).setCellValue("Last Modified By Date");
+				
 				rowid = 1;
 
 				System.out.println("writing visitor records from current month..");
@@ -265,6 +285,11 @@ public class ArchiveRecordsServlet extends HttpServlet {
 					if (a.getTimeOutDt() != null) {
 						row.createCell(15).setCellValue(a.getTimeOutDt().toString());
 					}
+
+					row.createCell(16).setCellValue(a.getCreatedBy());
+					row.createCell(17).setCellValue(a.getCreatedByDt().toString());
+					row.createCell(18).setCellValue(a.getLastModifiedBy());
+					row.createCell(19).setCellValue(a.getLastModifiedByDt().toString());
 				}
 				
 				XSSFSheet vehicleCurrMonthspreadsheet = workbook.createSheet(" Vehicle Records " + monthFormat.format(cal.getTime()) + "_" + yearFormat.format(cal.getTime()));
@@ -291,6 +316,10 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				vehicleCurrMonthheader.createCell(17).setCellValue("Warehouse Approver");
 				vehicleCurrMonthheader.createCell(18).setCellValue("Time In Date");
 				vehicleCurrMonthheader.createCell(19).setCellValue("Time Out Date");
+				vehicleCurrMonthheader.createCell(20).setCellValue("Created By");
+				vehicleCurrMonthheader.createCell(21).setCellValue("Created By Date");
+				vehicleCurrMonthheader.createCell(22).setCellValue("Last Modified By");
+				vehicleCurrMonthheader.createCell(23).setCellValue("Last Modified By Date");
 				
 				rowid = 1;
 
@@ -322,6 +351,10 @@ public class ArchiveRecordsServlet extends HttpServlet {
 					if (a.getTimeOutDt() != null) {
 						row.createCell(19).setCellValue(a.getTimeOutDt().toString());
 					}
+					row.createCell(20).setCellValue(a.getCreatedBy());
+					row.createCell(21).setCellValue(a.getCreatedByDt().toString());
+					row.createCell(22).setCellValue(a.getLastModifiedBy());
+					row.createCell(23).setCellValue(a.getLastModifiedByDt().toString());
 				}
 				
 				

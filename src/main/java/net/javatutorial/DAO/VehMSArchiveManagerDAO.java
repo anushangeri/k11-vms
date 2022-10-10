@@ -35,7 +35,7 @@ public class VehMSArchiveManagerDAO {
 	        		"  SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, CONTAINER_NO, "
 	        		+ " LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO,"
 	        		+ " VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, "
-	        		+ " TIME_IN_DT, TIME_OUT_DT, NOW() "
+	        		+ " TIME_IN_DT, TIME_OUT_DT, NOW(), CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT "
 	        		+ " FROM VEHMS WHERE TIME_IN_DT <= (CURRENT_DATE - INTERVAL '30 days');"
 	        		+ " DELETE FROM VEHMS WHERE TIME_IN_DT <= (CURRENT_DATE - INTERVAL '30 days');");
 	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM VEHMS_ARCHIVED;");
@@ -69,7 +69,7 @@ public class VehMSArchiveManagerDAO {
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, "
             		+ "CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" 
             		+ "VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER,"
-            		+ "TIME_IN_DT, TIME_OUT_DT, ARCHIVED_DT  \r\n"
+            		+ "TIME_IN_DT, TIME_OUT_DT, ARCHIVED_DT, CREATED_BY, LAST_MODIFIED_BY, CREATED_BY_DT, LAST_MODIFIED_BY_DT  \r\n"
             		+ "FROM VEHMS_ARCHIVED ORDER BY TIME_IN_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
@@ -97,7 +97,11 @@ public class VehMSArchiveManagerDAO {
             			rs.getString(20),
             			rs.getTimestamp(21),
             			rs.getTimestamp(22),
-            			rs.getTimestamp(23));
+            			rs.getTimestamp(23),
+            			rs.getString(24),
+            			rs.getTimestamp(25),
+            			rs.getString(26),
+            			rs.getTimestamp(27));
                 vList.add(v);
             }
         } catch (Exception e) {

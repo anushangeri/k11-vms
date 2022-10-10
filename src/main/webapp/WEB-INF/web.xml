@@ -158,6 +158,12 @@
 	</servlet>
 	<servlet>
 		<description />
+		<display-name>UVMSArchiveTblServlet</display-name>
+		<servlet-name>UVMSArchiveTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UVMSArchiveTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
 		<display-name>ArchiveRecordsServlet</display-name>
 		<servlet-name>ArchiveRecordsServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.ArchiveRecordsServlet</servlet-class>
@@ -476,6 +482,10 @@
 	<servlet-mapping>
 		<servlet-name>CVMSArchivedTblServlet</servlet-name>
 		<url-pattern>/createVmsArchivedTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UVMSArchivedTblServlet</servlet-name>
+		<url-pattern>/updateVmsArchivedTbl</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ArchiveRecordsServlet</servlet-name>

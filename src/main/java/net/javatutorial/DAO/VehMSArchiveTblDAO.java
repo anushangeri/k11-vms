@@ -38,7 +38,11 @@ public class VehMSArchiveTblDAO {
 	        		"   WAREHOUSE_APPROVER  VARCHAR (100) NULL,\r\n" + 	       
 	        		"   TIME_IN_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
 	        		"   TIME_OUT_DT TIMESTAMP   NULL, \r\n" + 
-	        		"   ARCHIVED_DT TIMESTAMP  NOT NULL DEFAULT NOW() \r\n" + 
+	        		"   ARCHIVED_DT TIMESTAMP  NOT NULL DEFAULT NOW(), \r\n" + 
+	        		"   CREATED_BY  VARCHAR (100) NULL,\r\n" + 
+	        		"   LAST_MODIFIED_BY  VARCHAR (100) NULL,\r\n" + 
+	        		"   CREATED_BY_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
+	        		"   LAST_MODIFIED_BY_DT TIMESTAMP  NOT NULL NOW() \r\n" + 
 	        		");");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -78,10 +82,12 @@ public class VehMSArchiveTblDAO {
 		try {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
-	        stmt.executeUpdate("ALTER TABLE VEHMS_ARCHIVED\r\n" + 
-	        		"ADD COLUMN WAREHOUSE_LEVEL  INT  NULL,\r\n" + 	        
-	        		"ADD COLUMN SITE  VARCHAR (100) NULL,\r\n" + 	
-	        		"ADD COLUMN WAREHOUSE_APPROVER  VARCHAR (100) NULL;");
+	        stmt.executeUpdate("ALTER TABLE VEHMS_ARCHIVED \r\n" + 
+	        		"ADD COLUMN CREATED_BY  VARCHAR (100) NULL, \r\n" + 
+	        		"ADD COLUMN LAST_MODIFIED_BY  VARCHAR (100) NULL, \r\n" + 
+	        		"ADD COLUMN CREATED_BY_DT TIMESTAMP  NOT NULL DEFAULT NOW(), \r\n" + 
+	        		"ADD COLUMN LAST_MODIFIED_BY_DT TIMESTAMP  NOT NULL NOW() \r\n" + 
+	        		 ";");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;

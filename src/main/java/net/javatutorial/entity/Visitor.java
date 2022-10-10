@@ -21,12 +21,91 @@ public class Visitor {
     private String approvingOfficer;
     private Timestamp timeInDt;
     private Timestamp timeOutDt;
-    private Timestamp archivedDt;    
-
+    private Timestamp archivedDt;
+    private String createdBy;
+    private Timestamp createdByDt;
+    private String lastModifiedBy;
+    private Timestamp lastModifiedByDt;
+	/**
+	 * @param vmsId
+	 * @param name
+	 * @param companyName
+	 * @param site
+	 * @param idType
+	 * @param idNo
+	 * @param mobileNo
+	 * @param vehicleNo
+	 * @param hostName
+	 * @param hostNo
+	 * @param visitorCardId
+	 * @param covidDeclare
+	 * @param remarks
+	 * @param visitPurpose
+	 * @param temperature
+	 * @param approvingOfficer
+	 * @param timeInDt
+	 * @param createdBy
+	 * @param createdByDt
+	 * @param lastModifiedBy
+	 * @param lastModifiedByDt
+	 */
 	public Visitor(String vmsId, String name, String companyName, String site, String idType, String idNo,
 			String mobileNo, String vehicleNo, String hostName, String hostNo, String visitorCardId,
 			String covidDeclare, String remarks, String visitPurpose, String temperature, String approvingOfficer,
-			Timestamp timeInDt, Timestamp timeOutDt) {
+			Timestamp timeInDt, String createdBy, Timestamp createdByDt, String lastModifiedBy,
+			Timestamp lastModifiedByDt) {
+		super();
+		this.vmsId = vmsId;
+		this.name = name;
+		this.companyName = companyName;
+		this.site = site;
+		this.idType = idType;
+		this.idNo = idNo;
+		this.mobileNo = mobileNo;
+		this.vehicleNo = vehicleNo;
+		this.hostName = hostName;
+		this.hostNo = hostNo;
+		this.visitorCardId = visitorCardId;
+		this.covidDeclare = covidDeclare;
+		this.remarks = remarks;
+		this.visitPurpose = visitPurpose;
+		this.temperature = temperature;
+		this.approvingOfficer = approvingOfficer;
+		this.timeInDt = timeInDt;
+		this.createdBy = createdBy;
+		this.createdByDt = createdByDt;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedByDt = lastModifiedByDt;
+	}
+	/**
+	 * @param vmsId
+	 * @param name
+	 * @param companyName
+	 * @param site
+	 * @param idType
+	 * @param idNo
+	 * @param mobileNo
+	 * @param vehicleNo
+	 * @param hostName
+	 * @param hostNo
+	 * @param visitorCardId
+	 * @param covidDeclare
+	 * @param remarks
+	 * @param visitPurpose
+	 * @param temperature
+	 * @param approvingOfficer
+	 * @param timeInDt
+	 * @param timeOutDt
+	 * @param createdBy
+	 * @param createdByDt
+	 * @param lastModifiedBy
+	 * @param lastModifiedByDt
+	 */
+	public Visitor(String vmsId, String name, String companyName, String site, String idType, String idNo,
+			String mobileNo, String vehicleNo, String hostName, String hostNo, String visitorCardId,
+			String covidDeclare, String remarks, String visitPurpose, String temperature, String approvingOfficer,
+			Timestamp timeInDt, Timestamp timeOutDt, String createdBy, Timestamp createdByDt, String lastModifiedBy,
+			Timestamp lastModifiedByDt) {
 		super();
 		this.vmsId = vmsId;
 		this.name = name;
@@ -46,31 +125,12 @@ public class Visitor {
 		this.approvingOfficer = approvingOfficer;
 		this.timeInDt = timeInDt;
 		this.timeOutDt = timeOutDt;
+		this.createdBy = createdBy;
+		this.createdByDt = createdByDt;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedByDt = lastModifiedByDt;
 	}
-
-	public Visitor(String vmsId, String name, String companyName, String site, String idType, String idNo,
-			String mobileNo, String vehicleNo, String hostName, String hostNo, String visitorCardId,
-			String covidDeclare, String remarks, String visitPurpose, String temperature, String approvingOfficer,
-			Timestamp timeInDt) {
-		super();
-		this.vmsId = vmsId;
-		this.name = name;
-		this.companyName = companyName;
-		this.site = site;
-		this.idType = idType;
-		this.idNo = idNo;
-		this.mobileNo = mobileNo;
-		this.vehicleNo = vehicleNo;
-		this.hostName = hostName;
-		this.hostNo = hostNo;
-		this.visitorCardId = visitorCardId;
-		this.covidDeclare = covidDeclare;
-		this.remarks = remarks;
-		this.visitPurpose = visitPurpose;
-		this.temperature = temperature;
-		this.approvingOfficer = approvingOfficer;
-		this.timeInDt = timeInDt;
-	}
+	
 	
 	/**
 	 * @param vmsId
@@ -92,11 +152,16 @@ public class Visitor {
 	 * @param timeInDt
 	 * @param timeOutDt
 	 * @param archivedDt
+	 * @param createdBy
+	 * @param createdByDt
+	 * @param lastModifiedBy
+	 * @param lastModifiedByDt
 	 */
 	public Visitor(String vmsId, String name, String companyName, String site, String idType, String idNo,
 			String mobileNo, String vehicleNo, String hostName, String hostNo, String visitorCardId,
 			String covidDeclare, String remarks, String visitPurpose, String temperature, String approvingOfficer,
-			Timestamp timeInDt, Timestamp timeOutDt, Timestamp archivedDt) {
+			Timestamp timeInDt, Timestamp timeOutDt, Timestamp archivedDt, String createdBy, Timestamp createdByDt,
+			String lastModifiedBy, Timestamp lastModifiedByDt) {
 		super();
 		this.vmsId = vmsId;
 		this.name = name;
@@ -117,22 +182,11 @@ public class Visitor {
 		this.timeInDt = timeInDt;
 		this.timeOutDt = timeOutDt;
 		this.archivedDt = archivedDt;
+		this.createdBy = createdBy;
+		this.createdByDt = createdByDt;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedByDt = lastModifiedByDt;
 	}
-
-	/**
-	 * @return the archivedDt
-	 */
-	public Timestamp getArchivedDt() {
-		return archivedDt;
-	}
-
-	/**
-	 * @param archivedDt the archivedDt to set
-	 */
-	public void setArchivedDt(Timestamp archivedDt) {
-		this.archivedDt = archivedDt;
-	}
-
 	/**
 	 * @return the vmsId
 	 */
@@ -314,6 +368,18 @@ public class Visitor {
 		this.temperature = temperature;
 	}
 	/**
+	 * @return the approvingOfficer
+	 */
+	public String getApprovingOfficer() {
+		return approvingOfficer;
+	}
+	/**
+	 * @param approvingOfficer the approvingOfficer to set
+	 */
+	public void setApprovingOfficer(String approvingOfficer) {
+		this.approvingOfficer = approvingOfficer;
+	}
+	/**
 	 * @return the timeInDt
 	 */
 	public Timestamp getTimeInDt() {
@@ -337,28 +403,78 @@ public class Visitor {
 	public void setTimeOutDt(Timestamp timeOutDt) {
 		this.timeOutDt = timeOutDt;
 	}
-	
 	/**
-	 * @return the approvingOfficer
+	 * @return the archivedDt
 	 */
-	public String getApprovingOfficer() {
-		return approvingOfficer;
+	public Timestamp getArchivedDt() {
+		return archivedDt;
 	}
-
 	/**
-	 * @param approvingOfficer the approvingOfficer to set
+	 * @param archivedDt the archivedDt to set
 	 */
-	public void setApprovingOfficer(String approvingOfficer) {
-		this.approvingOfficer = approvingOfficer;
+	public void setArchivedDt(Timestamp archivedDt) {
+		this.archivedDt = archivedDt;
 	}
-
+	/**
+	 * @return the createdBy
+	 */
+	public String getCreatedBy() {
+		return createdBy;
+	}
+	/**
+	 * @param createdBy the createdBy to set
+	 */
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+	/**
+	 * @return the createdByDt
+	 */
+	public Timestamp getCreatedByDt() {
+		return createdByDt;
+	}
+	/**
+	 * @param createdByDt the createdByDt to set
+	 */
+	public void setCreatedByDt(Timestamp createdByDt) {
+		this.createdByDt = createdByDt;
+	}
+	/**
+	 * @return the lastModifiedBy
+	 */
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+	/**
+	 * @param lastModifiedBy the lastModifiedBy to set
+	 */
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+	/**
+	 * @return the lastModifiedByDt
+	 */
+	public Timestamp getLastModifiedByDt() {
+		return lastModifiedByDt;
+	}
+	/**
+	 * @param lastModifiedByDt the lastModifiedByDt to set
+	 */
+	public void setLastModifiedByDt(Timestamp lastModifiedByDt) {
+		this.lastModifiedByDt = lastModifiedByDt;
+	}
 	@Override
 	public String toString() {
 		return "Visitor [vmsId=" + vmsId + ", name=" + name + ", companyName=" + companyName + ", site=" + site
 				+ ", idType=" + idType + ", idNo=" + idNo + ", mobileNo=" + mobileNo + ", vehicleNo=" + vehicleNo
 				+ ", hostName=" + hostName + ", hostNo=" + hostNo + ", visitorCardId=" + visitorCardId
 				+ ", covidDeclare=" + covidDeclare + ", remarks=" + remarks + ", visitPurpose=" + visitPurpose
-				+ ", temperature=" + temperature + ", timeInDt=" + timeInDt + ", timeOutDt=" + timeOutDt + "]";
+				+ ", temperature=" + temperature + ", approvingOfficer=" + approvingOfficer + ", timeInDt=" + timeInDt
+				+ ", timeOutDt=" + timeOutDt + ", archivedDt=" + archivedDt + ", createdBy=" + createdBy
+				+ ", createdByDt=" + createdByDt + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedByDt="
+				+ lastModifiedByDt + "]";
 	}
+    
+
 	
 }
