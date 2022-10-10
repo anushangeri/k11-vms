@@ -483,7 +483,7 @@
 		<url-pattern>/createVmsArchivedTbl</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>UVMSArchivedTblServlet</servlet-name>
+		<servlet-name>UVMSArchiveTblServlet</servlet-name>
 		<url-pattern>/updateVmsArchivedTbl</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
