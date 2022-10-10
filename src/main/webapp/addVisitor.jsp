@@ -312,7 +312,7 @@ function getSMSOTP()
 							<br>
 					</div>
 				</form>
-			</center>
+			</center> 
 		</div>
 	</div>
 </body>
