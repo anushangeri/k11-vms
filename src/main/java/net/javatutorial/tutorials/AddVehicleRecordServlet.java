@@ -29,7 +29,7 @@ public class AddVehicleRecordServlet extends HttpServlet {
 		String companyName = request.getParameter("companyName").trim();
 		String idType = null;
 		String idNo = request.getParameter("idNo");
-		String mobileNo = request.getParameter("mobileNo");
+		String mobileNo = request.getParameter("processedMobileNo");
 		String primeMoverNo = request.getParameter("primeMoverNo");
 		String containerNo = request.getParameter("containerNo");
 		String loadedNoLoaded = request.getParameter("loadedNoLoaded");

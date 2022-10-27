@@ -132,10 +132,9 @@
 								maxlength="15" <%=status%>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="mobileNo">Mobile Number (手机号码): </label> <input
-								type="text" class="form-control" name="mobileNo"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getMobileNo())%>" <%=status%>>
+							<label for="mobileNo">Mobile No. (手机号码): </label> <input type="tel" class="form-control" id="mobileNo" name="mobileNo"
+						    onchange="processMobileNo(event)" value="<%=((v == null) ? "" : v.getMobileNo())%>" <%=status %>>
+						    <input type="hidden" id="processedMobileNo" name="processedMobileNo"/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose (目的): </label>
@@ -304,4 +303,18 @@
 		</div>
 	</div>
 </body>
+<script>
+const phoneInputField = document.querySelector("#mobileNo");
+const phoneInput = window.intlTelInput(phoneInputField, {
+	 preferredCountries: ['sg', 'my'],	
+	 utilsScript:
+     "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+ });
+processedMobileNo = document.querySelector("#processedMobileNo");
+function processMobileNo(event) {
+	 event.preventDefault();
+	 const phoneNumber = phoneInput.getNumber();
+	 processedMobileNo.value = phoneNumber;
+}
+</script>
 </html>
