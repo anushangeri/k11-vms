@@ -18,14 +18,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css" rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+<script type="text/javascript"
+	src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css"
+	rel="stylesheet" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
 <script>
 function validateForm() {
@@ -82,36 +90,36 @@ function getSMSOTP()
 	<div class="container body-content">
 		<div class="page-header">
 			<label class="heading"><%=((request.getAttribute("responseObj") != null) ? request.getAttribute("responseObj") : "")%></label>
-			<br>
-			<label class="heading">Visitor Management System</label> <br> <b>How
-				to use:</b> Please enter Visitor Details.
+			<br> <label class="heading">Visitor Management System</label> <br>
+			<b>How to use:</b> Please enter Visitor Details.
 			<%
- 	String idNo = "SxxxxxxxJ";
-	String name = "";
-	String otpGenerated = "";
- 	Visitor v = null;
- 	ArrayList<Site> siteDropdown = new ArrayList<Site>();
- 	ArrayList<Dropdown> visitPurpose = new ArrayList<Dropdown>();
- 	String readOnlyStatus = "required"; //this is to set the status to readonly for view function only else it is a required field
- 	if (request.getAttribute("visitorLatRec") != null) {
- 		v = (Visitor) request.getAttribute("visitorLatRec");
- 		otpGenerated = (String) request.getAttribute("otpGenerated");
- 	}
- 	if (request.getAttribute("siteDropdown") != null) {
- 		siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
- 	}
- 	if (request.getAttribute("visitPurpose") != null) {
- 		visitPurpose = (ArrayList<Dropdown>) request.getAttribute("visitPurpose");
- 	}
- 	// is not admin or officer, means is it a normal visitor
- 	if (request.getSession(false).getAttribute("usertype") == null && request.getSession(false).getAttribute("idNo") != null) {
- 		idNo = (String) request.getSession(false).getAttribute("idNo");
- 		name = (String) request.getSession(false).getAttribute("name");
- 	}
- 	if (request.getAttribute("status") != null) {
- 		readOnlyStatus = (String) request.getAttribute("status");
- 	}
- %>
+			String idNo = "SxxxxxxxJ";
+			String name = "";
+			String otpGenerated = "";
+			Visitor v = null;
+			ArrayList<Site> siteDropdown = new ArrayList<Site>();
+			ArrayList<Dropdown> visitPurpose = new ArrayList<Dropdown>();
+			String readOnlyStatus = "required"; //this is to set the status to readonly for view function only else it is a required field
+			if (request.getAttribute("visitorLatRec") != null) {
+				v = (Visitor) request.getAttribute("visitorLatRec");
+				otpGenerated = (String) request.getAttribute("otpGenerated");
+			}
+			if (request.getAttribute("siteDropdown") != null) {
+				siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
+			}
+			if (request.getAttribute("visitPurpose") != null) {
+				visitPurpose = (ArrayList<Dropdown>) request.getAttribute("visitPurpose");
+			}
+			// is not admin or officer, means is it a normal visitor
+			if (request.getSession(false).getAttribute("usertype") == null
+					&& request.getSession(false).getAttribute("idNo") != null) {
+				idNo = (String) request.getSession(false).getAttribute("idNo");
+				name = (String) request.getSession(false).getAttribute("name");
+			}
+			if (request.getAttribute("status") != null) {
+				readOnlyStatus = (String) request.getAttribute("status");
+			}
+			%>
 			<center>
 				<form action="addVisitor" method="post" name="addVisitor">
 					<div class="form-row">
@@ -119,41 +127,50 @@ function getSMSOTP()
 							<label for="name">Name (姓名): </label> <input type="text"
 								class="form-control" name="name"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? name : v.getName())%>" <%=readOnlyStatus %>>
+								value="<%=((v == null) ? name : v.getName())%>"
+								<%=readOnlyStatus%>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="companyName">Company Name (公司名称): </label> <input
 								type="text" class="form-control" name="companyName"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getCompanyName())%>" <%=readOnlyStatus %>>
+								value="<%=((v == null) ? "" : v.getCompanyName())%>"
+								<%=readOnlyStatus%>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="siteVisiting">Site You Are Visiting (访问地点): </label> 
-							<% if(v == null || v.getSite() == null){%>
-								<select name="siteVisiting" class="form-control" <%=readOnlyStatus %>>
-									<%
-										for (Site eachSite: siteDropdown) {
-									%>
-											<option value="<%=eachSite.getSiteName()%>">
-												<%=eachSite.getSiteName()%></option>
-									<%
-										}
-									%>
-								</select>
-							<% } 
-							else {%>
-								<select name="siteVisiting" class="form-control" <%=readOnlyStatus %>>
-									<%
-										for (Site eachSite: siteDropdown) {
-									%>
-											<option value="<%=eachSite.getSiteName()%>" 
-											<%=v.getSite()!= null && v.getSite().equals(eachSite.getSiteName()) ? "selected" : "" %>>
-												<%=eachSite.getSiteName()%></option>
-									<%
-										}
-									%>
-								</select>
-							<%} %>
+							<label for="siteVisiting">Site You Are Visiting (访问地点): </label>
+							<%
+							if (v == null || v.getSite() == null) {
+							%>
+							<select name="siteVisiting" class="form-control"
+								<%=readOnlyStatus%>>
+								<%
+								for (Site eachSite : siteDropdown) {
+								%>
+								<option value="<%=eachSite.getSiteName()%>">
+									<%=eachSite.getSiteName()%></option>
+								<%
+								}
+								%>
+							</select>
+							<%
+							} else {
+							%>
+							<select name="siteVisiting" class="form-control"
+								<%=readOnlyStatus%>>
+								<%
+								for (Site eachSite : siteDropdown) {
+								%>
+								<option value="<%=eachSite.getSiteName()%>"
+									<%=v.getSite() != null && v.getSite().equals(eachSite.getSiteName()) ? "selected" : ""%>>
+									<%=eachSite.getSiteName()%></option>
+								<%
+								}
+								%>
+							</select>
+							<%
+							}
+							%>
 						</div>
 					</div>
 					<div class="form-row">
@@ -161,42 +178,53 @@ function getSMSOTP()
 							<label for="idNo">ID Number (ID号码): </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? idNo : v.getIdNo())%>"
-								minlength="4" maxlength="15"  <%=((v == null) ? "" : "readonly")%>>
+								value="<%=((v == null) ? idNo : v.getIdNo())%>" minlength="4"
+								maxlength="15" <%=((v == null) ? "" : "readonly")%>>
 						</div>
 						<div class="form-group col-md-4">
-						    <label for="mobileNo">Mobile No. (手机号码): </label> <input type="tel" class="form-control" id="mobileNo" name="mobileNo"
-						    onchange="processMobileNo(event)" <%=readOnlyStatus %>>
-						    <input type="hidden" id="processedMobileNo" name="processedMobileNo"/>
+							<label for="mobileNo">Mobile No. (手机号码): </label> <input
+								type="tel" class="form-control" id="mobileNo" name="mobileNo"
+								onchange="processMobileNo(event)"
+								value="<%=((readOnlyStatus.equals("readonly")) ? ((v != null && v.getMobileNo() != null) ? v.getMobileNo() : "") : "")%>"
+								<%=readOnlyStatus%>> <input type="hidden"
+								id="processedMobileNo" name="processedMobileNo" />
 						</div>
 						<div class="form-group col-md-4">
-							<label for="visitPurpose">Visit Purpose (访问目的): </label> 
-							<% if(v == null){%>
-								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
-									name="visitPurpose" class="form-control" <%=readOnlyStatus %>>
-									<%
-										for (Dropdown d: visitPurpose) {
-									%>
-									<option value="<%=d.getDropdownValue()%>">
-										<%=d.getDropdownValue()%></option>
-									<%
-										}
-									%>
-								</select>
-							<% } 
-							else {%>
-								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
-									name="visitPurpose" class="form-control" <%=readOnlyStatus %>>
-									<%
-										for (Dropdown d: visitPurpose) {
-									%>
-									<option value="<%=d.getDropdownValue()%>" <%=v.getVisitPurpose().equals(d.getDropdownValue()) ? "selected" : "" %>>
-										<%=d.getDropdownValue()%></option>
-									<%
-										}
-									%>
-								</select>
-							<%} %>
+							<label for="visitPurpose">Visit Purpose (访问目的): </label>
+							<%
+							if (v == null) {
+							%>
+							<select id="visitPurpose"
+								onchange="showDiv('officerLogin', this)" name="visitPurpose"
+								class="form-control" <%=readOnlyStatus%>>
+								<%
+								for (Dropdown d : visitPurpose) {
+								%>
+								<option value="<%=d.getDropdownValue()%>">
+									<%=d.getDropdownValue()%></option>
+								<%
+								}
+								%>
+							</select>
+							<%
+							} else {
+							%>
+							<select id="visitPurpose"
+								onchange="showDiv('officerLogin', this)" name="visitPurpose"
+								class="form-control" <%=readOnlyStatus%>>
+								<%
+								for (Dropdown d : visitPurpose) {
+								%>
+								<option value="<%=d.getDropdownValue()%>"
+									<%=v.getVisitPurpose().equals(d.getDropdownValue()) ? "selected" : ""%>>
+									<%=d.getDropdownValue()%></option>
+								<%
+								}
+								%>
+							</select>
+							<%
+							}
+							%>
 						</div>
 					</div>
 					<div class="form-row">
@@ -204,115 +232,135 @@ function getSMSOTP()
 							<label for="vehicleNo">Vehicle Number (车牌号码): </label> <input
 								type="text" class="form-control" name="vehicleNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getVehicleNo())%>" <%=readOnlyStatus %>>
+								value="<%=((v == null) ? "" : v.getVehicleNo())%>"
+								<%=readOnlyStatus%>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="hostName">Host Name (接待人): </label> <input type="text"
-								class="form-control" name="hostName"
+							<label for="hostName">Host Name (接待人): </label> <input
+								type="text" class="form-control" name="hostName"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getHostName())%>" <%=readOnlyStatus %>>
+								value="<%=((v == null) ? "" : v.getHostName())%>"
+								<%=readOnlyStatus%>>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="hostNo">Host No. (接待人电话号码): </label> <input type="tel" class="form-control" id="hostNo" name="hostNo" onchange="processHostNo(event)" <%=readOnlyStatus %>>
-							<input type="hidden" id="processedHostNo" name="processedHostNo"/>
+							<label for="hostNo">Host No. (接待人电话号码): </label> <input
+								type="tel" class="form-control" id="hostNo" name="hostNo"
+								onchange="processHostNo(event)"
+								value="<%=((readOnlyStatus.equals("readonly")) ? ((v == null && v.getHostNo() != null) ? v.getHostNo() : "") : "")%>"
+								<%=readOnlyStatus%>> <input type="hidden"
+								id="processedHostNo" name="processedHostNo" />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="visitorCardId">Visitor Card ID (访问卡号码): </label> <input
 								type="text" class="form-control" name="visitorCardId"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getVisitorCardId())%>" <%=readOnlyStatus %>>
+								value="<%=((v == null) ? "" : v.getVisitorCardId())%>"
+								<%=readOnlyStatus%>>
 						</div>
-<!-- 						<div class="form-group col-md-6"> -->
-<!-- 							<label for="temperature">Temperature: </label> <input type="text" -->
-<!-- 								class="form-control" name="temperature" id="temperature" -->
-<!-- 								placeholder="36.6" minlength="2" maxlength="4" required> -->
-<!-- 						</div> -->
+						<!-- 						<div class="form-group col-md-6"> -->
+						<!-- 							<label for="temperature">Temperature: </label> <input type="text" -->
+						<!-- 								class="form-control" name="temperature" id="temperature" -->
+						<!-- 								placeholder="36.6" minlength="2" maxlength="4" required> -->
+						<!-- 						</div> -->
 						<div class="form-group col-md-6">
 							<label for="remarks">Remarks (其他): </label> <input type="text"
-								class="form-control" name="remarks" id="remarks" 
-								value="<%=((v == null) ? "" : v.getRemarks())%>" <%=readOnlyStatus.equals("readonly") ? readOnlyStatus : ""%>>
+								class="form-control" name="remarks" id="remarks"
+								value="<%=((v == null) ? "" : v.getRemarks())%>"
+								<%=readOnlyStatus.equals("readonly") ? readOnlyStatus : ""%>>
 						</div>
 					</div>
-<!-- 					<div class="form-row checkbox"> -->
-<!-- 						<input type="checkbox" id="coviddeclaration" -->
-<!-- 							name="coviddeclaration" value="Yes" required> <label -->
-<!-- 							for="coviddeclaration"> I confirm that I am NOT -->
-<!-- 							experiencing any of the following symptoms: <br> • fever -->
-<!-- 							(feeling hot to the touch, a temperature of 37.8 degrees Celsius -->
-<!-- 							or higher)<br> • new onset of cough (continuous, more than -->
-<!-- 							usual)<br> • difficulty breathing<br> <b>*Individuals -->
-<!-- 								are required to self-identify should they experience any -->
-<!-- 								COVID-19 symptoms.</b> -->
-<!-- 						</label> -->
-<!-- 					</div> -->
+					<!-- 					<div class="form-row checkbox"> -->
+					<!-- 						<input type="checkbox" id="coviddeclaration" -->
+					<!-- 							name="coviddeclaration" value="Yes" required> <label -->
+					<!-- 							for="coviddeclaration"> I confirm that I am NOT -->
+					<!-- 							experiencing any of the following symptoms: <br> • fever -->
+					<!-- 							(feeling hot to the touch, a temperature of 37.8 degrees Celsius -->
+					<!-- 							or higher)<br> • new onset of cough (continuous, more than -->
+					<!-- 							usual)<br> • difficulty breathing<br> <b>*Individuals -->
+					<!-- 								are required to self-identify should they experience any -->
+					<!-- 								COVID-19 symptoms.</b> -->
+					<!-- 						</label> -->
+					<!-- 					</div> -->
 					<br>
-					<div id = "officerLogin" class="form-row">
-					<i>Please aproach guard house and seek approval from security officer on duty.</i>
+					<div id="officerLogin" class="form-row">
+						<i>Please aproach guard house and seek approval from security
+							officer on duty.</i>
 						<div class="form-group col-md-6">
-							<label for="officerIdNo">Approving Officer ID Number: </label> <input type="text"
-								class="form-control" name="officerIdNo" id="officerIdNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
-								minlength="4" maxlength="9">
+							<label for="officerIdNo">Approving Officer ID Number: </label> <input
+								type="text" class="form-control" name="officerIdNo"
+								id="officerIdNo" placeholder="xxxx"
+								oninput="this.value = this.value.toUpperCase()" minlength="4"
+								maxlength="9">
 						</div>
 						<div class="form-group col-md-4">
-							<label for="officerpsw">Password:</label> <input type="password" class="form-control" id="officerpsw"
-								name="officerpsw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-								><input type="checkbox" onclick="showPassword()">Show Password
+							<label for="officerpsw">Password:</label> <input type="password"
+								class="form-control" id="officerpsw" name="officerpsw"
+								pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"><input
+								type="checkbox" onclick="showPassword()">Show Password
 						</div>
 					</div>
-					<% if(readOnlyStatus != null && readOnlyStatus.equalsIgnoreCase("required")){ %>
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<input type="button" class="btn btn-primary btn-lg active" onclick="getSMSOTP()" value="Get OTP">
-							</div>	
+					<%
+					if (readOnlyStatus != null && readOnlyStatus.equalsIgnoreCase("required")) {
+					%>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<input type="button" class="btn btn-primary btn-lg active"
+								onclick="getSMSOTP()" value="Get OTP">
 						</div>
-						<div class="form-row">
-							<input type="hidden" name="otpGenerated" id="otpGenerated">
-							<div class="form-group col-md-6">
-								<label for="otpEntered">Enter SMS OTP received (请输入验证码): </label> <input
-									type="text" class="form-control" name="otpEntered" id="otpEntered">
-							</div>
-							<div class="form-inline form-group col-md-6">
-								<button type="submit" class="btn btn-primary btn-lg active">Submit</button>
-							</div>
-						</div> 
-						
-					<%} %>
-					<%if(readOnlyStatus.equals("readonly")){ %>
-						<div class="form-row">
-							<div class="form-group col-md-3">
-								<label for="createdBy">Created By: </label> <input
-									type="text" class="form-control" name="createdBy"
-									oninput="this.value = this.value.toUpperCase()"
-									value="<%=((v == null) ? "" : v.getCreatedBy())%>" readonly>
-							</div>
-							<div class="form-group col-md-3">
-								<label for="createdByDt">Created By Date:
-								</label> <input type="text" class="form-control"
-									name="createdByDt"
-									value="<%=((v == null) ? "" : v.getCreatedByDt())%>" readonly>
-							</div>
-							<div class="form-group col-md-3">
-								<label for="lastModifiedBy">Last Modified By: </label> <input
-									type="text" class="form-control" name="lastModifiedBy"
-									oninput="this.value = this.value.toUpperCase()"
-									value="<%=((v == null) ? "" : v.getLastModifiedBy())%>" readonly>
-							</div>
-							<div class="form-group col-md-3">
-								<label for="lastModifiedByDt">Last Modified By Date:
-								</label> <input type="text" class="form-control"
-									name="lastModifiedByDt"
-									value="<%=((v == null) ? "" : v.getLastModifiedByDt())%>" readonly>
-							</div>
+					</div>
+					<div class="form-row">
+						<input type="hidden" name="otpGenerated" id="otpGenerated">
+						<div class="form-group col-md-6">
+							<label for="otpEntered">Enter SMS OTP received (请输入验证码):
+							</label> <input type="text" class="form-control" name="otpEntered"
+								id="otpEntered">
 						</div>
-					<%} %>
+						<div class="form-inline form-group col-md-6">
+							<button type="submit" class="btn btn-primary btn-lg active">Submit</button>
+						</div>
+					</div>
+
+					<%
+					}
+					%>
+					<%
+					if (readOnlyStatus.equals("readonly")) {
+					%>
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<label for="createdBy">Created By: </label> <input type="text"
+								class="form-control" name="createdBy"
+								oninput="this.value = this.value.toUpperCase()"
+								value="<%=((v == null) ? "" : v.getCreatedBy())%>" readonly>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="createdByDt">Created By Date: </label> <input
+								type="text" class="form-control" name="createdByDt"
+								value="<%=((v == null) ? "" : v.getCreatedByDt())%>" readonly>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="lastModifiedBy">Last Modified By: </label> <input
+								type="text" class="form-control" name="lastModifiedBy"
+								oninput="this.value = this.value.toUpperCase()"
+								value="<%=((v == null) ? "" : v.getLastModifiedBy())%>" readonly>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="lastModifiedByDt">Last Modified By Date: </label> <input
+								type="text" class="form-control" name="lastModifiedByDt"
+								value="<%=((v == null) ? "" : v.getLastModifiedByDt())%>"
+								readonly>
+						</div>
+					</div>
+					<%
+					}
+					%>
 					<div class="form-row">
 						<a href="/vms" class="btn btn-warning btn-lg active" role="button"
-							aria-pressed="true">Back</a>
-							<br>
+							aria-pressed="true">Back</a> <br>
 					</div>
 				</form>
-			</center> 
+			</center>
 		</div>
 	</div>
 </body>

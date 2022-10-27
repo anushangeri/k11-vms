@@ -20,14 +20,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css" rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+<script type="text/javascript"
+	src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css"
+	rel="stylesheet" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
 <script>
 	function validateForm() {
@@ -89,8 +97,7 @@
 							<label for="companyName">Company Name (公司名称): </label> <input
 								type="text" class="form-control" name="companyName"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getCompanyName())%>"
-								<%=status%>>
+								value="<%=((v == null) ? "" : v.getCompanyName())%>" <%=status%>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="site">Site/Warehouse Name (仓库名称): </label>
@@ -128,16 +135,19 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="idNo">Driver ID Number (身份证号码): </label> <input type="text"
-								class="form-control" name="idNo"
+							<label for="idNo">Driver ID Number (身份证号码): </label> <input
+								type="text" class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? idNo : v.getIdNo())%>" minlength="4"
 								maxlength="15" <%=status%>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="mobileNo">Mobile No. (手机号码): </label> <input type="tel" class="form-control" id="mobileNo" name="mobileNo"
-						    onchange="processMobileNo(event)" <%=status%>>
-						    <input type="hidden" id="processedMobileNo" name="processedMobileNo"/>
+							<label for="mobileNo">Mobile No. (手机号码): </label> <input
+								type="tel" class="form-control" id="mobileNo" name="mobileNo"
+								onchange="processMobileNo(event)"
+								value="<%=((status.equals("readonly")) ? ((v != null && v.getMobileNo() != null) ? v.getMobileNo() : "") : "")%>"
+								<%=status%>> <input type="hidden" id="processedMobileNo"
+								name="processedMobileNo" />
 						</div>
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose (目的): </label>
@@ -180,7 +190,8 @@
 							<label for="primeMoverNo">Vehicle/Primemover Number (车号):
 							</label> <input type="text" class="form-control" name="primeMoverNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getPrimeMoverNo())%>" <%=status%>>
+								value="<%=((v == null) ? "" : v.getPrimeMoverNo())%>"
+								<%=status%>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="containerNo">Container Number (集装箱号): </label> <input
@@ -192,115 +203,123 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-								<input type="checkbox" id="loadedNoLoaded" name="loadedNoLoaded"
-									value="Yes" <%=(v != null) && v.getLoadedNoLoaded().equals("Yes") ? "checked" : ""%> <%=status.equals("readonly") ? "disabled" : ""%>> <label
-									for="loadedNoLoaded"> Select if container is loaded. (选择若集装箱已满.) </label>
+							<input type="checkbox" id="loadedNoLoaded" name="loadedNoLoaded"
+								value="Yes"
+								<%=(v != null) && v.getLoadedNoLoaded().equals("Yes") ? "checked" : ""%>
+								<%=status.equals("readonly") ? "disabled" : ""%>> <label
+								for="loadedNoLoaded"> Select if container is loaded.
+								(选择若集装箱已满.) </label>
 						</div>
-					<div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="sealNo">Seal No (印章号码): </label> <input type="text"
-								class="form-control" name="sealNo"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getSealNo())%>"
-								<%=status.equals("readonly") ? status : ""%>>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="containerSize">Container Size (集装箱测村): </label>
+						<div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="sealNo">Seal No (印章号码): </label> <input type="text"
+										class="form-control" name="sealNo"
+										oninput="this.value = this.value.toUpperCase()"
+										value="<%=((v == null) ? "" : v.getSealNo())%>"
+										<%=status.equals("readonly") ? status : ""%>>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="containerSize">Container Size (集装箱测村): </label>
+									<%
+									if (v == null || v.getContainerSize() == null || StringUtils.isEmpty(v.getContainerSize())) {
+									%>
+									<select name="containerSize" class="form-control"
+										<%=status.equals("readonly") ? status : ""%>>
+										<%
+										for (Dropdown d : containerSize) {
+										%>
+										<option value="<%=d.getDropdownValue()%>">
+											<%=d.getDropdownValue()%></option>
+										<%
+										}
+										%>
+									</select>
+									<%
+									} else {
+									%>
+									<select name="containerSize" class="form-control"
+										<%=status.equals("readonly") ? status : ""%>>
+										<%
+										for (Dropdown d : containerSize) {
+										%>
+										<option value="<%=d.getDropdownValue()%>"
+											<%=v.getContainerSize().equals(d.getDropdownValue()) ? "selected" : ""%>>
+											<%=d.getDropdownValue()%></option>
+										<%
+										}
+										%>
+									</select>
+									<%
+									}
+									%>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="lorryChetNumber">Lorry Chit Number (货车车牌号):
+									</label> <input type="text" class="form-control" name="lorryChetNumber"
+										oninput="this.value = this.value.toUpperCase()"
+										value="<%=((v == null) ? "" : v.getLorryChetNumber())%>"
+										<%=status.equals("readonly") ? status : ""%>>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="deliveryNoticeNumber">Delivery Notice
+										Number (送货通知号): </label> <input type="text" class="form-control"
+										name="deliveryNoticeNumber"
+										oninput="this.value = this.value.toUpperCase()"
+										value="<%=((v == null) ? "" : v.getDeliveryNoticeNumber())%>"
+										<%=status.equals("readonly") ? status : ""%>>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="remarks">Remarks (其他): </label> <input type="text"
+										class="form-control" name="remarks" id="remarks"
+										value="<%=((v == null) ? "" : v.getRemarks())%>"
+										<%=status.equals("readonly") ? status : ""%>>
+								</div>
+							</div>
 							<%
-							if (v == null || v.getContainerSize() == null || StringUtils.isEmpty(v.getContainerSize())) {
+							if (status.equals("readonly")) {
 							%>
-							<select name="containerSize" class="form-control"
-								<%=status.equals("readonly") ? status : ""%>>
-								<%
-								for (Dropdown d : containerSize) {
-								%>
-								<option value="<%=d.getDropdownValue()%>">
-									<%=d.getDropdownValue()%></option>
-								<%
-								}
-								%>
-							</select>
-							<%
-							} else {
-							%>
-							<select name="containerSize" class="form-control"
-								<%=status.equals("readonly") ? status : ""%>>
-								<%
-								for (Dropdown d : containerSize) {
-								%>
-								<option value="<%=d.getDropdownValue()%>"
-									<%=v.getContainerSize().equals(d.getDropdownValue()) ? "selected" : ""%>>
-									<%=d.getDropdownValue()%></option>
-								<%
-								}
-								%>
-							</select>
+							<div class="form-row">
+								<div class="form-group col-md-3">
+									<label for="createdBy">Created By: </label> <input type="text"
+										class="form-control" name="createdBy"
+										oninput="this.value = this.value.toUpperCase()"
+										value="<%=((v == null) ? "" : v.getCreatedBy())%>" readonly>
+								</div>
+								<div class="form-group col-md-3">
+									<label for="createdByDt">Created By Date: </label> <input
+										type="text" class="form-control" name="createdByDt"
+										value="<%=((v == null) ? "" : v.getCreatedByDt())%>" readonly>
+								</div>
+								<div class="form-group col-md-3">
+									<label for="lastModifiedBy">Last Modified By: </label> <input
+										type="text" class="form-control" name="lastModifiedBy"
+										oninput="this.value = this.value.toUpperCase()"
+										value="<%=((v == null) ? "" : v.getLastModifiedBy())%>"
+										readonly>
+								</div>
+								<div class="form-group col-md-3">
+									<label for="lastModifiedByDt">Last Modified By Date: </label> <input
+										type="text" class="form-control" name="lastModifiedByDt"
+										value="<%=((v == null) ? "" : v.getLastModifiedByDt())%>"
+										readonly>
+								</div>
+							</div>
 							<%
 							}
 							%>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="lorryChetNumber">Lorry Chit Number (货车车牌号): </label> <input
-								type="text" class="form-control" name="lorryChetNumber"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getLorryChetNumber())%>"
-								<%=status.equals("readonly") ? status : ""%>>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="deliveryNoticeNumber">Delivery Notice Number (送货通知号):
-							</label> <input type="text" class="form-control"
-								name="deliveryNoticeNumber"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getDeliveryNoticeNumber())%>"
-								<%=status.equals("readonly") ? status : ""%>>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="remarks">Remarks (其他): </label> <input type="text"
-								class="form-control" name="remarks" id="remarks"
-								value="<%=((v == null) ? "" : v.getRemarks())%>"
-								<%=status.equals("readonly") ? status : ""%>>
-						</div>
-					</div>
-					<%if(status.equals("readonly")){ %>
-						<div class="form-row">
-							<div class="form-group col-md-3">
-								<label for="createdBy">Created By: </label> <input
-									type="text" class="form-control" name="createdBy"
-									oninput="this.value = this.value.toUpperCase()"
-									value="<%=((v == null) ? "" : v.getCreatedBy())%>" readonly>
+							<div class="form-row">
+								<button type="submit" class="btn btn-primary btn-lg active"
+									<%=status.equals("readonly") ? "disabled" : ""%>>Submit
+									Record</button>
+								<a href="/vehms" class="btn btn-warning btn-lg active"
+									role="button" aria-pressed="true">Back</a>
 							</div>
-							<div class="form-group col-md-3">
-								<label for="createdByDt">Created By Date:
-								</label> <input type="text" class="form-control"
-									name="createdByDt"
-									value="<%=((v == null) ? "" : v.getCreatedByDt())%>" readonly>
-							</div>
-							<div class="form-group col-md-3">
-								<label for="lastModifiedBy">Last Modified By: </label> <input
-									type="text" class="form-control" name="lastModifiedBy"
-									oninput="this.value = this.value.toUpperCase()"
-									value="<%=((v == null) ? "" : v.getLastModifiedBy())%>" readonly>
-							</div>
-							<div class="form-group col-md-3">
-								<label for="lastModifiedByDt">Last Modified By Date:
-								</label> <input type="text" class="form-control"
-									name="lastModifiedByDt"
-									value="<%=((v == null) ? "" : v.getLastModifiedByDt())%>" readonly>
-							</div>
-						</div>
-					<%} %>
-					<div class="form-row">
-						<button type="submit" class="btn btn-primary btn-lg active" <%=status.equals("readonly") ? "disabled" : ""%>>Submit
-							Record</button>
-						<a href="/vehms" class="btn btn-warning btn-lg active"
-							role="button" aria-pressed="true">Back</a>
-					</div>
-					<br> <br>
+							<br> <br>
 				</form>
 			</center>
 		</div>
