@@ -246,7 +246,7 @@ function getSMSOTP()
 							<label for="hostNo">Host No. (接待人电话号码): </label> <input
 								type="tel" class="form-control" id="hostNo" name="hostNo"
 								onchange="processHostNo(event)"
-								value="<%=((readOnlyStatus.equals("readonly")) ? ((v == null && v.getHostNo() != null) ? v.getHostNo() : "") : "")%>"
+								value="<%=((readOnlyStatus.equals("readonly")) ? ((v != null && v.getHostNo() != null) ? v.getHostNo() : "") : "")%>"
 								<%=readOnlyStatus%>> <input type="hidden"
 								id="processedHostNo" name="processedHostNo" />
 						</div>
