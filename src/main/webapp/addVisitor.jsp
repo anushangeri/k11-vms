@@ -166,7 +166,7 @@ function getSMSOTP()
 						</div>
 						<div class="form-group col-md-4">
 						    <label for="mobileNo">Mobile No. (手机号码): </label> <input type="tel" class="form-control" id="mobileNo" name="mobileNo"
-						    onchange="processMobileNo(event)" value="<%=((v == null) ? "" : v.getMobileNo())%>" <%=readOnlyStatus %>>
+						    onchange="processMobileNo(event)" <%=readOnlyStatus %>>
 						    <input type="hidden" id="processedMobileNo" name="processedMobileNo"/>
 						</div>
 						<div class="form-group col-md-4">
@@ -213,7 +213,7 @@ function getSMSOTP()
 								value="<%=((v == null) ? "" : v.getHostName())%>" <%=readOnlyStatus %>>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="hostNo">Host No. (接待人电话号码): </label> <input type="tel" class="form-control" id="hostNo" name="hostNo" onchange="processHostNo(event)" value="<%=((v == null) ? "" : v.getHostNo())%>" <%=readOnlyStatus %>>
+							<label for="hostNo">Host No. (接待人电话号码): </label> <input type="tel" class="form-control" id="hostNo" name="hostNo" onchange="processHostNo(event)" <%=readOnlyStatus %>>
 							<input type="hidden" id="processedHostNo" name="processedHostNo"/>
 						</div>
 						<div class="form-group col-md-6">
