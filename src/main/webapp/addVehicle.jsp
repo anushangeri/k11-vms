@@ -136,7 +136,7 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label for="mobileNo">Mobile No. (手机号码): </label> <input type="tel" class="form-control" id="mobileNo" name="mobileNo"
-						    onchange="processMobileNo(event)" value="<%=((v == null) ? "" : v.getMobileNo())%>" <%=status %>>
+						    onchange="processMobileNo(event)" <%=status%>>
 						    <input type="hidden" id="processedMobileNo" name="processedMobileNo"/>
 						</div>
 						<div class="form-group col-md-4">
