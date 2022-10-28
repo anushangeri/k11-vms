@@ -144,6 +144,7 @@ function getSMSOTP()
 							%>
 							<select name="siteVisiting" class="form-control"
 								<%=readOnlyStatus%>>
+								<option style="display:none;"></option>
 								<%
 								for (Site eachSite : siteDropdown) {
 								%>
@@ -192,11 +193,12 @@ function getSMSOTP()
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose (访问目的): </label>
 							<%
-							if (v == null) {
+							if (v == null || v.getVisitPurpose() == null) {
 							%>
 							<select id="visitPurpose"
 								onchange="showDiv('officerLogin', this)" name="visitPurpose"
 								class="form-control" <%=readOnlyStatus%>>
+								<option style="display:none;"></option>
 								<%
 								for (Dropdown d : visitPurpose) {
 								%>

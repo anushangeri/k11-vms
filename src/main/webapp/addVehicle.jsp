@@ -105,6 +105,7 @@
 							if (v == null || v.getSite() == null) {
 							%>
 							<select name="site" class="form-control" <%=status%>>
+								<option style="display:none;"></option>
 								<%
 								for (Site d : siteDropdown) {
 								%>
@@ -152,10 +153,11 @@
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose (目的): </label>
 							<%
-							if (v == null) {
+							if (v == null || v.getVisitPurpose() == null) {
 							%>
 							<select name="visitPurpose" class="form-control"
 								<%=status.equals("readonly") ? status : ""%>>
+								<option style="display:none;"></option>
 								<%
 								for (Dropdown d : vehiclePurpose) {
 								%>
@@ -226,6 +228,7 @@
 									%>
 									<select name="containerSize" class="form-control"
 										<%=status.equals("readonly") ? status : ""%>>
+										<option style="display:none;"></option>
 										<%
 										for (Dropdown d : containerSize) {
 										%>
