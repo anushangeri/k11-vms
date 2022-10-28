@@ -87,7 +87,7 @@ function getSMSOTP()
 function checkMobileNo() {
 	 if (processedMobileNo.value.length == 0)
     { 
-       alert("Please enter a valid mobile number. Try removing the spaces in the number.");  	
+       alert("Please enter a valid mobile number. Try removing the brackets/dashes/spaces in the number.");  	
        return false; 
     }  	
 }
@@ -255,7 +255,7 @@ function checkMobileNo() {
 							<label for="hostNo">Host No. (接待人电话号码): </label> <input
 								type="tel" class="form-control" id="hostNo" name="hostNo"
 								onchange="processHostNo(event)"
-								value="<%=((v != null && v.getHostNo() != null) ? v.getHostNo() : "")%>"
+								value="<%=((v != null && v.getHostNo() != null) ? v.getHostNo() : "") %>"
 								<%=readOnlyStatus.equals("readonly") ? readOnlyStatus : ""%>> <input type="hidden"
 								id="processedHostNo" name="processedHostNo" />
 						</div>
