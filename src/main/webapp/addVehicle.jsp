@@ -46,6 +46,15 @@
 			return false;
 		}
 	}
+	function checkMobileNo(event) {
+		 event.preventDefault();
+		 if (processedMobileNo.value.length == 0)
+	     { 
+	        alert("Please enter a valid mobile number.");  	
+	        return false; 
+	     }  	
+	     return true; 
+	}
 </script>
 </head>
 <body>
@@ -85,7 +94,7 @@
  %>
 			<center>
 				<form action="addVehicle" method="post" name="addVehicle"
-					onsubmit="return processMobileNo(event)">
+					onsubmit="return checkMobileNo(event)">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="name">Vehicle Driver Name (司机姓名): </label> <input
@@ -341,15 +350,6 @@ function processMobileNo(event) {
 	 const phoneNumber = phoneInput.getNumber();
 	 processedMobileNo.value = phoneNumber;
 	 
-	 if (processedMobileNo.value.length == 0)
-     { 
-        alert("Please enter a valid mobile number.");  	
-        return false; 
-     }  	
-     return true; 
-}
-function checkMobileNo(event) {
-	 event.preventDefault();
 	 if (processedMobileNo.value.length == 0)
      { 
         alert("Please enter a valid mobile number.");  	
