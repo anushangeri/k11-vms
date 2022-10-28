@@ -85,7 +85,7 @@
  %>
 			<center>
 				<form action="addVehicle" method="post" name="addVehicle"
-					onsubmit="return checkMobileNo()">
+					onsubmit="return processMobileNo(event)">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="name">Vehicle Driver Name (司机姓名): </label> <input
