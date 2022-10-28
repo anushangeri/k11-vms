@@ -146,7 +146,7 @@
 							<label for="mobileNo">Mobile No. (手机号码): </label> <input
 								type="tel" class="form-control" id="mobileNo" name="mobileNo"
 								onchange="processMobileNo(event)"
-								value="<%=((status.equals("readonly")) ? ((v != null && v.getMobileNo() != null) ? v.getMobileNo() : "") : "")%>"
+								value="<%=((v != null && v.getMobileNo() != null) ? v.getMobileNo() : "")%>"
 								<%=status%>> <input type="hidden" id="processedMobileNo"
 								name="processedMobileNo" />
 						</div>

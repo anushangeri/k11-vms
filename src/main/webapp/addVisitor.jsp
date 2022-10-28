@@ -186,7 +186,7 @@ function getSMSOTP()
 							<label for="mobileNo">Mobile No. (手机号码): </label> <input
 								type="tel" class="form-control" id="mobileNo" name="mobileNo"
 								onchange="processMobileNo(event)"
-								value="<%=((readOnlyStatus.equals("readonly")) ? ((v != null && v.getMobileNo() != null) ? v.getMobileNo() : "") : "")%>"
+								value="<%=((v != null && v.getMobileNo() != null) ? v.getMobileNo() : "")%>"
 								<%=readOnlyStatus%>> <input type="hidden"
 								id="processedMobileNo" name="processedMobileNo" />
 						</div>
@@ -235,21 +235,21 @@ function getSMSOTP()
 								type="text" class="form-control" name="vehicleNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getVehicleNo())%>"
-								<%=readOnlyStatus%>>
+								<%=readOnlyStatus.equals("readonly") ? readOnlyStatus : ""%>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="hostName">Host Name (接待人): </label> <input
 								type="text" class="form-control" name="hostName"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getHostName())%>"
-								<%=readOnlyStatus%>>
+								<%=readOnlyStatus.equals("readonly") ? readOnlyStatus : ""%>>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="hostNo">Host No. (接待人电话号码): </label> <input
 								type="tel" class="form-control" id="hostNo" name="hostNo"
 								onchange="processHostNo(event)"
-								value="<%=((readOnlyStatus.equals("readonly")) ? ((v != null && v.getHostNo() != null) ? v.getHostNo() : "") : "")%>"
-								<%=readOnlyStatus%>> <input type="hidden"
+								value="<%=((v != null && v.getHostNo() != null) ? v.getHostNo() : "")%>"
+								<%=readOnlyStatus.equals("readonly") ? readOnlyStatus : ""%>> <input type="hidden"
 								id="processedHostNo" name="processedHostNo" />
 						</div>
 						<div class="form-group col-md-6">
@@ -257,7 +257,7 @@ function getSMSOTP()
 								type="text" class="form-control" name="visitorCardId"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getVisitorCardId())%>"
-								<%=readOnlyStatus%>>
+								<%=readOnlyStatus.equals("readonly") ? readOnlyStatus : ""%>>
 						</div>
 						<!-- 						<div class="form-group col-md-6"> -->
 						<!-- 							<label for="temperature">Temperature: </label> <input type="text" -->
