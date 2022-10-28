@@ -75,7 +75,8 @@
 ## [Access Type Definitions] For All VMS dev & clients 
 To-do
 
-
+## [Notes for developer]
+&nbsp;- For vehicle size, need to add <empty> as a dropdown value so user can send empty if there is no container <br/>
 
 
 
