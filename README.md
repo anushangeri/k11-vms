@@ -73,7 +73,13 @@
 &nbsp;- Remarks (其他) <br/>
 
 ## [Access Type Definitions] For All VMS dev & clients 
-To-do
+#### Officer: <br/>
+&nbsp;- Can approve a visitor record (normally it is for Government Agency visit purport) <br/>
+&nbsp;- Can view 7 days worth of vehicle and visitor records across all sites (to be completed) <br/>
+
+#### Warehouse: <br/>
+&nbsp;- Can approve records within their own site <br/>
+&nbsp;- Can view records within their own site <br/>
 
 ## [Notes for developer]
 &nbsp;- For vehicle size, need to add <empty> as a dropdown value so user can send empty if there is no container <br/>
