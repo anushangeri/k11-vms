@@ -53,7 +53,6 @@
 	        alert("Please enter a valid mobile number.");  	
 	        return false; 
 	     }  	
-	     return true; 
 	}
 </script>
 </head>
@@ -349,13 +348,6 @@ function processMobileNo(event) {
 	 event.preventDefault();
 	 const phoneNumber = phoneInput.getNumber();
 	 processedMobileNo.value = phoneNumber;
-	 
-	 if (processedMobileNo.value.length == 0)
-     { 
-        alert("Please enter a valid mobile number.");  	
-        return false; 
-     }  	
-     return true; 
 }
 </script>
 </html>
