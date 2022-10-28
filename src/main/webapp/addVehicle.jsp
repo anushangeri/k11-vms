@@ -49,7 +49,7 @@
 	function checkMobileNo() {
 		 if (processedMobileNo.value.length == 0)
 	     { 
-	        alert("Please enter a valid mobile number. Try removing the spaces in the number.");  	
+	        alert("Please enter a valid mobile number. Try removing the brackets/dashes/spaces in the number or select the country and re-enter the number.");  	
 	        return false; 
 	     }  	
 	}
@@ -163,7 +163,7 @@
 							if (v == null || v.getVisitPurpose() == null) {
 							%>
 							<select name="visitPurpose" class="form-control"
-								<%=status.equals("readonly") ? status : ""%>>
+								<%=status%>>
 								<option style="display:none;"></option>
 								<%
 								for (Dropdown d : vehiclePurpose) {
@@ -178,7 +178,7 @@
 							} else {
 							%>
 							<select name="visitPurpose" class="form-control"
-								<%=status.equals("readonly") ? status : ""%>>
+								<%=status%>>
 								<%
 								for (Dropdown d : vehiclePurpose) {
 								%>

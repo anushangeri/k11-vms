@@ -87,7 +87,7 @@ function getSMSOTP()
 function checkMobileNo() {
 	 if (processedMobileNo.value.length == 0)
     { 
-       alert("Please enter a valid mobile number. Try removing the brackets/dashes/spaces in the number.");  	
+       alert("Please enter a valid mobile number. Try removing the brackets/dashes/spaces in the number or select the country and re-enter the number.");  	
        return false; 
     }  	
 }
