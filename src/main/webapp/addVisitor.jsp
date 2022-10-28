@@ -84,6 +84,13 @@ function getSMSOTP()
     });
     
 }
+function checkMobileNo() {
+	 if (processedMobileNo.value.length == 0)
+    { 
+       alert("Please enter a valid mobile number. Try removing the spaces in the number.");  	
+       return false; 
+    }  	
+}
 </script>
 </head>
 <body onload="showOfficeDivOnLoad('officerLogin','visitPurpose')">
@@ -121,7 +128,7 @@ function getSMSOTP()
 			}
 			%>
 			<center>
-				<form action="addVisitor" method="post" name="addVisitor">
+				<form action="addVisitor" method="post" name="addVisitor" onsubmit="return checkMobileNo()">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="name">Name (姓名): </label> <input type="text"
