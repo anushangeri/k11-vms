@@ -341,5 +341,11 @@ function processMobileNo(event) {
 	 const phoneNumber = phoneInput.getNumber();
 	 processedMobileNo.value = phoneNumber;
 }
+$('#submit').on('click',function()
+		{
+		    if( $('#processedMobileNo').val().length === 0 ) {
+		        alert('warning');
+		    }
+		});
 </script>
 </html>
