@@ -33,7 +33,7 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 		if(!StringUtils.isEmpty(idNo)) {
 			if(!StringUtils.isEmpty(usertype) && usertype != null
 					&& (usertype.equals("ADMIN") || usertype.equals("OFFICER") || usertype.equals("MANAGEMENT"))) {
-				if(StringUtils.isEmpty(recordsToReceive) && recordsToReceive == null) {
+				if(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) {
 					vList = VehMSManagerDAO.retrieveAllCurrentDay();
 				}
 				else {
