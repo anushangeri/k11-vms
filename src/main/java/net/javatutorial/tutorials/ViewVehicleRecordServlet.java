@@ -26,13 +26,19 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 		String idNo = (String) request.getSession(false).getAttribute("idNo");
 		String name = (String) request.getSession(false).getAttribute("name");
 		String siteInCharge = (String) request.getSession(false).getAttribute("siteInCharge");
+		String recordsToReceive = (String) request.getParameter("recordsToReceive");
 		
 		String message = "No vehicle / gate pass records available for: " + name;
 		ArrayList<Vehicle> vList = null;
 		if(!StringUtils.isEmpty(idNo)) {
 			if(!StringUtils.isEmpty(usertype) && usertype != null
-					&& (usertype.equals("ADMIN") || usertype.equals("MANAGEMENT"))) {
-				vList = VehMSManagerDAO.retrieveAll();
+					&& (usertype.equals("ADMIN") || usertype.equals("OFFICER") || usertype.equals("MANAGEMENT"))) {
+				if(StringUtils.isEmpty(recordsToReceive) && recordsToReceive == null) {
+					vList = VehMSManagerDAO.retrieveAllCurrentDay();
+				}
+				else {
+					vList = VehMSManagerDAO.retrieveAll();
+				}
 				message = "List of vehicle / gate pass records";
 				request.setAttribute("vList", vList);
 				if(vList == null && vList.size() == 0) {
@@ -40,7 +46,7 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 				}
 			}
 			else if(!StringUtils.isEmpty(usertype) && usertype != null && !StringUtils.isEmpty(siteInCharge) && siteInCharge != null
-					&& (usertype.equals("CLIENT") || usertype.equals("OFFICER") || usertype.equals("WAREHOUSE"))) {
+					&& (usertype.equals("CLIENT") || usertype.equals("WAREHOUSE"))) {
 				vList = VehMSManagerDAO.retrieveBySite(siteInCharge);
 				message = "List of vehicle / gate pass records";
 				request.setAttribute("vList", vList);
