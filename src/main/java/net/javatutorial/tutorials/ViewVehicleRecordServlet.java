@@ -59,7 +59,6 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 				}
 				else {
 					vList = VehMSManagerDAO.retrieveAll();
-
 					message = "List of vehicle / gate pass records";
 					request.setAttribute("vList", vList);
 				}

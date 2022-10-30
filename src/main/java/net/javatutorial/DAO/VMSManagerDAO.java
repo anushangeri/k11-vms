@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import net.javatutorial.entity.Visitor;
@@ -234,6 +235,111 @@ public class VMSManagerDAO {
         }
         return vList;
     }
+	
+	public static ArrayList<Visitor> retrieveAllCurrentDay(Timestamp timestamp) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        Visitor v = null;
+        ArrayList<Visitor> vList = new ArrayList<Visitor>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT VMS_ID, NAME, " + 
+            		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
+            		"              VEHICLE_NO, HOST_NAME,\r\n" + 
+            		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
+            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT,"
+            		+ " CREATED_BY,CREATED_BY_DT,  LAST_MODIFIED_BY, LAST_MODIFIED_BY_DT "
+            		+ " FROM VMS WHERE DATE(TIME_IN_DT) = DATE(CAST('" + timestamp + "' AS TIMESTAMP))"
+            		+ "ORDER BY TIME_IN_DT DESC; ";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new Visitor(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getString(6),
+            			rs.getString(7),
+            			rs.getString(8),
+            			rs.getString(9),
+            			rs.getString(10),
+            			rs.getString(11),
+            			rs.getString(12),
+            			rs.getString(13),
+            			rs.getString(14),
+            			rs.getString(15),
+            			rs.getString(16),
+            			rs.getTimestamp(17),
+            			rs.getTimestamp(18),
+            			rs.getString(19),
+            			rs.getTimestamp(20),
+            			rs.getString(21),
+            			rs.getTimestamp(22));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+
+	public static ArrayList<Visitor> retrieveAllLast10Days(Timestamp timestamp) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        Visitor v = null;
+        ArrayList<Visitor> vList = new ArrayList<Visitor>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT VMS_ID, NAME, " + 
+            		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
+            		"              VEHICLE_NO, HOST_NAME,\r\n" + 
+            		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
+            		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT,"
+            		+ " CREATED_BY,CREATED_BY_DT,  LAST_MODIFIED_BY, LAST_MODIFIED_BY_DT "
+            		+ " FROM VMS WHERE DATE(TIME_IN_DT) >= DATE(CAST('" + timestamp + "' AS TIMESTAMP)) - 10"
+            		+ "ORDER BY TIME_IN_DT DESC; ";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new Visitor(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getString(6),
+            			rs.getString(7),
+            			rs.getString(8),
+            			rs.getString(9),
+            			rs.getString(10),
+            			rs.getString(11),
+            			rs.getString(12),
+            			rs.getString(13),
+            			rs.getString(14),
+            			rs.getString(15),
+            			rs.getString(16),
+            			rs.getTimestamp(17),
+            			rs.getTimestamp(18),
+            			rs.getString(19),
+            			rs.getTimestamp(20),
+            			rs.getString(21),
+            			rs.getTimestamp(22));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+
 	
 	public static ArrayList<Visitor> retrieveBySite(String site) {
         PreparedStatement pstmt = null;
