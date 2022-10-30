@@ -27,7 +27,7 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 		String name = (String) request.getSession(false).getAttribute("name");
 		String siteInCharge = (String) request.getSession(false).getAttribute("siteInCharge");
 		String recordsToReceive = (String) request.getParameter("recordsToReceive");
-		
+		System.out.println("Came here: " + recordsToReceive);
 		String message = "No vehicle / gate pass records available for: " + name;
 		ArrayList<Vehicle> vList = null;
 		if(!StringUtils.isEmpty(idNo)) {
@@ -35,12 +35,16 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 					&& (usertype.equals("ADMIN") || usertype.equals("OFFICER") || usertype.equals("MANAGEMENT"))) {
 				if(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) {
 					vList = VehMSManagerDAO.retrieveAllCurrentDay();
+
+					message = "List of vehicle / gate pass records";
+					request.setAttribute("vList", vList);
 				}
 				else {
 					vList = VehMSManagerDAO.retrieveAll();
+
+					message = "List of vehicle / gate pass records";
+					request.setAttribute("vList", vList);
 				}
-				message = "List of vehicle / gate pass records";
-				request.setAttribute("vList", vList);
 				if(vList == null && vList.size() == 0) {
 					message = "No vehicle / gate pass records available";
 				}
