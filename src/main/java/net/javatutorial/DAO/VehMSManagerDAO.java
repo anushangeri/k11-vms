@@ -436,6 +436,62 @@ public class VehMSManagerDAO {
         }
         return vList;
     }
+	public static ArrayList<Vehicle> retrieveAllLast10Days(Timestamp timestamp) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        Vehicle v = null;
+        ArrayList<Vehicle> vList = new ArrayList<Vehicle>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, "
+            		+ "CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, " 
+            		+ "VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, "
+            		+ "WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT,"
+            		+ "CREATED_BY, CREATED_BY_DT, LAST_MODIFIED_BY, LAST_MODIFIED_BY_DT "
+            		+ "FROM VEHMS "
+            		+ "WHERE DATE(TIME_IN_DT) >= DATE(CAST('" + timestamp + "' AS TIMESTAMP)) - 10 "
+            		+ "ORDER BY TIME_IN_DT DESC; ";
+            System.out.println(sql);
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new Vehicle(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getString(6),
+            			rs.getString(7),
+            			rs.getString(8),
+            			rs.getString(9),
+            			rs.getString(10),
+            			rs.getString(11),
+            			rs.getString(12),
+            			rs.getString(13),
+            			rs.getString(14),
+            			rs.getString(15),
+            			rs.getString(16),
+            			rs.getString(17),
+            			rs.getInt(18),
+            			rs.getString(19),
+            			rs.getString(20),
+            			rs.getTimestamp(21),
+            			rs.getTimestamp(22),
+            			rs.getString(23),
+            			rs.getTimestamp(24),
+            			rs.getString(25),
+            			rs.getTimestamp(26));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
 	public static ArrayList<Vehicle> retrieveByNRIC(String idNo) {
         PreparedStatement pstmt = null;
         Connection connection = null;

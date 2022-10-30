@@ -39,8 +39,20 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 		if(!StringUtils.isEmpty(idNo)) {
 			if(!StringUtils.isEmpty(usertype) && usertype != null
 					&& (usertype.equals("ADMIN") || usertype.equals("OFFICER") || usertype.equals("MANAGEMENT"))) {
-				if(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) {
+				if((StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) || recordsToReceive.equals("currdate")) {
 					vList = VehMSManagerDAO.retrieveAllCurrentDay(timestamp);
+					System.out.println(timestamp + " : " + vList.toString());
+					message = "List of vehicle / gate pass records";
+					request.setAttribute("vList", vList);
+				}
+				else if(!(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) && recordsToReceive.equals("10days") ) {
+					vList = VehMSManagerDAO.retrieveAllLast10Days(timestamp);
+					System.out.println(timestamp + " : " + vList.toString());
+					message = "List of vehicle / gate pass records";
+					request.setAttribute("vList", vList);
+				}
+				else if(!(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) && recordsToReceive.equals("all") ) {
+					vList = VehMSManagerDAO.retrieveAll();
 					System.out.println(timestamp + " : " + vList.toString());
 					message = "List of vehicle / gate pass records";
 					request.setAttribute("vList", vList);
