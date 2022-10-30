@@ -35,7 +35,7 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 					&& (usertype.equals("ADMIN") || usertype.equals("OFFICER") || usertype.equals("MANAGEMENT"))) {
 				if(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) {
 					vList = VehMSManagerDAO.retrieveAllCurrentDay();
-
+					System.out.println(vList.toString());
 					message = "List of vehicle / gate pass records";
 					request.setAttribute("vList", vList);
 				}
