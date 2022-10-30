@@ -75,11 +75,11 @@
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
 		<label class="heading"><%=message%> </label><br>
-		<a href="/vehms?recordsToReceive=currdate" class="btn btn-warning btn-lg active"
+		<a href="/vms?recordsToReceive=currdate" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Current Day</a>
-		<a href="/vehms?recordsToReceive=10days" class="btn btn-warning btn-lg active"
+		<a href="/vms?recordsToReceive=10days" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Last 10 Days</a>
-		<a href="/vehms?recordsToReceive=all" class="btn btn-warning btn-lg active"
+		<a href="/vms?recordsToReceive=all" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">All</a>
 	</center>
 		<% 
