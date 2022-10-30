@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import net.javatutorial.entity.Vehicle;
@@ -381,7 +382,7 @@ public class VehMSManagerDAO {
         }
         return vList;
     }
-	public static ArrayList<Vehicle> retrieveAllCurrentDay() {
+	public static ArrayList<Vehicle> retrieveAllCurrentDay(Timestamp timestamp) {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
@@ -394,7 +395,7 @@ public class VehMSManagerDAO {
             		+ "VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, "
             		+ "WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT,"
             		+ "CREATED_BY, CREATED_BY_DT, LAST_MODIFIED_BY, LAST_MODIFIED_BY_DT "
-            		+ "FROM VEHMS WHERE TIME_IN_DT <= '2022-10-31' ORDER BY TIME_IN_DT DESC; ";
+            		+ "FROM VEHMS WHERE DATE(TIME_IN_DT) = DATE(" + timestamp + ") ORDER BY TIME_IN_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
