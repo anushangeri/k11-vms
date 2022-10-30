@@ -38,7 +38,7 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 				vList = VMSManagerDAO.retrieveAll();
 				message = "List of visitor records";
 				request.setAttribute("vList", vList);
-				if (vList == null && vList.size() == 0) {
+				if (vList == null || vList.size() == 0) {
 					message = "No visitor records available";
 				}
 			} else if (!StringUtils.isEmpty(usertype) && usertype != null
@@ -47,14 +47,14 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 				vList = VMSManagerDAO.retrieveBySite(siteInCharge);
 				message = "List of visitor records";
 				request.setAttribute("vList", vList);
-				if (vList == null && vList.size() == 0) {
+				if (vList == null || vList.size() == 0) {
 					message = "No visitor records available";
 				}
 			} else {
 				vList = VMSManagerDAO.retrieveByNRIC(idNo);
 				message = "List of visitor records for " + name;
 				request.setAttribute("vList", vList);
-				if (vList == null && vList.size() == 0) {
+				if (vList == null || vList.size() == 0) {
 					message = "No visitor records available for " + name;
 				}
 			}

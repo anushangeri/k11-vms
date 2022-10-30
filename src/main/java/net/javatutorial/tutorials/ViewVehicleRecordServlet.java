@@ -1,9 +1,6 @@
 package net.javatutorial.tutorials;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -31,8 +28,6 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 		String siteInCharge = (String) request.getSession(false).getAttribute("siteInCharge");
 		String recordsToReceive = (String) request.getParameter("recordsToReceive");
 		
-		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
-		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 		
 		String message = "No vehicle / gate pass records available for: " + name;
 		ArrayList<Vehicle> vList = null;
@@ -40,8 +35,8 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 			if(!StringUtils.isEmpty(usertype) && usertype != null
 					&& (usertype.equals("ADMIN") || usertype.equals("OFFICER") || usertype.equals("MANAGEMENT"))) {
 				if(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) {
-					vList = VehMSManagerDAO.retrieveAllCurrentDay(timestamp);
-					System.out.println(timestamp + " : " + vList.toString());
+					vList = VehMSManagerDAO.retrieveAllCurrentDay();
+
 					message = "List of vehicle / gate pass records";
 					request.setAttribute("vList", vList);
 				}
@@ -51,7 +46,7 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 					message = "List of vehicle / gate pass records";
 					request.setAttribute("vList", vList);
 				}
-				if(vList == null && vList.size() == 0) {
+				if(vList == null || vList.size() == 0) {
 					message = "No vehicle / gate pass records available";
 				}
 			}
@@ -60,7 +55,7 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 				vList = VehMSManagerDAO.retrieveBySite(siteInCharge);
 				message = "List of vehicle / gate pass records";
 				request.setAttribute("vList", vList);
-				if(vList == null && vList.size() == 0) {
+				if(vList == null || vList.size() == 0) {
 					message = "No vehicle / gate pass records available";
 				}
 			}
@@ -68,7 +63,7 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 				vList = VehMSManagerDAO.retrieveByNRIC(idNo);
 				message = "List of vehicle / gate pass records for " + name;
 				request.setAttribute("vList", vList);
-				if(vList == null && vList.size() == 0) {
+				if(vList == null || vList.size() == 0) {
 					message = "No vehicle / gate pass records available for " + name;
 				}
 			}
