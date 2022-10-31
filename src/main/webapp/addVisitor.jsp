@@ -51,6 +51,12 @@ function showDiv(divId, element)
     document.getElementById(divId).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : document.getElementById("officerIdNo").removeAttribute("required");
     
 }
+processedMobileNo = document.querySelector("#processedMobileNo");
+function processMobileNo(event) {
+	 event.preventDefault();
+	 const phoneNumber = phoneInput.getNumber();
+	 processedMobileNo.value = phoneNumber;
+}
 function showOfficeDivOnLoad(officerLogin,visitPurpose)
 {
     document.getElementById(officerLogin).style.display = document.getElementById(visitPurpose).value == "GOVERNMENT AGENCY" ? 'block' : 'none';
@@ -381,12 +387,7 @@ const phoneInput = window.intlTelInput(phoneInputField, {
 	 utilsScript:
      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
  });
-processedMobileNo = document.querySelector("#processedMobileNo");
-function processMobileNo(event) {
-	 event.preventDefault();
-	 const phoneNumber = phoneInput.getNumber();
-	 processedMobileNo.value = phoneNumber;
-}
+
 </script>
 <script>
 const phoneInputFieldHostNo = document.querySelector("#hostNo");
