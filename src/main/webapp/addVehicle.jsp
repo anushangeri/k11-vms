@@ -62,7 +62,7 @@
 	}
 </script>
 </head>
-<body>
+<body  onload="getProcessedMobileNoOnLoad(event)">
 	<div class="container body-content">
 		<div class="page-header">
 			<label class="heading">Vehicle Management System - Gate Pass</label>
@@ -100,7 +100,7 @@
 			<center>
 			<p id="demo"></p>
 				<form action="addVehicle" method="post" name="addVehicle"
-					onsubmit="return checkMobileNo()" onload="getProcessedMobileNoOnLoad(event)">
+					onsubmit="return checkMobileNo()">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="name">Vehicle Driver Name (司机姓名): </label> <input
