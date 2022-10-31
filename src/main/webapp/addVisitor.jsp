@@ -56,6 +56,7 @@ function showOfficeDivOnLoad(officerLogin,visitPurpose)
     document.getElementById(officerLogin).style.display = document.getElementById(visitPurpose).value == "GOVERNMENT AGENCY" ? 'block' : 'none';
     document.getElementById(officerLogin).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : document.getElementById("officerIdNo").removeAttribute("required");
     
+    processMobileNo(event);
 }
 
 function showPassword() {
