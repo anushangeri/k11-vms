@@ -54,8 +54,9 @@
 	     }  	
 	}
 	function getProcessedMobileNoOnLoad() {
-		console.log(document.forms["addVehicle"]["mobileNo"].value);
-		console.log(document.querySelector("#processedMobileNo").value);	
+		document.querySelector("#processedMobileNo").value = document.forms["addVehicle"]["mobileNo"].value
+		System.out.println(document.forms["addVehicle"]["mobileNo"].value);
+		System.out.println(document.querySelector("#processedMobileNo").value);	
 	}
 </script>
 </head>
