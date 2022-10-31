@@ -73,9 +73,15 @@
 &nbsp;- Remarks (其他) <br/>
 
 ## [Access Type Definitions] For All VMS dev & clients 
+#### Management: <br/>
+&nbsp;- Can view current date / 10 days / all records of all sites/warehouse <br/>
+
 #### Officer: <br/>
 &nbsp;- Can approve a visitor record (normally it is for Government Agency visit purport) <br/>
-&nbsp;- Can view 7 days worth of vehicle and visitor records across all sites (to be completed) <br/>
+&nbsp;- Can view current date / 10 days / all records of all sites/warehouse <br/>
+
+#### Client: <br/>
+&nbsp;- Can view records within their own site <br/>
 
 #### Warehouse: <br/>
 &nbsp;- Can approve records within their own site <br/>
