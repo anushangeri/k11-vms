@@ -58,6 +58,7 @@
 		 event.preventDefault();
 		 const phoneNumber = document.forms["addVehicle"]["mobileNo"].value
 		 processedMobileNo.value = phoneNumber;
+		 document.getElementById("demo").innerHTML = processedMobileNo.value 
 	}
 </script>
 </head>
@@ -97,6 +98,7 @@
  }
  %>
 			<center>
+			<p id="demo"></p>
 				<form action="addVehicle" method="post" name="addVehicle"
 					onsubmit="return checkMobileNo()" onload="getProcessedMobileNoOnLoad(event)">
 					<div class="form-row">
