@@ -53,6 +53,12 @@
 	        return false; 
 	     }  	
 	}
+	processedMobileNo = document.querySelector("#processedMobileNo");
+	function processMobileNo(event) {
+		 event.preventDefault();
+		 const phoneNumber = phoneInput.getNumber();
+		 processedMobileNo.value = phoneNumber;
+	}
 </script>
 </head>
 <body>
@@ -92,7 +98,7 @@
  %>
 			<center>
 				<form action="addVehicle" method="post" name="addVehicle"
-					onsubmit="return checkMobileNo()">
+					onsubmit="return checkMobileNo()" onload="processMobileNo(event)">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="name">Vehicle Driver Name (司机姓名): </label> <input
@@ -342,11 +348,6 @@ const phoneInput = window.intlTelInput(phoneInputField, {
 	 utilsScript:
      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
  });
-processedMobileNo = document.querySelector("#processedMobileNo");
-function processMobileNo(event) {
-	 event.preventDefault();
-	 const phoneNumber = phoneInput.getNumber();
-	 processedMobileNo.value = phoneNumber;
-}
+
 </script>
 </html>
