@@ -53,9 +53,11 @@ function showDiv(divId, element)
 }
 processedMobileNo = document.querySelector("#processedMobileNo");
 function processMobileNo(event) {
-	 event.preventDefault();
-	 const phoneNumber = phoneInput.getNumber();
-	 processedMobileNo.value = phoneNumber;
+	console.log(phoneInput.getNumber());
+	console.log(processedMobileNo.value);
+	event.preventDefault();
+	const phoneNumber = phoneInput.getNumber();
+	processedMobileNo.value = phoneNumber;
 }
 function showOfficeDivOnLoad(officerLogin,visitPurpose)
 {
