@@ -51,12 +51,23 @@ function showDiv(divId, element)
     document.getElementById(divId).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : document.getElementById("officerIdNo").removeAttribute("required");
     
 }
+processedMobileNo = document.querySelector("#processedMobileNo");
+processedHostNo = document.querySelector("#processedHostNo");
+function getProcessedMobileNoOnLoad(event) {
+	event.preventDefault();
+	
+	const phoneNumber = document.forms["addVisitor"]["mobileNo"].value;
+	processedMobileNo.value = phoneNumber; 
+	
+	const phoneNumberHostNo = document.forms["addVisitor"]["hostNo"].value;
+	processedHostNo.value = phoneNumberHostNo;
+}
 function showOfficeDivOnLoad(officerLogin,visitPurpose)
 {
     document.getElementById(officerLogin).style.display = document.getElementById(visitPurpose).value == "GOVERNMENT AGENCY" ? 'block' : 'none';
     document.getElementById(officerLogin).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : document.getElementById("officerIdNo").removeAttribute("required");
     
-    
+    getProcessedMobileNoOnLoad(event);
 }
 
 function showPassword() {

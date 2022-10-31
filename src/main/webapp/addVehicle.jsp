@@ -55,14 +55,13 @@
 	}
 	processedMobileNo = document.querySelector("#processedMobileNo");
 	function getProcessedMobileNoOnLoad(event) {
-		 event.preventDefault();
-		 const phoneNumber = document.forms["addVehicle"]["mobileNo"].value
-		 processedMobileNo.value = phoneNumber;
-		 document.getElementById("demo").innerHTML = processedMobileNo.value 
+		event.preventDefault();
+		const phoneNumber = document.forms["addVehicle"]["mobileNo"].value;
+		processedMobileNo.value = phoneNumber; 
 	}
 </script>
 </head>
-<body  onload="getProcessedMobileNoOnLoad(event)">
+<body onload="getProcessedMobileNoOnLoad(event)">
 	<div class="container body-content">
 		<div class="page-header">
 			<label class="heading">Vehicle Management System - Gate Pass</label>
@@ -98,7 +97,6 @@
  }
  %>
 			<center>
-			<p id="demo"></p>
 				<form action="addVehicle" method="post" name="addVehicle"
 					onsubmit="return checkMobileNo()">
 					<div class="form-row">
@@ -120,7 +118,7 @@
 							if (v == null || v.getSite() == null) {
 							%>
 							<select name="site" class="form-control" <%=status%>>
-								<option style="display:none;"></option>
+								<option style="display: none;"></option>
 								<%
 								for (Site d : siteDropdown) {
 								%>
@@ -170,9 +168,8 @@
 							<%
 							if (v == null || v.getVisitPurpose() == null) {
 							%>
-							<select name="visitPurpose" class="form-control"
-								<%=status%>>
-								<option style="display:none;"></option>
+							<select name="visitPurpose" class="form-control" <%=status%>>
+								<option style="display: none;"></option>
 								<%
 								for (Dropdown d : vehiclePurpose) {
 								%>
@@ -185,8 +182,7 @@
 							<%
 							} else {
 							%>
-							<select name="visitPurpose" class="form-control"
-								<%=status%>>
+							<select name="visitPurpose" class="form-control" <%=status%>>
 								<%
 								for (Dropdown d : vehiclePurpose) {
 								%>
@@ -243,7 +239,7 @@
 									%>
 									<select name="containerSize" class="form-control"
 										<%=status.equals("readonly") ? status : ""%>>
-										<option style="display:none;"></option>
+										<option style="display: none;"></option>
 										<%
 										for (Dropdown d : containerSize) {
 										%>
@@ -331,7 +327,7 @@
 							}
 							%>
 							<div class="form-row">
-								<button type="submit" class="btn btn-primary btn-lg active" 
+								<button type="submit" class="btn btn-primary btn-lg active"
 									<%=status.equals("readonly") ? "disabled" : ""%>>Submit
 									Record</button>
 								<a href="/vehms" class="btn btn-warning btn-lg active"
