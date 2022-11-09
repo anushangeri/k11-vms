@@ -28,7 +28,7 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 		String usertype = (String) request.getSession(false).getAttribute("usertype");
 		String idNo = (String) request.getSession(false).getAttribute("idNo");
 		String name = (String) request.getSession(false).getAttribute("name");
-		String siteInCharge = (String) request.getSession(false).getAttribute("siteInCharge");
+		String[] siteInCharge = (String[]) request.getSession(false).getAttribute("siteInCharge");
 		String recordsToReceive = (String) request.getParameter("recordsToReceive");
 		
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
@@ -66,7 +66,7 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 					message = "No vehicle / gate pass records available";
 				}
 			}
-			else if(!StringUtils.isEmpty(usertype) && usertype != null && !StringUtils.isEmpty(siteInCharge) && siteInCharge != null
+			else if(!StringUtils.isEmpty(usertype) && usertype != null && siteInCharge != null && siteInCharge.length > 0
 					&& (usertype.equals("CLIENT") || usertype.equals("WAREHOUSE"))) {
 				vList = VehMSManagerDAO.retrieveBySite(siteInCharge);
 				message = "List of vehicle / gate pass records";

@@ -658,7 +658,7 @@ public class VehMSManagerDAO {
         return v;
     }
 	
-	public static ArrayList<Vehicle> retrieveBySite(String site) {
+	public static ArrayList<Vehicle> retrieveBySite(String[] site) {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
