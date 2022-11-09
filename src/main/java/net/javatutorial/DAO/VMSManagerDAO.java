@@ -341,7 +341,7 @@ public class VMSManagerDAO {
     }
 
 	
-	public static ArrayList<Visitor> retrieveBySite(String site) {
+	public static ArrayList<Visitor> retrieveBySite(String[] site) {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
@@ -349,13 +349,14 @@ public class VMSManagerDAO {
         ArrayList<Visitor> vList = new ArrayList<Visitor>();
         try {
         	connection = Main.getConnection();
+        	String sites = String.join("','", site);
             String sql = "SELECT VMS_ID, NAME,\r\n" + 
             		"              COMPANY_NAME, SITE, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
             		"              VEHICLE_NO, HOST_NAME,\r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, REMARKS, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              APPROVING_OFFICER, TIME_IN_DT, TIME_OUT_DT, "
             		+ " CREATED_BY,CREATED_BY_DT,  LAST_MODIFIED_BY, LAST_MODIFIED_BY_DT "
-            		+ " FROM VMS WHERE SITE ='" + site + "' ORDER BY TIME_IN_DT DESC;";
+            		+ " FROM VMS WHERE SITE IN ('" + sites + "') ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();

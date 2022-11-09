@@ -31,7 +31,7 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 		String usertype = (String) request.getSession(false).getAttribute("usertype");
 		String idNo = (String) request.getSession(false).getAttribute("idNo");
 		String name = (String) request.getSession(false).getAttribute("name");
-		String siteInCharge = (String) request.getSession(false).getAttribute("siteInCharge");
+		String[] siteInCharge = (String[]) request.getSession(false).getAttribute("siteInCharge");
 		String recordsToReceive = (String) request.getParameter("recordsToReceive");
 		
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
@@ -67,7 +67,7 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 				}
 			} else if (!StringUtils.isEmpty(usertype) && usertype != null
 					&& (usertype.equals("CLIENT"))
-					&& !StringUtils.isEmpty(siteInCharge)) {
+					&& siteInCharge != null && siteInCharge.length > 0) {
 				vList = VMSManagerDAO.retrieveBySite(siteInCharge);
 				message = "List of visitor records";
 				request.setAttribute("vList", vList);
