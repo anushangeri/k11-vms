@@ -1,6 +1,7 @@
 package net.javatutorial.DAO;
 
 import java.net.URISyntaxException;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -396,7 +397,6 @@ public class VehMSManagerDAO {
             		+ "WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT,"
             		+ "CREATED_BY, CREATED_BY_DT, LAST_MODIFIED_BY, LAST_MODIFIED_BY_DT "
             		+ "FROM VEHMS WHERE DATE(TIME_IN_DT) = DATE(CAST('" + timestamp + "' AS TIMESTAMP)) ORDER BY TIME_IN_DT DESC; ";
-            System.out.println(sql);
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
@@ -666,13 +666,15 @@ public class VehMSManagerDAO {
         ArrayList<Vehicle> vList = new ArrayList<Vehicle>();
         try {
         	connection = Main.getConnection();
+        	Array arraySites = connection.createArrayOf("text", site);
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, \r\n" + 
             		"CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" + 
             		"VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, "
             		+ " WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT, "
             		+ "CREATED_BY,CREATED_BY_DT,  LAST_MODIFIED_BY, LAST_MODIFIED_BY_DT \r\n"
             		+ " FROM VEHMS \r\n"
-            		+ " WHERE SITE IN " + site + " ORDER BY TIME_IN_DT DESC;";
+            		+ " WHERE SITE IN '" + arraySites + "' ORDER BY TIME_IN_DT DESC;";
+            System.out.println(sql);
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
