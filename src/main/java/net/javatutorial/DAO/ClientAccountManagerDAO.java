@@ -26,7 +26,7 @@ public class ClientAccountManagerDAO {
 			System.out.println(arrayUSA.toString());
 	        stmt.executeUpdate("INSERT INTO CLIENTACCOUNT "
 	        		+  "(ACCOUNT_ID, NAME, SITE, ID_TYPE, ID_NO, PASSWORD, SALT, ACCESS_TYPE, CREATED_DT, MODIFIED_DT)" + 
-	        		"   VALUES ('" +v.getAccountId()+ "','" +v.getName()+ "'," +arrayUSA+ ",'" +v.getIdType()+ "','" 
+	        		"   VALUES ('" +v.getAccountId()+ "','" +v.getName()+ "','" +arrayUSA+ "','" +v.getIdType()+ "','" 
 	        		+v.getIdNo()+ "','" +v.getPassword()+ "','" +v.getSalt()+ "','" +v.getAccessType()+ "','" +v.getCreatedDt()+ "','" +v.getModifiedDt()+"')");
 	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM CLIENTACCOUNT;");
 	        while (rs.next()) {
