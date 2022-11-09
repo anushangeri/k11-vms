@@ -169,7 +169,7 @@ public class ClientAccountManagerDAO {
             	Array a = rs.getArray(3);
             	v = new ClientAccount(rs.getString(1), 
             			rs.getString(2),
-            			(String[])a.getArray(),
+            			(String[]) a.getArray(),
             			rs.getString(4),
             			rs.getString(5),
             			rs.getString(6),

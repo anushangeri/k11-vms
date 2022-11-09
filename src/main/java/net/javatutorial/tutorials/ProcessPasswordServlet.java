@@ -31,7 +31,6 @@ public class ProcessPasswordServlet extends HttpServlet {
 
 		//retrieving the hashed password by DB based on idNo entered by user
 		ArrayList<ClientAccount> vList = ClientAccountManagerDAO.retrieveByID(idNo);
-		System.out.println(vList.toString());
 		boolean verified = false;
 		String key = " ";
 		String salt = " ";
