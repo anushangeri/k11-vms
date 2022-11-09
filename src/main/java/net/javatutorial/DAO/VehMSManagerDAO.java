@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import net.javatutorial.entity.Vehicle;
 import net.javatutorial.tutorials.Main;
@@ -666,14 +667,15 @@ public class VehMSManagerDAO {
         ArrayList<Vehicle> vList = new ArrayList<Vehicle>();
         try {
         	connection = Main.getConnection();
-        	Array arraySites = connection.createArrayOf("text", site);
+        	//Array arraySites = connection.createArrayOf("text", site);
+        	ArrayList<String> list = new ArrayList<>(Arrays.asList(site));
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, \r\n" + 
             		"CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" + 
             		"VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, REMARKS, "
             		+ " WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT, "
             		+ "CREATED_BY,CREATED_BY_DT,  LAST_MODIFIED_BY, LAST_MODIFIED_BY_DT \r\n"
-            		+ " FROM VEHMS \r\n"
-            		+ " WHERE SITE IN " + arraySites + " ORDER BY TIME_IN_DT DESC;";
+            		+ " FROM VEHMS \r\n" 
+            		+ " WHERE SITE IN " + list + " ORDER BY TIME_IN_DT DESC;";
             System.out.println(sql);
             pstmt = connection.prepareStatement(sql);
 
