@@ -672,7 +672,7 @@ public class VehMSManagerDAO {
             		+ " WAREHOUSE_LEVEL, SITE, WAREHOUSE_APPROVER, TIME_IN_DT, TIME_OUT_DT, "
             		+ "CREATED_BY,CREATED_BY_DT,  LAST_MODIFIED_BY, LAST_MODIFIED_BY_DT \r\n"
             		+ " FROM VEHMS \r\n"
-            		+ " WHERE SITE ='" + site + "' ORDER BY TIME_IN_DT DESC;";
+            		+ " WHERE SITE IN " + site + " ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
