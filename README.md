@@ -53,6 +53,8 @@
 &nbsp;- Vehicle Driver Name (司机姓名) <br/>
 &nbsp;- Company Name (公司名称) <br/>
 &nbsp;- Driver ID Number (身份证号码) <br/>
+&nbsp;- Mobile No. (手机号码) <br/>
+&nbsp;- Visit Purpose (目的) <br/>
 &nbsp;- Vehicle/Primemover Number (车号) <br/>
 &nbsp;- Container Number (集装箱号) <br/>
 &nbsp;- Select if container is loaded. (选择若集装箱已满.) <br/>
@@ -81,11 +83,13 @@
 &nbsp;- Can view current date / 10 days / all records of all sites/warehouse <br/>
 
 #### Client: <br/>
-&nbsp;- Can view records within their own site <br/>
+&nbsp;- Clients can be given access to multiple sites <br/>
+&nbsp;- Can view records within their own sites <br/>
 
 #### Warehouse: <br/>
-&nbsp;- Can approve records within their own site <br/>
-&nbsp;- Can view records within their own site <br/>
+&nbsp;- Warehouse can be given access to multiple sites <br/>
+&nbsp;- Can approve records within their own sites <br/>
+&nbsp;- Can view records within their own sites <br/>
 
 ## [Notes for developer]
 &nbsp;- For vehicle size, need to add <empty> as a dropdown value so user can send empty if there is no container <br/>
