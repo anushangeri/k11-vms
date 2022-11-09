@@ -30,7 +30,7 @@ public class CClientAccountTblServlet extends HttpServlet {
 		
 		String accountId = "1";
 		String name = "K11ADMIN";
-		String site = null;
+		String[] site = null;
 		String idType = "NRIC";
 		String idNo = "K11ADMIN";
 		String password= "P@ssw0rd";
