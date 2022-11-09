@@ -22,11 +22,10 @@ public class ClientAccountManagerDAO {
 		try {
 			connection = Main.getConnection();
 			stmt = connection.createStatement();
-			Array arrayUSA = connection.createArrayOf("text", v.getSite());
-			System.out.println(arrayUSA.toString());
+			Array arraySites = connection.createArrayOf("text", v.getSite());
 	        stmt.executeUpdate("INSERT INTO CLIENTACCOUNT "
 	        		+  "(ACCOUNT_ID, NAME, SITE, ID_TYPE, ID_NO, PASSWORD, SALT, ACCESS_TYPE, CREATED_DT, MODIFIED_DT)" + 
-	        		"   VALUES ('" +v.getAccountId()+ "','" +v.getName()+ "','" +arrayUSA+ "','" +v.getIdType()+ "','" 
+	        		"   VALUES ('" +v.getAccountId()+ "','" +v.getName()+ "','" +arraySites+ "','" +v.getIdType()+ "','" 
 	        		+v.getIdNo()+ "','" +v.getPassword()+ "','" +v.getSalt()+ "','" +v.getAccessType()+ "','" +v.getCreatedDt()+ "','" +v.getModifiedDt()+"')");
 	        rs = stmt.executeQuery("SELECT MAX(account_id) FROM CLIENTACCOUNT;");
 	        while (rs.next()) {
@@ -132,7 +131,7 @@ public class ClientAccountManagerDAO {
             	Array a = rs.getArray(3);
             	v = new ClientAccount(rs.getString(1), 
             			rs.getString(2),
-            			(String[])a.getArray(),
+            			(String[]) a.getArray(),
             			rs.getString(4),
             			rs.getString(5),
             			rs.getString(6),

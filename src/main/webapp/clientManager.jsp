@@ -108,7 +108,7 @@
 								<tr>
 									<td><%=v.getAccountId()%></td>
 									<td><%=v.getName()%></td>
-									<td><%=v.getSite()%></td>
+									<td><%=(v.getSite() != null &&  v.getSite().length > 0 ? Arrays.toString(v.getSite()) : "")%></td>
 									<td><%=v.getIdType()%></td>
 									<td><%=v.getIdNo()%></td>
 									<td><%=v.getAccessType()%></td>
