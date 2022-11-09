@@ -34,7 +34,6 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		String accessType= request.getParameter("accessType");
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
-		System.out.println(site.toString());
 		
 		ArrayList<ClientAccount> vList = ClientAccountManagerDAO.retrieveByID(idNo);
 		String message = "This user already exists. Please verify.";
