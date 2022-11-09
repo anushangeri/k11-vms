@@ -23,7 +23,7 @@ public class ClientAccountManagerDAO {
 			connection = Main.getConnection();
 			stmt = connection.createStatement();
 			Array arrayUSA = connection.createArrayOf("text", v.getSite());
-			
+			System.out.println(arrayUSA.toString());
 	        stmt.executeUpdate("INSERT INTO CLIENTACCOUNT "
 	        		+  "(ACCOUNT_ID, NAME, SITE, ID_TYPE, ID_NO, PASSWORD, SALT, ACCESS_TYPE, CREATED_DT, MODIFIED_DT)" + 
 	        		"   VALUES ('" +v.getAccountId()+ "','" +v.getName()+ "'," +arrayUSA+ ",'" +v.getIdType()+ "','" 
