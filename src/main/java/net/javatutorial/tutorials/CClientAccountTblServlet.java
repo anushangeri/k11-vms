@@ -44,7 +44,7 @@ public class CClientAccountTblServlet extends HttpServlet {
 				
 		ClientAccount v = new ClientAccount( accountId,  name, site, idType, idNo,  hashedPassword, salt, accessType, timestamp, timestamp);
 		
-		String message = ClientAccountManagerDAO.addClientAccount(v);
+		responseObj = ClientAccountManagerDAO.addClientAccount(v);
 		
 		request.setAttribute("responseObj", responseObj);
         RequestDispatcher rd = request.getRequestDispatcher("managedatabase.jsp");

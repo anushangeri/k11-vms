@@ -18,7 +18,7 @@ public class ClientAccountManagerDAO {
 		Connection connection = null;
 		ResultSet rs = null;
 		Statement stmt = null;
-		String message = "";
+		String message = "Error occurred when adding client.";
 		try {
 			connection = Main.getConnection();
 			stmt = connection.createStatement();
@@ -43,7 +43,6 @@ public class ClientAccountManagerDAO {
 		finally {
         	Main.close(connection, stmt, rs);
         }
-		message = "Successful";
 		return message;
 	}
 	public static String updateClientAccountPassword(ClientAccount v){
