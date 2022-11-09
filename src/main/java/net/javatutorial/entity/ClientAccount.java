@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class ClientAccount {
 	private String accountId;
     private String name;
-    private String site; //essentially this is the site name in the site module, site name is also considered a warehouse name
+    private String[] site; //essentially this is the site name in the site module, site name is also considered a warehouse name
     private String idType;
     private String idNo; // also can be generic username
     private String password;
@@ -14,7 +14,7 @@ public class ClientAccount {
     private Timestamp createdDt;
     private Timestamp modifiedDt;
     
-	public ClientAccount(String accountId, String name, String site, String idType, String idNo, String password,
+	public ClientAccount(String accountId, String name, String[] site, String idType, String idNo, String password,
 			String salt, String accessType, Timestamp createdDt, Timestamp modifiedDt) {
 		super();
 		this.accountId = accountId;
@@ -55,13 +55,13 @@ public class ClientAccount {
 	/**
 	 * @return the site
 	 */
-	public String getSite() {
+	public String[] getSite() {
 		return site;
 	}
 	/**
 	 * @param site the site to set
 	 */
-	public void setSite(String site) {
+	public void setSite(String[] site) {
 		this.site = site;
 	}
 	/**

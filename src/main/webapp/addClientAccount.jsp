@@ -137,16 +137,14 @@ function validateForm() {
 						</div>
 						<div class="form-group col-md-6">
 							<label for="site">Site You Are In Charge: </label> 
-								<select name="site" class="form-control" required>
 									<%
 										for (Site eachSite: siteDropdown) {
 									%>
-											<option value="<%=eachSite.getSiteName()%>">
-												<%=eachSite.getSiteName()%></option>
+											<input type="checkbox" name="sites[]" value="<%=eachSite.getSiteName()%>">
+												<%=eachSite.getSiteName()%>
 									<%
 										}
 									%>
-								</select>
 						</div>
 					</div>
 					<div class="form-row">
