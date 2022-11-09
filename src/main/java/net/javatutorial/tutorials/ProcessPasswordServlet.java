@@ -27,7 +27,6 @@ public class ProcessPasswordServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		String idNo = request.getParameter("idNo");
 		String password = request.getParameter("psw");
-		System.out.println(idNo);
 
 		//retrieving the hashed password by DB based on idNo entered by user
 		ArrayList<ClientAccount> vList = ClientAccountManagerDAO.retrieveByID(idNo);
