@@ -141,7 +141,7 @@ function validateForm() {
 										for (Site eachSite: siteDropdown) {
 									%>
 											<input type="checkbox" name="sites[]" value="<%=eachSite.getSiteName()%>">
-												<%=eachSite.getSiteName()%>
+												<%=eachSite.getSiteName()%><br>
 									<%
 										}
 									%>
