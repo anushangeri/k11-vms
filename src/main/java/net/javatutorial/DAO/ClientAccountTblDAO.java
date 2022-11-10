@@ -35,6 +35,7 @@ public class ClientAccountTblDAO {
 //	        while (rs.next()) {
 //	        	responseObj = responseObj + "Read from DB: " + rs.getTimestamp("tick");
 //	        }
+	        message = "Successful";
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;
@@ -44,7 +45,6 @@ public class ClientAccountTblDAO {
 			//e.printStackTrace();
 			message = "" + e;
 		}
-		message = "Successful";
 		return message;
 	}
 	public static String deleteClientAccountTbl(){
@@ -60,6 +60,7 @@ public class ClientAccountTblDAO {
 //	        while (rs.next()) {
 //	        	responseObj = responseObj + "Read from DB: " + rs.getTimestamp("tick");
 //	        }
+	        message = "Successful";
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;
@@ -69,7 +70,6 @@ public class ClientAccountTblDAO {
 			//e.printStackTrace();
 			message = "" + e;
 		}
-		message = "Successful";
 		return message;
 	}
 	
@@ -87,6 +87,7 @@ public class ClientAccountTblDAO {
 //	        while (rs.next()) {
 //	        	responseObj = responseObj + "Read from DB: " + rs.getTimestamp("tick");
 //	        }
+	        message = "Successful";
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;
@@ -96,7 +97,6 @@ public class ClientAccountTblDAO {
 			//e.printStackTrace();
 			message = "" + e;
 		}
-		message = "Successful";
 		return message;
 	}
 }
