@@ -88,7 +88,7 @@ public class ClientAccountManagerDAO {
 			connection = Main.getConnection();
 			stmt = connection.createStatement();
 //	        stmt.executeUpdate("SELECT count(*) FROM EMPLOYEES;");
-	        rs = stmt.executeQuery("SELECT MAX(ACCOUNT_ID) FROM CLIENTACCOUNT;");
+	        rs = stmt.executeQuery("SELECT MAX(CAST(ACCOUNT_ID AS INT)) FROM CLIENTACCOUNT;");
 	        if(rs != null) {
 	        	while (rs.next()) {
 		        	if(rs.getString(1) != null && !rs.getString(1).isEmpty()) {

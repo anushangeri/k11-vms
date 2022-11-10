@@ -47,8 +47,7 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 			message = ClientAccountManagerDAO.addClientAccount(v);
 			
 			request.setAttribute("responseObj", message);
-			RequestDispatcher rd = request.getRequestDispatcher("clientLogin.jsp");
-	        rd.forward(request, response);
+			response.sendRedirect("/retrieveAllClientRecords");
 		}
 		else {
 			request.setAttribute("responseObj", message);
