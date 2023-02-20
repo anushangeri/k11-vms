@@ -199,9 +199,14 @@
 						</form></td>
 					<td><form method="post" action="printVisitorLabel.jsp">
 							<input type="hidden" id="visitorName" name="visitorName"
-								value="<%=v.getName()%>">  <input
-								type="submit" name="Submit" value="<%=v.getName()%>">
-						</form></td>
+							value="<%=v.getName()%>"> 
+							<input type="hidden" id="hostName" name="hostName"
+							value="<%=v.getHostName()%>"> 
+							<input type="hidden" id="companyName" name="companyName"
+							value="<%=v.getCompanyName()%>">
+							<input type="submit" name="Submit" value="<%=v.getName()%>">
+						</form>
+					</td>
 					<td><%=v.getCompanyName()%></td>
 					<td><%=((v.getSite() == null) ? "" : v.getSite())%></td>
 					<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->

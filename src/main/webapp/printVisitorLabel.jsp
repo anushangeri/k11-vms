@@ -28,10 +28,10 @@
 	String visitorName = "";
 	String hostName = "";
 	String companyName = "";
-	if (request.getAttribute("visitorName") != null) {
-		visitorName = (String) request.getAttribute("visitorName");
-		hostName = (String) request.getAttribute("hostName");
-		companyName = (String) request.getAttribute("companyName");
+	if (request.getParameter("visitorName") != null) {
+		visitorName = (String) request.getParameter("visitorName");
+		hostName = (String) request.getParameter("hostName");
+		companyName = (String) request.getParameter("companyName");
 	}%>
 	<div class="container body-content">
 		<div class="page-header">
@@ -40,6 +40,10 @@
 				<label class="heading main-label"><strong><%=visitorName %></strong></label> <br>
 				<label class="heading">Host: <%=hostName %></label> <br>
 			</center>
+		</div>
+		<div class="form-row">
+			<a href="/vms" class="btn btn-warning btn-lg active" role="button"
+				aria-pressed="true">Done Printing</a> <br>
 		</div>
 	</div>
 </body>
