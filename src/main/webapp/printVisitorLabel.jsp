@@ -21,6 +21,7 @@
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<link rel="stylesheet" href="css/styles.css" media="all">
 </head>
 <body>
 	<% 
@@ -35,8 +36,8 @@
 	<div class="container body-content">
 		<div class="page-header">
 			<center>
-				<label class="heading">VISITOR</label> <br>
-				<label class="heading" style="color:red; font-size:50px;"><strong><%=visitorName %></strong></label> <br>
+				<label class="heading header-label">VISITOR</label> <br>
+				<label class="heading main-label"><strong><%=visitorName %></strong></label> <br>
 				<label class="heading">Host: <%=hostName %></label> <br>
 			</center>
 		</div>
