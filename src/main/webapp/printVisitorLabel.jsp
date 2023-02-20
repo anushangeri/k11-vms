@@ -28,10 +28,10 @@
 	String visitorName = "";
 	String hostName = "";
 	String companyName = "";
-	if (request.getAttribute("visitorName") != null) {
-		visitorName = (String) request.getAttribute("visitorName");
-		hostName = (String) request.getAttribute("hostName");
-		companyName = (String) request.getAttribute("companyName");
+	if (session.getAttribute("visitorName") != null) {
+		visitorName = (String) session.getAttribute("visitorName");
+		hostName = (String) session.getAttribute("hostName");
+		companyName = (String) session.getAttribute("companyName");
 	}%>
 	<div class="container body-content">
 		<div class="page-header">
