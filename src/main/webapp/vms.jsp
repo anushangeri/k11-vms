@@ -197,8 +197,11 @@
 								id="status" name="status" value="readonly"> <input
 								type="submit" name="Submit" value="View">
 						</form></td>
-					<td><a
-						href="/printVisitorLabel.jsp?visitorName=<%=v.getName()%>&hostName=<%=v.getHostName()%>&companyName=<%=v.getCompanyName()%>"><%=v.getName()%></a></td>
+					<td><form method="post" action="printVisitorLabel.jsp">
+							<input type="hidden" id="visitorName" name="visitorName"
+								value="<%=v.getName()%>">  <input
+								type="submit" name="Submit" value="<%=v.getName()%>">
+						</form></td>
 					<td><%=v.getCompanyName()%></td>
 					<td><%=((v.getSite() == null) ? "" : v.getSite())%></td>
 					<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
