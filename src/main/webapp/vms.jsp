@@ -136,7 +136,7 @@
 											id="status" name="status" value="readonly"> <input
 											type="submit" name="Submit" value="View">
 									</form></td>
-									<td><%=v.getName()%></td>
+									<td><a href="/printVisitorLabel.jsp"><%=v.getName()%></a></td>
 									<td><%=v.getCompanyName()%></td>
 									<td><%=((v.getSite() == null) ? "" : v.getSite())%></td>
 									<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
