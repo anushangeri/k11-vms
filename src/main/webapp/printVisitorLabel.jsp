@@ -23,11 +23,21 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 </head>
 <body>
+	<% 
+	String visitorName = "";
+	String hostName = "";
+	String companyName = "";
+	if (request.getAttribute("visitorName") != null) {
+		visitorName = (String) request.getAttribute("visitorName");
+		hostName = (String) request.getAttribute("hostName");
+		companyName = (String) request.getAttribute("companyName");
+	}%>
 	<div class="container body-content">
 		<div class="page-header">
 			<center>
-				<label class="heading">Visitor: John Doe</label> <br>
-				<label class="heading">Host: Chui Chui</label> <br>
+				<label class="heading">VISITOR</label> <br>
+				<label class="heading" style="color:red; font-size:50px;"><strong><%=visitorName %></strong></label> <br>
+				<label class="heading">Host: <%=hostName %></label> <br>
 			</center>
 		</div>
 	</div>
