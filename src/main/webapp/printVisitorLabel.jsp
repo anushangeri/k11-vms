@@ -37,8 +37,8 @@
 		<div class="page-header">
 			<center>
 				<label class="heading header-label">VISITOR</label> <br>
-				<label class="heading main-label"><strong><%=visitorName %></strong></label> <br>
-				<label class="heading">Host: <%=hostName %></label> <br>
+				<label class="main-label"><strong><%=visitorName %></strong></label> <br>
+				<label class="main-label">Host: <%=hostName %></label> <br>
 			</center>
 		</div>
 		<div class="form-row">
