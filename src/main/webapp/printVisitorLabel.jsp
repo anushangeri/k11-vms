@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@include file="loginVMSCSS.jsp"%>
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,6 @@
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-<link rel="stylesheet" href="css/styles.css" media="all">
 </head>
 <body>
 	<% 
