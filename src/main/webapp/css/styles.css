@@ -200,10 +200,10 @@ table.eptable {
 {
     display: none !important;
 }
-@page {size: landscape};
+@page {size: portrait};
 }
 .header-label{
-  	position: relative !important;
+  	/*position: relative !important;*/
 }
 .main-label{
 	text-decoration-line: underline;  
@@ -211,9 +211,9 @@ table.eptable {
   	color: #ff0000 !important;
 }
 .content-label{
-  	position: relative !important;
+  	/*position: relative !important;*/
 }
 div.div-label{
-	width: 50% !important;
+	width: 30% !important;
   	border:1px solid black !important;
 }
