@@ -46,7 +46,7 @@
 		<div class="page-header">
 			<center>
 			<div class="div-label">
-				<label class="heading header-label">VISITOR</label> <br>
+				<label class="header-label">VISITOR</label> <br>
 				<label class="main-label"><strong><%=visitorName %></strong></label> <br>
 				<label class="content-label">Company: <%=companyName %></label> <br>
 				<label class="content-label">Host: <%=hostName %></label> <br>
