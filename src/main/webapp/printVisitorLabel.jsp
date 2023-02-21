@@ -38,7 +38,7 @@
 	String companyName = "";
 	String timeInDt = "";
 	Timestamp timestamp = null;
-	Date parsedDate = null;
+	
 	
 
 	
@@ -50,17 +50,17 @@
 	}
 	try {
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-	    parsedDate = dateFormat.parse(timeInDt);
-	    //timestamp = new java.sql.Timestamp(parsedDate.getTime());
+	    Date parsedDate = dateFormat.parse(timeInDt);
+	    timestamp = new java.sql.Timestamp(parsedDate.getTime());
 	} catch(Exception e) { //this generic but you can control another types of exception
 	    // look the origin of excption 
 	}
 	// Convert Timestamp object to ZonedDateTime object
-//     LocalDateTime localDateTime = timestamp.toLocalDateTime();
-//     ZonedDateTime zdt = localDateTime.atZone(ZoneId.of("Singapore"));
+    LocalDateTime localDateTime = timestamp.toLocalDateTime();
+    ZonedDateTime zdt = localDateTime.atZone(ZoneId.of("Singapore"));
     
-// 	ZonedDateTime eod = zdt.with(LocalTime.of(23, 59, 59));
-// 	Timestamp timestampEOD = Timestamp.valueOf(eod.toLocalDateTime());
+	//ZonedDateTime eod = zdt.with(LocalTime.of(23, 59, 59));
+	//Timestamp timestampEOD = Timestamp.valueOf(eod.toLocalDateTime());
 	%>
 	<div class="container body-content">
 		<div class="page-header">
@@ -70,7 +70,7 @@
 				<label class="main-label"><strong><%=visitorName %></strong></label> <br>
 				<label class="content-label">Host: <%=hostName %></label> <br>
 				<label class="content-label">Time In: <%=timeInDt %></label> <br>
-				<label class="content-label">Time Out: <%=parsedDate %> 23:59:59</label> <br>
+				<label class="content-label">Time Out: <%=zdt %></label> <br>
 			</div>
 			</center>
 		</div>
