@@ -36,9 +36,11 @@
 	<div class="container body-content">
 		<div class="page-header div-label">
 			<center>
+			<div class="div-label">
 				<label class="heading header-label">VISITOR</label> <br>
 				<label class="main-label"><strong><%=visitorName %></strong></label> <br>
 				<label class="main-label">Host: <%=hostName %></label> <br>
+			</div>
 			</center>
 		</div>
 		<div class="form-row">
