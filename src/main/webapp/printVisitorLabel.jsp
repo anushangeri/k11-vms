@@ -38,7 +38,6 @@
 		timeInDt = (String) request.getParameter("timeInDt");
 		
 		timeOutDt = timeInDt.split(" ")[0];
-		
 	}
 	
     

@@ -197,20 +197,20 @@ table.eptable {
 }}
 
 .header-label{
-  	margin-top: 5px !important;
+  	margin-top: 2% !important;
   	position: relative !important;
-  	font-size:60px !important;
+  	font-size:10% !important;
 }
 .main-label{
-  	margin-top: 5px !important;
+  	margin-top: 1% !important;
   	position: relative !important;
-  	font-size:50px !important;
+  	font-size:5% !important;
   	color: #ff0000 !important;
 }
 .content-label{
-  	margin-top: 2px !important;
+  	margin-top: 1% !important;
   	position: relative !important;
-  	font-size:30px !important;
+  	font-size:5% !important;
 }
 div.div-label{
   	border:1px solid black !important;
