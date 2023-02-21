@@ -203,14 +203,17 @@ table.eptable {
 @page {size: landscape};
 }
 .header-label{
+	font-size: 150% !important;
   	/*position: relative !important;*/
 }
 .main-label{
+	font-size: 100% !important;
 	text-decoration-line: underline;  
   	position: relative !important;
   	color: #ff0000 !important;
 }
 .content-label{
+	font-size: 50% !important;
   	/*position: relative !important;*/
 }
 div.div-label{
