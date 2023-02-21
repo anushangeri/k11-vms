@@ -206,6 +206,7 @@ table.eptable {
   	position: relative !important;
 }
 .main-label{
+	text-decoration-line: underline;  
   	position: relative !important;
   	color: #ff0000 !important;
 }
