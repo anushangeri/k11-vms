@@ -3,8 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="loginVMSCSS.jsp"%>
 <%@page import="java.io.IOException"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.time.LocalTime"%>
+<%@page import="java.time.LocalDateTime"%>
 <%@page import="java.time.ZoneId"%>
 <%@page import="java.time.ZonedDateTime"%>
 
@@ -33,16 +36,32 @@
 	String visitorName = "";
 	String hostName = "";
 	String companyName = "";
+	String timeInDt = "";
+	Timestamp timestamp = null;
 	
-	ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
-	ZonedDateTime eod = zdt.with(LocalTime.of(23, 59, 59));
-	Timestamp timestamp = Timestamp.valueOf(eod.toLocalDateTime());
+	
+
 	
 	if (request.getParameter("visitorName") != null) {
 		visitorName = (String) request.getParameter("visitorName");
 		hostName = (String) request.getParameter("hostName");
 		companyName = (String) request.getParameter("companyName");
-	}%>
+		timeInDt = (String) request.getParameter("timeInDt");
+	}
+	try {
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
+	    Date parsedDate = dateFormat.parse(timeInDt);
+	    timestamp = new java.sql.Timestamp(parsedDate.getTime());
+	} catch(Exception e) { //this generic but you can control another types of exception
+	    // look the origin of excption 
+	}
+	// Convert Timestamp object to ZonedDateTime object
+    LocalDateTime localDateTime = timestamp.toLocalDateTime();
+    ZonedDateTime zdt = localDateTime.atZone(ZoneId.of("Singapore"));
+    
+	ZonedDateTime eod = zdt.with(LocalTime.of(23, 59, 59));
+	Timestamp timestampEOD = Timestamp.valueOf(eod.toLocalDateTime());
+	%>
 	<div class="container body-content">
 		<div class="page-header">
 			<center>
@@ -50,7 +69,8 @@
 				<label class="heading header-label">VISITOR</label> <br>
 				<label class="main-label"><strong><%=visitorName %></strong></label> <br>
 				<label class="content-label">Host: <%=hostName %></label> <br>
-				<label class="content-label">Time Out: <%=timestamp %></label> <br>
+				<label class="content-label">Time In: <%=timeInDt %></label> <br>
+				<label class="content-label">Time Out: <%=timestampEOD %></label> <br>
 			</div>
 			</center>
 		</div>
