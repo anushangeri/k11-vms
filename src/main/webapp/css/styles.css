@@ -213,7 +213,8 @@ table.eptable {
   	color: #ff0000 !important;
 }
 .content-label{
-	font-size: 50% !important;
+	margin-top: -25px;
+	font-size: 70% !important;
   	/*position: relative !important;*/
 }
 div.div-label{
