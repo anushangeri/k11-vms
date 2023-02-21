@@ -206,5 +206,8 @@ table.eptable {
   	margin-top: 5px !important;
   	position: relative !important;
   	font-size:50px !important;
-  	color: #ff6600 !important;
+  	color: #ff0000 !important;
+}
+.div-label{
+  	border-style: solid !important;
 }
