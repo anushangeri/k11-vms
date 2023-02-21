@@ -192,7 +192,7 @@ form{
 /*for printing lable*/
 @media print {
 table.eptable {
-    background-color: orange!important;
+    background-color: orange !important;
     -webkit-print-color-adjust: exact; 
 }}
 
