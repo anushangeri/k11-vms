@@ -200,7 +200,7 @@ table.eptable {
 {
     display: none !important;
 }
-@page {size: portrait};
+@page {size: landscape};
 }
 .header-label{
   	/*position: relative !important;*/
