@@ -34,7 +34,7 @@
 		companyName = (String) request.getParameter("companyName");
 	}%>
 	<div class="container body-content">
-		<div class="page-header">
+		<div class="page-header div-label">
 			<center>
 				<label class="heading header-label">VISITOR</label> <br>
 				<label class="main-label"><strong><%=visitorName %></strong></label> <br>
