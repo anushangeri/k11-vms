@@ -209,5 +209,5 @@ table.eptable {
   	color: #ff0000 !important;
 }
 .div-label{
-  	border-style: solid !important;
+  	border:1px solid black !important;
 }
