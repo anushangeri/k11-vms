@@ -200,7 +200,7 @@ table.eptable {
 {
     display: none !important;
 }
-@page {size: landscape};
+/*@page {size: landscape};*/
 }
 .header-label{
 	font-size: 150% !important;
