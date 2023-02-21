@@ -99,7 +99,7 @@ body {
 }
 </style>
 
-<div class="navbar navbar-inverse navbar-static-top">
+<div class="navbar navbar-inverse navbar-static-top no-print">
 	<div class="dropdown">
 		<button class="btn btn-secondary dropdown-toggle" type="button"
 			id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -114,7 +114,7 @@ body {
 <title>K11 VMS</title>
 </head>
 <body>
-	<div class="container">
+	<div class="container no-print">
 		<h1 id="k11title">VMS DEMO</h1>
 		<center>
 			<b>by K11 SECURITY ENGINEERING</b>

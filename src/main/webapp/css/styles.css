@@ -196,9 +196,9 @@ table.eptable {
     -webkit-print-color-adjust: exact; 
 }
 
-footer{
-    position: fixed;
-    bottom: 0;
+.no-print, .no-print *
+{
+    display: none !important;
 }
 }
 .header-label{
