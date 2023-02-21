@@ -202,18 +202,15 @@ table.eptable {
 }
 }
 .header-label{
-  	margin-top: 2% !important;
   	position: relative !important;
   	font-size:100% !important;
 }
 .main-label{
-  	margin-top: 1% !important;
   	position: relative !important;
   	font-size:150% !important;
   	color: #ff0000 !important;
 }
 .content-label{
-  	margin-top: 1% !important;
   	position: relative !important;
   	font-size:100% !important;
 }
