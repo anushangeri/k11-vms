@@ -209,7 +209,6 @@ table.eptable {
 .main-label{
 	font-size: 100% !important;
 	text-decoration-line: underline;  
-  	position: relative !important;
   	color: #ff0000 !important;
 }
 .content-label{
