@@ -4,7 +4,7 @@
 <%@include file="loginVMSCSS.jsp"%>
 
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
@@ -49,6 +49,7 @@
 			<div class="div-label">
 				<label class="heading header-label">VISITOR</label> <br>
 				<label class="main-label"><strong><%=visitorName %></strong></label> <br>
+				<label class="content-label">Company: <%=companyName %></label> <br>
 				<label class="content-label">Host: <%=hostName %></label> <br>
 				<label class="content-label">Time In: <%=timeInDt %></label> <br>
 				<label class="content-label">Time Out: <%=timeOutDt %> 11:59:59 PM</label> <br>
