@@ -70,7 +70,7 @@
 				<label class="main-label"><strong><%=visitorName %></strong></label> <br>
 				<label class="content-label">Host: <%=hostName %></label> <br>
 				<label class="content-label">Time In: <%=timeInDt %></label> <br>
-				<label class="content-label">Time Out: <%=zdt %></label> <br>
+				<label class="content-label">Time Out: <%=localDateTime %></label> <br>
 			</div>
 			</center>
 		</div>
