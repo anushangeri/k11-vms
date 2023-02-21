@@ -45,12 +45,14 @@
 	<div class="container body-content">
 		<div class="page-header">
 			<div class="div-label">
+			<center>
 				<label class="header-label">VISITOR</label> <br>
 				<label class="main-label"><strong><%=visitorName %></strong></label> <br>
 				<label class="content-label">Company: <%=companyName %></label> <br>
 				<label class="content-label">Host: <%=hostName %></label> <br>
 				<label class="content-label">Time In: <%=timeInDt %></label> <br>
 				<label class="content-label">Time Out: <%=timeOutDt %> 11:59:59 PM</label> <br>
+			</center>
 			</div>
 		</div>
 		

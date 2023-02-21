@@ -200,6 +200,9 @@ table.eptable {
 {
     display: none !important;
 }
+div.div-label{
+	margin: 0% !important;
+}
 /*@page {size: landscape};*/
 }
 .header-label{
@@ -217,6 +220,7 @@ table.eptable {
   	/*position: relative !important;*/
 }
 div.div-label{
+	margin: 0% !important;
 	width: 30% !important;
   	border:1px solid black !important;
 }
