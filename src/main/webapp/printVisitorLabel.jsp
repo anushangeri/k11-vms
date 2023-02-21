@@ -2,6 +2,11 @@
 <%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="loginVMSCSS.jsp"%>
+<%@page import="java.io.IOException"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.time.LocalTime"%>
+<%@page import="java.time.ZoneId"%>
+<%@page import="java.time.ZonedDateTime"%>
 
 <!DOCTYPE html>
 <html>
@@ -28,6 +33,11 @@
 	String visitorName = "";
 	String hostName = "";
 	String companyName = "";
+	
+	ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
+	ZonedDateTime eod = zdt.with(LocalTime.of(23, 59, 59));
+	Timestamp timestamp = Timestamp.valueOf(eod.toLocalDateTime());
+	
 	if (request.getParameter("visitorName") != null) {
 		visitorName = (String) request.getParameter("visitorName");
 		hostName = (String) request.getParameter("hostName");
@@ -40,6 +50,7 @@
 				<label class="heading header-label">VISITOR</label> <br>
 				<label class="main-label"><strong><%=visitorName %></strong></label> <br>
 				<label class="content-label">Host: <%=hostName %></label> <br>
+				<label class="content-label">Time Out: <%=timestamp %></label> <br>
 			</div>
 			</center>
 		</div>

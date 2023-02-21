@@ -204,6 +204,8 @@
 							value="<%=v.getHostName()%>"> 
 							<input type="hidden" id="companyName" name="companyName"
 							value="<%=v.getCompanyName()%>">
+							<input type="hidden" id="timeInDt" name="timeInDt"
+							value="<%=sdf.format(v.getTimeInDt())%>">
 							<input type="submit" name="Submit" value="<%=v.getName()%>">
 						</form>
 					</td>
