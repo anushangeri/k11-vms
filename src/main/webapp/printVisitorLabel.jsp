@@ -37,30 +37,19 @@
 	String hostName = "";
 	String companyName = "";
 	String timeInDt = "";
-	Timestamp timestamp = null;
-	
-	
-
+	String timeOutDt = "";
 	
 	if (request.getParameter("visitorName") != null) {
 		visitorName = (String) request.getParameter("visitorName");
 		hostName = (String) request.getParameter("hostName");
 		companyName = (String) request.getParameter("companyName");
 		timeInDt = (String) request.getParameter("timeInDt");
+		
+		timeOutDt = timeInDt.split(" ")[0];
+		
 	}
-	try {
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-	    Date parsedDate = dateFormat.parse(timeInDt);
-	    timestamp = new java.sql.Timestamp(parsedDate.getTime());
-	} catch(Exception e) { //this generic but you can control another types of exception
-	    // look the origin of excption 
-	}
-	// Convert Timestamp object to ZonedDateTime object
-    LocalDateTime localDateTime = timestamp.toLocalDateTime();
-    ZonedDateTime zdt = localDateTime.atZone(ZoneId.of("Singapore"));
+	
     
-	//ZonedDateTime eod = zdt.with(LocalTime.of(23, 59, 59));
-	//Timestamp timestampEOD = Timestamp.valueOf(eod.toLocalDateTime());
 	%>
 	<div class="container body-content">
 		<div class="page-header">
@@ -70,7 +59,7 @@
 				<label class="main-label"><strong><%=visitorName %></strong></label> <br>
 				<label class="content-label">Host: <%=hostName %></label> <br>
 				<label class="content-label">Time In: <%=timeInDt %></label> <br>
-				<label class="content-label">Time Out: <%=localDateTime %></label> <br>
+				<label class="content-label">Time Out: <%=timeOutDt %> 11:59:59 PM</label> <br>
 			</div>
 			</center>
 		</div>
