@@ -2,14 +2,6 @@
 <%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="loginVMSCSS.jsp"%>
-<%@page import="java.io.IOException"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>
-<%@page import="java.sql.Timestamp"%>
-<%@page import="java.time.LocalTime"%>
-<%@page import="java.time.LocalDateTime"%>
-<%@page import="java.time.ZoneId"%>
-<%@page import="java.time.ZonedDateTime"%>
 
 <!DOCTYPE html>
 <html>
