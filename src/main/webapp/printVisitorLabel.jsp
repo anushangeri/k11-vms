@@ -44,7 +44,6 @@
 	%>
 	<div class="container body-content">
 		<div class="page-header">
-			<center>
 			<div class="div-label">
 				<label class="header-label">VISITOR</label> <br>
 				<label class="main-label"><strong><%=visitorName %></strong></label> <br>
@@ -53,7 +52,6 @@
 				<label class="content-label">Time In: <%=timeInDt %></label> <br>
 				<label class="content-label">Time Out: <%=timeOutDt %> 11:59:59 PM</label> <br>
 			</div>
-			</center>
 		</div>
 		
 	</div>
