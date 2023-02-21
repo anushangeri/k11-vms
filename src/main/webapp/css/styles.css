@@ -194,7 +194,12 @@ form{
 table.eptable {
     background-color: orange !important;
     -webkit-print-color-adjust: exact; 
-}}
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+}
 
 .header-label{
   	margin-top: 2% !important;
@@ -213,5 +218,6 @@ table.eptable {
   	font-size:100% !important;
 }
 div.div-label{
+	width: 50%;
   	border:1px solid black !important;
 }
