@@ -204,24 +204,24 @@ div.div-label{
 	margin: 0 !important;
 	padding: 0 !important;
 }
-@page {size: landscape};
+/*@page {size: landscape};*/
 }
 .header-label{
-	font-size: 150% !important;
+	font-size: 200% !important;
   	/*position: relative !important;*/
 }
 .main-label{
-	font-size: 120% !important;
+	font-size: 250% !important;
 	text-decoration-line: underline;  
   	color: #ff0000 !important;
 }
 .content-label{
 	margin: 0 !important;
 	padding: 0 !important;
-	font-size: 70% !important;
+	font-size: 60% !important;
   	/*position: relative !important;*/
 }
 div.div-label{
-	width: 30% !important;
+	width: 50% !important;
   	border:1px solid black !important;
 }
