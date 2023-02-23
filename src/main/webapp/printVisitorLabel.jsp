@@ -59,11 +59,11 @@
 	</div>
 </body>
 <footer class="no-print">
-	<center>
 	<div class="form-row">
+	<center>
 		<a href="/vms" class="btn btn-warning btn-lg active" role="button"
-			aria-pressed="true">Done Printing</a> <br>
-	</div>
+			aria-pressed="true">Done Printing</a>
 	</center>
+	</div>
 </footer>
 </html>
