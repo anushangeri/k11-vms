@@ -207,10 +207,14 @@ div.div-label{
 @page {size: landscape};
 }
 .header-label{
-	font-size: 300% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	font-size: 400% !important;
   	/*position: relative !important;*/
 }
 .main-label{
+	margin: 0 !important;
+	padding: 0 !important;
 	font-size: 250% !important;
 	text-decoration-line: underline;  
   	color: #ff0000 !important;
