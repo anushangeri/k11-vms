@@ -201,9 +201,10 @@ table.eptable {
     display: none !important;
 }
 div.div-label{
-	margin: 0% !important;
+	margin: 0 !important;
+	padding: 0 !important;
 }
-/*@page {size: landscape};*/
+@page {size: landscape};
 }
 .header-label{
 	font-size: 150% !important;
