@@ -203,6 +203,7 @@ table.eptable {
 div.div-label{
 	margin: 0 !important;
 	padding: 0 !important;
+	border:0px !important;
 }
 @page {size: landscape};
 }
@@ -227,4 +228,5 @@ div.div-label{
 }
 div.div-label{
 	width: 90% !important;
+  	border:1px solid black !important;
 }
