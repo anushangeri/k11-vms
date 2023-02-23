@@ -210,12 +210,13 @@ div.div-label{
   	/*position: relative !important;*/
 }
 .main-label{
-	font-size: 100% !important;
+	font-size: 120% !important;
 	text-decoration-line: underline;  
   	color: #ff0000 !important;
 }
 .content-label{
-	margin-top: -25px;
+	margin: 0 !important;
+	padding: 0 !important;
 	font-size: 70% !important;
   	/*position: relative !important;*/
 }
