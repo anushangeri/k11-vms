@@ -191,21 +191,21 @@ form{
 }
 /*for printing label*/
 @media print {
-table.eptable {
-    background-color: orange !important;
-    -webkit-print-color-adjust: exact; 
-}
-
-.no-print, .no-print *
-{
-    display: none !important;
-}
-div.div-label{
-	margin: 0 !important;
-	padding: 0 !important;
-	border:0px !important;
-}
-@page {size: landscape};
+	table.eptable {
+	    background-color: orange !important;
+	    -webkit-print-color-adjust: exact; 
+	}
+	
+	.no-print, .no-print *
+	{
+	    display: none !important;
+	}
+	div.div-label{
+		margin: 0 !important;
+		padding: 0 !important;
+		border:1px solid white !important;
+	}
+	@page {size: landscape};
 }
 .header-label{
 	margin: 0 !important;
