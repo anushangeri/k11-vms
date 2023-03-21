@@ -99,9 +99,9 @@
 			<version>1.2</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-jsp</artifactId>
-			<version>9.2.10.v20150310</version>
+		    <groupId>org.eclipse.jetty</groupId>
+		    <artifactId>jetty-servlets</artifactId>
+		    <version>11.0.14</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.api-client</groupId>
