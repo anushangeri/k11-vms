@@ -14,7 +14,7 @@
 <%@page import="java.util.List"%>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+ 
 <!DOCTYPE html>
 <html>
 <head>
