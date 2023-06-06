@@ -368,7 +368,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				// out.close();
 
 				String to = "k11.sivalingam@gmail.com";// change accordingly
-				final String user = "Shangeri1994@k11.com.sg";// change accordingly
+				final String user = "shangeri.sivalingam@k11.com.sg";// change accordingly
 				final String password = "Sh@ngeri94";// change accordingly
 
 				Properties properties = System.getProperties();
