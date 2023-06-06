@@ -73,7 +73,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 		// check to see if the given date really is the last day of this month
 		System.out.println( "check to see if the given date really is the last day of this month");
 		System.out.println( cal.get(Calendar.DAY_OF_MONTH) == lastDay);
-		if(cal.get(Calendar.DAY_OF_MONTH) == lastDay) {
+		if(cal.get(Calendar.DAY_OF_MONTH) != lastDay) {
 			System.out.println( "it is the last day of the month, so batch job will do archive db clean up and email results");
 			
 			try 
@@ -372,7 +372,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				final String password = "Sh@ngeri94";// change accordingly
 
 				Properties properties = System.getProperties();
-				properties.setProperty("mail.smtp.host", "smtp.k11.com.sg");
+				properties.setProperty("mail.smtp.host", "mail.k11.com.sg");
 				properties.put("mail.smtp.auth", "true");
 				properties.put("mail.smtp.port", "25");
 
