@@ -39,7 +39,7 @@ public class AddVisitorRecordServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int nextVal = VMSManagerDAO.getNextVal();
 		
-		String message = "Something went wrong or OTP was wrong, please try again.";
+		String message = null;
 		
 		String vmsId = "" + nextVal;
 		String name = request.getParameter("name").trim();
@@ -84,14 +84,16 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		              b = item.get(); 
 		          } 
 		      } 
+		      System.out.println("photo: " + b);
 		}
 		catch(Exception e) {
-			message = message + " - " + e;
+			message =  e.toString();
 		}
 		Visitor v = null;
 		
 		if(otpGenerated != null && !StringUtils.isEmpty(otpGenerated) && otpEntered != null 
-				&& !StringUtils.isEmpty(otpEntered) && otpGenerated.equals(otpEntered)) {
+				&& !StringUtils.isEmpty(otpEntered) && otpGenerated.equals(otpEntered)
+				&& message != null) {
 			if(officerIdNo != null && !StringUtils.isEmpty(officerIdNo) && visitPurpose.equals("GOVERNMENT AGENCY")) {
 				//Step 2: add visitor
 				v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
@@ -111,6 +113,7 @@ public class AddVisitorRecordServlet extends HttpServlet {
 			response.sendRedirect("/vms");
 		}
 		else {
+			message = message + " - there is an issue with OTP, visitor record not added. Approach guardhouse.";
 			//if OTP verify fail, return to add page, populate parameters
 			ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 			ArrayList<Dropdown> visitPurposes = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
