@@ -94,36 +94,50 @@ public class AddVisitorRecordServlet extends HttpServlet {
 	                    switch (fieldName) {
 	                        case "name":
 	                        	name = item.getString();
+	                        	break;
 	                        case "companyName":
 	                        	companyName = item.getString();
+	                        	break;
 	                        case "site":
 	                        	site = item.getString();
+	                        	break;
 	                        case "idNo":
 	                        	idNo = item.getString();
+	                        	break;
 	                        case "mobileNo":
 	                        	mobileNo = item.getString();
+	                        	break;
 	                        case "vehicleNo":
 	                        	vehicleNo = item.getString();
+	                        	break;
 	                        case "hostName":
 	                        	hostName = item.getString();
+	                        	break;
 	                        case "hostNo":
 	                        	hostNo = item.getString();
+	                        	break;
 	                        case "visitorCardId":
 	                        	visitorCardId = item.getString();
+	                        	break;
 	                        case "visitPurpose":
 	                        	visitPurpose = item.getString();
+	                        	break;
 	                        case "remarks":
 	                        	remarks = item.getString();
+	                        	break;
 	                        case "officerIdNo":
 	                        	officerIdNo = item.getString();
+	                        	break;
 	                        case "otpGenerated":
 	                        	otpGenerated = item.getString();
+	                        	break;
 	                        case "otpEntered":
 	                        	otpEntered = item.getString();
+	                        	break;
 	                        case "visitorImage":
 	                            // Process file upload
 	                            String visitorImage = new File(item.getName()).getName();
-	                            InputStream fileContent = item.getInputStream();
+	                            InputStream visitorImageContent = item.getInputStream();
 	                            // You can save the file or perform other actions here
 	                            System.out.println("File Field Name: " + fieldName + ", File Name: " + visitorImage + "<br>");
 	                            break;
