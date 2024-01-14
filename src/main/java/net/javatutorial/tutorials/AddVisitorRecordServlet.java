@@ -64,11 +64,10 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		
 		// Processing Image captured in the form
 		// Extract file data
-        Part filePart = request.getPart("visitorImage");
-        InputStream fileInputStream = filePart.getInputStream();
-        byte[] fileData = fileInputStream.readAllBytes();
-		
-        System.out.print("fileData: " + fileData.toString());
+        //Part filePart = request.getPart("visitorImage");
+        //InputStream fileInputStream = filePart.getInputStream();
+        //byte[] fileData = fileInputStream.readAllBytes();
+        //System.out.print("fileData: " + fileData.toString());
         
 		Visitor v = null;
 		
