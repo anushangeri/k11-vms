@@ -292,8 +292,8 @@ function checkMobileNo() {
 						<div class="form-group col-md-6">
 							<label for="visitorImage">Take Photo: </label>
 							<!-- Button to open the camera -->
-					        <input type="file" class="btn btn-primary btn-lg active" 
-					        name="visitorImage" id="visitorImage" style="visibility:hidden;"
+					        <input type="file" style="visibility:hidden;" class="btn btn-primary btn-lg active" 
+					        name="visitorImage" id="visitorImage" 
 					        accept="image/*;capture=camera" capture="camera">
 					    </div>   
 			        </div>
