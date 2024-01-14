@@ -289,10 +289,16 @@ function checkMobileNo() {
 					</div>
 					<br>
 					<!-- Button to open the camera -->
-			        <button type="button" onclick="openCamera()">Capture Photo</button>
+			        <button type="button" onclick="openCamera()">Open Camera</button>
+			
+			        <!-- Video element for camera stream -->
+			        <video id="cameraStream" style="display: none;"></video>
+			
+			        <!-- Button to capture the photo -->
+			        <button type="button" onclick="capturePhoto()" style="display: none;">Capture Photo</button>
 			
 			        <!-- Input for capturing a photo -->
-			        <input type="file" accept="image/*" capture="environment" name="photo" id="photoInput" style="display: none;" required>
+			        <input type="hidden" name="photo" id="photoInput" required>
 			
 			        <!-- Preview of the captured photo -->
 			        <img id="photoPreview" alt="Photo Preview" style="max-width: 100%; max-height: 200px; margin-top: 10px; display: none;">
@@ -410,46 +416,50 @@ function processHostNo(event) {
 }
 
 // JavaScript code to access and capture the camera feed
-function openCamera() {
-    const photoInput = document.getElementById('photoInput');
-    const photoPreview = document.getElementById('photoPreview');
+var videoStream;
+var photoInput = document.getElementById('photoInput');
+var photoPreview = document.getElementById('photoPreview');
+var cameraStream = document.getElementById('cameraStream');
+var captureButton = document.querySelector('button[type="button"][onclick="capturePhoto()"]');
 
+function openCamera() {
     // Access user's camera
     navigator.mediaDevices.getUserMedia({ video: true })
-        .then(stream => {
-            // Display the camera stream
-            const video = document.createElement('video');
-            video.srcObject = stream;
-            video.style.display = 'none';
-            document.body.appendChild(video);
-
-            // Take a snapshot from the video stream
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            video.addEventListener('loadeddata', () => {
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-                // Stop the camera stream
-                stream.getTracks().forEach(track => track.stop());
-
-                // Remove temporary video element
-                document.body.removeChild(video);
-
-                // Display the snapshot in the preview
-                const imageDataUrl = canvas.toDataURL('image/png');
-                photoPreview.src = imageDataUrl;
-                photoPreview.style.display = 'block';
-
-                // Show the file input with the captured image
-                photoInput.style.display = 'block';
-                photoInput.value = imageDataUrl;
-            });
+        .then(function (stream) {
+            videoStream = stream;
+            cameraStream.srcObject = stream;
+            cameraStream.style.display = 'block';
+            captureButton.style.display = 'block';
         })
-        .catch(error => {
+        .catch(function (error) {
             console.error('Error accessing camera:', error);
         });
+}
+
+function capturePhoto() {
+    // Pause the video stream
+    videoStream.getTracks().forEach(function (track) {
+        track.stop();
+    });
+
+    // Convert a frame from the video stream to an image
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+    canvas.width = cameraStream.videoWidth;
+    canvas.height = cameraStream.videoHeight;
+    context.drawImage(cameraStream, 0, 0, canvas.width, canvas.height);
+
+    // Display the captured photo
+    var imageDataUrl = canvas.toDataURL('image/png');
+    photoPreview.src = imageDataUrl;
+    photoPreview.style.display = 'block';
+
+    // Set the captured image data to the hidden input
+    photoInput.value = imageDataUrl;
+
+    // Hide the camera stream and capture button
+    cameraStream.style.display = 'none';
+    captureButton.style.display = 'none';
 }
 </script>
 </html>
