@@ -1,17 +1,18 @@
 package net.javatutorial.tutorials;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -22,19 +23,18 @@ import net.javatutorial.entity.Dropdown;
 import net.javatutorial.entity.Site;
 import net.javatutorial.entity.Visitor;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
 /**
- * Servlet implementation class AddEmployeeServlet
+ * Servlet implementation class AddVisitorRecordServlet
  */
+
 public class AddVisitorRecordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int nextVal = VMSManagerDAO.getNextVal();
+		
+		String message = "Something went wrong or OTP was wrong, please try again.";
 		
 		String vmsId = "" + nextVal;
 		String name = request.getParameter("name").trim();
@@ -63,39 +63,15 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		String otpEntered = request.getParameter("otpEntered"); 
 		
 		// Processing Image captured in the form
-		// Check if the request is a file upload request
-        if (ServletFileUpload.isMultipartContent(request)) {
-            try {
-                // Create a factory for disk-based file items
-                DiskFileItemFactory factory = new DiskFileItemFactory();
-
-                // Create a new file upload handler
-                ServletFileUpload upload = new ServletFileUpload(factory);
-
-                // Parse the request to get file items
-                List<FileItem> items = upload.parseRequest(request);
-
-                // Iterate over items and handle each
-                for (FileItem item : items) {
-                    if (!item.isFormField()) {
-                        if ("visitorImage".equals(item.getFieldName())) {
-                        	// Process the uploaded file
-                            byte[] imageData = item.get();
-                            // TODO: Save the imageData to PostgreSQL
-                            System.out.print("picture: " + imageData.toString());
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            }
-        } else {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid request");
-        }
+		// Extract file data
+        Part filePart = request.getPart("visitorImage");
+        InputStream fileInputStream = filePart.getInputStream();
+        byte[] fileData = fileInputStream.readAllBytes();
 		
+        System.out.print("fileData: " + fileData.toString());
+        
 		Visitor v = null;
-		String message = "Something went wrong or OTP was wrong, please try again.";
+		
 		if(otpGenerated != null && !StringUtils.isEmpty(otpGenerated) && otpEntered != null 
 				&& !StringUtils.isEmpty(otpEntered) && otpGenerated.equals(otpEntered)) {
 			if(officerIdNo != null && !StringUtils.isEmpty(officerIdNo) && visitPurpose.equals("GOVERNMENT AGENCY")) {
