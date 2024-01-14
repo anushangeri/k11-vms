@@ -290,19 +290,14 @@ function checkMobileNo() {
 					<br>
 					<!-- Button to open the camera -->
 			        <button type="button" onclick="openCamera()">Open Camera</button>
-			
 			        <!-- Video element for camera stream -->
 			        <video id="cameraStream" style="display: none;"></video>
-			
 			        <!-- Button to capture the photo -->
 			        <button type="button" onclick="capturePhoto()" style="display: none;">Capture Photo</button>
-			
 			        <!-- Input for capturing a photo -->
 			        <input type="hidden" name="photo" id="photoInput" required>
-			
 			        <!-- Preview of the captured photo -->
 			        <img id="photoPreview" alt="Photo Preview" style="max-width: 100%; max-height: 200px; margin-top: 10px; display: none;">
-
 					<br>
 					<div id="officerLogin" class="form-row">
 						<i>Please aproach guard house and seek approval from security
