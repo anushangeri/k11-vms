@@ -287,7 +287,6 @@ function checkMobileNo() {
 						</div>
 					</div>
 					<br>
-					<video id="video" width="640" height="480" autoplay></video>
 				    <button id="capture">Capture</button>
 				    <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
 					<%=readOnlyStatus.equals("readonly") ? readOnlyStatus : ""%>> <input type="hidden"
@@ -405,7 +404,6 @@ function processHostNo(event) {
 }
 
 // JavaScript code to access and capture the camera feed
-const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const captureButton = document.getElementById('capture');
 
