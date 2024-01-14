@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +21,10 @@ import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.entity.Dropdown;
 import net.javatutorial.entity.Site;
 import net.javatutorial.entity.Visitor;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  * Servlet implementation class AddEmployeeServlet
@@ -56,6 +61,39 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		
 		String otpGenerated = request.getParameter("otpGenerated");
 		String otpEntered = request.getParameter("otpEntered"); 
+		
+		// Processing Image captured in the form
+		// Check if the request is a file upload request
+        if (ServletFileUpload.isMultipartContent(request)) {
+            try {
+                // Create a factory for disk-based file items
+                DiskFileItemFactory factory = new DiskFileItemFactory();
+
+                // Create a new file upload handler
+                ServletFileUpload upload = new ServletFileUpload(factory);
+
+                // Parse the request to get file items
+                List<FileItem> items = upload.parseRequest(request);
+
+                // Iterate over items and handle each
+                for (FileItem item : items) {
+                    if (!item.isFormField()) {
+                        if ("visitorImage".equals(item.getFieldName())) {
+                        	// Process the uploaded file
+                            byte[] imageData = item.get();
+                            // TODO: Save the imageData to PostgreSQL
+                            System.out.print("picture: " + imageData.toString());
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid request");
+        }
+		
 		Visitor v = null;
 		String message = "Something went wrong or OTP was wrong, please try again.";
 		if(otpGenerated != null && !StringUtils.isEmpty(otpGenerated) && otpEntered != null 
