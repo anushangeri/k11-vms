@@ -141,7 +141,7 @@ function checkMobileNo() {
 			}
 			%>
 			<center>
-				<form action="addVisitor" method="post" name="addVisitor" enctype="multipart/form-data"
+				<form action="addVisitor" method="post" name="addVisitor"
 					onsubmit="return checkMobileNo()">
 					<div class="form-row">
 						<div class="form-group col-md-6">
