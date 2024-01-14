@@ -289,16 +289,15 @@ function checkMobileNo() {
 					</div>
 					<br>
 					<!-- Button to open the camera -->
-			        <button type="button" onclick="openCamera()">Open Camera</button>
-			        <!-- Video element for camera stream -->
-			        <video id="cameraStream" style="display: none;"></video>
-			        <!-- Button to capture the photo -->
-			        <button type="button" onclick="capturePhoto()" style="display: none;">Capture Photo</button>
-			        <!-- Input for capturing a photo -->
-			        <input type="hidden" name="photo" id="photoInput" required>
-			        <!-- Preview of the captured photo -->
-			        <img id="photoPreview" alt="Photo Preview" style="max-width: 100%; max-height: 200px; margin-top: 10px; display: none;">
-					<br>
+			        <div class="camera">
+			            <video id="video">Video stream not available.</video>
+			        </div>
+			        <div><button id="startbutton">Take photo</button><button id="downloadbutton">Download</button></div>
+			        <canvas id="canvas"></canvas>
+			        <div class="output">
+			            <img id="photo" alt="The screen capture will appear in this box.">
+			        </div>
+			        <br>
 					<div id="officerLogin" class="form-row">
 						<i>Please aproach guard house and seek approval from security
 							officer on duty.</i>
@@ -411,50 +410,100 @@ function processHostNo(event) {
 }
 
 // JavaScript code to access and capture the camera feed
-var videoStream;
-var photoInput = document.getElementById('photoInput');
-var photoPreview = document.getElementById('photoPreview');
-var cameraStream = document.getElementById('cameraStream');
-var captureButton = document.querySelector('button[type="button"][onclick="capturePhoto()"]');
+(function() {
 
-function openCamera() {
-    // Access user's camera
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function (stream) {
-            videoStream = stream;
-            cameraStream.srcObject = stream;
-            cameraStream.style.display = 'block';
-            captureButton.style.display = 'block';
-        })
-        .catch(function (error) {
-            console.error('Error accessing camera:', error);
-        });
-}
+        var width = 320;
+        var height = 0;
 
-function capturePhoto() {
-    // Pause the video stream
-    videoStream.getTracks().forEach(function (track) {
-        track.stop();
-    });
+        var streaming = false;
 
-    // Convert a frame from the video stream to an image
-    var canvas = document.createElement('canvas');
-    var context = canvas.getContext('2d');
-    canvas.width = cameraStream.videoWidth;
-    canvas.height = cameraStream.videoHeight;
-    context.drawImage(cameraStream, 0, 0, canvas.width, canvas.height);
+        var video = null;
+        var canvas = null;
+        var photo = null;
+        var startbutton = null;
+        var downloadbutton = null;
 
-    // Display the captured photo
-    var imageDataUrl = canvas.toDataURL('image/png');
-    photoPreview.src = imageDataUrl;
-    photoPreview.style.display = 'block';
+        function startup() {
+            video = document.getElementById('video');
+            canvas = document.getElementById('canvas');
+            photo = document.getElementById('photo');
+            startbutton = document.getElementById('startbutton');
+            downloadbutton = document.getElementById('downloadbutton');
 
-    // Set the captured image data to the hidden input
-    photoInput.value = imageDataUrl;
+            navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: false
+                })
+                .then(function(stream) {
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(function(err) {
+                    console.log("An error occurred: " + err);
+                });
 
-    // Hide the camera stream and capture button
-    cameraStream.style.display = 'none';
-    captureButton.style.display = 'none';
-}
+            video.addEventListener('canplay', function(ev) {
+                if (!streaming) {
+                    height = video.videoHeight / (video.videoWidth / width);
+
+                    if (isNaN(height)) {
+                        height = width / (4 / 3);
+                    }
+
+                    video.setAttribute('width', width);
+                    video.setAttribute('height', height);
+                    canvas.setAttribute('width', width);
+                    canvas.setAttribute('height', height);
+                    streaming = true;
+                }
+            }, false);
+
+            startbutton.addEventListener('click', function(ev) {
+                takepicture();
+                ev.preventDefault();
+            }, false);
+
+            downloadbutton.addEventListener('click', function() {
+                downloadPhoto();
+            });
+
+            clearphoto();
+        }
+
+        function clearphoto() {
+            var context = canvas.getContext('2d');
+            context.fillStyle = "#AAA";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            var data = canvas.toDataURL('image/png');
+            photo.setAttribute('src', data);
+        }
+
+        function takepicture() {
+            var context = canvas.getContext('2d');
+            if (width && height) {
+                canvas.width = width;
+                canvas.height = height;
+                context.drawImage(video, 0, 0, width, height);
+
+                var data = canvas.toDataURL('image/png');
+                photo.setAttribute('src', data);
+            } else {
+                clearphoto();
+            }
+        }
+
+        function downloadPhoto() {
+            var dataUrl = canvas.toDataURL('image/png');
+
+            var a = document.createElement('a');
+            a.href = dataUrl;
+            a.download = 'webcam_photo.png';
+
+            a.click();
+        }
+
+        window.addEventListener('load', startup, false);
+    })();
 </script>
 </html>
