@@ -6,6 +6,8 @@ import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.lang.StringUtils;
 
 import net.javatutorial.DAO.DropdownListManagerDAO;
@@ -64,14 +69,24 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		
 		// Processing Image captured in the form
 		// Extract file data
+		byte[] b=null;
 		try {
-	        Part filePart = request.getPart("visitorImage");
-	        InputStream fileInputStream = filePart.getInputStream();
-	        byte[] fileData = fileInputStream.readAllBytes();
-	        System.out.print("fileData: " + fileData.toString());
+			DiskFileItemFactory factory = new DiskFileItemFactory(); 
+			 
+		      ServletFileUpload sfu = new ServletFileUpload(factory); 
+		      List items = sfu.parseRequest(request); 
+		 
+		      Iterator iter = items.iterator(); 
+		        
+		      while (iter.hasNext()) { 
+		         FileItem item = (FileItem) iter.next(); 
+		         if (!item.isFormField()) { 
+		              b = item.get(); 
+		          } 
+		      } 
 		}
 		catch(Exception e) {
-			
+			message = message + " - " + e;
 		}
 		Visitor v = null;
 		
