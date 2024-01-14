@@ -1,5 +1,6 @@
 package net.javatutorial.tutorials;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
@@ -42,55 +43,113 @@ public class AddVisitorRecordServlet extends HttpServlet {
 		String message = null;
 		
 		String vmsId = "" + nextVal;
-		String name = request.getParameter("name").trim();
-		String companyName = request.getParameter("companyName").trim();
-		String site = request.getParameter("siteVisiting").trim();
+		String name = "";
+		String companyName = "";
+		String site ="";
 		String idType = null;
-		String idNo = request.getParameter("idNo");
-		String mobileNo = request.getParameter("processedMobileNo");
-		String vehicleNo = request.getParameter("vehicleNo");
-		String hostName = request.getParameter("hostName");
-		String hostNo = request.getParameter("processedHostNo");
-		String visitorCardId = request.getParameter("visitorCardId");
+		String idNo = "";
+		String mobileNo = "";
+		String vehicleNo ="";
+		String hostName = "";
+		String hostNo = "";
+		String visitorCardId = "";
 		String covidDec = "";
-		String visitPurpose = request.getParameter("visitPurpose");
+		String visitPurpose ="";
 		String temperature = "";
-		String remarks = request.getParameter("remarks");
+		String remarks = "";
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 
 		String createdBy = (String) request.getSession(false).getAttribute("idNo");
 		
 		//Step 1: verify officer login (if parameters not empty) and visitPurpose = GovtAgency
-		String officerIdNo = request.getParameter("officerIdNo");
+		String officerIdNo = "";
 		
-		String otpGenerated = request.getParameter("otpGenerated");
-		String otpEntered = request.getParameter("otpEntered"); 
+		String otpGenerated = "";
+		String otpEntered = "";
 		
 		// Processing Image captured in the form
-		// Extract file data
-		byte[] b=null;
-		try {
-			DiskFileItemFactory factory = new DiskFileItemFactory(); 
-			 
-		      ServletFileUpload sfu = new ServletFileUpload(factory); 
-		      List items = sfu.parseRequest(request); 
-		 
-		      Iterator iter = items.iterator(); 
-		        
-		      while (iter.hasNext()) { 
-		         FileItem item = (FileItem) iter.next(); 
-		         if (!item.isFormField()) { 
-		              b = item.get(); 
-		          } 
-		      } 
-		      System.out.println("photo: " + b);
-		}
-		catch(Exception e) {
-			message =  e.toString();
-		}
 		Visitor v = null;
 		
+		// Check if the request contains multipart content (file upload)
+	    boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+	    if (isMultipart) {
+	    	// Create a factory for disk-based file items
+	        DiskFileItemFactory factory = new DiskFileItemFactory();
+
+	        // Set factory constraints
+	        factory.setSizeThreshold(1024 * 1024); // 1MB threshold
+	        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+
+	        // Create a new file upload handler
+	        ServletFileUpload upload = new ServletFileUpload(factory);
+
+	        try {
+	            // Parse the request to get file items
+	            List<FileItem> items = upload.parseRequest(request);
+
+	            // Process the uploaded items
+	            for (FileItem item : items) {
+	            	 String fieldName = item.getFieldName();
+	                    String fieldValue;
+
+	                    // Use switch-case to handle different form fields
+	                    switch (fieldName) {
+	                        case "name":
+	                        	name = item.getString();
+	                        case "companyName":
+	                        	companyName = item.getString();
+	                        case "site":
+	                        	site = item.getString();
+	                        case "idNo":
+	                        	idNo = item.getString();
+	                        case "mobileNo":
+	                        	mobileNo = item.getString();
+	                        case "vehicleNo":
+	                        	vehicleNo = item.getString();
+	                        case "hostName":
+	                        	hostName = item.getString();
+	                        case "hostNo":
+	                        	hostNo = item.getString();
+	                        case "visitorCardId":
+	                        	visitorCardId = item.getString();
+	                        case "visitPurpose":
+	                        	visitPurpose = item.getString();
+	                        case "remarks":
+	                        	remarks = item.getString();
+	                        case "officerIdNo":
+	                        	officerIdNo = item.getString();
+	                        case "otpGenerated":
+	                        	otpGenerated = item.getString();
+	                        case "otpEntered":
+	                        	otpEntered = item.getString();
+	                        case "visitorImage":
+	                            // Process file upload
+	                            String visitorImage = new File(item.getName()).getName();
+	                            InputStream fileContent = item.getInputStream();
+	                            // You can save the file or perform other actions here
+	                            System.out.println("File Field Name: " + fieldName + ", File Name: " + visitorImage + "<br>");
+	                            break;
+	                        default:
+	                            response.getWriter().println("Unknown Field: " + fieldName + "<br>");
+	                            break;
+	                    }
+	            }
+	        } catch (Exception e) {
+	            message = message + " "+ e.getMessage();
+	        }
+	    }
+	    else {
+			message = "there is an issue with the upload, visitor record not added. Approach guardhouse. - " + message;
+			ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
+			ArrayList<Dropdown> visitPurposes = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
+			request.setAttribute("responseObj", message);
+			request.setAttribute("visitorLatRec", v);
+			request.setAttribute("siteDropdown", siteDropdown);
+			request.setAttribute("visitPurpose", visitPurposes);
+			RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
+			rd.forward(request, response);
+		}
 		if(otpGenerated != null && !StringUtils.isEmpty(otpGenerated) && otpEntered != null 
 				&& !StringUtils.isEmpty(otpEntered) && otpGenerated.equals(otpEntered)
 				&& message != null) {
