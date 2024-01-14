@@ -14,7 +14,7 @@
 <%@page import="java.util.List"%>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
- 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,7 +141,8 @@ function checkMobileNo() {
 			}
 			%>
 			<center>
-				<form action="addVisitor" method="post" name="addVisitor" onsubmit="return checkMobileNo()">
+				<form action="addVisitor" method="post" name="addVisitor" enctype="multipart/form-data"
+					onsubmit="return checkMobileNo()">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="name">Name (姓名): </label> <input type="text"
@@ -164,7 +165,7 @@ function checkMobileNo() {
 							%>
 							<select name="siteVisiting" class="form-control"
 								<%=readOnlyStatus%>>
-								<option style="display:none;"></option>
+								<option style="display: none;"></option>
 								<%
 								for (Site eachSite : siteDropdown) {
 								%>
@@ -218,7 +219,7 @@ function checkMobileNo() {
 							<select id="visitPurpose"
 								onchange="showDiv('officerLogin', this)" name="visitPurpose"
 								class="form-control" <%=readOnlyStatus%>>
-								<option style="display:none;"></option>
+								<option style="display: none;"></option>
 								<%
 								for (Dropdown d : visitPurpose) {
 								%>
@@ -268,9 +269,9 @@ function checkMobileNo() {
 							<label for="hostNo">Host No. (接待人电话号码): </label> <input
 								type="tel" class="form-control" id="hostNo" name="hostNo"
 								onchange="processHostNo(event)"
-								value="<%=((v != null && v.getHostNo() != null) ? v.getHostNo() : "") %>"
-								<%=readOnlyStatus.equals("readonly") ? readOnlyStatus : ""%>> <input type="hidden"
-								id="processedHostNo" name="processedHostNo" />
+								value="<%=((v != null && v.getHostNo() != null) ? v.getHostNo() : "")%>"
+								<%=readOnlyStatus.equals("readonly") ? readOnlyStatus : ""%>>
+							<input type="hidden" id="processedHostNo" name="processedHostNo" />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="visitorCardId">Visitor Card ID (访问卡号码): </label> <input
@@ -287,10 +288,15 @@ function checkMobileNo() {
 						</div>
 					</div>
 					<br>
-				    <button id="capture">Capture</button>
-				    <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
-					<%=readOnlyStatus.equals("readonly") ? readOnlyStatus : ""%>> <input type="hidden"
-								id="visitorImage" name="visitorImage" />				
+					<!-- Button to open the camera -->
+			        <button type="button" onclick="openCamera()">Capture Photo</button>
+			
+			        <!-- Input for capturing a photo -->
+			        <input type="file" accept="image/*" capture="environment" name="photo" id="photoInput" style="display: none;" required>
+			
+			        <!-- Preview of the captured photo -->
+			        <img id="photoPreview" alt="Photo Preview" style="max-width: 100%; max-height: 200px; margin-top: 10px; display: none;">
+
 					<br>
 					<div id="officerLogin" class="form-row">
 						<i>Please aproach guard house and seek approval from security
@@ -404,25 +410,46 @@ function processHostNo(event) {
 }
 
 // JavaScript code to access and capture the camera feed
-const canvas = document.getElementById('canvas');
-const captureButton = document.getElementById('capture');
+function openCamera() {
+    const photoInput = document.getElementById('photoInput');
+    const photoPreview = document.getElementById('photoPreview');
 
-// Access user's camera
-navigator.mediaDevices.getUserMedia({ video: true })
-    .then(stream => {
-        video.srcObject = stream;
-    })
-    .catch(err => console.error('Error accessing camera:', err));
+    // Access user's camera
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+            // Display the camera stream
+            const video = document.createElement('video');
+            video.srcObject = stream;
+            video.style.display = 'none';
+            document.body.appendChild(video);
 
-// Capture picture
-captureButton.addEventListener('click', () => {
-    const context = canvas.getContext('2d');
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    const imageData = canvas.toDataURL('image/png');
+            // Take a snapshot from the video stream
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            video.addEventListener('loadeddata', () => {
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    // TODO: Send imageData to the server for saving to PostgreSQL
-    visitorImage.value = imageData;
-});
+                // Stop the camera stream
+                stream.getTracks().forEach(track => track.stop());
+
+                // Remove temporary video element
+                document.body.removeChild(video);
+
+                // Display the snapshot in the preview
+                const imageDataUrl = canvas.toDataURL('image/png');
+                photoPreview.src = imageDataUrl;
+                photoPreview.style.display = 'block';
+
+                // Show the file input with the captured image
+                photoInput.style.display = 'block';
+                photoInput.value = imageDataUrl;
+            });
+        })
+        .catch(error => {
+            console.error('Error accessing camera:', error);
+        });
+}
 </script>
-
 </html>
