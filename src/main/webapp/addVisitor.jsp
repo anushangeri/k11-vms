@@ -288,14 +288,19 @@ function checkMobileNo() {
 						</div>
 					</div>
 					<br>
-					<!-- Button to open the camera -->
-			        <div class="camera">
-			            <video id="video">Video stream not available.</video>
-			        </div>
-			        <div><button id="startbutton">Take photo</button><button id="downloadbutton">Download</button></div>
-			        <canvas id="canvas"></canvas>
-			        <div class="output">
-			            <img id="photo" alt="The screen capture will appear in this box.">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<!-- Button to open the camera -->
+					        <div class="camera">
+					            <video id="video">Video stream not available.</video>
+					        </div>
+					        <div><button id="startbutton">Take photo</button>
+					    </div>   
+					    <div class="form-group col-md-6">   
+					        <div class="output">
+					            <img id="photo" alt="The screen capture will appear in this box.">
+					        </div>
+				        </div>
 			        </div>
 			        <br>
 					<div id="officerLogin" class="form-row">
@@ -492,17 +497,6 @@ function processHostNo(event) {
                 clearphoto();
             }
         }
-
-        function downloadPhoto() {
-            var dataUrl = canvas.toDataURL('image/png');
-
-            var a = document.createElement('a');
-            a.href = dataUrl;
-            a.download = 'webcam_photo.png';
-
-            a.click();
-        }
-
         window.addEventListener('load', startup, false);
     })();
 </script>
