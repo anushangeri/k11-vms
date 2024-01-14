@@ -142,7 +142,7 @@ function checkMobileNo() {
 			%>
 			<center>
 				<form action="addVisitor" method="post" name="addVisitor"
-					onsubmit="return checkMobileNo()">
+					onsubmit="return checkMobileNo()" enctype="multipart/form-data">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="name">Name (姓名): </label> <input type="text"
