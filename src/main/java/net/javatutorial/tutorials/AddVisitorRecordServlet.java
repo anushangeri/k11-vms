@@ -39,7 +39,7 @@ public class AddVisitorRecordServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int nextVal = VMSManagerDAO.getNextVal();
-		
+		System.out.println("nextVal: " + nextVal);
 		String message = null;
 		
 		String vmsId = "" + nextVal;
@@ -91,7 +91,6 @@ public class AddVisitorRecordServlet extends HttpServlet {
 	            // Process the uploaded items
 	            for (FileItem item : items) {
 	            	 String fieldName = item.getFieldName();
-	                    String fieldValue;
 
 	                    // Use switch-case to handle different form fields
 	                    switch (fieldName) {
