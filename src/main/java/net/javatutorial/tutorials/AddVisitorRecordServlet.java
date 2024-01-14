@@ -37,7 +37,6 @@ public class AddVisitorRecordServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int nextVal = VMSManagerDAO.getNextVal();
-		System.out.println("nextVal: " + nextVal);
 		String message = null;
 		
 		String vmsId = "" + nextVal;
@@ -89,7 +88,6 @@ public class AddVisitorRecordServlet extends HttpServlet {
 	            // Process the uploaded items
 	            for (FileItem item : items) {
 	            	 String fieldName = item.getFieldName();
-	            	 System.out.println("fieldName: " + fieldName);
 	                    // Use switch-case to handle different form fields
 	                    switch (fieldName) {
 	                        case "name":
@@ -151,7 +149,7 @@ public class AddVisitorRecordServlet extends HttpServlet {
 	        }
 	    }
 	    else {
-			message = "there is an issue with the upload, visitor record not added. Approach guardhouse. - " + message;
+			message = "There is an issue with the upload, visitor record not added. Approach guardhouse.";
 			ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 			ArrayList<Dropdown> visitPurposes = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
 			request.setAttribute("responseObj", message);
@@ -161,9 +159,9 @@ public class AddVisitorRecordServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
 			rd.forward(request, response);
 		}
+	    System.out.print("otpGenerated: " + otpGenerated + "otpEntered: " + otpEntered);
 		if(otpGenerated != null && !StringUtils.isEmpty(otpGenerated) && otpEntered != null 
-				&& !StringUtils.isEmpty(otpEntered) && otpGenerated.equals(otpEntered)
-				&& message != null) {
+				&& !StringUtils.isEmpty(otpEntered) && otpGenerated.equals(otpEntered)) {
 			if(officerIdNo != null && !StringUtils.isEmpty(officerIdNo) && visitPurpose.equals("GOVERNMENT AGENCY")) {
 				//Step 2: add visitor
 				v = new Visitor( vmsId,  name,  companyName, site, idType, idNo,  mobileNo,  vehicleNo,
@@ -183,7 +181,7 @@ public class AddVisitorRecordServlet extends HttpServlet {
 			response.sendRedirect("/vms");
 		}
 		else {
-			message = message + " - there is an issue with OTP, visitor record not added. Approach guardhouse.";
+			message = "There is an issue with OTP, visitor record not added. Approach guardhouse.";
 			//if OTP verify fail, return to add page, populate parameters
 			ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 			ArrayList<Dropdown> visitPurposes = DropdownListManagerDAO.retrieveByDropdownKey("VISIT_PURPOSE");
