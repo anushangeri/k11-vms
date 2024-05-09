@@ -137,7 +137,6 @@ public class AddVisitorRecordServlet extends HttpServlet {
 	                            String visitorImage = new File(item.getName()).getName();
 	                            InputStream visitorImageContent = item.getInputStream();
 	                            // You can save the file or perform other actions here
-	                            System.out.println("File Field Name: " + fieldName + ", File Name: " + visitorImage + "<br>");
 	                            break;
 	                        default:
 	                            response.getWriter().println("Unknown Field: " + fieldName + "<br>");
@@ -159,7 +158,6 @@ public class AddVisitorRecordServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("addVisitor.jsp");
 			rd.forward(request, response);
 		}
-	    System.out.print("otpGenerated: " + otpGenerated + "otpEntered: " + otpEntered);
 		if(otpGenerated != null && !StringUtils.isEmpty(otpGenerated) && otpEntered != null 
 				&& !StringUtils.isEmpty(otpEntered) && otpGenerated.equals(otpEntered)) {
 			if(officerIdNo != null && !StringUtils.isEmpty(officerIdNo) && visitPurpose.equals("GOVERNMENT AGENCY")) {
