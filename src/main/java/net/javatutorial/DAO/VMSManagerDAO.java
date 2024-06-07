@@ -175,7 +175,7 @@ public class VMSManagerDAO {
 
             // Execute the update
             int rowsAffected = pstmt.executeUpdate();
-            message = "Rows affected: " + rowsAffected + " : " + pstmt.toString();
+            message = "Rows affected: " + rowsAffected;
 	        
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
