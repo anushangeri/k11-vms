@@ -172,7 +172,7 @@ public class VMSManagerDAO {
     				+ "AND TIME_IN_DT < '" + endTimestamp + "' ;");
 	        
 	        
-	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM VMS "
+	        rs = stmt.executeQuery("SELECT MAX(TIME_OUT_DT) FROM VMS "
 	        		+ "WHERE TIME_IN_DT >= '" + startTimestamp + "' "
     				+ "AND TIME_IN_DT < '" + endTimestamp + "' ;");
 	        while (rs.next()) {

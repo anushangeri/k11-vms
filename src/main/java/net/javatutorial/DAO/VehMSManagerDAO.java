@@ -315,7 +315,7 @@ public class VehMSManagerDAO {
     				+ "AND TIME_IN_DT < '" + endTimestamp + "' ;");
 	        
 	        
-	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM VEHMS "
+	        rs = stmt.executeQuery("SELECT MAX(TIME_OUT_DT) FROM VEHMS "
 	        		+ "WHERE TIME_IN_DT >= '" + startTimestamp + "' "
     				+ "AND TIME_IN_DT < '" + endTimestamp + "' ;");
 	        while (rs.next()) {
