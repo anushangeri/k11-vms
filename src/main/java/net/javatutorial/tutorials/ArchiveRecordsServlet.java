@@ -74,7 +74,6 @@ public class ArchiveRecordsServlet extends HttpServlet {
 	        ZonedDateTime startOfPreviousDay = previousDate.toLocalDate().atStartOfDay(zoneId);
 	        ZonedDateTime endOfPreviousDayAt7PM = previousDate.withHour(19).withMinute(0).withSecond(0).withNano(0);
 	        
-	        System.out.println(endOfPreviousDayAt7PM);
 	        // Convert to Timestamp
 	        Date startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startOfPreviousDay.toString().substring(0, 16).replace("T", " ") + ":00");
 	        Timestamp startTimestamp = new Timestamp(startDate.getTime());
@@ -86,10 +85,10 @@ public class ArchiveRecordsServlet extends HttpServlet {
 	        Timestamp timestamp = endTimestamp;
 	        Timestamp systemDate = Timestamp.from(ZonedDateTime.now(zoneId).toInstant());
 	        
-	        System.out.println(endOfPreviousDayAt7PM + " , " + systemDate + " , " + startTimestamp + " , " + endTimestamp);
+	        System.out.println(timestamp + " , " + systemDate + " , " + startTimestamp + " , " + endTimestamp);
 	        
-	        String updateRecordsVisitorMessage = VMSManagerDAO.updateStandardVisitorTimeOutDt(timestamp, systemDate, startTimestamp, endTimestamp);
-	        String updateRecordsVehicleMessage = VehMSManagerDAO.updateStandardVehicleTimeOutDt(timestamp, systemDate, startTimestamp, endTimestamp);
+	        String updateRecordsVisitorMessage = VMSManagerDAO.updateStandardVisitorTimeOutDt(timestamp, systemDate, systemDate, endTimestamp);
+	        String updateRecordsVehicleMessage = VehMSManagerDAO.updateStandardVehicleTimeOutDt(timestamp, systemDate, systemDate, endTimestamp);
 	        
 	        System.out.println("updateRecordsMessage: " + updateRecordsVisitorMessage + " , " + updateRecordsVehicleMessage);
 		}
