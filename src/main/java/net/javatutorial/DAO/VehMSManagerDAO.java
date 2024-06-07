@@ -317,15 +317,8 @@ public class VehMSManagerDAO {
 
             // Execute the update
             int rowsAffected = pstmt.executeUpdate();
-            System.out.println("Rows affected: " + rowsAffected);
-	        
-	        
-	        rs = pstmt.executeQuery("SELECT MAX(TIME_OUT_DT) FROM VEHMS "
-	        		+ "WHERE TIME_IN_DT >= '" + startTimestamp + "' "
-    				+ "AND TIME_IN_DT < '" + endTimestamp + "' ;");
-	        while (rs.next()) {
-	        	message = "Successfully updated: " + rs.getTimestamp(1);
-	        }
+            message = "Rows affected: " + rowsAffected;
+            
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;

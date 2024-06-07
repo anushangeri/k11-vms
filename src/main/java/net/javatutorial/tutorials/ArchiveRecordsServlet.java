@@ -63,7 +63,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 		//before we move records over, we need to update timeout
 		//entry in the day shift 8am to 8pm
 		// Get the current date and time in the specified timezone
-        ZoneId zoneId = ZoneId.of("GMT+8");
+        ZoneId zoneId = ZoneId.of("Singapore");
         ZonedDateTime zonedDateTime = ZonedDateTime.now(zoneId);
 
         // Calculate the previous day

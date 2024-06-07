@@ -174,15 +174,8 @@ public class VMSManagerDAO {
 
             // Execute the update
             int rowsAffected = pstmt.executeUpdate();
-            System.out.println("Rows affected: " + rowsAffected);
+            message = "Rows affected: " + rowsAffected;
 	        
-	        
-	        rs = pstmt.executeQuery("SELECT MAX(TIME_OUT_DT) FROM VMS "
-	        		+ "WHERE TIME_IN_DT >= '" + startTimestamp + "' "
-    				+ "AND TIME_IN_DT < '" + endTimestamp + "' ;");
-	        while (rs.next()) {
-	        	message = "Successfully updated: " + rs.getTimestamp(1);
-	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;
