@@ -308,7 +308,8 @@ public class VehMSManagerDAO {
 				+ " LAST_MODIFIED_BY = ?, "
 				+ " LAST_MODIFIED_BY_DT = '" + systemDate + "' "
 				+ " WHERE TIME_IN_DT >= '" + startTimestamp + "' "
-				+ " AND TIME_IN_DT < '" + endTimestamp + "' ;";
+				+ " AND TIME_IN_DT < '" + endTimestamp + "' "
+				+ " AND TIME_OUT_DT IS NULL ;";
 		
 		try {
 			connection = Main.getConnection();
@@ -317,7 +318,7 @@ public class VehMSManagerDAO {
 
             // Execute the update
             int rowsAffected = pstmt.executeUpdate();
-            message = "Rows affected: " + rowsAffected + " : " + sql;
+            message = "Rows affected: " + rowsAffected;
             
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
