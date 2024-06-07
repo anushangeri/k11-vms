@@ -161,7 +161,7 @@ public class VMSManagerDAO {
 		String message = "";
 		
 		String sql = "SET TIMEZONE = 'Singapore'; "
-				+ " UPDATE VEHMS SET TIME_OUT_DT = '" + timestamp + "' , "
+				+ " UPDATE VMS SET TIME_OUT_DT = '" + timestamp + "' , "
 				+ " LAST_MODIFIED_BY = ?, "
 				+ " LAST_MODIFIED_BY_DT = '" + systemDate + "' "
 				+ " WHERE TIME_IN_DT >= '" + startTimestamp + "' "
@@ -174,7 +174,7 @@ public class VMSManagerDAO {
 
             // Execute the update
             int rowsAffected = pstmt.executeUpdate();
-            message = "Rows affected: " + rowsAffected + " : " + sql;
+            message = "Rows affected: " + rowsAffected;
 	        
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
