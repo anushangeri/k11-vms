@@ -300,22 +300,28 @@ public class VehMSManagerDAO {
 	public static String updateStandardVehicleTimeOutDt(Timestamp timestamp, Timestamp systemDate, Timestamp startTimestamp, Timestamp endTimestamp){
 		Connection connection = null;
 		ResultSet rs = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		String message = "";
+		
+		String sql = "SET TIMEZONE = 'Singapore'; "
+				+ "UPDATE VEHMS SET TIME_OUT_DT = ?, LAST_MODIFIED_BY = 'SYSTEM', "
+				+ "LAST_MODIFIED_BY_DT = ? WHERE TIME_IN_DT >= ? AND TIME_IN_DT < ?;";
+		
 		try {
 			connection = Main.getConnection();
-			stmt = connection.createStatement();
+			pstmt = connection.prepareStatement(sql);
+            pstmt.setTimestamp(1, timestamp);
+            pstmt.setString(2, "SYSTEM");
+            pstmt.setTimestamp(3, systemDate);
+            pstmt.setTimestamp(4, startTimestamp);
+            pstmt.setTimestamp(5, endTimestamp);
 
-	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
-	        		+ "UPDATE VEHMS "
-	        		+ "SET TIME_OUT_DT = '" + timestamp + "', " 
-	        		+ "LAST_MODIFIED_BY = 'SYSTEM', "
-	    	    	+ "LAST_MODIFIED_BY_DT = '" + systemDate + "' "	 
-	        		+ "WHERE TIME_IN_DT >= '" + startTimestamp + "' "
-    				+ "AND TIME_IN_DT < '" + endTimestamp + "' ;");
+            // Execute the update
+            int rowsAffected = pstmt.executeUpdate();
+            System.out.println("Rows affected: " + rowsAffected);
 	        
 	        
-	        rs = stmt.executeQuery("SELECT MAX(TIME_OUT_DT) FROM VEHMS "
+	        rs = pstmt.executeQuery("SELECT MAX(TIME_OUT_DT) FROM VEHMS "
 	        		+ "WHERE TIME_IN_DT >= '" + startTimestamp + "' "
     				+ "AND TIME_IN_DT < '" + endTimestamp + "' ;");
 	        while (rs.next()) {
@@ -331,7 +337,7 @@ public class VehMSManagerDAO {
 			message = "" + e;
 		}
 		finally {
-        	Main.close(connection, stmt, rs);
+        	Main.close(connection, pstmt, rs);
         }
 		
 		return message;

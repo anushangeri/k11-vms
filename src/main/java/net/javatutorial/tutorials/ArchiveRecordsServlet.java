@@ -66,12 +66,12 @@ public class ArchiveRecordsServlet extends HttpServlet {
         ZoneId zoneId = ZoneId.of("GMT+8");
         ZonedDateTime zonedDateTime = ZonedDateTime.now(zoneId);
 
-     // Calculate the previous day
-        LocalDate previousDate = zonedDateTime.toLocalDate().minusDays(1);
+        // Calculate the previous day
+        ZonedDateTime previousDate = zonedDateTime.minusDays(1);
 
         // Set the time range for the previous day (12 AM to 7 PM)
-        ZonedDateTime startOfPreviousDay = previousDate.atStartOfDay(zoneId);
-        ZonedDateTime endOfPreviousDayAt7PM = previousDate.atTime(19, 0).atZone(zoneId);
+        ZonedDateTime startOfPreviousDay = previousDate.toLocalDate().atStartOfDay(zoneId);
+        ZonedDateTime endOfPreviousDayAt7PM = previousDate.withHour(19).withMinute(0).withSecond(0).withNano(0);
 
         // Convert to Timestamp
         Timestamp startTimestamp = Timestamp.from(startOfPreviousDay.toInstant());
