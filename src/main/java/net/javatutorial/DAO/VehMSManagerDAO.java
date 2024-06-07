@@ -305,7 +305,7 @@ public class VehMSManagerDAO {
 		
 		String sql = "SET TIMEZONE = 'Singapore'; "
 				+ "UPDATE VEHMS SET TIME_OUT_DT = ?, LAST_MODIFIED_BY = ?, "
-				+ "LAST_MODIFIED_BY_DT = ? WHERE TIME_IN_DT >= ? AND TIME_IN_DT < ?;";
+				+ "LAST_MODIFIED_BY_DT = ? WHERE TIME_IN_DT >= ? AND TIME_IN_DT >= ?;";
 		
 		try {
 			connection = Main.getConnection();
