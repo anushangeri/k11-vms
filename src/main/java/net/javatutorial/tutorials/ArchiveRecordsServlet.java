@@ -2,9 +2,11 @@ package net.javatutorial.tutorials;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Properties;
@@ -58,6 +60,32 @@ public class ArchiveRecordsServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//before we move records over, we need to update timeout
+		//entry in the day shift 8am to 8pm
+		// Get the current date and time in the specified timezone
+        ZoneId zoneId = ZoneId.of("GMT+8");
+        ZonedDateTime zonedDateTime = ZonedDateTime.now(zoneId);
+
+     // Calculate the previous day
+        LocalDate previousDate = zonedDateTime.toLocalDate().minusDays(1);
+
+        // Set the time range for the previous day (12 AM to 7 PM)
+        ZonedDateTime startOfPreviousDay = previousDate.atStartOfDay(zoneId);
+        ZonedDateTime endOfPreviousDayAt7PM = previousDate.atTime(19, 0).atZone(zoneId);
+
+        // Convert to Timestamp
+        Timestamp startTimestamp = Timestamp.from(startOfPreviousDay.toInstant());
+        Timestamp endTimestamp = Timestamp.from(endOfPreviousDayAt7PM.toInstant());
+
+        // Example: Timestamp for TIME_OUT_DT and LAST_MODIFIED_BY_DT
+        Timestamp timestamp = endTimestamp;
+        Timestamp systemDate = Timestamp.from(ZonedDateTime.now(zoneId).toInstant());
+        
+        String updateRecordsVisitorMessage = VMSManagerDAO.updateStandardVisitorTimeOutDt(timestamp, systemDate, startTimestamp, endTimestamp);
+        String updateRecordsVehicleMessage = VehMSManagerDAO.updateStandardVehicleTimeOutDt(timestamp, systemDate, startTimestamp, endTimestamp);
+        
+        System.out.println("updateRecordsMessage: " + updateRecordsVisitorMessage + " , " + updateRecordsVehicleMessage);
+        
 		//archiving visitor records
 		String visitorMessage = VMSArchiveManagerDAO.moveVisitor();
 		System.out.println(visitorMessage);

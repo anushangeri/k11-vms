@@ -153,6 +153,47 @@ public class VMSManagerDAO {
 		
 		return message;
 	}
+	
+	public static String updateStandardVisitorTimeOutDt(Timestamp timestamp, Timestamp systemDate, Timestamp startTimestamp, Timestamp endTimestamp){
+		Connection connection = null;
+		ResultSet rs = null;
+		Statement stmt = null;
+		String message = "";
+		try {
+			connection = Main.getConnection();
+			stmt = connection.createStatement();
+
+	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
+	        		+ "UPDATE VMS "
+	        		+ "SET TIME_OUT_DT = '" + timestamp + "', " 
+	        		+ "LAST_MODIFIED_BY = 'SYSTEM', "
+	    	    	+ "LAST_MODIFIED_BY_DT = '" + systemDate + "' "	 
+	        		+ "WHERE TIME_IN_DT >= '" + startTimestamp + "' "
+    				+ "AND TIME_IN_DT < '" + endTimestamp + "' ;");
+	        
+	        
+	        rs = stmt.executeQuery("SELECT LAST(FIRST_NAME) FROM VMS "
+	        		+ "WHERE TIME_IN_DT >= '" + startTimestamp + "' "
+    				+ "AND TIME_IN_DT < '" + endTimestamp + "' ;");
+	        while (rs.next()) {
+	        	message = "Successfully updated: " + rs.getTimestamp("tick");
+	        }
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			message = "" + e;
+			//e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			message = "" + e;
+		}
+		finally {
+        	Main.close(connection, stmt, rs);
+        }
+		
+		return message;
+	}
+	
 	public static int getNextVal(){
 		Connection connection = null;
 		ResultSet rs = null;
