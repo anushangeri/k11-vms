@@ -9,6 +9,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Properties;
 import java.util.TimeZone;
 
@@ -59,35 +60,42 @@ public class ArchiveRecordsServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//before we move records over, we need to update timeout
-		//entry in the day shift 8am to 8pm
-		// Get the current date and time in the specified timezone
-        ZoneId zoneId = ZoneId.of("Singapore");
-        ZonedDateTime zonedDateTime = ZonedDateTime.now(zoneId);
-
-        // Calculate the previous day
-        ZonedDateTime previousDate = zonedDateTime.minusDays(1);
-
-        // Set the time range for the previous day (12 AM to 7 PM)
-        ZonedDateTime startOfPreviousDay = previousDate.toLocalDate().atStartOfDay(zoneId);
-        ZonedDateTime endOfPreviousDayAt7PM = previousDate.withHour(19).withMinute(0).withSecond(0).withNano(0);
-
-        // Convert to Timestamp
-        Timestamp startTimestamp = Timestamp.from(startOfPreviousDay.toInstant());
-        Timestamp endTimestamp = Timestamp.from(endOfPreviousDayAt7PM.toInstant());
-
-        // Example: Timestamp for TIME_OUT_DT and LAST_MODIFIED_BY_DT
-        Timestamp timestamp = endTimestamp;
-        Timestamp systemDate = Timestamp.from(ZonedDateTime.now(zoneId).toInstant());
+		try {
+			//before we move records over, we need to update timeout
+			//entry in the day shift 8am to 8pm
+			// Get the current date and time in the specified timezone
+	        ZoneId zoneId = ZoneId.of("Singapore");
+	        ZonedDateTime zonedDateTime = ZonedDateTime.now(zoneId);
+	
+	        // Calculate the previous day
+	        ZonedDateTime previousDate = zonedDateTime.minusDays(1);
+	
+	        // Set the time range for the previous day (12 AM to 7 PM)
+	        ZonedDateTime startOfPreviousDay = previousDate.toLocalDate().atStartOfDay(zoneId);
+	        ZonedDateTime endOfPreviousDayAt7PM = previousDate.withHour(19).withMinute(0).withSecond(0).withNano(0);
+	        
+	        
+	        // Convert to Timestamp
+	        Date startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startOfPreviousDay.toString().substring(0, 19).replace("T", " "));
+	        Timestamp startTimestamp = new Timestamp(startDate.getTime());
+	        
+	        Date endDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endOfPreviousDayAt7PM.toString().substring(0, 19).replace("T", " "));
+	        Timestamp endTimestamp = new Timestamp(endDate.getTime());
         
-        System.out.println(endOfPreviousDayAt7PM + " , " + systemDate + " , " + startTimestamp + " , " + endTimestamp);
-        
-        String updateRecordsVisitorMessage = VMSManagerDAO.updateStandardVisitorTimeOutDt(timestamp, systemDate, startTimestamp, endTimestamp);
-        String updateRecordsVehicleMessage = VehMSManagerDAO.updateStandardVehicleTimeOutDt(timestamp, systemDate, startTimestamp, endTimestamp);
-        
-        System.out.println("updateRecordsMessage: " + updateRecordsVisitorMessage + " , " + updateRecordsVehicleMessage);
-        
+	        // Example: Timestamp for TIME_OUT_DT and LAST_MODIFIED_BY_DT
+	        Timestamp timestamp = endTimestamp;
+	        Timestamp systemDate = Timestamp.from(ZonedDateTime.now(zoneId).toInstant());
+	        
+	        System.out.println(timestamp + " , " + systemDate + " , " + startTimestamp + " , " + endTimestamp);
+	        
+	        String updateRecordsVisitorMessage = VMSManagerDAO.updateStandardVisitorTimeOutDt(timestamp, systemDate, startTimestamp, endTimestamp);
+	        String updateRecordsVehicleMessage = VehMSManagerDAO.updateStandardVehicleTimeOutDt(timestamp, systemDate, startTimestamp, endTimestamp);
+	        
+	        System.out.println("updateRecordsMessage: " + updateRecordsVisitorMessage + " , " + updateRecordsVehicleMessage);
+		}
+        catch(Exception e) {
+            System.out.println("Exception :" + e);
+        }
 		//archiving visitor records
 		String visitorMessage = VMSArchiveManagerDAO.moveVisitor();
 		System.out.println(visitorMessage);
