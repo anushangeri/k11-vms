@@ -38,7 +38,7 @@ public class VehMSManagerDAO {
 	        		+ ");");
 	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM VEHMS;");
 	        while (rs.next()) {
-	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        	message = "Read from DB: " + rs.getString(1);
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -73,7 +73,7 @@ public class VehMSManagerDAO {
 	        		+ " WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
-	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        	message = "Read from DB: " + rs.getString(1);
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -108,7 +108,7 @@ public class VehMSManagerDAO {
 	        		+ " WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
-	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        	message = "Read from DB: " + rs.getString(1);
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -143,7 +143,7 @@ public class VehMSManagerDAO {
 	        		+ " WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
-	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        	message = "Read from DB: " + rs.getString(1);
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -177,7 +177,7 @@ public class VehMSManagerDAO {
 	        		+ "   WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
-	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        	message = "Read from DB: " + rs.getString(1);
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -211,7 +211,7 @@ public class VehMSManagerDAO {
 	        		+ "   WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
-	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        	message = "Read from DB: " + rs.getString(1);
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -245,7 +245,7 @@ public class VehMSManagerDAO {
 	        		+ "   WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
-	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        	message = "Read from DB: " + rs.getString(1);
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -279,7 +279,7 @@ public class VehMSManagerDAO {
 	        		+ "   WHERE VEHICLE_ID = '" + v.getVehicleId() + "';");
 	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE VEHICLE_ID ='" + v.getVehicleId() +"';");
 	        while (rs.next()) {
-	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        	message = "Read from DB: " + rs.getTimestamp(1);
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -319,7 +319,7 @@ public class VehMSManagerDAO {
 	        		+ "WHERE TIME_IN_DT >= '" + startTimestamp + "' "
     				+ "AND TIME_IN_DT < '" + endTimestamp + "' ;");
 	        while (rs.next()) {
-	        	message = "Successfully updated: " + rs.getTimestamp("tick");
+	        	message = "Successfully updated: " + rs.getTimestamp(1);
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block

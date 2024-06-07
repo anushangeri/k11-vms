@@ -34,9 +34,9 @@ public class VMSManagerDAO {
 	        		+v.getVisitPurpose()+ "','" +v.getTemperature()+ "','" +v.getApprovingOfficer()+ "','" +v.getTimeInDt()+ "','"
 	        		+v.getCreatedBy()+ "','" +v.getLastModifiedBy()+ "','" +v.getCreatedByDt()+ "','" +v.getLastModifiedByDt()+ "'"
 	        		+ ");");
-	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM VMS;");
+	        rs = stmt.executeQuery("SELECT NAME FROM VMS;");
 	        while (rs.next()) {
-	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        	message = "Read from DB: " + rs.getString(1);
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -68,9 +68,9 @@ public class VMSManagerDAO {
 	        		+ "LAST_MODIFIED_BY = '" + v.getLastModifiedBy() + "',"
 	    	    	+ "LAST_MODIFIED_BY_DT = '" + v.getLastModifiedByDt() + "'"	 
 	        		+ "   WHERE VMS_ID = '" + v.getVmsId() + "';");
-	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM VMS WHERE VMS_ID ='" + v.getVmsId() +"';");
+	        rs = stmt.executeQuery("SELECT NAME FROM VMS WHERE VMS_ID ='" + v.getVmsId() +"';");
 	        while (rs.next()) {
-	        	message = "Successfully updated: " + rs.getTimestamp("tick");
+	        	message = "Successfully updated: " + rs.getString(1);
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -101,9 +101,9 @@ public class VMSManagerDAO {
 	        		+ "LAST_MODIFIED_BY = '" + v.getLastModifiedBy() + "',"
 	    	    	+ "LAST_MODIFIED_BY_DT = '" + v.getLastModifiedByDt() + "'"	 
 	        		+ " WHERE VMS_ID = '" + v.getVmsId() + "';");
-	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM VMS WHERE VMS_ID ='" + v.getVmsId() +"';");
+	        rs = stmt.executeQuery("SELECT NAME FROM VMS WHERE VMS_ID ='" + v.getVmsId() +"';");
 	        while (rs.next()) {
-	        	message = "Successfully updated: " + rs.getTimestamp("tick");
+	        	message = "Successfully updated: " + rs.getString(1);
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -134,9 +134,9 @@ public class VMSManagerDAO {
 	        		+ "LAST_MODIFIED_BY = '" + v.getLastModifiedBy() + "',"
 	    	    	+ "LAST_MODIFIED_BY_DT = '" + v.getLastModifiedByDt() + "'"	 
 	        		+ " WHERE VMS_ID = '" + v.getVmsId() + "';");
-	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM VMS WHERE VMS_ID ='" + v.getVmsId() +"';");
+	        rs = stmt.executeQuery("SELECT NAME FROM VMS WHERE VMS_ID ='" + v.getVmsId() +"';");
 	        while (rs.next()) {
-	        	message = "Successfully updated: " + rs.getTimestamp("tick");
+	        	message = "Successfully updated: " + rs.getString(1);
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -176,7 +176,7 @@ public class VMSManagerDAO {
 	        		+ "WHERE TIME_IN_DT >= '" + startTimestamp + "' "
     				+ "AND TIME_IN_DT < '" + endTimestamp + "' ;");
 	        while (rs.next()) {
-	        	message = "Successfully updated: " + rs.getTimestamp("tick");
+	        	message = "Successfully updated: " + rs.getTimestamp(1);
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
