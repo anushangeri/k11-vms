@@ -81,7 +81,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
         Timestamp timestamp = endTimestamp;
         Timestamp systemDate = Timestamp.from(ZonedDateTime.now(zoneId).toInstant());
         
-        System.out.println(timestamp + " , " + systemDate + " , " + startTimestamp + " , " + endTimestamp);
+        System.out.println(endOfPreviousDayAt7PM + " , " + systemDate + " , " + startTimestamp + " , " + endTimestamp);
         
         String updateRecordsVisitorMessage = VMSManagerDAO.updateStandardVisitorTimeOutDt(timestamp, systemDate, startTimestamp, endTimestamp);
         String updateRecordsVehicleMessage = VehMSManagerDAO.updateStandardVehicleTimeOutDt(timestamp, systemDate, startTimestamp, endTimestamp);
