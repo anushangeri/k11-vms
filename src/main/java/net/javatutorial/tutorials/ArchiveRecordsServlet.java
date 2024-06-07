@@ -87,8 +87,8 @@ public class ArchiveRecordsServlet extends HttpServlet {
 	        
 	        System.out.println(timestamp + " , " + systemDate + " , " + startTimestamp + " , " + endTimestamp);
 	        
-	        String updateRecordsVisitorMessage = VMSManagerDAO.updateStandardVisitorTimeOutDt(timestamp, systemDate, systemDate, endTimestamp);
-	        String updateRecordsVehicleMessage = VehMSManagerDAO.updateStandardVehicleTimeOutDt(timestamp, systemDate, systemDate, endTimestamp);
+	        String updateRecordsVisitorMessage = VMSManagerDAO.updateStandardVisitorTimeOutDt(timestamp, systemDate, startTimestamp, endTimestamp);
+	        String updateRecordsVehicleMessage = VehMSManagerDAO.updateStandardVehicleTimeOutDt(timestamp, systemDate, startTimestamp, endTimestamp);
 	        
 	        System.out.println("updateRecordsMessage: " + updateRecordsVisitorMessage + " , " + updateRecordsVehicleMessage);
 		}

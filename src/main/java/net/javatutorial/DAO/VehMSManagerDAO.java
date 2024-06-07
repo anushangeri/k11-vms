@@ -304,21 +304,20 @@ public class VehMSManagerDAO {
 		String message = "";
 		
 		String sql = "SET TIMEZONE = 'Singapore'; "
-				+ "UPDATE VEHMS SET TIME_OUT_DT = ?, LAST_MODIFIED_BY = ?, "
-				+ "LAST_MODIFIED_BY_DT = ? WHERE TIME_IN_DT >= ? AND TIME_IN_DT >= ?;";
+				+ " UPDATE VEHMS SET TIME_OUT_DT = '" + timestamp + "' , "
+				+ " LAST_MODIFIED_BY = ?, "
+				+ " LAST_MODIFIED_BY_DT = '" + systemDate + "' "
+				+ " WHERE TIME_IN_DT >= '" + startTimestamp + "' "
+				+ " AND TIME_IN_DT < '" + endTimestamp + "' ;";
 		
 		try {
 			connection = Main.getConnection();
 			pstmt = connection.prepareStatement(sql);
-            pstmt.setTimestamp(1, timestamp);
-            pstmt.setString(2, "SYSTEM");
-            pstmt.setTimestamp(3, systemDate);
-            pstmt.setTimestamp(4, startTimestamp);
-            pstmt.setTimestamp(5, endTimestamp);
+            pstmt.setString(1, "SYSTEM");
 
             // Execute the update
             int rowsAffected = pstmt.executeUpdate();
-            message = "Rows affected: " + rowsAffected;
+            message = "Rows affected: " + rowsAffected + " : " + sql;
             
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
