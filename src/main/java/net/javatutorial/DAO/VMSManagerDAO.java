@@ -166,11 +166,11 @@ public class VMSManagerDAO {
 		try {
 			connection = Main.getConnection();
 			pstmt = connection.prepareStatement(sql);
-            pstmt.setTimestamp(1, timestamp);
+            pstmt.setString(1, timestamp + "");
             pstmt.setString(2, "SYSTEM");
-            pstmt.setTimestamp(3, systemDate);
-            pstmt.setTimestamp(4, startTimestamp);
-            pstmt.setTimestamp(5, endTimestamp);
+            pstmt.setString(3, systemDate + "");
+            pstmt.setString(4, startTimestamp + "");
+            pstmt.setString(5, endTimestamp + "");
 
             // Execute the update
             int rowsAffected = pstmt.executeUpdate();
