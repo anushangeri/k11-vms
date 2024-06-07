@@ -165,7 +165,7 @@ public class VMSManagerDAO {
 				+ " LAST_MODIFIED_BY = ?, "
 				+ " LAST_MODIFIED_BY_DT = '" + systemDate + "' "
 				+ " WHERE TIME_IN_DT >= '" + startTimestamp + "' "
-				+ " AND TIME_IN_DT < '" + endTimestamp + "' ;";
+				+ " AND TIME_IN_DT > '" + endTimestamp + "' ;";
 		
 		try {
 			connection = Main.getConnection();
