@@ -74,7 +74,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 	        ZonedDateTime startOfPreviousDay = previousDate.toLocalDate().atStartOfDay(zoneId);
 	        ZonedDateTime endOfPreviousDayAt7PM = previousDate.withHour(19).withMinute(0).withSecond(0).withNano(0);
 	        
-	        
+	        System.out.println(endOfPreviousDayAt7PM);
 	        // Convert to Timestamp
 	        Date startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startOfPreviousDay.toString().substring(0, 19).replace("T", " "));
 	        Timestamp startTimestamp = new Timestamp(startDate.getTime());
