@@ -76,10 +76,10 @@ public class ArchiveRecordsServlet extends HttpServlet {
 	        
 	        System.out.println(endOfPreviousDayAt7PM);
 	        // Convert to Timestamp
-	        Date startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startOfPreviousDay.toString().substring(0, 19).replace("T", " "));
+	        Date startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startOfPreviousDay.toString().substring(0, 17).replace("T", " "));
 	        Timestamp startTimestamp = new Timestamp(startDate.getTime());
 	        
-	        Date endDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endOfPreviousDayAt7PM.toString().substring(0, 19).replace("T", " "));
+	        Date endDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endOfPreviousDayAt7PM.toString().substring(0, 17).replace("T", " "));
 	        Timestamp endTimestamp = new Timestamp(endDate.getTime());
         
 	        // Example: Timestamp for TIME_OUT_DT and LAST_MODIFIED_BY_DT
