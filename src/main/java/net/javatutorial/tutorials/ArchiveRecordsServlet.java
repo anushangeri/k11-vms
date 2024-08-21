@@ -113,6 +113,11 @@ public class ArchiveRecordsServlet extends HttpServlet {
 		if(cal.get(Calendar.DAY_OF_MONTH) == lastDay) {
 			System.out.println( "it is the last day of the month, so batch job will do archive db clean up and email results");
 			
+			final String password = new String(System.getenv("EMAIL_PASSWORD"));
+			final String excelFileName = new String(System.getenv("FILE_NAME"));
+			final String clientRecipients = new String(System.getenv("CLIENT_RECIPIENTS"));
+			final String emailSubject = new String(System.getenv("EMAIL_SUBJECT"));
+			
 			try 
 			{ 
 				Calendar calPreviousMonth = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
@@ -136,7 +141,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				System.out.println("retrieved vehicles current month successful");
 				
 				LocalDate localDate = LocalDate.now(ZoneId.of("GMT+08:00"));
-				String fileName = "vms_records_dev"+ localDate +".xls";
+				String fileName = excelFileName + localDate +".xls";
 				
 				// workbook object
 				XSSFWorkbook workbook = new XSSFWorkbook();
@@ -408,7 +413,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				final String user = "shangeri.sivalingam@k11.com.sg";// change accordingly
 				//final String password = "Sh@ngeri94";// change accordingly
 				
-				final String password = new String(System.getenv("EMAIL_PASSWORD"));
+				
 				
 				Properties properties = System.getProperties();
 				properties.setProperty("mail.smtp.host", "mail.k11.com.sg");
@@ -426,7 +431,17 @@ public class ArchiveRecordsServlet extends HttpServlet {
 					MimeMessage message = new MimeMessage(session);
 					message.setFrom(new InternetAddress(user));
 					message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-					message.setSubject("K11 VMS Records DEV ENV");
+					
+			        if (clientRecipients != null && !clientRecipients.trim().isEmpty()) {
+			        	// Split the string by comma
+			        	String[] recipientArray = clientRecipients.split(",");
+			        	// Add recipients
+			            for (String recipient : recipientArray) {
+			                message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient.trim()));
+			            }
+					}
+					
+					message.setSubject(emailSubject);
 
 					// Create the message part
 					BodyPart messageBodyPart = new MimeBodyPart();
