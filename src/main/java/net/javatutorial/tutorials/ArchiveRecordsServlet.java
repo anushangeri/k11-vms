@@ -432,14 +432,22 @@ public class ArchiveRecordsServlet extends HttpServlet {
 					message.setFrom(new InternetAddress(user));
 					message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 					
-			        if (clientRecipients != null && !clientRecipients.trim().isEmpty()) {
-			        	// Split the string by comma
-			        	String[] recipientArray = clientRecipients.split(",");
-			        	// Add recipients
-			            for (String recipient : recipientArray) {
-			                message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient.trim()));
+					if (clientRecipients.contains(",")) {
+			            // Split the string by comma and trim any extra whitespace
+			            String[] emailAddresses = clientRecipients.split("\\s*,\\s*");
+			            
+			            // Create an array of InternetAddress
+			            InternetAddress[] addresses = new InternetAddress[emailAddresses.length];
+			            for (int i = 0; i < emailAddresses.length; i++) {
+			                addresses[i] = new InternetAddress(emailAddresses[i]);
 			            }
-					}
+			            
+			            // Add all recipients
+			            message.addRecipients(Message.RecipientType.TO, addresses);
+			        } else {
+			            // Single recipient
+			            message.addRecipient(Message.RecipientType.TO, new InternetAddress(clientRecipients));
+			        }
 					
 					message.setSubject(emailSubject);
 
