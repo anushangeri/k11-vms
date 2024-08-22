@@ -8,8 +8,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.TimeZone;
 
@@ -430,25 +432,30 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				try {
 					MimeMessage message = new MimeMessage(session);
 					message.setFrom(new InternetAddress(user));
-					message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 					
+					// Create an ArrayList to hold email addresses
+			        List<String> emailList = new ArrayList<>();
+			        emailList.add(to);
+			        
 					if (clientRecipients.contains(",")) {
 			            // Split the string by comma and trim any extra whitespace
 			            String[] emailAddresses = clientRecipients.split("\\s*,\\s*");
 			            
-			            // Create an array of InternetAddress
-			            InternetAddress[] addresses = new InternetAddress[emailAddresses.length];
-			            for (int i = 0; i < emailAddresses.length; i++) {
-			                addresses[i] = new InternetAddress(emailAddresses[i]);
-			            }
+			            // Convert the array to a List using Arrays.asList()
+			            emailList.addAll(Arrays.asList(emailAddresses));
 			            
-			            // Add all recipients
-			            message.addRecipients(Message.RecipientType.TO, addresses);
 			        } else {
-			            // Single recipient
-			            message.addRecipient(Message.RecipientType.TO, new InternetAddress(clientRecipients));
+			        	// Single recipient
+			        	emailList.add(clientRecipients);
 			        }
-					
+					// Create an array of InternetAddress
+		            InternetAddress[] addresses = new InternetAddress[emailList.size()];
+		            for (int i = 0; i < emailList.size(); i++) {
+		                addresses[i] = new InternetAddress(emailList.get(i));
+		                
+		            }
+		            // Add all recipients
+		            message.addRecipients(Message.RecipientType.TO, addresses);
 					message.setSubject(emailSubject);
 
 					// Create the message part
