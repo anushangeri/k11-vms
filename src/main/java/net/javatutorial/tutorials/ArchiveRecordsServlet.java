@@ -448,7 +448,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 			        	// Single recipient
 			        	emailList.add(clientRecipients);
 			        }
-					// Create an array of InternetAddress
+					// Create an array of new InternetAddress object
 		            InternetAddress[] addresses = new InternetAddress[emailList.size()];
 		            for (int i = 0; i < emailList.size(); i++) {
 		                addresses[i] = new InternetAddress(emailList.get(i));
