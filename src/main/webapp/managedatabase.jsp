@@ -158,6 +158,14 @@
               </form>
           </td>
 	    </tr>
+	    <tr>
+	      <th scope="row">9</th>
+	      <td>Clocking</td>
+	      <td><form action="createClockingTbl" method="post">
+                  <button class="btn" type="submit">Create</button>
+              </form>
+          </td>
+	    </tr>
 	  </tbody>
 	</table>
 </body>
