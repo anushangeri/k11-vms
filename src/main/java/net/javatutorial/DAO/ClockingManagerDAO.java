@@ -29,14 +29,14 @@ public class ClockingManagerDAO {
 				    v.getSiteName() + "', '" + v.getCreatedDt() + "', '" + v.getLastModifiedDt() + "');");
 
 			// Example of how to fetch the inserted ID or record (if needed)
-			rs = stmt.executeQuery("SELECT CLOCKING_ID FROM CLOCKING WHERE CLOCKING_ID = '" + v.getClockingId() + "';");
+			rs = stmt.executeQuery("SELECT CLOCKING FROM CLOCKING WHERE CLOCKING_ID = '" + v.getClockingId() + "';");
 
 	        while (rs.next()) {
 	        	message = "Clocking point successfully added!";
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
-			message = "" + e;
+			message = "ERROR: " + e;
 			//e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

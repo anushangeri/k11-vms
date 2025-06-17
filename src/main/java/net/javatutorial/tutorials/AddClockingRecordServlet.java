@@ -61,17 +61,21 @@ public class AddClockingRecordServlet extends HttpServlet {
 	}
 
 	private void showPopupAndClose(HttpServletResponse response, String message, boolean isError) throws IOException {
+		
+		// Escape single quotes and newlines to avoid breaking JS
+	    String escapedMessage = message.replace("'", "\\'").replace("\n", "\\n").replace("\r", "");
+
 		response.setContentType("text/html");
 		response.getWriter().println(
 			"<html>" +
-				"<head><title>" + (isError ? "Error" : "Success") + "</title></head>" +
-				"<body>" +
-					"<script type='text/javascript'>" +
-						"alert('" + message + "');" +
-						"window.close();" +
-					"</script>" +
-				"</body>" +
-			"</html>"
+	            "<head><title>" + (isError ? "Error" : "Success") + "</title></head>" +
+	            "<body>" +
+	                "<script type='text/javascript'>" +
+	                    "alert('" + escapedMessage + "');" +
+	                    "setTimeout(function() { window.close(); }, 300);" +
+	                "</script>" +
+	            "</body>" +
+	        "</html>"
 		);
 	}
 
