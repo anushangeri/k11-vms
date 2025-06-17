@@ -27,34 +27,45 @@ public class AddClockingRecordServlet extends HttpServlet {
 	}
 
 	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		int nextVal = ClockingManagerDAO.getNextVal();
+		try {
+			int nextVal = ClockingManagerDAO.getNextVal();
 
-		String clockingId = String.valueOf(nextVal);
-		String clockingPointName = request.getParameter("clockingPointName");
-		String siteName = request.getParameter("siteName");
+			String clockingId = String.valueOf(nextVal);
+			String clockingPointName = request.getParameter("clockingPointName");
+			String siteName = request.getParameter("siteName");
 
-		// Basic input check (optional)
-		if (clockingPointName == null || siteName == null || clockingPointName.isEmpty() || siteName.isEmpty()) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing parameters: clockingPointName or siteName");
-			return;
+			if (clockingPointName == null || siteName == null || clockingPointName.isEmpty() || siteName.isEmpty()) {
+				showPopupAndClose(response, "Missing parameters: clockingPointName or siteName", true);
+				return;
+			}
+
+			ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore"));
+			Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
+
+			Clocking clocking = new Clocking(clockingId, clockingPointName, siteName, timestamp, timestamp);
+
+			String message = ClockingManagerDAO.addClocking(clocking);
+
+			if (message.toLowerCase().contains("error") || message.toLowerCase().contains("exception")) {
+				showPopupAndClose(response, "Failed to add clocking record: " + message, true);
+			} else {
+				showPopupAndClose(response, "Clocking record added successfully!", false);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace(); // log for server
+			showPopupAndClose(response, "Error occurred: " + e.getMessage(), true);
 		}
+	}
 
-		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore"));
-		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
-
-		Clocking clocking = new Clocking(clockingId, clockingPointName, siteName, timestamp, timestamp);
-
-		String message = ClockingManagerDAO.addClocking(clocking);
-
-		// Optional: output message in browser (for GET use)
-		// Return HTML with popup and close
+	private void showPopupAndClose(HttpServletResponse response, String message, boolean isError) throws IOException {
 		response.setContentType("text/html");
 		response.getWriter().println(
 			"<html>" +
-				"<head><title>" + message + "</title></head>" +
+				"<head><title>" + (isError ? "Error" : "Success") + "</title></head>" +
 				"<body>" +
 					"<script type='text/javascript'>" +
-						"alert('Clocking record added successfully!');" +
+						"alert('" + message.replace("'", "\\'") + "');" +
 						"window.close();" +
 					"</script>" +
 				"</body>" +
