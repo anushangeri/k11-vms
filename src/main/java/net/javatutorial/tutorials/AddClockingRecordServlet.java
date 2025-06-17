@@ -18,11 +18,26 @@ public class AddClockingRecordServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request, response);
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request, response);
+	}
+
+	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		int nextVal = ClockingManagerDAO.getNextVal();
 
 		String clockingId = String.valueOf(nextVal);
 		String clockingPointName = request.getParameter("clockingPointName");
 		String siteName = request.getParameter("siteName");
+
+		// Basic input check (optional)
+		if (clockingPointName == null || siteName == null || clockingPointName.isEmpty() || siteName.isEmpty()) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing parameters: clockingPointName or siteName");
+			return;
+		}
 
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore"));
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
@@ -31,10 +46,9 @@ public class AddClockingRecordServlet extends HttpServlet {
 
 		String message = ClockingManagerDAO.addClocking(clocking);
 
-		request.setAttribute("responseObj", message);
-
-		// Redirect to view all clocking records - may not need this at this time
-		//response.sendRedirect("/retrieveAllClockingRecords");
+		// Optional: output message in browser (for GET use)
+		response.setContentType("text/plain");
+		response.getWriter().println("Clocking record added: " + message);
 	}
 
 	@Override
