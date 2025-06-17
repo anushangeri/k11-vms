@@ -29,7 +29,7 @@ public class ClockingManagerDAO {
 				    v.getSiteName() + "', '" + v.getCreatedDt() + "', '" + v.getLastModifiedDt() + "');");
 
 			// Example of how to fetch the inserted ID or record (if needed)
-			rs = stmt.executeQuery("SELECT * FROM CLOCKING_ID WHERE CLOCKING_ID = '" + v.getClockingId() + "';");
+			rs = stmt.executeQuery("SELECT CLOCKING_ID FROM CLOCKING WHERE CLOCKING_ID = '" + v.getClockingId() + "';");
 
 	        while (rs.next()) {
 	        	message = "Clocking point successfully added!";
