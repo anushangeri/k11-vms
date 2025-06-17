@@ -359,6 +359,20 @@
 		<servlet-class>net.javatutorial.tutorials.DeleteSiteServlet</servlet-class>
 	</servlet>
 	<!-- Site END  -->
+	<!-- Clocking START  -->
+	<servlet>
+		<description />
+		<display-name>CClockingTblServlet</display-name>
+		<servlet-name>CClockingTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CClockingTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>AddClockingRecordServlet</display-name>
+		<servlet-name>AddClockingRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddClockingRecordServlet</servlet-class>
+	</servlet>
+	<!-- Clocking END  -->
 	<!-- Dropdown List START  -->
 	<servlet>
 		<description />
@@ -622,6 +636,16 @@
 		<url-pattern>/deleteSite</url-pattern>
 	</servlet-mapping>
 	<!-- Site END  -->
+	<!-- Clocking START  -->
+	<servlet-mapping>
+		<servlet-name>CClockingTblServlet</servlet-name>
+		<url-pattern>/createClockingTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddClockingRecordServlet</servlet-name>
+		<url-pattern>/addClocking</url-pattern>
+	</servlet-mapping>
+	<!-- Clocking END  -->
 	<!-- Dropdown START  -->
 	<servlet-mapping>
 		<servlet-name>CDropdownTblServlet</servlet-name>
