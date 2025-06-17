@@ -47,8 +47,19 @@ public class AddClockingRecordServlet extends HttpServlet {
 		String message = ClockingManagerDAO.addClocking(clocking);
 
 		// Optional: output message in browser (for GET use)
-		response.setContentType("text/plain");
-		response.getWriter().println("Clocking record added: " + message);
+		// Return HTML with popup and close
+		response.setContentType("text/html");
+		response.getWriter().println(
+			"<html>" +
+				"<head><title>" + message + "</title></head>" +
+				"<body>" +
+					"<script type='text/javascript'>" +
+						"alert('Clocking record added successfully!');" +
+						"window.close();" +
+					"</script>" +
+				"</body>" +
+			"</html>"
+		);
 	}
 
 	@Override

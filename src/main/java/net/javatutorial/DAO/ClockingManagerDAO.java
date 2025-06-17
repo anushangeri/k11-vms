@@ -32,7 +32,7 @@ public class ClockingManagerDAO {
 			rs = stmt.executeQuery("SELECT * FROM CLOCKING_POINT WHERE CLOCKING_ID = '" + v.getClockingId() + "';");
 
 	        while (rs.next()) {
-	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        	message = "Clocking point successfully added!";
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -46,7 +46,6 @@ public class ClockingManagerDAO {
 		finally {
         	Main.close(connection, stmt, rs);
         }
-		message = "successfull" ;
 		return message;
 	}
 	
