@@ -46,6 +46,8 @@ public class AddClockingRecordServlet extends HttpServlet {
 
 			String message = ClockingManagerDAO.addClocking(clocking);
 
+			System.out.println(message);
+			
 			if (message.toLowerCase().contains("error") || message.toLowerCase().contains("exception")) {
 				showPopupAndClose(response, "Failed to add clocking record: " + message, true);
 			} else {
