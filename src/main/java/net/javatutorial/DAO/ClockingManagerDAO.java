@@ -88,7 +88,7 @@ public class ClockingManagerDAO {
 			connection = Main.getConnection();
 			stmt = connection.createStatement();
 //	        stmt.executeUpdate("SELECT count(*) FROM EMPLOYEES;");
-	        rs = stmt.executeQuery("SELECT MAX(CAST(SITE_ID AS INTEGER)) FROM CLOCKING;");
+	        rs = stmt.executeQuery("SELECT MAX(CAST(CLOCKING_ID AS INTEGER)) FROM CLOCKING;");
 	        if(rs != null) {
 	        	while (rs.next()) {
 		        	if(rs.getString(1) != null && !rs.getString(1).isEmpty()) {
