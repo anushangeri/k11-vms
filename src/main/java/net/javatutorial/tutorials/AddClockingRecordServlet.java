@@ -67,7 +67,7 @@ public class AddClockingRecordServlet extends HttpServlet {
 				"<head><title>" + (isError ? "Error" : "Success") + "</title></head>" +
 				"<body>" +
 					"<script type='text/javascript'>" +
-						"alert('" + message.replace("'", "\\'") + "');" +
+						"alert('" + message + "');" +
 						"window.close();" +
 					"</script>" +
 				"</body>" +
