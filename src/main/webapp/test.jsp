@@ -2,69 +2,52 @@
 <html>
 <head>
     <title>QR Code Scanner</title>
-    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
-    <style>
-        video {
-            width: 320px;
-            height: 240px;
-            border: 1px solid #ccc;
-        }
-    </style>
+    <script src="https://unpkg.com/html5-qrcode@2.3.7/minified/html5-qrcode.min.js"></script>
 </head>
 <body>
     <h2>QR Code Scanner</h2>
-    <video id="cameraFeed" autoplay></video>
+    <div id="reader" style="width:320px;height:240px;"></div>
+    <input type="file" id="qr-input-file" accept="image/*" capture>
 
     <script>
-        async function initCamera() {
-            const video = document.getElementById("cameraFeed");
-            let stream;
+        const html5QrCode = new Html5Qrcode("reader");
 
-            try {
-                // Try to use back camera first
-                stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-            } catch (err) {
-                console.error("Error accessing camera, falling back to any camera:", err);
-                stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            }
-
-            video.srcObject = stream;
-
-            window.addEventListener("beforeunload", () => {
-                stream.getTracks().forEach(track => track.stop());
-            });
-
-            video.onloadedmetadata = () => {
-                video.play();
-                scanQRCode(video, stream);
-            };
-        }
-
-        function scanQRCode(video, stream) {
-            const canvas = document.createElement("canvas");
-            const ctx = canvas.getContext("2d");
-
-            function scan() {
-                if (video.readyState === video.HAVE_ENOUGH_DATA) {
-                    canvas.width = video.videoWidth;
-                    canvas.height = video.videoHeight;
-                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                    const code = jsQR(imageData.data, imageData.width, imageData.height);
-                    if (code) {
-                        console.log("QR Code detected:", code.data);
-                        stream.getTracks().forEach(track => track.stop());
-                        window.location.href = code.data; // Follow the link
-                        return;
+        // Start inline camera scanning
+        Html5Qrcode.getCameras().then(cameras => {
+            if (cameras && cameras.length) {
+                // Use back camera if available
+                const backCamera = cameras.find(cam => cam.label.toLowerCase().includes("back")) || cameras[0];
+                html5QrCode.start(
+                    backCamera.id,
+                    { fps: 10, qrbox: 250 },
+                    qrCodeMessage => {
+                        console.log("QR Code detected:", qrCodeMessage);
+                        html5QrCode.stop();
+                        window.location.href = qrCodeMessage;
+                    },
+                    errorMessage => {
+                        console.log("QR scanning error:", errorMessage);
                     }
-                }
-                requestAnimationFrame(scan);
+                ).catch(err => {
+                    console.error("Camera start failed:", err);
+                });
             }
+        }).catch(err => {
+            console.error("Camera access failed:", err);
+        });
 
-            scan();
-        }
-
-        window.addEventListener("DOMContentLoaded", initCamera);
+        // File input scanning fallback
+        const fileInput = document.getElementById('qr-input-file');
+        fileInput.addEventListener('change', e => {
+            if (e.target.files.length === 0) return;
+            const imageFile = e.target.files[0];
+            html5QrCode.scanFile(imageFile, true).then(qrCodeMessage => {
+                console.log("QR Code from file:", qrCodeMessage);
+                window.location.href = qrCodeMessage;
+            }).catch(err => {
+                console.error("File scan error:", err);
+            });
+        });
     </script>
 </body>
 </html>
