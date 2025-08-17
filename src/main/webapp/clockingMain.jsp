@@ -65,12 +65,15 @@
             }, 300);
         }
 
-        function clearSession() {
-        	<%
+        <%
+	        // Clear session if ?action=clear is in URL
+	        String action = request.getParameter("action");
+	        if ("clear".equals(action)) {
 	            session.invalidate();
 	            response.sendRedirect("clockingMain.jsp");
-        	%>
-        }
+	            return; // stop further rendering
+	        }
+	    %>
     </script>
 
     <style>
@@ -102,9 +105,10 @@
                 </button>
                 <div id="qr-reader"></div>
                 <br>
-                <button type="button" class="btn btn-danger btn-block" onclick="clearSession()">
-                    Done Clocking
-                </button>
+                <button type="button" class="btn btn-danger btn-block" 
+				        onclick="window.location.href='clockingMain.jsp?action=clear'">
+				    Done Clocking
+				</button>
             </div>
         </div>
 
