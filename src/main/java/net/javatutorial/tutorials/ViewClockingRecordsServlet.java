@@ -38,7 +38,7 @@ public class ViewClockingRecordsServlet extends HttpServlet {
 		if(!StringUtils.isEmpty(idNo)) {
 			if(!StringUtils.isEmpty(usertype) && usertype != null
 					&& (usertype.equals("ADMIN") || usertype.equals("OFFICER") || usertype.equals("MANAGEMENT"))) {
-				if(!(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) || recordsToReceive.equals("currdate")) {
+				if(!(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) && recordsToReceive.equals("currdate")) {
 					vList = ClockingManagerDAO.retrieveAllCurrentDay(timestamp);
 					System.out.println(timestamp + " : " + vList.toString());
 					message = "List of clocking records";
