@@ -24,9 +24,10 @@ public class ClockingManagerDAO {
 			stmt = connection.createStatement();
 			
 			stmt.executeUpdate("INSERT INTO CLOCKING " +
-				    "(CLOCKING_ID, CLOCKING_POINT_NAME, SITE_NAME, CREATED_DT, LAST_MODIFIED_DT) " +
-				    "VALUES ('" + v.getClockingId() + "', '" + v.getClockingPointName() + "', '" + 
-				    v.getSiteName() + "', '" + v.getCreatedDt() + "', '" + v.getLastModifiedDt() + "');");
+					"(CLOCKING_ID, CLOCKING_POINT_NAME, SITE_NAME, CREATED_DT, LAST_MODIFIED_DT, CREATEDBY, LASTMODIFIEDBY) " +
+					"VALUES ('" + v.getClockingId() + "', '" + v.getClockingPointName() + "', '" + 
+					v.getSiteName() + "', '" + v.getCreatedDt() + "', '" + v.getLastModifiedDt() + "', '" +
+					v.getCreatedBy() + "', '" + v.getLastModifiedBy() + "');");
 
 			// Example of how to fetch the inserted ID or record (if needed)
 			rs = stmt.executeQuery("SELECT CLOCKING_ID FROM CLOCKING WHERE CLOCKING_ID = '" + v.getClockingId() + "';");
