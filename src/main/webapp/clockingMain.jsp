@@ -2,6 +2,17 @@
 <%@page import="java.util.*"%>
 <%@page import="net.javatutorial.entity.Clocking"%>
 <%
+    // Save officer info to session if submitted via AJAX
+    String ajaxOfficerName = request.getParameter("ajaxOfficerName");
+    String ajaxOfficerNric = request.getParameter("ajaxOfficerNric");
+    if (ajaxOfficerName != null && ajaxOfficerNric != null) {
+        session.setAttribute("officerName", ajaxOfficerName);
+        session.setAttribute("officerNric", ajaxOfficerNric);
+        response.getWriter().write("OK");
+        return;
+    }
+
+    // Load session values
     String officerName = (String) session.getAttribute("officerName");
     String officerNric = (String) session.getAttribute("officerNric");
 
@@ -105,6 +116,37 @@ const video = document.getElementById('cameraFeed');
 const scanButton = document.getElementById('scanButton');
 let videoStream;
 
+async function saveOfficerAndStartCamera() {
+    const officerName = document.getElementById('officerName').value.trim();
+    const officerNric = document.getElementById('officerNric').value.trim();
+
+    if (!officerName || !officerNric) {
+        alert("Please enter both Officer Name and NRIC.");
+        return;
+    }
+
+    // Save to session via AJAX
+    try {
+        const formData = new FormData();
+        formData.append("ajaxOfficerName", officerName);
+        formData.append("ajaxOfficerNric", officerNric);
+
+        const response = await fetch(window.location.href, {
+            method: "POST",
+            body: formData
+        });
+
+        if (response.ok) {
+            startCamera();
+        } else {
+            alert("Failed to save officer info. Try again.");
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Error saving officer info.");
+    }
+}
+
 async function startCamera() {
   try {
     videoStream = await navigator.mediaDevices.getUserMedia({
@@ -149,7 +191,7 @@ function scanFrames() {
   scan();
 }
 
-scanButton.addEventListener('click', startCamera);
+scanButton.addEventListener('click', saveOfficerAndStartCamera);
 </script>
 </body>
 </html>
