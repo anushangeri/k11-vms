@@ -13,15 +13,21 @@
 
     // Set session timeout to 4 hours (in seconds)
     session.setMaxInactiveInterval(4 * 60 * 60);
+
+    // Clear session if ?action=clear is in URL
+    String action = request.getParameter("action");
+    if ("clear".equals(action)) {
+        session.invalidate();
+        response.sendRedirect("clockingMain.jsp");
+        return; // stop further rendering
+    }
 %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Officer Check-In</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
 
     <script>
@@ -64,16 +70,6 @@
                 });
             }, 300);
         }
-
-        <%
-	        // Clear session if ?action=clear is in URL
-	        String action = request.getParameter("action");
-	        if ("clear".equals(action)) {
-	            session.invalidate();
-	            response.sendRedirect("clockingMain.jsp");
-	            return; // stop further rendering
-	        }
-	    %>
     </script>
 
     <style>
@@ -100,15 +96,19 @@
                                oninput="this.value = this.value.toUpperCase()" required>
                     </div>
                 </form>
+
                 <button type="button" class="btn btn-primary btn-block" onclick="startQrScanner()">
                     Scan QR Code
                 </button>
+
                 <div id="qr-reader"></div>
+
                 <br>
+
                 <button type="button" class="btn btn-danger btn-block" 
-				        onclick="window.location.href='clockingMain.jsp?action=clear'">
-				    Done Clocking
-				</button>
+                        onclick="window.location.href='clockingMain.jsp?action=clear'">
+                    Done Clocking
+                </button>
             </div>
         </div>
 
