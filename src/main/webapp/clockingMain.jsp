@@ -1,7 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@page import="net.javatutorial.entity.Clocking"%>
-
 <%
     // Handle session clearing
     String action = request.getParameter("action");
@@ -23,7 +22,6 @@
     String officerName = (String) session.getAttribute("officerName");
     String officerNric = (String) session.getAttribute("officerNric");
 
-    // Retrieve clocking records
     List<Clocking> records = null;
     Object obj = session.getAttribute("clockingRecords");
     if (obj instanceof List<?>) {
@@ -77,7 +75,8 @@
                            maxlength="9" minlength="9"
                            oninput="this.value = this.value.toUpperCase()" required>
                 </div>
-                <button type="submit" id="scanButton" class="btn btn-warning btn-lg btn-block">Save & Scan QR Code</button>
+                <button type="submit" id="saveButton" class="btn btn-primary btn-lg btn-block">Save Officer Info</button>
+                <button type="button" id="scanButton" class="btn btn-warning btn-lg btn-block">Scan QR Code</button>
             </form>
 
             <video id="cameraFeed" autoplay></video>
@@ -119,28 +118,45 @@
 
 <script>
 const video = document.getElementById('cameraFeed');
+let videoStream = null;
 
-function startCamera() {
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
-        .then(stream => {
-            video.srcObject = stream;
-            video.style.display = 'block';
-            scanFrames(stream, video);
-        })
-        .catch(err => {
-            alert("Cannot access camera. Use HTTPS or Safari on iOS.");
-            console.error(err);
-        });
+// Save officer info
+document.getElementById('officerForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent normal submit
+    this.submit();      // Submit to save officer info in session
+});
+
+// Start scanning only when user clicks "Scan QR Code"
+document.getElementById('scanButton').addEventListener('click', function() {
+    const officerName = document.getElementById('officerName').value.trim();
+    const officerNric = document.getElementById('officerNric').value.trim();
+    if (!officerName || !officerNric) {
+        alert("Please enter officer name and NRIC first.");
+        return;
+    }
+    startCamera();
+});
+
+async function startCamera() {
+    try {
+        videoStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+        video.srcObject = videoStream;
+        video.style.display = 'block';
+        scanFrames();
+    } catch (err) {
+        alert("Cannot access camera. Use HTTPS or Safari on iOS.");
+        console.error(err);
+    }
 }
 
-function stopCamera(stream) {
-    if (stream) {
-        stream.getTracks().forEach(track => track.stop());
+function stopCamera() {
+    if (videoStream) {
+        videoStream.getTracks().forEach(track => track.stop());
         video.style.display = 'none';
     }
 }
 
-function scanFrames(stream, video) {
+function scanFrames() {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
@@ -152,8 +168,8 @@ function scanFrames(stream, video) {
             const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
             const code = jsQR(imageData.data, imageData.width, imageData.height);
             if (code && code.data) {
-                stopCamera(stream);
-                window.location.href = code.data;
+                stopCamera();
+                window.location.href = code.data; // Follow QR link
                 return;
             }
         }
@@ -162,15 +178,6 @@ function scanFrames(stream, video) {
 
     scan();
 }
-
-// Start camera automatically if officer info exists
-window.addEventListener('load', function() {
-    const officerName = "<%= officerName != null ? officerName : "" %>";
-    const officerNric = "<%= officerNric != null ? officerNric : "" %>";
-    if (officerName && officerNric) {
-        startCamera();
-    }
-});
 </script>
 </body>
 </html>
