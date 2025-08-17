@@ -1,65 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>QR Code Scanner</title>
-    <script src="https://unpkg.com/html5-qrcode@2.3.7/minified/html5-qrcode.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code Scanner</title>
+<style>
+  #cameraFeed {
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    display: none;
+  }
+  #scanButton {
+    margin: 10px 0;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+</style>
 </head>
 <body>
-    <h2>QR Code Scanner</h2>
+<h1>QR Code Scanner</h1>
+<button id="scanButton">Scan QR Code</button>
+<video id="cameraFeed" autoplay></video>
 
-    <!-- Button to start scanning -->
-    <button id="start-scan-btn">Scan QR Code</button>
+<script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+<script>
+const video = document.getElementById('cameraFeed');
+const scanButton = document.getElementById('scanButton');
+let videoStream;
 
-    <!-- Camera feed will appear here -->
-    <div id="qr-reader" style="width:320px;height:240px;margin-top:10px;"></div>
+async function startCamera() {
+  try {
+    videoStream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "environment" }
+    });
+    video.srcObject = videoStream;
+    video.style.display = 'block';
+    scanFrames();
+  } catch (err) {
+    alert("Cannot access camera. iOS Chrome/Edge/Firefox do not support camera access. Use Safari.");
+    console.error(err);
+  }
+}
 
-    <!-- Optional: file input fallback -->
-    <input type="file" id="qr-input-file" accept="image/*" capture>
+function stopCamera() {
+  if (videoStream) {
+    videoStream.getTracks().forEach(track => track.stop());
+    video.style.display = 'none';
+  }
+}
 
-    <script>
-        let html5QrScanner;
+function scanFrames() {
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
 
-        document.getElementById("start-scan-btn").addEventListener("click", () => {
-            if (!html5QrScanner) {
-                html5QrScanner = new Html5Qrcode("qr-reader");
-            }
+  function scan() {
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+      const code = jsQR(imageData.data, imageData.width, imageData.height);
+      if (code && code.data) {
+        stopCamera();
+        window.location.href = code.data; // follow QR link
+        return;
+      }
+    }
+    requestAnimationFrame(scan);
+  }
 
-            Html5Qrcode.getCameras().then(cameras => {
-                if (cameras && cameras.length) {
-                    // Use the back camera if available
-                    const cameraId = cameras.find(cam => cam.label.toLowerCase().includes("back"))?.id || cameras[0].id;
+  scan();
+}
 
-                    html5QrScanner.start(
-                        cameraId,
-                        { fps: 10, qrbox: 250 },
-                        qrMessage => {
-                            console.log("QR Code detected:", qrMessage);
-                            window.location.href = qrMessage; // follow the link
-                            html5QrScanner.stop(); // stop scanning after success
-                        },
-                        errorMessage => {
-                            console.warn("QR scan error:", errorMessage);
-                        }
-                    ).catch(err => console.error("Camera start failed:", err));
-                }
-            }).catch(err => console.error("Camera not found:", err));
-        });
-
-        // File input fallback
-        const fileInput = document.getElementById('qr-input-file');
-        fileInput.addEventListener('change', e => {
-            if (e.target.files.length === 0) return;
-            const imageFile = e.target.files[0];
-            if (!html5QrScanner) {
-                html5QrScanner = new Html5Qrcode("qr-reader");
-            }
-            html5QrScanner.scanFile(imageFile, true)
-                .then(qrCodeMessage => {
-                    console.log("QR Code from file:", qrCodeMessage);
-                    window.location.href = qrCodeMessage;
-                })
-                .catch(err => console.error("File scan error:", err));
-        });
-    </script>
+scanButton.addEventListener('click', startCamera);
+</script>
 </body>
 </html>
