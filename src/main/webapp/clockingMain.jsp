@@ -25,10 +25,20 @@
 <head>
     <title>Officer QR Check-In</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsqr/1.4.0/jsQR.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
     <style>
-        video { width: 100%; max-width: 400px; border: 1px solid #ccc; margin-top: 20px; }
-        canvas { display: none; }
+        #cameraFeed {
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            display: none;
+            margin-top: 20px;
+        }
+        #scanButton {
+            margin: 10px 0;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -52,10 +62,8 @@
                 </div>
             </form>
 
-            <button id="startScannerBtn" class="btn btn-warning btn-lg btn-block">Scan QR Code</button>
-
-            <video id="preview"></video>
-            <canvas id="qrCanvas"></canvas>
+            <button id="scanButton" class="btn btn-warning btn-lg btn-block">Scan QR Code</button>
+            <video id="cameraFeed" autoplay></video>
 
             <br>
             <button type="button" class="btn btn-danger btn-block"
@@ -93,43 +101,55 @@
 </div>
 
 <script>
-document.getElementById('startScannerBtn').addEventListener('click', async () => {
-    const video = document.getElementById('preview');
-    const canvas = document.getElementById('qrCanvas');
-    const ctx = canvas.getContext('2d');
-    let stream;
+const video = document.getElementById('cameraFeed');
+const scanButton = document.getElementById('scanButton');
+let videoStream;
 
-    try {
-        // Open back camera
-        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } });
-    } catch (err) {
-        // fallback to any camera
-        stream = await navigator.mediaDevices.getUserMedia({ video: true });
+async function startCamera() {
+  try {
+    videoStream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "environment" }
+    });
+    video.srcObject = videoStream;
+    video.style.display = 'block';
+    scanFrames();
+  } catch (err) {
+    alert("Cannot access camera. iOS Chrome/Edge/Firefox do not support camera access. Use Safari.");
+    console.error(err);
+  }
+}
+
+function stopCamera() {
+  if (videoStream) {
+    videoStream.getTracks().forEach(track => track.stop());
+    video.style.display = 'none';
+  }
+}
+
+function scanFrames() {
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+
+  function scan() {
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+      const code = jsQR(imageData.data, imageData.width, imageData.height);
+      if (code && code.data) {
+        stopCamera();
+        window.location.href = code.data; // follow QR link
+        return;
+      }
     }
+    requestAnimationFrame(scan);
+  }
 
-    video.srcObject = stream;
-    await video.play();
+  scan();
+}
 
-    const scanQR = () => {
-        if (video.readyState === video.HAVE_ENOUGH_DATA) {
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const code = jsQR(imageData.data, imageData.width, imageData.height);
-            if (code) {
-                // Stop camera
-                stream.getTracks().forEach(track => track.stop());
-                // Follow QR code link
-                window.location.href = code.data;
-                return;
-            }
-        }
-        requestAnimationFrame(scanQR);
-    };
-
-    scanQR();
-});
+scanButton.addEventListener('click', startCamera);
 </script>
 </body>
 </html>
