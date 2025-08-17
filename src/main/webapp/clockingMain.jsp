@@ -23,7 +23,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Officer Clocking Check-In</title>
+    <title>Officer QR Check-In</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
     <style>
@@ -95,7 +95,14 @@ document.getElementById('startScannerBtn').addEventListener('click', async () =>
     video.style.display = 'block';
 
     // Force back camera
-    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } });
+    let stream;
+    try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } });
+    } catch (e) {
+        alert("Back camera not found. Using any available camera.");
+        stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    }
+
     video.srcObject = stream;
     await video.play();
 
@@ -110,10 +117,9 @@ document.getElementById('startScannerBtn').addEventListener('click', async () =>
             const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
             const code = jsQR(imageData.data, imageData.width, imageData.height);
             if (code) {
-                alert("QR code detected: " + code.data);
-                // Stop camera
+                // Redirect to scanned QR code URL
                 stream.getTracks().forEach(track => track.stop());
-                video.style.display = 'none';
+                window.location.href = code.data;
                 return;
             }
         }
