@@ -110,8 +110,8 @@ document.getElementById('startScannerBtn').addEventListener('click', async () =>
         if (cameras.length > 0) {
             // Try to find environment/back camera
             let backCamera = cameras.find(cam => cam.name.toLowerCase().includes('back'));
-            if (!backCamera) backCamera = cameras.find(cam => cam.facing === 'environment');
-            if (!backCamera) backCamera = cameras[0]; // fallback
+            //if (!backCamera) backCamera = cameras.find(cam => cam.facing === 'environment');
+            //if (!backCamera) backCamera = cameras[0]; // fallback
 
             await scanner.start(backCamera);
         } else {
