@@ -25,9 +25,10 @@
 <head>
     <title>Officer QR Check-In</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsqr/1.4.0/jsQR.min.js"></script>
     <style>
-        video { width: 100%; max-width: 400px; border: 1px solid #ccc; display: none; margin-top: 20px; }
+        video { width: 100%; max-width: 400px; border: 1px solid #ccc; margin-top: 20px; }
+        canvas { display: none; }
     </style>
 </head>
 <body>
@@ -52,7 +53,9 @@
             </form>
 
             <button id="startScannerBtn" class="btn btn-warning btn-lg btn-block">Scan QR Code</button>
+
             <video id="preview"></video>
+            <canvas id="qrCanvas"></canvas>
 
             <br>
             <button type="button" class="btn btn-danger btn-block"
@@ -92,41 +95,38 @@
 <script>
 document.getElementById('startScannerBtn').addEventListener('click', async () => {
     const video = document.getElementById('preview');
-    video.style.display = 'block';
-
-    // Force back camera
+    const canvas = document.getElementById('qrCanvas');
+    const ctx = canvas.getContext('2d');
     let stream;
+
     try {
-        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } });
+        // Prefer back camera
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } } });
     } catch (e) {
-        alert("Back camera not found. Using any available camera.");
+        // fallback to any camera
         stream = await navigator.mediaDevices.getUserMedia({ video: true });
     }
 
     video.srcObject = stream;
     await video.play();
 
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-
-    const scan = () => {
+    const scanQR = () => {
         if (video.readyState === video.HAVE_ENOUGH_DATA) {
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             const code = jsQR(imageData.data, imageData.width, imageData.height);
             if (code) {
-                // Redirect to scanned QR code URL
                 stream.getTracks().forEach(track => track.stop());
-                window.location.href = code.data;
+                window.location.href = code.data; // follow QR link
                 return;
             }
         }
-        requestAnimationFrame(scan);
+        requestAnimationFrame(scanQR);
     };
 
-    scan();
+    scanQR();
 });
 </script>
 </body>
