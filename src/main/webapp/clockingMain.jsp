@@ -11,8 +11,10 @@
         records = (List<Clocking>) obj;
     }
 
+    // Set session timeout to 4 hours
     session.setMaxInactiveInterval(4 * 60 * 60);
 
+    // Clear session if requested
     String action = request.getParameter("action");
     if ("clear".equals(action)) {
         session.invalidate();
@@ -27,7 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <style>
-        video { width: 100%; max-width: 400px; border: 1px solid #ccc; display:none; margin-top:20px; }
+        video { width: 100%; max-width: 400px; border: 1px solid #ccc; margin-top: 20px; display: none; }
     </style>
 </head>
 <body>
@@ -52,7 +54,6 @@
             </form>
 
             <button id="startScannerBtn" class="btn btn-warning btn-lg btn-block">Scan QR Code</button>
-
             <video id="preview"></video>
 
             <br>
@@ -98,17 +99,17 @@ document.getElementById('startScannerBtn').addEventListener('click', async () =>
     const scanner = new Instascan.Scanner({ video: videoElem, mirror: false });
 
     scanner.addListener('scan', function(content) {
-        document.getElementById('officerNric').value = content; // auto-fill NRIC
-        scanner.stop(); // stop camera
+        console.log("Scanned QR Code:", content); // just log or handle backend
+        alert("QR code scanned!");
+        scanner.stop();               // stop camera
         videoElem.style.display = 'none'; // hide video
-        alert("Scanned QR Code: " + content);
     });
 
     try {
         const cameras = await Instascan.Camera.getCameras();
         if (cameras.length > 0) {
-            // Prefer back camera
-            const backCamera = cameras.find(cam => cam.name.toLowerCase().includes('back')) || cameras[0];
+            // Prefer back camera using facing property
+            const backCamera = cameras.find(cam => cam.facing === 'environment') || cameras[0];
             scanner.start(backCamera);
         } else {
             alert("No camera found on this device.");
