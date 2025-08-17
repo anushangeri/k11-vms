@@ -19,7 +19,7 @@
     if ("clear".equals(action)) {
         session.invalidate();
         response.sendRedirect("clockingMain.jsp");
-        return;
+        return; // stop further rendering
     }
 %>
 <!DOCTYPE html>
@@ -49,92 +49,96 @@
                 return;
             }
 
-            // Show the QR scanner
+            // Show QR reader
             const qrReader = document.getElementById("qr-reader");
             qrReader.style.display = "block";
 
+            // Initialize QR scanner
             const html5QrCode = new Html5Qrcode("qr-reader");
             html5QrCode.start(
-                { facingMode: "environment" },  // universal on iOS & Android
+                { facingMode: "environment" },
                 { fps: 10, qrbox: 250 },
                 (decodedText) => {
-                    // Redirect to QR URL or handle decodedText
-                    window.location.href = decodedText;
+                    alert("Scanned: " + decodedText);
                     html5QrCode.stop();
                 },
                 (errorMessage) => {
                     console.log("QR scan error: " + errorMessage);
                 }
-            ).catch(err => {
-                alert("Unable to start QR scanner: " + err);
-            });
+            ).catch(err => alert("Cannot start camera: " + err));
         }
     </script>
 
     <style>
-        #qr-reader { width: 100%; max-width: 400px; margin: 20px auto; display: none; }
-        form { border: none; padding: 0; } /* remove form border */
+        /* Remove form border */
+        form {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+        #qr-reader { width: 300px; margin-top: 20px; display: none; }
     </style>
 </head>
 <body>
-<div class="container">
-    <h2 class="text-center">Officer Check-In</h2>
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form id="hiddenForm" method="post">
-                <div class="form-group">
-                    <label for="officerName">Officer Name:</label>
-                    <input type="text" class="form-control" id="officerName" name="officerName"
-                           value="<%= officerName != null ? officerName : "" %>"
-                           oninput="this.value = this.value.toUpperCase()" required>
-                </div>
-                <div class="form-group">
-                    <label for="officerNric">Officer NRIC:</label>
-                    <input type="text" class="form-control" id="officerNric" name="officerNric"
-                           value="<%= officerNric != null ? officerNric : "" %>"
-                           maxlength="9" minlength="9"
-                           oninput="this.value = this.value.toUpperCase()" required>
-                </div>
-            </form>
+    <div class="container">
+        <h2 class="text-center">Officer Check-In</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form id="officerForm">
+                    <div class="form-group">
+                        <label for="officerName">Officer Name:</label>
+                        <input type="text" class="form-control" id="officerName" name="officerName"
+                               value="<%= officerName != null ? officerName : "" %>"
+                               oninput="this.value = this.value.toUpperCase()" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="officerNric">Officer NRIC:</label>
+                        <input type="text" class="form-control" id="officerNric" name="officerNric"
+                               value="<%= officerNric != null ? officerNric : "" %>"
+                               maxlength="9" minlength="9"
+                               oninput="this.value = this.value.toUpperCase()" required>
+                    </div>
+                </form>
 
-            <button type="button" class="btn btn-warning btn-lg active" onclick="startQrScanner()">
-                Scan QR Code
-            </button>
+                <button type="button" class="btn btn-warning btn-lg btn-block" onclick="startQrScanner()">
+                    Scan QR Code
+                </button>
 
-            <div id="qr-reader"></div>
-            <br>
-            <button type="button" class="btn btn-danger btn-block"
-                    onclick="window.location.href='clockingMain.jsp?action=clear'">
-                Done Clocking
-            </button>
+                <div id="qr-reader"></div>
+
+                <br><br>
+                <button type="button" class="btn btn-danger btn-block" 
+                        onclick="window.location.href='clockingMain.jsp?action=clear'">
+                    Done Clocking
+                </button>
+            </div>
         </div>
-    </div>
 
-    <% if (records != null && !records.isEmpty()) { %>
-        <h3 class="text-center mt-4">Clocking Records This Session</h3>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Clocking ID</th>
-                    <th>Clocking Point</th>
-                    <th>Site</th>
-                    <th>Time</th>
-                    <th>Created By</th>
-                </tr>
-            </thead>
-            <tbody>
-            <% for (Clocking c : records) { %>
-                <tr>
-                    <td><%= c.getClockingId() %></td>
-                    <td><%= c.getClockingPointName() %></td>
-                    <td><%= c.getSiteName() %></td>
-                    <td><%= c.getCreatedDt() %></td>
-                    <td><%= c.getCreatedBy() %></td>
-                </tr>
-            <% } %>
-            </tbody>
-        </table>
-    <% } %>
-</div>
+        <% if (records != null && !records.isEmpty()) { %>
+            <h3 class="text-center mt-4">Clocking Records This Session</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Clocking ID</th>
+                        <th>Clocking Point</th>
+                        <th>Site</th>
+                        <th>Time</th>
+                        <th>Created By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% for (Clocking c : records) { %>
+                    <tr>
+                        <td><%= c.getClockingId() %></td>
+                        <td><%= c.getClockingPointName() %></td>
+                        <td><%= c.getSiteName() %></td>
+                        <td><%= c.getCreatedDt() %></td>
+                        <td><%= c.getCreatedBy() %></td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+        <% } %>
+    </div>
 </body>
 </html>
