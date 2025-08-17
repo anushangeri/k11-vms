@@ -106,7 +106,7 @@
 </head>
 <body>
 <%
-ArrayList<Clocking> cList = (ArrayList<Clocking>) request.getAttribute("cList");
+ArrayList<Clocking> vList = (ArrayList<Clocking>) request.getAttribute("vList");
 String message = (String) request.getAttribute("message");
 final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 String idNo = "SxxxxxxxJ";
@@ -131,7 +131,7 @@ if (request.getSession(false).getAttribute("idNo") != null) {
     </center>
 <% } %>
 
-<% if (cList != null && cList.size() > 0) { %>
+<% if (vList != null && vList.size() > 0) { %>
 <div class="container body-content" id="tableview">
     <table id="clockingTable" class="table table-striped table-bordered table-sm sortable" style="width: 80%;">
         <thead>
@@ -149,7 +149,7 @@ if (request.getSession(false).getAttribute("idNo") != null) {
         <tbody>
             <%
             int sn = 1;
-            for (Clocking c : cList) {
+            for (Clocking c : vList) {
             %>
             <tr>
                 <td><%= sn++ %></td>
