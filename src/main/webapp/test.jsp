@@ -7,41 +7,58 @@
 <body>
     <h2>QR Code Scanner</h2>
 
-    <!-- This div will show the live camera feed -->
-    <div id="qr-reader" style="width:320px;height:240px;"></div>
+    <!-- Button to start scanning -->
+    <button id="start-scan-btn">Scan QR Code</button>
 
-    <!-- Optional: fallback for choosing a file -->
+    <!-- Camera feed will appear here -->
+    <div id="qr-reader" style="width:320px;height:240px;margin-top:10px;"></div>
+
+    <!-- Optional: file input fallback -->
     <input type="file" id="qr-input-file" accept="image/*" capture>
 
     <script>
-        // Use the Html5QrcodeScanner which creates a start button automatically
-        const html5QrScanner = new Html5QrcodeScanner(
-            "qr-reader",
-            { fps: 10, qrbox: 250, rememberLastUsedCamera: true },
-            /* verbose= */ false
-        );
+        let html5QrScanner;
 
-        function onScanSuccess(qrMessage) {
-            console.log("QR Code detected:", qrMessage);
-            window.location.href = qrMessage; // automatically follow link
-        }
+        document.getElementById("start-scan-btn").addEventListener("click", () => {
+            if (!html5QrScanner) {
+                html5QrScanner = new Html5Qrcode("qr-reader");
+            }
 
-        html5QrScanner.render(onScanSuccess);
+            Html5Qrcode.getCameras().then(cameras => {
+                if (cameras && cameras.length) {
+                    // Use the back camera if available
+                    const cameraId = cameras.find(cam => cam.label.toLowerCase().includes("back"))?.id || cameras[0].id;
+
+                    html5QrScanner.start(
+                        cameraId,
+                        { fps: 10, qrbox: 250 },
+                        qrMessage => {
+                            console.log("QR Code detected:", qrMessage);
+                            window.location.href = qrMessage; // follow the link
+                            html5QrScanner.stop(); // stop scanning after success
+                        },
+                        errorMessage => {
+                            console.warn("QR scan error:", errorMessage);
+                        }
+                    ).catch(err => console.error("Camera start failed:", err));
+                }
+            }).catch(err => console.error("Camera not found:", err));
+        });
 
         // File input fallback
         const fileInput = document.getElementById('qr-input-file');
         fileInput.addEventListener('change', e => {
             if (e.target.files.length === 0) return;
             const imageFile = e.target.files[0];
-            Html5Qrcode.getCameras().then(cameras => {
-                const html5QrCode = new Html5Qrcode("qr-reader");
-                html5QrCode.scanFile(imageFile, true)
-                    .then(qrCodeMessage => {
-                        console.log("QR Code from file:", qrCodeMessage);
-                        window.location.href = qrCodeMessage;
-                    })
-                    .catch(err => console.error("File scan error:", err));
-            });
+            if (!html5QrScanner) {
+                html5QrScanner = new Html5Qrcode("qr-reader");
+            }
+            html5QrScanner.scanFile(imageFile, true)
+                .then(qrCodeMessage => {
+                    console.log("QR Code from file:", qrCodeMessage);
+                    window.location.href = qrCodeMessage;
+                })
+                .catch(err => console.error("File scan error:", err));
         });
     </script>
 </body>
