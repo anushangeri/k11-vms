@@ -72,6 +72,9 @@
         }
     </script>
 
+    <style>
+        #qr-reader { width: 300px; margin-top: 20px; display: none; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -98,7 +101,8 @@
                     Scan QR Code
                 </button>
 
-
+                <div id="qr-reader"></div>
+                <br>
                 <br>
                 <button type="button" class="btn btn-danger btn-block" 
                         onclick="window.location.href='clockingMain.jsp?action=clear'">
