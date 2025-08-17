@@ -25,7 +25,7 @@
 <head>
     <title>Officer QR Check-In</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -86,7 +86,7 @@
 </div>
 
 <script>
-document.getElementById('startScannerBtn').addEventListener('click', async () => {
+	document.getElementById('startScannerBtn').addEventListener('click', async () => {
     const scanner = new Instascan.Scanner({ video: document.createElement('video'), mirror: false });
     
     scanner.addListener('scan', function(content) {
