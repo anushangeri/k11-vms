@@ -4,7 +4,11 @@
     <title>QR Code Scanner</title>
     <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
     <style>
-        video { width: 320px; height: 240px; border: 1px solid #ccc; }
+        video {
+            width: 320px;
+            height: 240px;
+            border: 1px solid #ccc;
+        }
     </style>
 </head>
 <body>
@@ -17,16 +21,15 @@
             let stream;
 
             try {
-                // Try to use the back camera
+                // Try to use back camera first
                 stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
             } catch (err) {
-                console.warn("Back camera not found, using any camera", err);
+                console.error("Error accessing camera, falling back to any camera:", err);
                 stream = await navigator.mediaDevices.getUserMedia({ video: true });
             }
 
             video.srcObject = stream;
 
-            // Stop camera on page unload
             window.addEventListener("beforeunload", () => {
                 stream.getTracks().forEach(track => track.stop());
             });
@@ -50,10 +53,8 @@
                     const code = jsQR(imageData.data, imageData.width, imageData.height);
                     if (code) {
                         console.log("QR Code detected:", code.data);
-                        // Stop camera
                         stream.getTracks().forEach(track => track.stop());
-                        // Follow QR code link
-                        window.location.href = code.data;
+                        window.location.href = code.data; // Follow the link
                         return;
                     }
                 }
@@ -63,7 +64,6 @@
             scan();
         }
 
-        // Start camera on page load
         window.addEventListener("DOMContentLoaded", initCamera);
     </script>
 </body>
