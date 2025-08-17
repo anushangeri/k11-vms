@@ -2,17 +2,23 @@
 <%@page import="java.util.*"%>
 <%@page import="net.javatutorial.entity.Clocking"%>
 <%
-    // Save officer info to session if submitted via AJAX
-    String ajaxOfficerName = request.getParameter("ajaxOfficerName");
-    String ajaxOfficerNric = request.getParameter("ajaxOfficerNric");
-    if (ajaxOfficerName != null && ajaxOfficerNric != null) {
-        session.setAttribute("officerName", ajaxOfficerName);
-        session.setAttribute("officerNric", ajaxOfficerNric);
-        response.getWriter().write("OK");
+    // Handle session clearing
+    String action = request.getParameter("action");
+    if ("clear".equals(action)) {
+        session.invalidate();
+        response.sendRedirect("clockingMain.jsp");
         return;
     }
 
-    // Load session values
+    // Save officer info to session if submitted
+    String officerNameParam = request.getParameter("officerName");
+    String officerNricParam = request.getParameter("officerNric");
+    if (officerNameParam != null && officerNricParam != null) {
+        session.setAttribute("officerName", officerNameParam.toUpperCase());
+        session.setAttribute("officerNric", officerNricParam.toUpperCase());
+    }
+
+    // Retrieve session data
     String officerName = (String) session.getAttribute("officerName");
     String officerNric = (String) session.getAttribute("officerNric");
 
@@ -23,41 +29,39 @@
     }
 
     session.setMaxInactiveInterval(4 * 60 * 60);
-
-    String action = request.getParameter("action");
-    if ("clear".equals(action)) {
-        session.invalidate();
-        response.sendRedirect("clockingMain.jsp");
-        return;
-    }
 %>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Officer QR Check-In</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
-    <style>
-        #cameraFeed {
-            width: 100%;
-            max-width: 400px;
-            border: 1px solid #ccc;
-            display: none;
-            margin-top: 20px;
-        }
-        #scanButton {
-            margin: 10px 0;
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Officer QR Check-In</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+<style>
+    #cameraFeed {
+        width: 100%;
+        max-width: 400px;
+        border: 1px solid #ccc;
+        display: none;
+        margin-top: 20px;
+    }
+    #scanButton {
+        margin: 10px 0;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+</style>
 </head>
 <body>
 <div class="container">
     <h2 class="text-center">Officer Check-In</h2>
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form id="officerForm">
+
+            <!-- Officer Info Form -->
+            <form id="officerForm" method="post">
                 <div class="form-group">
                     <label for="officerName">Officer Name:</label>
                     <input type="text" class="form-control" id="officerName" name="officerName"
@@ -71,9 +75,9 @@
                            maxlength="9" minlength="9"
                            oninput="this.value = this.value.toUpperCase()" required>
                 </div>
+                <button type="submit" id="scanButton" class="btn btn-warning btn-lg btn-block">Save & Scan QR Code</button>
             </form>
 
-            <button id="scanButton" class="btn btn-warning btn-lg btn-block">Scan QR Code</button>
             <video id="cameraFeed" autoplay></video>
 
             <br>
@@ -113,85 +117,58 @@
 
 <script>
 const video = document.getElementById('cameraFeed');
-const scanButton = document.getElementById('scanButton');
+
+document.getElementById('officerForm').addEventListener('submit', async function(e) {
+    e.preventDefault(); // prevent normal form submit
+    // Form has already updated the session via JSP POST
+    startCamera();
+});
+
 let videoStream;
 
-async function saveOfficerAndStartCamera() {
-    const officerName = document.getElementById('officerName').value.trim();
-    const officerNric = document.getElementById('officerNric').value.trim();
-
-    if (!officerName || !officerNric) {
-        alert("Please enter both Officer Name and NRIC.");
-        return;
-    }
-
-    // Save to session via AJAX
-    try {
-        const formData = new FormData();
-        formData.append("ajaxOfficerName", officerName);
-        formData.append("ajaxOfficerNric", officerNric);
-
-        const response = await fetch(window.location.href, {
-            method: "POST",
-            body: formData
-        });
-
-        if (response.ok) {
-            startCamera();
-        } else {
-            alert("Failed to save officer info. Try again.");
-        }
-    } catch (err) {
-        console.error(err);
-        alert("Error saving officer info.");
-    }
-}
-
 async function startCamera() {
-  try {
-    videoStream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: "environment" }
-    });
-    video.srcObject = videoStream;
-    video.style.display = 'block';
-    scanFrames();
-  } catch (err) {
-    alert("Cannot access camera. iOS Chrome/Edge/Firefox do not support camera access. Use Safari.");
-    console.error(err);
-  }
+    try {
+        videoStream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "environment" }
+        });
+        video.srcObject = videoStream;
+        video.style.display = 'block';
+        scanFrames();
+    } catch (err) {
+        alert("Cannot access camera. iOS Chrome/Edge/Firefox do not support camera access. Use Safari.");
+        console.error(err);
+    }
 }
 
 function stopCamera() {
-  if (videoStream) {
-    videoStream.getTracks().forEach(track => track.stop());
-    video.style.display = 'none';
-  }
+    if (videoStream) {
+        videoStream.getTracks().forEach(track => track.stop());
+        video.style.display = 'none';
+    }
 }
 
 function scanFrames() {
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d');
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
 
-  function scan() {
-    if (video.readyState === video.HAVE_ENOUGH_DATA) {
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      context.drawImage(video, 0, 0, canvas.width, canvas.height);
-      const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-      const code = jsQR(imageData.data, imageData.width, imageData.height);
-      if (code && code.data) {
-        stopCamera();
-        window.location.href = code.data; // follow QR link
-        return;
-      }
+    function scan() {
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+            const code = jsQR(imageData.data, imageData.width, imageData.height);
+            if (code && code.data) {
+                stopCamera();
+                window.location.href = code.data; // follow QR link
+                return;
+            }
+        }
+        requestAnimationFrame(scan);
     }
-    requestAnimationFrame(scan);
-  }
 
-  scan();
+    scan();
 }
-
-scanButton.addEventListener('click', saveOfficerAndStartCamera);
 </script>
 </body>
 </html>
