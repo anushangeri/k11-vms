@@ -52,28 +52,36 @@
             // Save to session
             document.getElementById("hiddenForm").submit();
 
-            setTimeout(() => {
-                document.getElementById("qr-reader").style.display = "block";
-                const html5QrCode = new Html5Qrcode("qr-reader");
-                html5QrCode.start(
-                    { facingMode: "environment" },
-                    { fps: 10, qrbox: 250 },
-                    (decodedText) => {
+            // Show QR scanner and start camera
+            const qrReader = document.getElementById("qr-reader");
+            qrReader.style.display = "block";
+
+            const html5QrCode = new Html5Qrcode("qr-reader");
+            html5QrCode.start(
+                { facingMode: "environment" },  // Use rear camera
+                { fps: 10, qrbox: 250 },
+                (decodedText) => {
+                    // Stop scanner and redirect to decoded QR code URL
+                    html5QrCode.stop().then(() => {
                         window.location.href = decodedText;
-                        html5QrCode.stop();
-                    },
-                    (errorMessage) => {
-                        console.log("QR scan error: " + errorMessage);
-                    }
-                ).catch(err => {
-                    alert("Unable to start QR scanner: " + err);
-                });
-            }, 300);
+                    });
+                },
+                (errorMessage) => {
+                    console.log("QR scan error: " + errorMessage);
+                }
+            ).catch(err => {
+                alert("Unable to start QR scanner: " + err);
+            });
         }
     </script>
 
     <style>
-        #qr-reader { width: 300px; margin-top: 20px; display: none; }
+        /* Remove borders around form */
+        form {
+            border: none !important;
+            box-shadow: none !important;
+        }
+        #qr-reader { width: 100%; max-width: 400px; margin-top: 20px; display: none; }
     </style>
 </head>
 <body>
@@ -102,8 +110,8 @@
                 </button>
 
                 <div id="qr-reader"></div>
-                <br>
-                <br>
+                <br><br>
+
                 <button type="button" class="btn btn-danger btn-block" 
                         onclick="window.location.href='clockingMain.jsp?action=clear'">
                     Done Clocking
