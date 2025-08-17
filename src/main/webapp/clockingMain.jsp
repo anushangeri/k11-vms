@@ -121,6 +121,13 @@ const video = document.getElementById('cameraFeed');
 document.getElementById('officerForm').addEventListener('submit', async function(e) {
     e.preventDefault(); // prevent normal form submit
     // Form has already updated the session via JSP POST
+    // Save officer info to session if submitted
+    String officerNameParam = request.getParameter("officerName");
+    String officerNricParam = request.getParameter("officerNric");
+    if (officerNameParam != null && officerNricParam != null) {
+        session.setAttribute("officerName", officerNameParam.toUpperCase());
+        session.setAttribute("officerNric", officerNricParam.toUpperCase());
+    }
     startCamera();
 });
 
