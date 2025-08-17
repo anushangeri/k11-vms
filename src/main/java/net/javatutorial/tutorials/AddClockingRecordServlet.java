@@ -43,7 +43,7 @@ public class AddClockingRecordServlet extends HttpServlet {
             }
 
             // --- Get officer details from session ---
-            HttpSession session = request.getSession(false);
+            HttpSession session = request.getSession(true);
             String officerName = null;
             String officerNric = null;
             String createdBy = null;
