@@ -100,9 +100,9 @@ document.getElementById('startScannerBtn').addEventListener('click', async () =>
     let stream;
 
     try {
-        // Prefer back camera
-        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } } });
-    } catch (e) {
+        // Open back camera
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } });
+    } catch (err) {
         // fallback to any camera
         stream = await navigator.mediaDevices.getUserMedia({ video: true });
     }
@@ -118,8 +118,10 @@ document.getElementById('startScannerBtn').addEventListener('click', async () =>
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             const code = jsQR(imageData.data, imageData.width, imageData.height);
             if (code) {
+                // Stop camera
                 stream.getTracks().forEach(track => track.stop());
-                window.location.href = code.data; // follow QR link
+                // Follow QR code link
+                window.location.href = code.data;
                 return;
             }
         }
