@@ -4,88 +4,107 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.javatutorial.DAO.ClockingManagerDAO;
 import net.javatutorial.entity.Clocking;
 
 public class AddClockingRecordServlet extends HttpServlet {
-	private static final long serialVersionUID = -4751096228274971485L;
+    private static final long serialVersionUID = -4751096228274971485L;
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request, response);
-	}
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request, response);
-	}
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
 
-	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		try {
-			int nextVal = ClockingManagerDAO.getNextVal();
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            int nextVal = ClockingManagerDAO.getNextVal();
 
-			String clockingId = String.valueOf(nextVal);
-			String clockingPointName = request.getParameter("clockingPointName");
-			String siteName = request.getParameter("siteName");
+            String clockingId = String.valueOf(nextVal);
+            String clockingPointName = request.getParameter("clockingPointName");
+            String siteName = request.getParameter("siteName");
 
-			if (clockingPointName == null || siteName == null || clockingPointName.isEmpty() || siteName.isEmpty()) {
-				showPopupAndClose(response, "Missing parameters: clockingPointName or siteName", true);
-				return;
-			}
+            if (clockingPointName == null || siteName == null || clockingPointName.isEmpty() || siteName.isEmpty()) {
+                response.sendRedirect("clockingMain.jsp?error=Missing+parameters");
+                return;
+            }
 
-			ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore"));
-			Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
+            // --- Get officer details from session ---
+            HttpSession session = request.getSession(false);
+            String officerName = null;
+            String officerNric = null;
+            String createdBy = null;
+            String lastModifiedBy = null;
 
-			Clocking clocking = new Clocking(clockingId, clockingPointName, siteName, timestamp, timestamp);
+            if (session != null) {
+                officerName = (String) session.getAttribute("officerName");
+                officerNric = (String) session.getAttribute("officerNric");
 
-			String message = ClockingManagerDAO.addClocking(clocking);
+                if (officerName != null && officerNric != null) {
+                    createdBy = officerName + " - " + officerNric;
+                    lastModifiedBy = createdBy;
+                }
+            }
 
-			System.out.println("The message is this: " + message);
-			
-			if (message.toLowerCase().contains("error") || message.toLowerCase().contains("exception")) {
-				showPopupAndClose(response, "Failed to add clocking record: " + message, true);
-			} else {
-				showPopupAndClose(response, "Clocking record added successfully!", false);
-			}
+            ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore"));
+            Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 
-		} catch (Exception e) {
-			e.printStackTrace(); // log for server
-			showPopupAndClose(response, "Error occurred: " + e.getMessage(), true);
-		}
-	}
+            // --- Updated constructor: Clocking with createdBy & lastModifiedBy ---
+            Clocking clocking = new Clocking(
+                clockingId,
+                clockingPointName,
+                siteName,
+                createdBy,
+                timestamp,
+                timestamp,
+                lastModifiedBy
+            );
 
-	private void showPopupAndClose(HttpServletResponse response, String message, boolean isError) throws IOException {
-		
-		// Escape single quotes and newlines to avoid breaking JS
-	    String escapedMessage = message.replace("'", "\\'").replace("\n", "\\n").replace("\r", "");
+            String message = ClockingManagerDAO.addClocking(clocking);
 
-		response.setContentType("text/html");
-		response.getWriter().println(
-			"<html>" +
-	            "<head><title>" + (isError ? "Error" : "Success") + "</title></head>" +
-	            "<body>" +
-	                "<script type='text/javascript'>" +
-	                    "alert('" + escapedMessage + "');" +
-	                    "setTimeout(function() { window.close(); }, 300);" +
-	                "</script>" +
-	            "</body>" +
-	        "</html>"
-		);
-	}
+            if (message.toLowerCase().contains("error") || message.toLowerCase().contains("exception")) {
+                response.sendRedirect("clockingMain.jsp?error=" + message);
+            } else {
+                // Keep track of records in session
+                if (session != null) {
+                    @SuppressWarnings("unchecked")
+                    List<Clocking> records = (List<Clocking>) session.getAttribute("clockingRecords");
+                    if (records == null) {
+                        records = new ArrayList<>();
+                    }
+                    records.add(clocking);
+                    session.setAttribute("clockingRecords", records);
+                }
 
-	@Override
-	public void init() throws ServletException {
-		System.out.println("Servlet " + this.getServletName() + " has started");
-	}
+                response.sendRedirect("clockingMain.jsp?success=1");
+            }
 
-	@Override
-	public void destroy() {
-		System.out.println("Servlet " + this.getServletName() + " has stopped");
-	}
+        } catch (Exception e) {
+            e.printStackTrace(); // log for server
+            response.sendRedirect("clockingMain.jsp?error=" + e.getMessage());
+        }
+    }
+
+    @Override
+    public void init() throws ServletException {
+        System.out.println("Servlet " + this.getServletName() + " has started");
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("Servlet " + this.getServletName() + " has stopped");
+    }
 }

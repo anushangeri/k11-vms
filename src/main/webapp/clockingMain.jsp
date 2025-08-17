@@ -1,46 +1,138 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="loginVMSCSS.jsp"%>
 <%@page import="java.util.*"%>
-<%@page import="java.io.IOException"%>
-<%@page import="java.net.URL"%>
-<%@page import="net.javatutorial.entity.*"%>
-<%@page import="net.javatutorial.DAO.*"%>
+<%@page import="net.javatutorial.entity.Clocking"%>
+<%
+    String officerName = (String) session.getAttribute("officerName");
+    String officerNric = (String) session.getAttribute("officerNric");
+
+    List<Clocking> records = null;
+    Object obj = session.getAttribute("clockingRecords");
+    if (obj instanceof List<?>) {
+        records = (List<Clocking>) obj;
+    }
+
+    // Set session timeout to 4 hours (in seconds)
+    session.setMaxInactiveInterval(4 * 60 * 60);
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-<script
-	src="https://drvic10k.github.io/bootstrap-sortable/Scripts/bootstrap-sortable.js"
-	type="text/javascript"></script>
-<link
-	href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
-	rel="stylesheet">
+    <title>Officer Check-In</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 
+    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+
+    <script>
+        function validateNRIC(nric) {
+            const regex = /^[A-Za-z]\d{7}[A-Za-z]$/;
+            return regex.test(nric);
+        }
+
+        function startQrScanner() {
+            const name = document.getElementById("officerName").value.trim();
+            const nric = document.getElementById("officerNric").value.trim();
+
+            if (!name) {
+                alert("Please enter Officer Name.");
+                return;
+            }
+            if (!validateNRIC(nric)) {
+                alert("Invalid NRIC. Format: Letter + 7 digits + Letter (e.g. S1234567D)");
+                return;
+            }
+
+            // Save to session
+            document.getElementById("hiddenForm").submit();
+
+            setTimeout(() => {
+                document.getElementById("qr-reader").style.display = "block";
+                const html5QrCode = new Html5Qrcode("qr-reader");
+                html5QrCode.start(
+                    { facingMode: "environment" },
+                    { fps: 10, qrbox: 250 },
+                    (decodedText) => {
+                        window.location.href = decodedText;
+                        html5QrCode.stop();
+                    },
+                    (errorMessage) => {
+                        console.log("QR scan error: " + errorMessage);
+                    }
+                ).catch(err => {
+                    alert("Unable to start QR scanner: " + err);
+                });
+            }, 300);
+        }
+
+        function clearSession() {
+        	<%
+	            session.invalidate();
+	            response.sendRedirect("clockingMain.jsp");
+        	%>
+        }
+    </script>
+
+    <style>
+        #qr-reader { width: 300px; margin-top: 20px; display: none; }
+    </style>
 </head>
 <body>
-	<%
-		session.removeAttribute("usertype");
-		session.removeAttribute("name");
-	%>
-	<center>
-		<form name="checkNRIC" action="vmsCheckNRIC" method="post">
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="name">Enter Officer Name: </label> <input type="text"
-						class="form-control" name="name"
-						oninput="this.value = this.value.toUpperCase()" required>
-				</div>
-				<div class="form-group col-md-6">
-					<label for="idNo">ID Number: </label> <input type="text"
-						class="form-control" name="idNo" id="idNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
-						minlength="4" maxlength="15" required>
-				</div>
-				<input type="hidden" id="recordType" name="recordType" value=<%=request.getParameter("recordType")%>>
-				<button type="submit" class="btn btn-primary">Check NRIC</button>
-			</div>
-		</form>
-	</center>
+    <div class="container">
+        <h2 class="text-center">Officer Check-In</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form id="hiddenForm" method="post">
+                    <div class="form-group">
+                        <label for="officerName">Officer Name:</label>
+                        <input type="text" class="form-control" id="officerName" name="officerName"
+                               value="<%= officerName != null ? officerName : "" %>"
+                               oninput="this.value = this.value.toUpperCase()" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="officerNric">Officer NRIC:</label>
+                        <input type="text" class="form-control" id="officerNric" name="officerNric"
+                               value="<%= officerNric != null ? officerNric : "" %>"
+                               maxlength="9" minlength="9"
+                               oninput="this.value = this.value.toUpperCase()" required>
+                    </div>
+                </form>
+                <button type="button" class="btn btn-primary btn-block" onclick="startQrScanner()">
+                    Scan QR Code
+                </button>
+                <div id="qr-reader"></div>
+                <br>
+                <button type="button" class="btn btn-danger btn-block" onclick="clearSession()">
+                    Done Clocking
+                </button>
+            </div>
+        </div>
+
+        <% if (records != null && !records.isEmpty()) { %>
+            <h3 class="text-center mt-4">Clocking Records This Session</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Clocking ID</th>
+                        <th>Clocking Point</th>
+                        <th>Site</th>
+                        <th>Time</th>
+                        <th>Created By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% for (Clocking c : records) { %>
+                    <tr>
+                        <td><%= c.getClockingId() %></td>
+                        <td><%= c.getClockingPointName() %></td>
+                        <td><%= c.getSiteName() %></td>
+                        <td><%= c.getCreatedDt() %></td>
+                        <td><%= c.getCreatedBy() %></td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+        <% } %>
+    </div>
 </body>
 </html>
