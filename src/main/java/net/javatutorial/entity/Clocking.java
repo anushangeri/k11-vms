@@ -6,9 +6,24 @@ public class Clocking {
 	private String clockingId;
     private String clockingPointName; //this clocking point names will be added to DROPDOWN table
     private String siteName;
+    private String createdBy;
     private Timestamp createdDt;
     private Timestamp lastModifiedDt;
+    private String lastModifiedBy;
     
+    
+	public Clocking(String clockingId, String clockingPointName, String siteName, String createdBy, Timestamp createdDt,
+			Timestamp lastModifiedDt, String lastModifiedBy) {
+		super();
+		this.clockingId = clockingId;
+		this.clockingPointName = clockingPointName;
+		this.siteName = siteName;
+		this.createdBy = createdBy;
+		this.createdDt = createdDt;
+		this.lastModifiedDt = lastModifiedDt;
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
 	public Clocking(String clockingId, String clockingPointName, String siteName, Timestamp createdDt,
 			Timestamp lastModifiedDt) {
 		super();
@@ -62,7 +77,26 @@ public class Clocking {
 	@Override
 	public String toString() {
 		return "Clocking [clockingId=" + clockingId + ", clockingPointName=" + clockingPointName + ", siteName="
-				+ siteName + ", createdDt=" + createdDt + ", lastModifiedDt=" + lastModifiedDt + "]";
+				+ siteName + ", createdBy=" + createdBy + ", createdDt=" + createdDt + ", lastModifiedDt="
+				+ lastModifiedDt + ", lastModifiedBy=" + lastModifiedBy + "]";
 	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+	
+	
 
 }

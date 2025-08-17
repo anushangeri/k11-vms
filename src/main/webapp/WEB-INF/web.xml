@@ -368,6 +368,12 @@
 	</servlet>
 	<servlet>
 		<description />
+		<display-name>UClockingTblServlet</display-name>
+		<servlet-name>UClockingTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UClockingTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
 		<display-name>AddClockingRecordServlet</display-name>
 		<servlet-name>AddClockingRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.AddClockingRecordServlet</servlet-class>
@@ -640,6 +646,10 @@
 	<servlet-mapping>
 		<servlet-name>CClockingTblServlet</servlet-name>
 		<url-pattern>/createClockingTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UClockingTblServlet</servlet-name>
+		<url-pattern>/updateClockingTbl</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>AddClockingRecordServlet</servlet-name>

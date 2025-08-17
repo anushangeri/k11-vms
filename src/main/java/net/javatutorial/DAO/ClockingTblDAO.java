@@ -20,7 +20,9 @@ public class ClockingTblDAO {
 	        		+ "    CLOCKING_POINT_NAME VARCHAR(100) NOT NULL,\r\n"
 	        		+ "    SITE_NAME VARCHAR(100) NOT NULL,\r\n"
 	        		+ "    CREATED_DT TIMESTAMP NOT NULL DEFAULT NOW(),\r\n"
-	        		+ "    LAST_MODIFIED_DT TIMESTAMP NULL\r\n"
+	        		+ "    LAST_MODIFIED_DT TIMESTAMP NULL,\r\n"
+	        		+ "    CREATEDBY VARCHAR(100) NULL,\r\n"
+	        		+ "    LASTMODIFIEDBY VARCHAR(100) NULL\r\n"
 	        		+ ");");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -61,9 +63,9 @@ public class ClockingTblDAO {
 		try {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
-	        stmt.executeUpdate("ALTER TABLE CLOCKING\r\n" + 
-	        		"ADD COLUMN SEAL_NO VARCHAR (100)  NULL,"
-	        		+ "ADD COLUMN CONTAINER_SIZE VARCHAR (100)  NULL;");
+	        stmt.executeUpdate("ALTER TABLE CLOCKING " +
+	                "ADD COLUMN CREATEDBY VARCHAR(100) NULL, " +
+	                "ADD COLUMN LASTMODIFIEDBY VARCHAR(100) NULL;");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;

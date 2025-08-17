@@ -165,6 +165,10 @@
                   <button class="btn" type="submit">Create</button>
               </form>
           </td>
+          <td><form action="updateClockingTbl" method="post">
+                  <button class="btn" type="submit">Update</button>
+              </form>
+          </td>
 	    </tr>
 	  </tbody>
 	</table>
