@@ -11,10 +11,8 @@
         records = (List<Clocking>) obj;
     }
 
-    // Set session timeout to 4 hours (in seconds)
     session.setMaxInactiveInterval(4 * 60 * 60);
 
-    // Clear session if ?action=clear is in URL
     String action = request.getParameter("action");
     if ("clear".equals(action)) {
         session.invalidate();
@@ -28,10 +26,6 @@
     <title>Officer QR Check-In</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
-    <style>
-        video { width: 100%; max-width: 400px; border: 1px solid #ccc; margin-top: 20px; }
-        form { border: none; padding: 0; margin: 0; }
-    </style>
 </head>
 <body>
 <div class="container">
@@ -54,11 +48,7 @@
                 </div>
             </form>
 
-            <button id="startScannerBtn" class="btn btn-warning btn-lg btn-block">
-                Scan QR Code
-            </button>
-
-            <video id="preview"></video>
+            <button id="startScannerBtn" class="btn btn-warning btn-lg btn-block">Scan QR Code</button>
 
             <br>
             <button type="button" class="btn btn-danger btn-block"
@@ -96,29 +86,28 @@
 </div>
 
 <script>
-    document.getElementById('startScannerBtn').addEventListener('click', async () => {
-        const videoElem = document.getElementById('preview');
-        const scanner = new Instascan.Scanner({ video: videoElem, mirror: false });
-
-        scanner.addListener('scan', function(content) {
-            alert("Scanned QR Code: " + content);
-            scanner.stop(); // Stop immediately after scan
-        });
-
-        try {
-            const cameras = await Instascan.Camera.getCameras();
-            if (cameras.length > 0) {
-                // Prefer back camera if available
-                const backCamera = cameras.find(cam => cam.name.toLowerCase().includes('back')) || cameras[0];
-                scanner.start(backCamera);
-            } else {
-                alert("No camera found on this device.");
-            }
-        } catch (e) {
-            alert("Camera access error: " + e);
-            console.error(e);
-        }
+document.getElementById('startScannerBtn').addEventListener('click', async () => {
+    const scanner = new Instascan.Scanner({ video: document.createElement('video'), mirror: false });
+    
+    scanner.addListener('scan', function(content) {
+        document.getElementById('officerNric').value = content; // auto-fill NRIC
+        scanner.stop(); // stop camera immediately
     });
+
+    try {
+        const cameras = await Instascan.Camera.getCameras();
+        if (cameras.length > 0) {
+            // Prefer back camera
+            const backCamera = cameras.find(cam => cam.name.toLowerCase().includes('back')) || cameras[0];
+            scanner.start(backCamera);
+        } else {
+            alert("No camera found on this device.");
+        }
+    } catch (e) {
+        alert("Camera access error: " + e);
+        console.error(e);
+    }
+});
 </script>
 </body>
 </html>
