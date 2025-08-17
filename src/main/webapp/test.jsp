@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>QR Code Scanner</title>
-  <script type="text/javascript" src="instascan.min.js"></script>
+  <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
   <style>
     video { width: 100%; max-width: 400px; border: 1px solid #ccc; }
   </style>
