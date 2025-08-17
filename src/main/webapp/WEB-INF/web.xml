@@ -378,6 +378,12 @@
 		<servlet-name>AddClockingRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.AddClockingRecordServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewClockingRecordsServlet</display-name>
+		<servlet-name>ViewClockingRecordsServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewClockingRecordsServlet</servlet-class>
+	</servlet>
 	<!-- Clocking END  -->
 	<!-- Dropdown List START  -->
 	<servlet>
@@ -654,6 +660,10 @@
 	<servlet-mapping>
 		<servlet-name>AddClockingRecordServlet</servlet-name>
 		<url-pattern>/addClocking</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewClockingRecordsServlet</servlet-name>
+		<url-pattern>/viewClocking</url-pattern>
 	</servlet-mapping>
 	<!-- Clocking END  -->
 	<!-- Dropdown START  -->

@@ -48,6 +48,16 @@
 					</div>
 				</button>
 			</form>
+			<form action="viewClocking" method="get" >
+				<button type="submit" id="removeBackground">
+					<div class="card bg-warning text-white">
+						<div class="card-body font-size-percent">
+							View Clocking Records<br>
+							Select this.
+						</div>
+					</div>
+				</button>
+			</form>
 			<br>
 		</div>
 	</center>

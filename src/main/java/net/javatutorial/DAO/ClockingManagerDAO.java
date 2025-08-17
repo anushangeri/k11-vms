@@ -113,151 +113,169 @@ public class ClockingManagerDAO {
 	}
 	
 	public static ArrayList<Clocking> retrieveAllClockings() {
-		PreparedStatement pstmt = null;
-		Connection connection = null;
-		ResultSet rs = null;
-		Clocking v = null;
-		ArrayList<Clocking> vList = new ArrayList<>();
-		try {
-			connection = Main.getConnection();
-			String sql = "SELECT CLOCKING_ID, CLOCKING_POINT_NAME, SITE_NAME, CREATED_DT, LAST_MODIFIED_DT " +
-			             "FROM CLOCKING ORDER BY LAST_MODIFIED_DT DESC;";
-			pstmt = connection.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				v = new Clocking(rs.getString(1),
-				                 rs.getString(2),
-				                 rs.getString(3),
-				                 rs.getTimestamp(4),
-				                 rs.getTimestamp(5));
-				vList.add(v);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			Main.close(connection, pstmt, rs);
-		}
-		return vList;
+	    PreparedStatement pstmt = null;
+	    Connection connection = null;
+	    ResultSet rs = null;
+	    Clocking v = null;
+	    ArrayList<Clocking> vList = new ArrayList<>();
+	    try {
+	        connection = Main.getConnection();
+	        String sql = "SELECT CLOCKING_ID, CLOCKING_POINT_NAME, SITE_NAME, CREATED_DT, LAST_MODIFIED_DT, CREATEDBY, LASTMODIFIEDBY " +
+	                     "FROM CLOCKING ORDER BY LAST_MODIFIED_DT DESC;";
+	        pstmt = connection.prepareStatement(sql);
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            v = new Clocking(
+	                rs.getString(1),
+	                rs.getString(2),
+	                rs.getString(3),
+	                rs.getString(6),
+	                rs.getTimestamp(4),
+	                rs.getTimestamp(5),
+	                rs.getString(7)
+	            );
+	            vList.add(v);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        Main.close(connection, pstmt, rs);
+	    }
+	    return vList;
 	}
-	
+
 	public static ArrayList<Clocking> retrieveAllCurrentDay(Timestamp timestamp) {
-		PreparedStatement pstmt = null;
-		Connection connection = null;
-		ResultSet rs = null;
-		Clocking v = null;
-		ArrayList<Clocking> vList = new ArrayList<>();
-		try {
-			connection = Main.getConnection();
-			String sql = "SELECT CLOCKING_ID, CLOCKING_POINT_NAME, SITE_NAME, CREATED_DT, LAST_MODIFIED_DT " +
-			             "FROM CLOCKING WHERE DATE(CREATED_DT) = DATE(CAST(? AS TIMESTAMP)) " +
-			             "ORDER BY CREATED_DT DESC;";
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setTimestamp(1, timestamp);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				v = new Clocking(rs.getString(1),
-				                 rs.getString(2),
-				                 rs.getString(3),
-				                 rs.getTimestamp(4),
-				                 rs.getTimestamp(5));
-				vList.add(v);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			Main.close(connection, pstmt, rs);
-		}
-		return vList;
+	    PreparedStatement pstmt = null;
+	    Connection connection = null;
+	    ResultSet rs = null;
+	    Clocking v = null;
+	    ArrayList<Clocking> vList = new ArrayList<>();
+	    try {
+	        connection = Main.getConnection();
+	        String sql = "SELECT CLOCKING_ID, CLOCKING_POINT_NAME, SITE_NAME, CREATED_DT, LAST_MODIFIED_DT, CREATEDBY, LASTMODIFIEDBY " +
+	                     "FROM CLOCKING WHERE DATE(CREATED_DT) = DATE(CAST(? AS TIMESTAMP)) ORDER BY CREATED_DT DESC;";
+	        pstmt = connection.prepareStatement(sql);
+	        pstmt.setTimestamp(1, timestamp);
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            v = new Clocking(
+	                rs.getString(1),
+	                rs.getString(2),
+	                rs.getString(3),
+	                rs.getString(6),
+	                rs.getTimestamp(4),
+	                rs.getTimestamp(5),
+	                rs.getString(7)
+	            );
+	            vList.add(v);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        Main.close(connection, pstmt, rs);
+	    }
+	    return vList;
 	}
 
 	public static ArrayList<Clocking> retrieveAllLast10Days(Timestamp timestamp) {
-		PreparedStatement pstmt = null;
-		Connection connection = null;
-		ResultSet rs = null;
-		Clocking v = null;
-		ArrayList<Clocking> vList = new ArrayList<>();
-		try {
-			connection = Main.getConnection();
-			String sql = "SELECT CLOCKING_ID, CLOCKING_POINT_NAME, SITE_NAME, CREATED_DT, LAST_MODIFIED_DT " +
-			             "FROM CLOCKING WHERE DATE(CREATED_DT) >= DATE(CAST(? AS TIMESTAMP)) - INTERVAL '10 days' " +
-			             "ORDER BY CREATED_DT DESC;";
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setTimestamp(1, timestamp);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				v = new Clocking(rs.getString(1),
-				                 rs.getString(2),
-				                 rs.getString(3),
-				                 rs.getTimestamp(4),
-				                 rs.getTimestamp(5));
-				vList.add(v);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			Main.close(connection, pstmt, rs);
-		}
-		return vList;
+	    PreparedStatement pstmt = null;
+	    Connection connection = null;
+	    ResultSet rs = null;
+	    Clocking v = null;
+	    ArrayList<Clocking> vList = new ArrayList<>();
+	    try {
+	        connection = Main.getConnection();
+	        String sql = "SELECT CLOCKING_ID, CLOCKING_POINT_NAME, SITE_NAME, CREATED_DT, LAST_MODIFIED_DT, CREATEDBY, LASTMODIFIEDBY " +
+	                     "FROM CLOCKING WHERE DATE(CREATED_DT) >= DATE(CAST(? AS TIMESTAMP)) - INTERVAL '10 days' ORDER BY CREATED_DT DESC;";
+	        pstmt = connection.prepareStatement(sql);
+	        pstmt.setTimestamp(1, timestamp);
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            v = new Clocking(
+	                rs.getString(1),
+	                rs.getString(2),
+	                rs.getString(3),
+	                rs.getString(6),
+	                rs.getTimestamp(4),
+	                rs.getTimestamp(5),
+	                rs.getString(7)
+	            );
+	            vList.add(v);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        Main.close(connection, pstmt, rs);
+	    }
+	    return vList;
 	}
 
 	public static ArrayList<Clocking> retrieveAllLast30Days(Timestamp timestamp) {
-		PreparedStatement pstmt = null;
-		Connection connection = null;
-		ResultSet rs = null;
-		Clocking v = null;
-		ArrayList<Clocking> vList = new ArrayList<>();
-		try {
-			connection = Main.getConnection();
-			String sql = "SELECT CLOCKING_ID, CLOCKING_POINT_NAME, SITE_NAME, CREATED_DT, LAST_MODIFIED_DT " +
-			             "FROM CLOCKING WHERE DATE(CREATED_DT) >= DATE(CAST(? AS TIMESTAMP)) - INTERVAL '30 days' " +
-			             "ORDER BY CREATED_DT DESC;";
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setTimestamp(1, timestamp);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				v = new Clocking(rs.getString(1),
-				                 rs.getString(2),
-				                 rs.getString(3),
-				                 rs.getTimestamp(4),
-				                 rs.getTimestamp(5));
-				vList.add(v);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			Main.close(connection, pstmt, rs);
-		}
-		return vList;
+	    PreparedStatement pstmt = null;
+	    Connection connection = null;
+	    ResultSet rs = null;
+	    Clocking v = null;
+	    ArrayList<Clocking> vList = new ArrayList<>();
+	    try {
+	        connection = Main.getConnection();
+	        String sql = "SELECT CLOCKING_ID, CLOCKING_POINT_NAME, SITE_NAME, CREATED_DT, LAST_MODIFIED_DT, CREATEDBY, LASTMODIFIEDBY " +
+	                     "FROM CLOCKING WHERE DATE(CREATED_DT) >= DATE(CAST(? AS TIMESTAMP)) - INTERVAL '30 days' ORDER BY CREATED_DT DESC;";
+	        pstmt = connection.prepareStatement(sql);
+	        pstmt.setTimestamp(1, timestamp);
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            v = new Clocking(
+	                rs.getString(1),
+	                rs.getString(2),
+	                rs.getString(3),
+	                rs.getString(6),
+	                rs.getTimestamp(4),
+	                rs.getTimestamp(5),
+	                rs.getString(7)
+	            );
+	            vList.add(v);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        Main.close(connection, pstmt, rs);
+	    }
+	    return vList;
 	}
 
 	public static ArrayList<Clocking> retrieveClockingById(String clockingId) {
-		PreparedStatement pstmt = null;
-		Connection connection = null;
-		ResultSet rs = null;
-		Clocking v = null;
-		ArrayList<Clocking> vList = new ArrayList<>();
-		try {
-			connection = Main.getConnection();
-			String sql = "SELECT CLOCKING_ID, CLOCKING_POINT_NAME, SITE_NAME, CREATED_DT, LAST_MODIFIED_DT " +
-			             "FROM CLOCKING WHERE CLOCKING_ID = ? ORDER BY LAST_MODIFIED_DT DESC;";
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setString(1, clockingId);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				v = new Clocking(rs.getString(1),
-				                 rs.getString(2),
-				                 rs.getString(3),
-				                 rs.getTimestamp(4),
-				                 rs.getTimestamp(5));
-				vList.add(v);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			Main.close(connection, pstmt, rs);
-		}
-		return vList;
+	    PreparedStatement pstmt = null;
+	    Connection connection = null;
+	    ResultSet rs = null;
+	    Clocking v = null;
+	    ArrayList<Clocking> vList = new ArrayList<>();
+	    try {
+	        connection = Main.getConnection();
+	        String sql = "SELECT CLOCKING_ID, CLOCKING_POINT_NAME, SITE_NAME, CREATED_DT, LAST_MODIFIED_DT, CREATEDBY, LASTMODIFIEDBY " +
+	                     "FROM CLOCKING WHERE CLOCKING_ID = ? ORDER BY LAST_MODIFIED_DT DESC;";
+	        pstmt = connection.prepareStatement(sql);
+	        pstmt.setString(1, clockingId);
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            v = new Clocking(
+	                rs.getString(1),
+	                rs.getString(2),
+	                rs.getString(3),
+	                rs.getString(6),
+	                rs.getTimestamp(4),
+	                rs.getTimestamp(5),
+	                rs.getString(7)
+	            );
+	            vList.add(v);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        Main.close(connection, pstmt, rs);
+	    }
+	    return vList;
 	}
+
 	
 	public static String deleteClockingById(String clockingId) {
 		PreparedStatement pstmt = null;

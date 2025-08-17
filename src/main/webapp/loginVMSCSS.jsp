@@ -107,6 +107,7 @@ body {
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			<a class="dropdown-item" href="/clientLogin.jsp">Login</a> 
 			<a class="dropdown-item" href="/resetPassword.jsp">Change Password</a> 
+			<a class="dropdown-item" href="/clockingMain.jsp">Officer Clocking Program</a> 
 		</div>
 	</div>
 </div>
