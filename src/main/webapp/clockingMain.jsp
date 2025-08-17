@@ -11,15 +11,13 @@
         records = (List<Clocking>) obj;
     }
 
-    // Set session timeout to 4 hours (in seconds)
     session.setMaxInactiveInterval(4 * 60 * 60);
 
-    // Clear session if ?action=clear is in URL
     String action = request.getParameter("action");
     if ("clear".equals(action)) {
         session.invalidate();
         response.sendRedirect("clockingMain.jsp");
-        return; // stop further rendering
+        return;
     }
 %>
 <!DOCTYPE html>
@@ -36,7 +34,7 @@
             return regex.test(nric);
         }
 
-        function startQrScanner() {
+        async function startQrScanner() {
             const name = document.getElementById("officerName").value.trim();
             const nric = document.getElementById("officerNric").value.trim();
 
@@ -49,34 +47,38 @@
                 return;
             }
 
-            // Show QR reader
             const qrReader = document.getElementById("qr-reader");
             qrReader.style.display = "block";
 
-            // Initialize QR scanner
-            const html5QrCode = new Html5Qrcode("qr-reader");
-            html5QrCode.start(
-                { facingMode: "environment" },
-                { fps: 10, qrbox: 250 },
-                (decodedText) => {
-                    alert("Scanned: " + decodedText);
-                    html5QrCode.stop();
-                },
-                (errorMessage) => {
-                    console.log("QR scan error: " + errorMessage);
+            try {
+                const cameras = await Html5Qrcode.getCameras();
+                if (cameras && cameras.length) {
+                    const cameraId = cameras[0].id; // back camera on mobile usually first
+                    const html5QrCode = new Html5Qrcode("qr-reader");
+
+                    html5QrCode.start(
+                        cameraId,
+                        { fps: 10, qrbox: 250 },
+                        (decodedText) => {
+                            alert("Scanned: " + decodedText);
+                            html5QrCode.stop();
+                        },
+                        (errorMessage) => {
+                            console.log("QR scan error: " + errorMessage);
+                        }
+                    ).catch(err => alert("Cannot start camera: " + err));
+                } else {
+                    alert("No camera found on this device.");
                 }
-            ).catch(err => alert("Cannot start camera: " + err));
+            } catch (err) {
+                alert("Camera access error: " + err);
+            }
         }
     </script>
 
     <style>
-        /* Remove form border */
-        form {
-            border: none;
-            padding: 0;
-            margin: 0;
-        }
-        #qr-reader { width: 300px; margin-top: 20px; display: none; }
+        form { border: none; padding: 0; margin: 0; }
+        #qr-reader { width: 100%; max-width: 400px; margin-top: 20px; display: none; }
     </style>
 </head>
 <body>
