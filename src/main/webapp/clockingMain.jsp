@@ -11,10 +11,8 @@
         records = (List<Clocking>) obj;
     }
 
-    // Set session timeout to 4 hours
     session.setMaxInactiveInterval(4 * 60 * 60);
 
-    // Clear session if requested
     String action = request.getParameter("action");
     if ("clear".equals(action)) {
         session.invalidate();
@@ -25,11 +23,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Officer QR Check-In</title>
+    <title>Officer Clocking Check-In</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
     <style>
-        video { width: 100%; max-width: 400px; border: 1px solid #ccc; margin-top: 20px; display: none; }
+        video { width: 100%; max-width: 400px; border: 1px solid #ccc; display: none; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -93,34 +91,36 @@
 
 <script>
 document.getElementById('startScannerBtn').addEventListener('click', async () => {
-    const videoElem = document.getElementById('preview');
-    videoElem.style.display = 'block'; // show video
+    const video = document.getElementById('preview');
+    video.style.display = 'block';
 
-    const scanner = new Instascan.Scanner({ video: videoElem, mirror: false });
+    // Force back camera
+    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } });
+    video.srcObject = stream;
+    await video.play();
 
-    scanner.addListener('scan', function(content) {
-        console.log("Scanned QR Code:", content); // just log or handle backend
-        alert("QR code scanned!");
-        scanner.stop();               // stop camera
-        videoElem.style.display = 'none'; // hide video
-    });
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
 
-    try {
-        const cameras = await Instascan.Camera.getCameras();
-        if (cameras.length > 0) {
-            // Try to find environment/back camera
-            let backCamera = cameras.find(cam => cam.name.toLowerCase().includes('back'));
-            //if (!backCamera) backCamera = cameras.find(cam => cam.facing === 'environment');
-            //if (!backCamera) backCamera = cameras[0]; // fallback
-
-            await scanner.start(backCamera);
-        } else {
-            alert("No camera found on this device.");
+    const scan = () => {
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+            const code = jsQR(imageData.data, imageData.width, imageData.height);
+            if (code) {
+                alert("QR code detected: " + code.data);
+                // Stop camera
+                stream.getTracks().forEach(track => track.stop());
+                video.style.display = 'none';
+                return;
+            }
         }
-    } catch (e) {
-        alert("Camera access error: " + e);
-        console.error(e);
-    }
+        requestAnimationFrame(scan);
+    };
+
+    scan();
 });
 </script>
 </body>
