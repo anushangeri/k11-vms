@@ -108,9 +108,12 @@ document.getElementById('startScannerBtn').addEventListener('click', async () =>
     try {
         const cameras = await Instascan.Camera.getCameras();
         if (cameras.length > 0) {
-            // Prefer back camera using facing property
-            const backCamera = cameras.find(cam => cam.facing === 'environment') || cameras[0];
-            scanner.start(backCamera);
+            // Try to find environment/back camera
+            let backCamera = cameras.find(cam => cam.name.toLowerCase().includes('back'));
+            if (!backCamera) backCamera = cameras.find(cam => cam.facing === 'environment');
+            if (!backCamera) backCamera = cameras[0]; // fallback
+
+            await scanner.start(backCamera);
         } else {
             alert("No camera found on this device.");
         }
