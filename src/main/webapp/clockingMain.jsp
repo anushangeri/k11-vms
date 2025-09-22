@@ -10,10 +10,7 @@ Scan QR Code + Done Clocking start disabled.
 Once Save Officer Info is clicked and valid data is stored in session, disable inputs + Save button, and enable Scan QR Code.
 After QR is scanned at least once, enable Done Clocking.
 */
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.*"%>
-<%@page import="net.javatutorial.entity.Clocking"%>
-<%
+
     // Handle session clearing
     String action = request.getParameter("action");
     if ("clear".equals(action)) {
