@@ -53,7 +53,10 @@ public class AddClockingRecordServlet extends HttpServlet {
                 officerName = (String) session.getAttribute("officerName");
                 officerNric = (String) session.getAttribute("officerNric");
 
-                if (officerName != null && officerNric != null) {
+                if (officerName == null || officerNric == null || officerName.isEmpty() || officerNric.isEmpty()) {
+                    response.sendRedirect("clockingMain.jsp?error=Missing+officer+details");
+                    return;
+                } else {
                     createdBy = officerName + " - " + officerNric;
                     lastModifiedBy = createdBy;
                 }
