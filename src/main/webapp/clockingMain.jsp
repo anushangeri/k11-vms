@@ -140,6 +140,14 @@ After QR is scanned at least once, enable Done Clocking.
                     onclick="window.location.href='clockingMain.jsp?action=clear'">
                 Done Clocking
             </button>
+            
+            <br>
+			<button type="button" 
+			        class="btn btn-default btn-block"
+			        onclick="window.location.href='index.jsp'">
+			    Back to Homepage
+			</button>
+	            
         </div>
     </div>
 
