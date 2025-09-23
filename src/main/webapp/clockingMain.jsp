@@ -290,6 +290,8 @@ function scanFrames() {
                 let clockingData;
                 try {
                     clockingData = JSON.parse(code.data);
+                    console.log("Scanned QR data:", code.data);
+
                 } catch (e) {
                     clockingData = {};
                     code.data.split(';').forEach(pair => {
