@@ -282,11 +282,16 @@ function scanFrames() {
             canvas.height = video.videoHeight;
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
             const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+            
+            console.log("Video readyState:", video.readyState);
+            console.log("Width:", canvas.width, "Height:", canvas.height);
+            console.log("ImageData length:", imageData.data.length);
+            
             const code = jsQR(imageData.data, imageData.width, imageData.height);
 
             if (code && code.data) {
                 stopCamera();
-                console.log("Scanned QR data:", code.data);
+                alert( code.data);
                 let clockingData;
                 try {
                     clockingData = JSON.parse(code.data);
