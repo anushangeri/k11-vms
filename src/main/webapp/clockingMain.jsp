@@ -286,11 +286,11 @@ function scanFrames() {
 
             if (code && code.data) {
                 stopCamera();
-
+                console.log("Scanned QR data:", code.data);
                 let clockingData;
                 try {
                     clockingData = JSON.parse(code.data);
-                   	System.out.println("Scanned QR data:", code.data);
+                    
 
                 } catch (e) {
                     clockingData = {};
