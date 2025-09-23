@@ -283,16 +283,48 @@ function scanFrames() {
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
             const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
             const code = jsQR(imageData.data, imageData.width, imageData.height);
+
             if (code && code.data) {
                 stopCamera();
 
-                // Persist a flag so when the page reloads it can enable Done Clocking.
-                try { localStorage.setItem('hasScannedOnce', '1'); } catch (e) { /* ignore */ }
+                let clockingData = null;
 
-                // If you prefer to POST the scanned data to the server instead of navigating,
-                // you could fetch() to a servlet here and then enable Done without navigating.
-                // For now, preserve previous behavior and follow the QR link:
-                window.location.href = code.data;
+                // Parse JSON or key=value pairs
+                try {
+                    clockingData = JSON.parse(code.data);
+                } catch (e) {
+                    clockingData = {};
+                    code.data.split(';').forEach(pair => {
+                        let [key, val] = pair.split('=');
+                        if (key && val) clockingData[key.trim()] = val.trim();
+                    });
+                }
+
+                if (!clockingData.clockingPointName || !clockingData.siteName) {
+                    alert("Invalid QR data: missing clockingPointName or siteName");
+                    return;
+                }
+
+                // Persist flag so Done Clocking can be enabled
+                try { localStorage.setItem('hasScannedOnce', '1'); } catch (e) {}
+
+                // Send to servlet
+                fetch("addClocking", {   // 👈 use servlet mapping
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: `clockingPointName=${encodeURIComponent(clockingData.clockingPointName)}&siteName=${encodeURIComponent(clockingData.siteName)}`
+                }).then(resp => {
+                    if (resp.redirected) {
+                        window.location.href = resp.url; // servlet redirect → JSP
+                    } else {
+                        enableDoneButton();
+                        alert("Clocking recorded!");
+                    }
+                }).catch(err => {
+                    console.error("Error posting clocking:", err);
+                    alert("Failed to save clocking");
+                });
+
                 return;
             }
         }
@@ -301,6 +333,7 @@ function scanFrames() {
 
     scan();
 }
+
 </script>
 </body>
 </html>
