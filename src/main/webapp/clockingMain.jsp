@@ -287,9 +287,7 @@ function scanFrames() {
             if (code && code.data) {
                 stopCamera();
 
-                let clockingData = null;
-
-                // Parse JSON or key=value pairs
+                let clockingData;
                 try {
                     clockingData = JSON.parse(code.data);
                 } catch (e) {
@@ -305,17 +303,15 @@ function scanFrames() {
                     return;
                 }
 
-                // Persist flag so Done Clocking can be enabled
-                try { localStorage.setItem('hasScannedOnce', '1'); } catch (e) {}
-
-                // Send to servlet
-                fetch("addClocking", {   // 👈 use servlet mapping
+                // encodeURIComponent is a JS function
+                fetch("addClocking", {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: `clockingPointName=${encodeURIComponent(clockingData.clockingPointName)}&siteName=${encodeURIComponent(clockingData.siteName)}`
+                    body: "clockingPointName=" + encodeURIComponent(clockingData.clockingPointName) +
+                          "&siteName=" + encodeURIComponent(clockingData.siteName)
                 }).then(resp => {
                     if (resp.redirected) {
-                        window.location.href = resp.url; // servlet redirect → JSP
+                        window.location.href = resp.url;
                     } else {
                         enableDoneButton();
                         alert("Clocking recorded!");
@@ -333,6 +329,7 @@ function scanFrames() {
 
     scan();
 }
+
 
 </script>
 </body>
